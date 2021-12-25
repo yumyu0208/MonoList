@@ -12,40 +12,39 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Folder.name, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var folders: FetchedResults<Folder>
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
+                ForEach(folders) { folder in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text(folder.name!)
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(folder.name!)
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deleteFolders)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Button(action: addFolder) {
+                        Label("Add Folder", systemImage: "plus")
                     }
                 }
             }
-            Text("Select an item")
         }
     }
 
-    private func addItem() {
+    private func addFolder() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newFolder = Folder(context: viewContext)
+            newFolder.name = Date().debugDescription
 
             do {
                 try viewContext.save()
@@ -58,9 +57,9 @@ struct ContentView: View {
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteFolders(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { folders[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -73,13 +72,6 @@ struct ContentView: View {
         }
     }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
