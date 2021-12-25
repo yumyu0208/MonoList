@@ -45,6 +45,7 @@ struct ContentView: View {
         withAnimation {
             let newFolder = Folder(context: viewContext)
             newFolder.name = Date().debugDescription
+            newFolder.image = "folder"
 
             do {
                 try viewContext.save()

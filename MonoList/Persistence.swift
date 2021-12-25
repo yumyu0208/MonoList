@@ -16,6 +16,7 @@ struct PersistenceController {
         for _ in 0..<10 {
             let newFolder = Folder(context: viewContext)
             newFolder.name = Date().debugDescription
+            newFolder.image = "folder"
         }
         do {
             try viewContext.save()
