@@ -19,17 +19,19 @@ public class Folder: NSManagedObject {
         let newFolder = Folder(context: viewContext)
         newFolder.name = name
         newFolder.image = image
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
         return newFolder
     }
     
     @discardableResult
     func addItemList(name: String = "default_newList", color: String = K.listColors.basic.green, image: String = "checklist") -> ItemList {
-        return ItemList.createNewItemList(name: name, color: color, image: image, for: self)
+        let newItemList = ItemList.createNewItemList(name: name, color: color, image: image)
+        addToItemLists(newItemList)
+        do {
+            try Self.viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        return newItemList
     }
 }

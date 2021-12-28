@@ -15,7 +15,7 @@ public class ItemList: NSManagedObject {
     @Environment(\.managedObjectContext) private static var viewContext
     
     @discardableResult
-    static func createNewItemList(name: String, color: String, image: String, achievementCount: Int = 0, displayFormat: String = "list", creationDate: Date = Date(), updateDate: Date = Date(), type: String = "belongings", for folder: Folder) -> ItemList {
+    static func createNewItemList(name: String, color: String, image: String, achievementCount: Int = 0, displayFormat: String = "list", creationDate: Date = Date(), updateDate: Date = Date(), type: String = "belongings") -> ItemList {
         let newItemList = ItemList(context: viewContext)
         newItemList.id = UUID()
         newItemList.name = name
@@ -26,18 +26,32 @@ public class ItemList: NSManagedObject {
         newItemList.creationDate = creationDate
         newItemList.updateDate = updateDate
         newItemList.type = type
-        folder.addToItemLists(newItemList)
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
         return newItemList
     }
     
     @discardableResult
     func addItem(name: String) -> Item {
-        return Item.createNewItem(name: name, for: self)
+        let newItem = Item.createNewItem(name: name)
+        addToItems(newItem)
+        do {
+            try Self.viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        return newItem
+    }
+    
+    @discardableResult
+    func addNotification(weekdays: [String], time: Date) -> Notification {
+        let newNotification = Notification.createNewNotification(weekdays: weekdays, time: time)
+        addToNotifications(newNotification)
+        do {
+            try Self.viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        return newNotification
     }
 }

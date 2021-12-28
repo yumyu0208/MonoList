@@ -15,7 +15,7 @@ public class Item: NSManagedObject {
     @Environment(\.managedObjectContext) private static var viewContext
     
     @discardableResult
-    static func createNewItem(name: String, quantity: Int? = nil, state: String = "incomplete", isImportant: Bool = false, note: String? = nil, image: String? = nil, conditions: String? = nil, for itemList: ItemList) -> Item {
+    static func createNewItem(name: String, quantity: Int? = nil, state: String = "incomplete", isImportant: Bool = false, note: String? = nil, image: String? = nil, conditions: String? = nil) -> Item {
         let newItem = Item(context: viewContext)
         newItem.id = UUID()
         newItem.name = name
@@ -25,13 +25,6 @@ public class Item: NSManagedObject {
         newItem.note = note
         newItem.image = image
         newItem.conditions = conditions
-        itemList.addToItems(newItem)
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
         return newItem
     }
 }

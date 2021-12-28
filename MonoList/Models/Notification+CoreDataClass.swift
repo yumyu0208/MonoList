@@ -15,17 +15,10 @@ public class Notification: NSManagedObject {
     @Environment(\.managedObjectContext) private static var viewContext
     
     @discardableResult
-    static func createNewNotification(weekdays: [String], time: Date, for itemList: ItemList) -> Notification {
+    static func createNewNotification(weekdays: [String], time: Date) -> Notification {
         let newNotification = Notification(context: viewContext)
         newNotification.weekdays = weekdays.joined(separator: ", ")
         newNotification.time = time
-        itemList.addToNotifications(newNotification)
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
         return newNotification
     }
 }
