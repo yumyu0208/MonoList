@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreData
 
-@objc(ItemList)
+
 public class ItemList: NSManagedObject {
     
     @Environment(\.managedObjectContext) private static var viewContext
@@ -26,7 +26,7 @@ public class ItemList: NSManagedObject {
         newItemList.creationDate = creationDate
         newItemList.updateDate = updateDate
         newItemList.type = type
-        newItemList.parentFolder = folder
+        folder.addToItemLists(newItemList)
         do {
             try viewContext.save()
         } catch {

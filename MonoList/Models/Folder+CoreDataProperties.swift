@@ -18,7 +18,25 @@ extension Folder {
 
     @NSManaged public var image: String
     @NSManaged public var name: String
-    @NSManaged public var itemLists: ItemList?
+    @NSManaged public var order: Int32
+    @NSManaged public var itemLists: NSSet?
+
+}
+
+// MARK: Generated accessors for itemLists
+extension Folder {
+
+    @objc(addItemListsObject:)
+    @NSManaged public func addToItemLists(_ value: ItemList)
+
+    @objc(removeItemListsObject:)
+    @NSManaged public func removeFromItemLists(_ value: ItemList)
+
+    @objc(addItemLists:)
+    @NSManaged public func addToItemLists(_ values: NSSet)
+
+    @objc(removeItemLists:)
+    @NSManaged public func removeFromItemLists(_ values: NSSet)
 
 }
 

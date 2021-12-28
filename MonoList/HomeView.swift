@@ -8,23 +8,20 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Folder.name, ascending: true)],
-        animation: .default)
+    @FetchRequest(sortDescriptors: [])
     private var folders: FetchedResults<Folder>
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(folders) { folder in
-                    NavigationLink {
-                        Text(folder.name)
-                    } label: {
-                        Text(folder.name)
-                    }
+                        NavigationLink {
+                            Text(folder.name)
+                        } label: {
+                            Text(folder.name)
+                        }
                 }
                 .onDelete(perform: deleteFolders)
             }
@@ -76,6 +73,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

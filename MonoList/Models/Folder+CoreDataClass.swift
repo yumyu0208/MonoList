@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreData
 
-@objc(Folder)
+
 public class Folder: NSManagedObject {
     
     @Environment(\.managedObjectContext) private static var viewContext

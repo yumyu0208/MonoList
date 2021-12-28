@@ -22,9 +22,10 @@ extension Item {
     @NSManaged public var isImportant: Bool
     @NSManaged public var name: String
     @NSManaged public var note: String?
+    @NSManaged public var order: Int32
     @NSManaged public var quantity: Int32
-    @NSManaged public var state: String
-    @NSManaged public var parentItemList: ItemList?
+    @NSManaged public var state: String?
+    @NSManaged public var parentItemList: ItemList
 
 }
 

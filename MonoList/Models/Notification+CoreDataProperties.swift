@@ -18,7 +18,7 @@ extension Notification {
 
     @NSManaged public var time: Date
     @NSManaged public var weekdays: String
-    @NSManaged public var parentItemList: ItemList?
+    @NSManaged public var parentItemList: ItemList
 
 }
 

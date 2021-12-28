@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreData
 
-@objc(Notification)
+
 public class Notification: NSManagedObject {
     
     @Environment(\.managedObjectContext) private static var viewContext
@@ -19,7 +19,7 @@ public class Notification: NSManagedObject {
         let newNotification = Notification(context: viewContext)
         newNotification.weekdays = weekdays.joined(separator: ", ")
         newNotification.time = time
-        newNotification.parentItemList = itemList
+        itemList.addToNotifications(newNotification)
         do {
             try viewContext.save()
         } catch {

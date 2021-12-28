@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreData
 
-@objc(Item)
+
 public class Item: NSManagedObject {
     
     @Environment(\.managedObjectContext) private static var viewContext
@@ -25,7 +25,7 @@ public class Item: NSManagedObject {
         newItem.note = note
         newItem.image = image
         newItem.conditions = conditions
-        newItem.parentItemList = itemList
+        itemList.addToItems(newItem)
         do {
             try viewContext.save()
         } catch {

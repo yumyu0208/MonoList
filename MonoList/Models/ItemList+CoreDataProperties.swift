@@ -23,11 +23,46 @@ extension ItemList {
     @NSManaged public var id: UUID
     @NSManaged public var image: String
     @NSManaged public var name: String
+    @NSManaged public var order: Int32
     @NSManaged public var type: String
     @NSManaged public var updateDate: Date
-    @NSManaged public var items: Item?
-    @NSManaged public var notifications: Notification?
-    @NSManaged public var parentFolder: Folder?
+    @NSManaged public var items: NSSet?
+    @NSManaged public var notifications: NSSet?
+    @NSManaged public var parentFolder: Folder
+
+}
+
+// MARK: Generated accessors for items
+extension ItemList {
+
+    @objc(addItemsObject:)
+    @NSManaged public func addToItems(_ value: Item)
+
+    @objc(removeItemsObject:)
+    @NSManaged public func removeFromItems(_ value: Item)
+
+    @objc(addItems:)
+    @NSManaged public func addToItems(_ values: NSSet)
+
+    @objc(removeItems:)
+    @NSManaged public func removeFromItems(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for notifications
+extension ItemList {
+
+    @objc(addNotificationsObject:)
+    @NSManaged public func addToNotifications(_ value: Notification)
+
+    @objc(removeNotificationsObject:)
+    @NSManaged public func removeFromNotifications(_ value: Notification)
+
+    @objc(addNotifications:)
+    @NSManaged public func addToNotifications(_ values: NSSet)
+
+    @objc(removeNotifications:)
+    @NSManaged public func removeFromNotifications(_ values: NSSet)
 
 }
 
