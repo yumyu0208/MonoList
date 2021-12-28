@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Folder" representedClassName="Folder" syncable="YES" codeGenerationType="class">
         <attribute name="image" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <relationship name="itemLists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemList" inverseName="parentFolder" inverseEntity="ItemList"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="conditions" optional="YES" attributeType="String"/>
@@ -13,8 +14,9 @@
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="state" attributeType="String"/>
+        <relationship name="parentItemList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemList" inverseName="items" inverseEntity="ItemList"/>
     </entity>
-    <entity name="List" representedClassName="List" syncable="YES" codeGenerationType="class">
+    <entity name="ItemList" representedClassName="ItemList" syncable="YES" codeGenerationType="class">
         <attribute name="achievementCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="color" attributeType="String"/>
         <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO"/>
@@ -24,15 +26,19 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="type" attributeType="String"/>
         <attribute name="updateDate" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="parentItemList" inverseEntity="Item"/>
+        <relationship name="notifications" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Notification" inverseName="parentItemList" inverseEntity="Notification"/>
+        <relationship name="parentFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="itemLists" inverseEntity="Folder"/>
     </entity>
     <entity name="Notification" representedClassName="Notification" syncable="YES" codeGenerationType="class">
         <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="weekdays" attributeType="String"/>
+        <relationship name="parentItemList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemList" inverseName="notifications" inverseEntity="ItemList"/>
     </entity>
     <elements>
-        <element name="Folder" positionX="-63" positionY="-9" width="128" height="59"/>
-        <element name="List" positionX="-27" positionY="-27" width="128" height="164"/>
-        <element name="Item" positionX="0" positionY="90" width="128" height="149"/>
-        <element name="Notification" positionX="27" positionY="144" width="128" height="59"/>
+        <element name="Folder" positionX="-451.9322509765625" positionY="-26.75711059570312" width="128" height="88"/>
+        <element name="Item" positionX="-83.60821533203125" positionY="-25.2518310546875" width="128" height="178"/>
+        <element name="ItemList" positionX="-278.1766357421875" positionY="-31.53518676757812" width="128" height="223"/>
+        <element name="Notification" positionX="-282.1820068359375" positionY="251.7786865234375" width="128" height="88"/>
     </elements>
 </model>
