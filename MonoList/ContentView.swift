@@ -21,9 +21,9 @@ struct ContentView: View {
             List {
                 ForEach(folders) { folder in
                     NavigationLink {
-                        Text(folder.name!)
+                        Text(folder.name)
                     } label: {
-                        Text(folder.name!)
+                        Text(folder.name)
                     }
                 }
                 .onDelete(perform: deleteFolders)

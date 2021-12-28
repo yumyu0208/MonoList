@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Folder" representedClassName="Folder" syncable="YES" codeGenerationType="class">
+    <entity name="Folder" representedClassName="Folder" syncable="YES">
         <attribute name="image" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="itemLists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemList" inverseName="parentFolder" inverseEntity="ItemList"/>
     </entity>
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+    <entity name="Item" representedClassName="Item" syncable="YES">
         <attribute name="conditions" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" attributeType="String"/>
@@ -16,7 +16,7 @@
         <attribute name="state" attributeType="String"/>
         <relationship name="parentItemList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemList" inverseName="items" inverseEntity="ItemList"/>
     </entity>
-    <entity name="ItemList" representedClassName="ItemList" syncable="YES" codeGenerationType="class">
+    <entity name="ItemList" representedClassName="ItemList" syncable="YES">
         <attribute name="achievementCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="color" attributeType="String"/>
         <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO"/>
@@ -30,7 +30,7 @@
         <relationship name="notifications" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Notification" inverseName="parentItemList" inverseEntity="Notification"/>
         <relationship name="parentFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="itemLists" inverseEntity="Folder"/>
     </entity>
-    <entity name="Notification" representedClassName="Notification" syncable="YES" codeGenerationType="class">
+    <entity name="Notification" representedClassName="Notification" syncable="YES">
         <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="weekdays" attributeType="String"/>
         <relationship name="parentItemList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemList" inverseName="notifications" inverseEntity="ItemList"/>
