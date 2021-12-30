@@ -22,6 +22,7 @@
 		AA82C04E277B319E001CEFFA /* ItemList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C046277B319E001CEFFA /* ItemList+CoreDataProperties.swift */; };
 		AA82C04F277B319E001CEFFA /* Folder+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C047277B319E001CEFFA /* Folder+CoreDataClass.swift */; };
 		AA82C050277B319E001CEFFA /* Folder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C048277B319E001CEFFA /* Folder+CoreDataProperties.swift */; };
+		AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C051277DECC4001CEFFA /* MonoListManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		AA82C046277B319E001CEFFA /* ItemList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemList+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AA82C047277B319E001CEFFA /* Folder+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Folder+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AA82C048277B319E001CEFFA /* Folder+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Folder+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA82C051277DECC4001CEFFA /* MonoListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoListManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				AA82C046277B319E001CEFFA /* ItemList+CoreDataProperties.swift */,
 				AA82C047277B319E001CEFFA /* Folder+CoreDataClass.swift */,
 				AA82C048277B319E001CEFFA /* Folder+CoreDataProperties.swift */,
+				AA82C051277DECC4001CEFFA /* MonoListManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
+				AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */,
 				AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */,
 				AA82C04E277B319E001CEFFA /* ItemList+CoreDataProperties.swift in Sources */,
 				AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */,

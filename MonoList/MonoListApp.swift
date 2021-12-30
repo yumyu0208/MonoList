@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct MonoListApp: App {
     let persistenceController = PersistenceController.shared
-
+    
     var body: some Scene {
         WindowGroup {
             HomeView()

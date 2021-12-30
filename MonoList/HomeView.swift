@@ -10,18 +10,20 @@ import CoreData
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: [])
+    @FetchRequest(sortDescriptors: [], animation: .default)
     private var folders: FetchedResults<Folder>
+    
+    let manager = MonoListManager()
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(folders) { folder in
-                        NavigationLink {
-                            Text(folder.name)
-                        } label: {
-                            Text(folder.name)
-                        }
+                    NavigationLink {
+                        Text(folder.name)
+                    } label: {
+                        Text(folder.name)
+                    }
                 }
                 .onDelete(perform: deleteFolders)
             }
@@ -30,27 +32,12 @@ struct HomeView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addFolder) {
+                    Button(action: {
+                        manager.addFolder(viewContext)
+                    }) {
                         Label("Add Folder", systemImage: "plus")
                     }
                 }
-            }
-        }
-    }
-
-    private func addFolder() {
-        withAnimation {
-            let newFolder = Folder(context: viewContext)
-            newFolder.name = Date().debugDescription
-            newFolder.image = "folder"
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }

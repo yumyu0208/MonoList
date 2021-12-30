@@ -12,13 +12,4 @@ import CoreData
 
 public class Notification: NSManagedObject {
     
-    @Environment(\.managedObjectContext) private static var viewContext
-    
-    @discardableResult
-    static func createNewNotification(weekdays: [String], time: Date) -> Notification {
-        let newNotification = Notification(context: viewContext)
-        newNotification.weekdays = weekdays.joined(separator: ", ")
-        newNotification.time = time
-        return newNotification
-    }
 }
