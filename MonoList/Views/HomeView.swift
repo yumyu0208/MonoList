@@ -14,6 +14,8 @@ struct HomeView: View {
     private var folders: FetchedResults<Folder>
     
     let manager = MonoListManager()
+    @State var isEditingFolder = false
+    @State var editingFolder: Folder?
 
     var body: some View {
         NavigationView {
@@ -33,11 +35,20 @@ struct HomeView: View {
                 }
                 ToolbarItem {
                     Button(action: {
-                        manager.addFolder(order: folders.count, viewContext)
+                        let newFolder = addFolder(order: folders.count, viewContext)
+                        editingFolder = newFolder
+                        isEditingFolder = true
                         saveData()
                     }) {
                         Label("Add Folder", systemImage: "plus")
                     }
+                    .sheet(isPresented: $isEditingFolder, onDismiss: {
+                        if editingFolder?.name == K.defaultName.newFolder {
+                            deleteFolders(offsets: IndexSet(integer: folders.count-1))
+                        }
+                    }, content: {
+                        EditFolderView(folder: Binding($editingFolder)!)
+                    })
                 }
             }
         }
@@ -50,6 +61,12 @@ struct HomeView: View {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
+    }
+    
+    @discardableResult
+    private func addFolder(name: String = "default_newFolder", image: String = "folder", order: Int, _ context: NSManagedObjectContext) -> Folder {
+        let newFolder = manager.createNewFolder(name: name, image: image, order: order, context)
+        return newFolder
     }
 
     private func deleteFolders(offsets: IndexSet) {

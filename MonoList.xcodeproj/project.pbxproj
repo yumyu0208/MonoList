@@ -23,6 +23,8 @@
 		AA82C04F277B319E001CEFFA /* Folder+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C047277B319E001CEFFA /* Folder+CoreDataClass.swift */; };
 		AA82C050277B319E001CEFFA /* Folder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C048277B319E001CEFFA /* Folder+CoreDataProperties.swift */; };
 		AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C051277DECC4001CEFFA /* MonoListManager.swift */; };
+		AA82C054277EA2B8001CEFFA /* EditFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C053277EA2B8001CEFFA /* EditFolderView.swift */; };
+		AA82C057277EF105001CEFFA /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C056277EF105001CEFFA /* CircleButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		AA82C047277B319E001CEFFA /* Folder+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Folder+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AA82C048277B319E001CEFFA /* Folder+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Folder+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AA82C051277DECC4001CEFFA /* MonoListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoListManager.swift; sourceTree = "<group>"; };
+		AA82C053277EA2B8001CEFFA /* EditFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderView.swift; sourceTree = "<group>"; };
+		AA82C056277EF105001CEFFA /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +81,9 @@
 			children = (
 				AA82C03A277B0DF9001CEFFA /* Models */,
 				AA82C023277AC0B3001CEFFA /* Utilities */,
+				AA82C055277EEF53001CEFFA /* Styles */,
 				AA351A772776BB5300F53BDC /* MonoListApp.swift */,
-				AA351A792776BB5300F53BDC /* HomeView.swift */,
+				AA82C058277EF500001CEFFA /* Views */,
 				AA351A7B2776BB5500F53BDC /* Assets.xcassets */,
 				AA351A802776BB5500F53BDC /* Persistence.swift */,
 				AA351A822776BB5500F53BDC /* MonoList.xcdatamodeld */,
@@ -117,6 +122,23 @@
 				AA82C051277DECC4001CEFFA /* MonoListManager.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		AA82C055277EEF53001CEFFA /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				AA82C056277EF105001CEFFA /* CircleButton.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		AA82C058277EF500001CEFFA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA351A792776BB5300F53BDC /* HomeView.swift */,
+				AA82C053277EA2B8001CEFFA /* EditFolderView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +220,8 @@
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
 				AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */,
+				AA82C057277EF105001CEFFA /* CircleButton.swift in Sources */,
+				AA82C054277EA2B8001CEFFA /* EditFolderView.swift in Sources */,
 				AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */,
 				AA82C04E277B319E001CEFFA /* ItemList+CoreDataProperties.swift in Sources */,
 				AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */,
