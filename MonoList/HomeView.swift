@@ -10,7 +10,7 @@ import CoreData
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: [], animation: .default)
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
     private var folders: FetchedResults<Folder>
     
     let manager = MonoListManager()
@@ -22,7 +22,7 @@ struct HomeView: View {
                     NavigationLink {
                         Text(folder.name)
                     } label: {
-                        Text(folder.name)
+                        Text("\(folder.name) - \(folder.order)")
                     }
                 }
                 .onDelete(perform: deleteFolders)
@@ -33,7 +33,8 @@ struct HomeView: View {
                 }
                 ToolbarItem {
                     Button(action: {
-                        manager.addFolder(viewContext)
+                        manager.addFolder(order: folders.count, viewContext)
+                        saveData()
                     }) {
                         Label("Add Folder", systemImage: "plus")
                     }
@@ -41,19 +42,27 @@ struct HomeView: View {
             }
         }
     }
+    
+    private func saveData() {
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
 
     private func deleteFolders(offsets: IndexSet) {
         withAnimation {
-            offsets.map { folders[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            offsets.forEach { deleteIndex in
+                viewContext.delete(folders[deleteIndex])
+                if deleteIndex != folders.count-1 {
+                    for index in deleteIndex+1 ... folders.count-1 {
+                        folders[index].order -= 1
+                    }
+                }
             }
+            saveData()
         }
     }
 }

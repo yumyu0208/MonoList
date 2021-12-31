@@ -12,46 +12,52 @@ import CoreData
 
 public class ItemList: NSManagedObject {
     
-    @Environment(\.managedObjectContext) private static var viewContext
+    @Environment(\.managedObjectContext) private var viewContext
     
-    @discardableResult
-    static func createNewItemList(name: String, color: String, image: String, achievementCount: Int = 0, displayFormat: String = "list", creationDate: Date = Date(), updateDate: Date = Date(), type: String = "belongings") -> ItemList {
-        let newItemList = ItemList(context: viewContext)
-        newItemList.id = UUID()
-        newItemList.name = name
-        newItemList.color = color
-        newItemList.image = image
-        newItemList.achievementCount = Int32(achievementCount)
-        newItemList.displayFormat = displayFormat
-        newItemList.creationDate = creationDate
-        newItemList.updateDate = updateDate
-        newItemList.type = type
-        return newItemList
-    }
-    
-    @discardableResult
-    func addItem(name: String) -> Item {
-        let newItem = Item.createNewItem(name: name)
-        addToItems(newItem)
+    private func saveData() {
         do {
-            try Self.viewContext.save()
+            try viewContext.save()
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
+    }
+    
+    @discardableResult
+    private func createNewItem(name: String, quantity: Int? = nil, state: String = "incomplete", isImportant: Bool = false, note: String? = nil, image: String? = nil, conditions: String? = nil) -> Item {
+        let newItem = Item(context: viewContext)
+        newItem.id = UUID()
+        newItem.name = name
+        newItem.quantity = quantity != nil ? Int32(quantity!) : 0
+        newItem.state = state
+        newItem.isImportant = isImportant
+        newItem.note = note
+        newItem.image = image
+        newItem.conditions = conditions
         return newItem
     }
     
     @discardableResult
+    func addItem(name: String) -> Item {
+        let newItem = createNewItem(name: name)
+        addToItems(newItem)
+        saveData()
+        return newItem
+    }
+    
+    @discardableResult
+    private func createNewNotification(weekdays: [String], time: Date) -> Notification {
+        let newNotification = Notification(context: viewContext)
+        newNotification.weekdays = weekdays.joined(separator: ", ")
+        newNotification.time = time
+        return newNotification
+    }
+    
+    @discardableResult
     func addNotification(weekdays: [String], time: Date) -> Notification {
-        let newNotification = Notification.createNewNotification(weekdays: weekdays, time: time)
+        let newNotification = createNewNotification(weekdays: weekdays, time: time)
         addToNotifications(newNotification)
-        do {
-            try Self.viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        saveData()
         return newNotification
     }
 }
