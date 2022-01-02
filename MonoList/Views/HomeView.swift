@@ -42,7 +42,14 @@ struct HomeView: View {
             .navigationTitle("MONOLIST")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        
+                    } label: {
+                        Label("Folders", systemImage: "folder")
+                    }
+                }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: {
                         let newFolder = addFolder(order: folders.count, viewContext)
                         editingFolder = newFolder
@@ -58,6 +65,12 @@ struct HomeView: View {
                     }, content: {
                         EditFolderView(folder: Binding($editingFolder)!)
                     })
+                    Button {
+                        
+                    } label: {
+                        Label("Settings", systemImage: "gearshape")
+                    }
+
                 }
             }
             .environment(\.editMode, $editMode)
