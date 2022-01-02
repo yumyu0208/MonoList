@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SortButtonView: View {
+struct EditButtonView: View {
     
     @Environment(\.editMode) var editMode
     @State var sortButtonColor: Color = .accentColor
@@ -20,9 +20,9 @@ struct SortButtonView: View {
             }
         } label: {
             HStack(spacing: 4.0) {
-                Image(systemName: "arrow.up.arrow.down")
+                Image(systemName: "slider.horizontal.3")
                     .foregroundColor(isEditing ? .white : .accentColor)
-                Text("Sort")
+                Text("Edit")
                     .foregroundColor(.white)
                     .colorMultiply(sortButtonColor)
                     .onChange(of: isEditing) { isEditing in
@@ -41,12 +41,12 @@ struct SortButtonView: View {
     }
 }
 
-struct SortButtonView_Previews: PreviewProvider {
+struct EditButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        SortButtonView()
+        EditButtonView()
             .padding()
             .previewLayout(.sizeThatFits)
-        SortButtonView()
+        EditButtonView()
             .padding()
             .previewLayout(.sizeThatFits)
     }

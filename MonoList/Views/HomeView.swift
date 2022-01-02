@@ -32,7 +32,7 @@ struct HomeView: View {
                         HStack(alignment: .bottom) {
                             FolderSectionView(image: folder.image, title: folder.name)
                             if folder.order == 0 {
-                                SortButtonView()
+                                EditButtonView()
                                     .environment(\.editMode, $editMode)
                             }
                         }
