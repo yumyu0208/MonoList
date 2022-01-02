@@ -28,6 +28,7 @@ struct HomeView: View {
                     }
                 }
                 .onDelete(perform: deleteFolders)
+                .onMove(perform: moveFolder)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -80,6 +81,36 @@ struct HomeView: View {
                 }
             }
             saveData()
+        }
+    }
+    
+    private func moveFolder(indexSet: IndexSet, destination: Int) {
+        withAnimation {
+            indexSet.forEach { source in
+                if source < destination {
+                    var startIndex = source + 1
+                    let endIndex = destination - 1
+                    var startOrder = folders[source].order
+                    while startIndex <= endIndex {
+                        folders[startIndex].order = startOrder
+                        startOrder += 1
+                        startIndex += 1
+                    }
+                    folders[source].order = startOrder
+                } else if destination < source {
+                    var startIndex = destination
+                    let endIndex = source - 1
+                    var startOrder = folders[destination].order + 1
+                    let newOrder = folders[destination].order
+                    while startIndex <= endIndex {
+                        folders[startIndex].order = startOrder
+                        startOrder += 1
+                        startIndex += 1
+                    }
+                    folders[source].order = newOrder
+                }
+                saveData()
+            }
         }
     }
 }

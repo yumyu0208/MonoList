@@ -10,8 +10,8 @@ import SwiftUI
 struct CircleButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(size: 14, weight: .bold, design: .rounded))
-            .frame(width: 36, height: 36, alignment: .center)
+            .font(.system(size: 12, weight: .bold, design: .rounded))
+            .frame(width: 28, height: 28, alignment: .center)
             .background(Color.accentColor)
             .foregroundColor(.white)
             .clipShape(Circle())
