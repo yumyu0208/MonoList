@@ -51,7 +51,7 @@ struct EditFolderView: View {
         } //: NavigationView
         .onAppear {
             image = folder.image
-            if folder.name == "default_newFolder" {
+            if folder.name == K.defaultName.newFolder {
                 name = ""
             } else {
                 name = folder.name

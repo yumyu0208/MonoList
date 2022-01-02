@@ -10,6 +10,7 @@ import CoreData
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @State var editMode: EditMode = .inactive
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
     private var folders: FetchedResults<Folder>
     
@@ -21,19 +22,26 @@ struct HomeView: View {
         NavigationView {
             List {
                 ForEach(folders) { folder in
-                    NavigationLink {
-                        Text(folder.name)
-                    } label: {
-                        Text("\(folder.name) - \(folder.order)")
-                    }
-                }
-                .onDelete(perform: deleteFolders)
-                .onMove(perform: moveFolder)
-            }
+                    Section {
+                        ForEach(0 ..< 3) { index in
+                            Text("ItemLists - \(index)")
+                        }
+                        .onDelete(perform: deleteFolders)
+                        .onMove(perform: moveFolder)
+                    } header: {
+                        HStack(alignment: .bottom) {
+                            FolderSectionView(image: folder.image, title: folder.name)
+                            if folder.order == 0 {
+                                SortButtonView()
+                                    .environment(\.editMode, $editMode)
+                            }
+                        }
+                    } //: Section
+                } //: ForEach
+            } //: List
+            .navigationTitle("MONOLIST")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
                 ToolbarItem {
                     Button(action: {
                         let newFolder = addFolder(order: folders.count, viewContext)
@@ -52,7 +60,8 @@ struct HomeView: View {
                     })
                 }
             }
-        }
+            .environment(\.editMode, $editMode)
+        } //: Navigation
     }
     
     private func saveData() {
@@ -65,7 +74,7 @@ struct HomeView: View {
     }
     
     @discardableResult
-    private func addFolder(name: String = "default_newFolder", image: String = "folder", order: Int, _ context: NSManagedObjectContext) -> Folder {
+    private func addFolder(name: String = K.defaultName.newFolder, image: String = "folder", order: Int, _ context: NSManagedObjectContext) -> Folder {
         let newFolder = manager.createNewFolder(name: name, image: image, order: order, context)
         return newFolder
     }

@@ -25,6 +25,8 @@
 		AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C051277DECC4001CEFFA /* MonoListManager.swift */; };
 		AA82C054277EA2B8001CEFFA /* EditFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C053277EA2B8001CEFFA /* EditFolderView.swift */; };
 		AA82C057277EF105001CEFFA /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C056277EF105001CEFFA /* CircleButton.swift */; };
+		AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9BD52278136D70055CD85 /* FolderSectionView.swift */; };
+		AAE293512781C5780010F093 /* SortButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* SortButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		AA82C051277DECC4001CEFFA /* MonoListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoListManager.swift; sourceTree = "<group>"; };
 		AA82C053277EA2B8001CEFFA /* EditFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderView.swift; sourceTree = "<group>"; };
 		AA82C056277EF105001CEFFA /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		AAB9BD52278136D70055CD85 /* FolderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSectionView.swift; sourceTree = "<group>"; };
+		AAE293502781C5780010F093 /* SortButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,8 @@
 			children = (
 				AA351A792776BB5300F53BDC /* HomeView.swift */,
 				AA82C053277EA2B8001CEFFA /* EditFolderView.swift */,
+				AAB9BD52278136D70055CD85 /* FolderSectionView.swift */,
+				AAE293502781C5780010F093 /* SortButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,11 +225,13 @@
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
+				AAE293512781C5780010F093 /* SortButtonView.swift in Sources */,
 				AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */,
 				AA82C057277EF105001CEFFA /* CircleButton.swift in Sources */,
 				AA82C054277EA2B8001CEFFA /* EditFolderView.swift in Sources */,
 				AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */,
 				AA82C04E277B319E001CEFFA /* ItemList+CoreDataProperties.swift in Sources */,
+				AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */,
 				AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */,
 				AA82C04F277B319E001CEFFA /* Folder+CoreDataClass.swift in Sources */,
 				AA82C04A277B319E001CEFFA /* Item+CoreDataProperties.swift in Sources */,

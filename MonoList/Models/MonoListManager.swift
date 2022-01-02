@@ -21,7 +21,7 @@ struct MonoListManager {
     
     @discardableResult
     func createSamples(context: NSManagedObjectContext) -> [Folder] {
-        let favoriteFolder = createNewFolder(name: "default_favorite", image: "star", order: 0, context)
+        let favoriteFolder = createNewFolder(name: K.defaultName.favorite, image: "star", order: 0, context)
 //        let workList = favoriteFolder.addItemList(name: "Work", color: K.listColors.basic.blue, image: "briefcase")
 //        workList.addItem(name: "Laptop")
 //        workList.addItem(name: "Pen")
@@ -40,7 +40,7 @@ struct MonoListManager {
 //        collegeList.addItem(name: "Pocket Book")
 //        collegeList.addItem(name: "Documents")
 //        collegeList.addItem(name: "Watch")
-        let listsFolder = createNewFolder(name: "default_lists", image: "checkmark.circle.fill", order: 1, context)
+        let listsFolder = createNewFolder(name: K.defaultName.lists, image: "checklist", order: 1, context)
 //        let driveList = listsFolder.addItemList(name: "Drive", color: K.listColors.basic.lightBlue, image: "car")
 //        driveList.addItem(name: "Laptop")
 //        driveList.addItem(name: "Pen")
