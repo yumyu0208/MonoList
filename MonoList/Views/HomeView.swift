@@ -10,12 +10,13 @@ import CoreData
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State var editMode: EditMode = .inactive
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
     private var folders: FetchedResults<Folder>
     
-    let manager = MonoListManager()
+    @State var manager = MonoListManager()
+    @State var editMode: EditMode = .inactive
     @State var isEditingFolder = false
+    @State var isSortingFolders = false
     @State var editingFolder: Folder?
 
     var body: some View {
@@ -23,13 +24,9 @@ struct HomeView: View {
             List {
                 ForEach(folders) { folder in
                     Section {
-                        ForEach(0 ..< 3) { index in
-                            Text("ItemLists - \(index)")
-                        }
-                        .onDelete(perform: deleteFolders)
-                        .onMove(perform: moveFolder)
+                        ItemListsView(of: folder)
                     } header: {
-                        HStack(alignment: .bottom) {
+                        HStack(alignment: .center) {
                             FolderSectionView(image: folder.image, title: folder.name)
                             if folder.order == 0 {
                                 EditButtonView()
@@ -42,13 +39,19 @@ struct HomeView: View {
             .navigationTitle("MONOLIST")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                let isEditing = (editMode == .active)
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        
+                        isSortingFolders = true
                     } label: {
                         Label("Folders", systemImage: "folder")
                     }
-                }
+                    .disabled(isEditing)
+                    .sheet(isPresented: $isSortingFolders) {
+                        SortFoldersView()
+                            .environmentObject(manager)
+                    }
+                } //: ToolBarItem
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: {
                         let newFolder = addFolder(order: folders.count, viewContext)
@@ -58,23 +61,29 @@ struct HomeView: View {
                     }) {
                         Label("Add Folder", systemImage: "plus")
                     }
+                    .disabled(isEditing)
                     .sheet(isPresented: $isEditingFolder, onDismiss: {
                         if editingFolder?.name == K.defaultName.newFolder {
                             deleteFolders(offsets: IndexSet(integer: folders.count-1))
                         }
                     }, content: {
-                        EditFolderView(folder: Binding($editingFolder)!)
+                        EditFolderView(folder: editingFolder!)
                     })
                     Button {
                         
                     } label: {
                         Label("Settings", systemImage: "gearshape")
                     }
-
-                }
+                    .disabled(isEditing)
+                } //: ToolBarItemGroup
             }
             .environment(\.editMode, $editMode)
         } //: Navigation
+        .onAppear {
+            if folders.isEmpty {
+                manager.createSamples(context: viewContext)
+            }
+        }
     }
     
     private func saveData() {
@@ -135,10 +144,22 @@ struct HomeView: View {
             }
         }
     }
+    
+    @discardableResult
+    func addItemList(name: String = "default_newList", color: String = K.listColors.basic.green, image: String = "checklist", order: Int) -> ItemList {
+        if let folder = folders.first {
+            let newItemList = folder.createNewItemList(name: name, color: color, image: image, order: order, viewContext)
+            saveData()
+            return newItemList
+        } else {
+            fatalError("Falied to add Item List - No Folders")
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        HomeView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

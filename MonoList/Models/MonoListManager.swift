@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct MonoListManager {
+class MonoListManager: ObservableObject {
     
     @discardableResult
     func createNewFolder(name: String, image: String, order: Int, _ context: NSManagedObjectContext) -> Folder {
@@ -19,10 +19,22 @@ struct MonoListManager {
         return newFolder
     }
     
+    func fetchFolders(context: NSManagedObjectContext) -> [Folder] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Folder")
+        do {
+            let folders = try context.fetch(request) as! [Folder]
+            return folders
+        }
+        catch {
+            fatalError("Failed to fetch folders")
+        }
+    }
+    
     @discardableResult
     func createSamples(context: NSManagedObjectContext) -> [Folder] {
         let favoriteFolder = createNewFolder(name: K.defaultName.favorite, image: "star", order: 0, context)
-//        let workList = favoriteFolder.addItemList(name: "Work", color: K.listColors.basic.blue, image: "briefcase")
+        let workList = favoriteFolder.createNewItemList(name: "Work", color: K.listColors.basic.blue, image: "briefcase", order: 0, context)
+        
 //        workList.addItem(name: "Laptop")
 //        workList.addItem(name: "Pen")
 //        workList.addItem(name: "Pocket Book")
@@ -34,7 +46,7 @@ struct MonoListManager {
 //        shoppingList.addItem(name: "Pocket Book")
 //        shoppingList.addItem(name: "Documents")
 //        shoppingList.addItem(name: "Watch")
-//        let collegeList = favoriteFolder.addItemList(name: "College", color: K.listColors.basic.green, image: "graduationcap")
+        let collegeList = favoriteFolder.createNewItemList(name: "College", color: K.listColors.basic.green, image: "graduationcap", order: 1, context)
 //        collegeList.addItem(name: "Laptop")
 //        collegeList.addItem(name: "Pen")
 //        collegeList.addItem(name: "Pocket Book")

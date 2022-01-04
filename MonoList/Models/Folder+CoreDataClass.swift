@@ -12,20 +12,9 @@ import CoreData
 
 public class Folder: NSManagedObject {
     
-    @Environment(\.managedObjectContext) private var viewContext
-    
-    private func saveData() {
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-    }
-    
     @discardableResult
-    func createNewItemList(name: String, color: String, image: String, achievementCount: Int = 0, displayFormat: String = "list", creationDate: Date = Date(), updateDate: Date = Date(), type: String = "belongings") -> ItemList {
-        let newItemList = ItemList(context: viewContext)
+    func createNewItemList(name: String, color: String, image: String, achievementCount: Int = 0, displayFormat: String = "list", creationDate: Date = Date(), updateDate: Date = Date(), order: Int, type: String = "belongings", _ context: NSManagedObjectContext) -> ItemList {
+        let newItemList = ItemList(context: context)
         newItemList.id = UUID()
         newItemList.name = name
         newItemList.color = color
@@ -34,15 +23,9 @@ public class Folder: NSManagedObject {
         newItemList.displayFormat = displayFormat
         newItemList.creationDate = creationDate
         newItemList.updateDate = updateDate
+        newItemList.order = Int32(order)
         newItemList.type = type
-        return newItemList
-    }
-    
-    @discardableResult
-    func addItemList(name: String = "default_newList", color: String = K.listColors.basic.green, image: String = "checklist") -> ItemList {
-        let newItemList = createNewItemList(name: name, color: color, image: image)
         addToItemLists(newItemList)
-        saveData()
         return newItemList
     }
 }

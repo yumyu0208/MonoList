@@ -13,7 +13,7 @@ struct EditButtonView: View {
     @State var sortButtonColor: Color = .accentColor
     
     var body: some View {
-        let isEditing = editMode?.wrappedValue.isEditing ?? false
+        let isEditing = (editMode?.wrappedValue == .active)
         Button {
             withAnimation {
                 editMode?.wrappedValue = isEditing ? .inactive : .active
