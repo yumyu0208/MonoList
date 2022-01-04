@@ -13,18 +13,26 @@ struct ItemListsView: View {
     
     @FetchRequest var itemLists: FetchedResults<ItemList>
     
-    init(of folder: Folder) {
+    let action: (ItemList) -> Void
+    
+    init(of folder: Folder, action: @escaping (ItemList) -> Void) {
         _itemLists = FetchRequest(
             sortDescriptors: [
                 SortDescriptor(\.order, order: .forward)
             ],
             predicate: NSPredicate(format: "parentFolder == %@", folder)
         )
+        self.action = action
     }
     
     var body: some View {
         ForEach(itemLists) { itemList in
-            Text("\(itemList.name) - \(itemList.order)")
+            Button {
+                action(itemList)
+            } label: {
+                Label("\(itemList.order) - \(itemList.name)", systemImage: itemList.image)
+                    .foregroundColor(Color(itemList.color))
+            }
         }
         .onDelete(perform: deleteItemLists)
         .onMove(perform: moveitemList)
@@ -90,7 +98,9 @@ struct FolderListsView_Previews: PreviewProvider {
         let folder = MonoListManager().fetchFolders(context: context)[0]
         List {
             Section {
-                ItemListsView(of: folder)
+                ItemListsView(of: folder) { _ in
+                    
+                }
                     .environment(\.managedObjectContext, context)
             } header: {
                 HStack(alignment: .center) {

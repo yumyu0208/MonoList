@@ -27,7 +27,7 @@
 		AA82C057277EF105001CEFFA /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C056277EF105001CEFFA /* CircleButton.swift */; };
 		AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977A62782735A002B4C57 /* SortFoldersView.swift */; };
 		AA9977A9278274A3002B4C57 /* FolderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977A8278274A2002B4C57 /* FolderCellView.swift */; };
-		AA9977AB2783F176002B4C57 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AA2783F176002B4C57 /* ItemListView.swift */; };
+		AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AA2783F176002B4C57 /* EditItemListView.swift */; };
 		AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */; };
 		AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9BD52278136D70055CD85 /* FolderSectionView.swift */; };
 		AAE293512781C5780010F093 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditButtonView.swift */; };
@@ -55,7 +55,7 @@
 		AA82C056277EF105001CEFFA /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		AA9977A62782735A002B4C57 /* SortFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFoldersView.swift; sourceTree = "<group>"; };
 		AA9977A8278274A2002B4C57 /* FolderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCellView.swift; sourceTree = "<group>"; };
-		AA9977AA2783F176002B4C57 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
+		AA9977AA2783F176002B4C57 /* EditItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemListView.swift; sourceTree = "<group>"; };
 		AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListsView.swift; sourceTree = "<group>"; };
 		AAB9BD52278136D70055CD85 /* FolderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSectionView.swift; sourceTree = "<group>"; };
 		AAE293502781C5780010F093 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 			children = (
 				AA351A792776BB5300F53BDC /* HomeView.swift */,
 				AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */,
-				AA9977AA2783F176002B4C57 /* ItemListView.swift */,
+				AA9977AA2783F176002B4C57 /* EditItemListView.swift */,
 				AA82C053277EA2B8001CEFFA /* EditFolderView.swift */,
 				AAB9BD52278136D70055CD85 /* FolderSectionView.swift */,
 				AAE293502781C5780010F093 /* EditButtonView.swift */,
@@ -243,7 +243,7 @@
 				AA82C057277EF105001CEFFA /* CircleButton.swift in Sources */,
 				AA82C054277EA2B8001CEFFA /* EditFolderView.swift in Sources */,
 				AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */,
-				AA9977AB2783F176002B4C57 /* ItemListView.swift in Sources */,
+				AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */,
 				AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */,
 				AA9977A9278274A3002B4C57 /* FolderCellView.swift in Sources */,
 				AA82C04E277B319E001CEFFA /* ItemList+CoreDataProperties.swift in Sources */,

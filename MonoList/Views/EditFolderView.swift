@@ -56,6 +56,23 @@ struct EditFolderView: View {
                 name = folder.name
             }
         }
+        .onDisappear {
+            if folder.name == K.defaultName.newFolder {
+                withAnimation {
+                    viewContext.delete(folder)
+                    saveData()
+                }
+            }
+        }
+    }
+    
+    private func saveData() {
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
     }
 }
 

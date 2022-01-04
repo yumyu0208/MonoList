@@ -30,20 +30,22 @@ struct SortFoldersView: View {
                                 NavigationLink {
                                     EditFolderView(folder: folder)
                                 } label: {
-                                    Label(folder.name, systemImage: folder.image)
+                                    Label("\(folder.order) - \(folder.name)", systemImage: folder.image)
                                         .id(folder.name)
                                 }
                             }
                         }
                         .onDelete(perform: deleteFolders)
                         .onMove(perform: moveFolder)
-                        Button(action: {
-                            newFolder = addFolder(order: folders.count, viewContext)
-                            isEditingNewFolder = true
-                            saveData()
-                        }) {
-                            ZStack {
-                                Label("Add Folder", systemImage: "plus")
+                        if editMode != .active {
+                            Button(action: {
+                                newFolder = addFolder(order: folders.count)
+                                isEditingNewFolder = true
+                                saveData()
+                            }) {
+                                ZStack {
+                                    Label("Add Folder", systemImage: "plus")
+                                }
                             }
                         }
                     } header: {
@@ -65,17 +67,12 @@ struct SortFoldersView: View {
                         } label: {
                             Image(systemName: "xmark")
                         }
-                        .buttonStyle(CircleButton())
+                        .buttonStyle(CircleButton(type: .cancel))
                     }
                 }
                 NavigationLink(isActive: $isEditingNewFolder) {
                     if let editingFolder = newFolder {
                         EditFolderView(folder: editingFolder)
-                            .onDisappear {
-                                if editingFolder.name == K.defaultName.newFolder {
-                                    deleteFolders(offsets: IndexSet(integer: folders.count-1))
-                                }
-                            }
                     }
                 } label: {
                     EmptyView()
@@ -95,8 +92,8 @@ struct SortFoldersView: View {
     }
     
     @discardableResult
-    private func addFolder(name: String = K.defaultName.newFolder, image: String = "folder", order: Int, _ context: NSManagedObjectContext) -> Folder {
-        let newFolder = manager.createNewFolder(name: name, image: image, order: order, context)
+    private func addFolder(name: String = K.defaultName.newFolder, image: String = "folder", order: Int) -> Folder {
+        let newFolder = manager.createNewFolder(name: name, image: image, order: order, viewContext)
         return newFolder
     }
 

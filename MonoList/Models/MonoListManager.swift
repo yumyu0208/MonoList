@@ -30,65 +30,93 @@ class MonoListManager: ObservableObject {
         }
     }
     
+    func fetchItemLists(context: NSManagedObjectContext) -> [ItemList] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemList")
+        do {
+            let itemLists = try context.fetch(request) as! [ItemList]
+            return itemLists
+        }
+        catch {
+            fatalError("Failed to fetch item lists")
+        }
+    }
+    
     @discardableResult
     func createSamples(context: NSManagedObjectContext) -> [Folder] {
         let favoriteFolder = createNewFolder(name: K.defaultName.favorite, image: "star", order: 0, context)
         let workList = favoriteFolder.createNewItemList(name: "Work", color: K.listColors.basic.blue, image: "briefcase", order: 0, context)
         
-//        workList.addItem(name: "Laptop")
-//        workList.addItem(name: "Pen")
-//        workList.addItem(name: "Pocket Book")
-//        workList.addItem(name: "Documents")
-//        workList.addItem(name: "Watch")
-//        let shoppingList = favoriteFolder.addItemList(name: "Shopping", color: K.listColors.basic.yellow, image: "cart")
-//        shoppingList.addItem(name: "Laptop")
-//        shoppingList.addItem(name: "Pen")
-//        shoppingList.addItem(name: "Pocket Book")
-//        shoppingList.addItem(name: "Documents")
-//        shoppingList.addItem(name: "Watch")
-        let collegeList = favoriteFolder.createNewItemList(name: "College", color: K.listColors.basic.green, image: "graduationcap", order: 1, context)
-//        collegeList.addItem(name: "Laptop")
-//        collegeList.addItem(name: "Pen")
-//        collegeList.addItem(name: "Pocket Book")
-//        collegeList.addItem(name: "Documents")
-//        collegeList.addItem(name: "Watch")
+        workList.createNewItem(name: "Laptop", order: 0, context)
+        workList.createNewItem(name: "Pen", order: 1, context)
+        workList.createNewItem(name: "Pocket Book", order: 2, context)
+        workList.createNewItem(name: "Documents", order: 3, context)
+        workList.createNewItem(name: "Watch", order: 4, context)
+        
+        let shoppingList = favoriteFolder.createNewItemList(name: "Shopping", color: K.listColors.basic.yellow, image: "cart", order: 1, context)
+        
+        shoppingList.createNewItem(name: "Laptop", order: 0, context)
+        shoppingList.createNewItem(name: "Pen", order: 1, context)
+        shoppingList.createNewItem(name: "Pocket Book", order: 2, context)
+        shoppingList.createNewItem(name: "Documents", order: 3, context)
+        shoppingList.createNewItem(name: "Watch", order: 4, context)
+        
+        let collegeList = favoriteFolder.createNewItemList(name: "College", color: K.listColors.basic.green, image: "graduationcap", order: 2, context)
+        
+        collegeList.createNewItem(name: "Laptop", order: 0, context)
+        collegeList.createNewItem(name: "Pen", order: 1, context)
+        collegeList.createNewItem(name: "Pocket Book", order: 2, context)
+        collegeList.createNewItem(name: "Documents", order: 3, context)
+        collegeList.createNewItem(name: "Watch", order: 4, context)
+        
         let listsFolder = createNewFolder(name: K.defaultName.lists, image: "checklist", order: 1, context)
-//        let driveList = listsFolder.addItemList(name: "Drive", color: K.listColors.basic.lightBlue, image: "car")
-//        driveList.addItem(name: "Laptop")
-//        driveList.addItem(name: "Pen")
-//        driveList.addItem(name: "Pocket Book")
-//        driveList.addItem(name: "Documents")
-//        driveList.addItem(name: "Watch")
-//        let campList = listsFolder.addItemList(name: "Camp", color: K.listColors.basic.orange, image: "flame")
-//        campList.addItem(name: "Laptop")
-//        campList.addItem(name: "Pen")
-//        campList.addItem(name: "Pocket Book")
-//        campList.addItem(name: "Documents")
-//        campList.addItem(name: "Watch")
-//        let fishingList = listsFolder.addItemList(name: "Fishing", color: K.listColors.basic.gray, image: "ferry")
-//        fishingList.addItem(name: "Laptop")
-//        fishingList.addItem(name: "Pen")
-//        fishingList.addItem(name: "Pocket Book")
-//        fishingList.addItem(name: "Documents")
-//        fishingList.addItem(name: "Watch")
-//        let sportsList = listsFolder.addItemList(name: "Sports", color: K.listColors.basic.purple, image: "sportscourt")
-//        sportsList.addItem(name: "Laptop")
-//        sportsList.addItem(name: "Pen")
-//        sportsList.addItem(name: "Pocket Book")
-//        sportsList.addItem(name: "Documents")
-//        sportsList.addItem(name: "Watch")
-//        let domesticTravelList = listsFolder.addItemList(name: "Domestic Travel", color: K.listColors.basic.pink, image: "suitcase")
-//        domesticTravelList.addItem(name: "Laptop")
-//        domesticTravelList.addItem(name: "Pen")
-//        domesticTravelList.addItem(name: "Pocket Book")
-//        domesticTravelList.addItem(name: "Documents")
-//        domesticTravelList.addItem(name: "Watch")
-//        let overseasTravelList = listsFolder.addItemList(name: "Overseas Travel", color: K.listColors.basic.red, image: "airplane")
-//        overseasTravelList.addItem(name: "Laptop")
-//        overseasTravelList.addItem(name: "Pen")
-//        overseasTravelList.addItem(name: "Pocket Book")
-//        overseasTravelList.addItem(name: "Documents")
-//        overseasTravelList.addItem(name: "Watch")
+        let driveList = listsFolder.createNewItemList(name: "Drive", color: K.listColors.basic.lightBlue, image: "car", order: 0, context)
+        
+        driveList.createNewItem(name: "Laptop", order: 0, context)
+        driveList.createNewItem(name: "Pen", order: 1, context)
+        driveList.createNewItem(name: "Pocket Book", order: 2, context)
+        driveList.createNewItem(name: "Documents", order: 3, context)
+        driveList.createNewItem(name: "Watch", order: 4, context)
+        
+        let campList = listsFolder.createNewItemList(name: "Camp", color: K.listColors.basic.orange, image: "flame", order: 1, context)
+        
+        campList.createNewItem(name: "Laptop", order: 0, context)
+        campList.createNewItem(name: "Pen", order: 1, context)
+        campList.createNewItem(name: "Pocket Book", order: 2, context)
+        campList.createNewItem(name: "Documents", order: 3, context)
+        campList.createNewItem(name: "Watch", order: 4, context)
+        
+        let fishingList = listsFolder.createNewItemList(name: "Fishing", color: K.listColors.basic.gray, image: "ferry", order: 2, context)
+        
+        fishingList.createNewItem(name: "Laptop", order: 0, context)
+        fishingList.createNewItem(name: "Pen", order: 1, context)
+        fishingList.createNewItem(name: "Pocket Book", order: 2, context)
+        fishingList.createNewItem(name: "Documents", order: 3, context)
+        fishingList.createNewItem(name: "Watch", order: 4, context)
+        
+        let sportsList = listsFolder.createNewItemList(name: "Sports", color: K.listColors.basic.purple, image: "sportscourt", order: 3, context)
+        
+        sportsList.createNewItem(name: "Laptop", order: 0, context)
+        sportsList.createNewItem(name: "Pen", order: 1, context)
+        sportsList.createNewItem(name: "Pocket Book", order: 2, context)
+        sportsList.createNewItem(name: "Documents", order: 3, context)
+        sportsList.createNewItem(name: "Watch", order: 4, context)
+        
+        let domesticTravelList = listsFolder.createNewItemList(name: "Domestic Travel", color: K.listColors.basic.pink, image: "suitcase", order: 4, context)
+        
+        domesticTravelList.createNewItem(name: "Laptop", order: 0, context)
+        domesticTravelList.createNewItem(name: "Pen", order: 1, context)
+        domesticTravelList.createNewItem(name: "Pocket Book", order: 2, context)
+        domesticTravelList.createNewItem(name: "Documents", order: 3, context)
+        domesticTravelList.createNewItem(name: "Watch", order: 4, context)
+        
+        let overseasTravelList = listsFolder.createNewItemList(name: "Overseas Travel", color: K.listColors.basic.red, image: "airplane", order: 5, context)
+        
+        overseasTravelList.createNewItem(name: "Laptop", order: 0, context)
+        overseasTravelList.createNewItem(name: "Pen", order: 1, context)
+        overseasTravelList.createNewItem(name: "Pocket Book", order: 2, context)
+        overseasTravelList.createNewItem(name: "Documents", order: 3, context)
+        overseasTravelList.createNewItem(name: "Watch", order: 4, context)
+        
         do {
             try context.save()
         } catch {

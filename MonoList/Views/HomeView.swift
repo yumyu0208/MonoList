@@ -15,16 +15,17 @@ struct HomeView: View {
     
     @State var manager = MonoListManager()
     @State var editMode: EditMode = .inactive
-    @State var isEditingFolder = false
     @State var isSortingFolders = false
-    @State var editingFolder: Folder?
+    @State var editingItemList: ItemList?
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(folders) { folder in
                     Section {
-                        ItemListsView(of: folder)
+                        ItemListsView(of: folder) { itemList in
+                            editingItemList = itemList
+                        }
                     } header: {
                         HStack(alignment: .center) {
                             FolderSectionView(image: folder.image, title: folder.name)
@@ -54,21 +55,17 @@ struct HomeView: View {
                 } //: ToolBarItem
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: {
-                        let newFolder = addFolder(order: folders.count, viewContext)
-                        editingFolder = newFolder
-                        isEditingFolder = true
+                        editingItemList = addItemList(order: folders.first!.itemLists?.count ?? 0)
                         saveData()
                     }) {
-                        Label("Add Folder", systemImage: "plus")
+                        Label("Add Item List", systemImage: "plus")
                     }
                     .disabled(isEditing)
-                    .sheet(isPresented: $isEditingFolder, onDismiss: {
-                        if editingFolder?.name == K.defaultName.newFolder {
-                            deleteFolders(offsets: IndexSet(integer: folders.count-1))
+                    .fullScreenCover(item: $editingItemList) { itemList in
+                        NavigationView {
+                            EditItemListView(of: itemList)
                         }
-                    }, content: {
-                        EditFolderView(folder: editingFolder!)
-                    })
+                    }
                     Button {
                         
                     } label: {
@@ -96,57 +93,7 @@ struct HomeView: View {
     }
     
     @discardableResult
-    private func addFolder(name: String = K.defaultName.newFolder, image: String = "folder", order: Int, _ context: NSManagedObjectContext) -> Folder {
-        let newFolder = manager.createNewFolder(name: name, image: image, order: order, context)
-        return newFolder
-    }
-
-    private func deleteFolders(offsets: IndexSet) {
-        withAnimation {
-            offsets.forEach { deleteIndex in
-                viewContext.delete(folders[deleteIndex])
-                if deleteIndex != folders.count-1 {
-                    for index in deleteIndex+1 ... folders.count-1 {
-                        folders[index].order -= 1
-                    }
-                }
-            }
-            saveData()
-        }
-    }
-    
-    private func moveFolder(indexSet: IndexSet, destination: Int) {
-        withAnimation {
-            indexSet.forEach { source in
-                if source < destination {
-                    var startIndex = source + 1
-                    let endIndex = destination - 1
-                    var startOrder = folders[source].order
-                    while startIndex <= endIndex {
-                        folders[startIndex].order = startOrder
-                        startOrder += 1
-                        startIndex += 1
-                    }
-                    folders[source].order = startOrder
-                } else if destination < source {
-                    var startIndex = destination
-                    let endIndex = source - 1
-                    var startOrder = folders[destination].order + 1
-                    let newOrder = folders[destination].order
-                    while startIndex <= endIndex {
-                        folders[startIndex].order = startOrder
-                        startOrder += 1
-                        startIndex += 1
-                    }
-                    folders[source].order = newOrder
-                }
-                saveData()
-            }
-        }
-    }
-    
-    @discardableResult
-    func addItemList(name: String = "default_newList", color: String = K.listColors.basic.green, image: String = "checklist", order: Int) -> ItemList {
+    func addItemList(name: String = K.defaultName.newItemList, color: String = K.listColors.basic.green, image: String = "checklist", order: Int) -> ItemList {
         if let folder = folders.first {
             let newItemList = folder.createNewItemList(name: name, color: color, image: image, order: order, viewContext)
             saveData()
