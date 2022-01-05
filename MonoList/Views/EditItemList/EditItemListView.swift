@@ -40,6 +40,10 @@ struct EditItemListView: View {
                     Image(systemName: itemListImage)
                         .foregroundColor(Color(itemListColor))
                     TextField("Item List Name", text: $itemListName, prompt: Text("Item List Name"))
+                        .submitLabel(.done)
+                        .onSubmit {
+                            saveDataIfNeeded()
+                        }
                 }
                 .font(.title2.bold())
                 HStack(spacing: 20) {
@@ -68,15 +72,25 @@ struct EditItemListView: View {
             List {
                 Section {
                     ForEach(items) { item in
-                        EditItemCellView(item: item)
+                        EditItemCellView(item: item,
+                        deleteAction: { item in
+                            if let index = items.firstIndex(of: item) {
+                                let isLastItem = (index == items.count-1)
+                                deleteItems(offsets: IndexSet(integer: index), animation: isLastItem ? .none : .default)
+                            }
+                        }, addAction: { item in
+                            if let index = items.firstIndex(of: item) {
+                                withAnimation {
+                                    addItem(name: "", order: index+1)
+                                }
+                            }
+                        })
                             .disabled(editMode == .active)
                     }
-                    .onDelete { _ in
-                        
-                    }
-                    .onMove { _, _ in
-                        
-                    }
+                    .onDelete(perform: { indexSet in
+                        deleteItems(offsets: indexSet)
+                    })
+                    .onMove(perform: moveitem)
                 } header: {
                     HStack {
                         Spacer()
@@ -84,7 +98,9 @@ struct EditItemListView: View {
                             EditButtonView()
                                 .environment(\.editMode, $editMode)
                             Button {
-                                
+                                withAnimation {
+                                    addItem(name: "", order: items.count)
+                                }
                             } label: {
                                 Image(systemName: "plus")
                                     .padding(4)
@@ -104,32 +120,31 @@ struct EditItemListView: View {
         }
         .onDisappear {
             if let itemList = itemList {
-                let newAndUnEdited = (itemList.name == K.defaultName.newItemList)
+                let newAndUnEdited = (itemListName == K.defaultName.newItemList)
                 if newAndUnEdited {
                     withAnimation {
                         viewContext.delete(itemList)
                         saveData()
                     }
                 } else {
-                    setValue(to: itemList)
-                    if viewContext.hasChanges {
-                        //print("The item list has been updated")
-                        itemList.updateDate = Date()
-                        saveData()
-                    }
+                    saveDataIfNeeded()
                 }
             }
         }
         .onChange(of: scenePhase) { phase in
             if phase == .background {
-                if let itemList = itemList {
-                    setValue(to: itemList)
-                    if viewContext.hasChanges {
-                        //print("The item list has been updated")
-                        itemList.updateDate = Date()
-                        saveData()
-                    }
-                }
+                saveDataIfNeeded()
+            }
+        }
+    }
+    
+    private func saveDataIfNeeded() {
+        if let itemList = itemList {
+            setValue(to: itemList)
+            if viewContext.hasChanges {
+                //print("The item list has been updated")
+                itemList.updateDate = Date()
+                saveData()
             }
         }
     }
@@ -155,13 +170,60 @@ struct EditItemListView: View {
         }
     }
     
-//    @discardableResult
-//    func addItem(name: String, order: Int) -> Item {
-//        let newItem = createNewItem(name: name, order: order, viewContext)
-//        saveData()
-//        return newItem
-//    }
-//    
+    func addItem(name: String, order: Int) {
+        if let itemList = itemList {
+            for index in order ..< items.count {
+                items[index].order += 1
+            }
+            itemList.createNewItem(name: name, order: order, viewContext)
+            saveDataIfNeeded()
+        }
+    }
+    
+    private func deleteItems(offsets: IndexSet, animation: Animation? = .default) {
+        withAnimation(animation) {
+            offsets.forEach { deleteIndex in
+                viewContext.delete(items[deleteIndex])
+                if deleteIndex != items.count-1 {
+                    for index in deleteIndex+1 ... items.count-1 {
+                        items[index].order -= 1
+                    }
+                }
+            }
+            saveDataIfNeeded()
+        }
+    }
+    
+    private func moveitem(indexSet: IndexSet, destination: Int) {
+        withAnimation {
+            indexSet.forEach { source in
+                if source < destination {
+                    var startIndex = source + 1
+                    let endIndex = destination - 1
+                    var startOrder = items[source].order
+                    while startIndex <= endIndex {
+                        items[startIndex].order = startOrder
+                        startOrder += 1
+                        startIndex += 1
+                    }
+                    items[source].order = startOrder
+                } else if destination < source {
+                    var startIndex = destination
+                    let endIndex = source - 1
+                    var startOrder = items[destination].order + 1
+                    let newOrder = items[destination].order
+                    while startIndex <= endIndex {
+                        items[startIndex].order = startOrder
+                        startOrder += 1
+                        startIndex += 1
+                    }
+                    items[source].order = newOrder
+                }
+                saveDataIfNeeded()
+            }
+        }
+    }
+    
 //    @discardableResult
 //    func addNotification(weekdays: [String], time: Date) -> Notification {
 //        let newNotification = createNewNotification(weekdays: weekdays, time: time, viewContext)

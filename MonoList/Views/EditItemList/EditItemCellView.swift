@@ -13,6 +13,9 @@ struct EditItemCellView: View {
     
     @State var isEditingItemDetail = false
     
+    let deleteAction: (Item) -> Void
+    let addAction: (Item) -> Void
+    
     var body: some View {
         HStack {
             if item.isImportant {
@@ -20,8 +23,16 @@ struct EditItemCellView: View {
                     .font(.body.bold())
                     .foregroundColor(.red)
             }
-            TextField("Item Name", text: $item.name)
+            Text("\(item.order)")
+            TextField("", text: $item.name)
                 .submitLabel(.return)
+                .onSubmit {
+                    if item.name.isEmpty {
+                        deleteAction(item)
+                    } else {
+                        addAction(item)
+                    }
+                }
             Button {
                 isEditingItemDetail = true
             } label: {
@@ -43,7 +54,7 @@ struct EditItemCellView_Previews: PreviewProvider {
         let items = MonoListManager().fetchItems(context: context)
         List {
             ForEach(0 ..< 5) { index in
-                EditItemCellView(item: items[index])
+                EditItemCellView(item: items[index], deleteAction: {_ in }, addAction: {_ in })
                     .environment(\.managedObjectContext, context)
             }
             .onDelete { _ in }
