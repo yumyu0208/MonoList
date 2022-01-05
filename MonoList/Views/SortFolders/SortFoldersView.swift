@@ -12,7 +12,7 @@ struct SortFoldersView: View {
     
     @EnvironmentObject var manager: MonoListManager
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
     private var folders: FetchedResults<Folder>
     
@@ -33,6 +33,8 @@ struct SortFoldersView: View {
                                     Label("\(folder.order) - \(folder.name)", systemImage: folder.image)
                                         .id(folder.name)
                                 }
+                                .moveDisabled(folder.order == 0)
+                                .deleteDisabled(folder.order == 0)
                             }
                         }
                         .onDelete(perform: deleteFolders)

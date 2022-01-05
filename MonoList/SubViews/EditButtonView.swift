@@ -49,5 +49,6 @@ struct EditButtonView_Previews: PreviewProvider {
         EditButtonView()
             .padding()
             .previewLayout(.sizeThatFits)
+            .environment(\.editMode, .constant(.active))
     }
 }

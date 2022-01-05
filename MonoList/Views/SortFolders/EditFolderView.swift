@@ -10,7 +10,7 @@ import SwiftUI
 struct EditFolderView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     
     @State var image: String = "folder"
     @State var name: String = ""

@@ -30,6 +30,7 @@
 		AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */; };
 		AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9BD52278136D70055CD85 /* FolderSectionView.swift */; };
 		AAE293512781C5780010F093 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditButtonView.swift */; };
+		AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B28627852F98000B8B09 /* EditItemCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListsView.swift; sourceTree = "<group>"; };
 		AAB9BD52278136D70055CD85 /* FolderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSectionView.swift; sourceTree = "<group>"; };
 		AAE293502781C5780010F093 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
+		AAE5B28627852F98000B8B09 /* EditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				AA9977AA2783F176002B4C57 /* EditItemListView.swift */,
+				AAE5B28627852F98000B8B09 /* EditItemCellView.swift */,
 			);
 			path = EditItemList;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */,
 				AA82C04F277B319E001CEFFA /* Folder+CoreDataClass.swift in Sources */,
 				AA82C04A277B319E001CEFFA /* Item+CoreDataProperties.swift in Sources */,
+				AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

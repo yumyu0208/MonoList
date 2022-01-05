@@ -10,10 +10,18 @@ import SwiftUI
 struct EditItemListView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.scenePhase) private var scenePhase
+    
     @FetchRequest var items: FetchedResults<Item>
     
     var itemList: ItemList?
+    @State var editMode: EditMode = .inactive
+    @State var itemListName: String = ""
+    @State var itemListImage: String = "checklist"
+    @State var itemListColor: String = K.listColors.basic.green
+    
+    @State var isSettingNotification = false
     
     init(of itemList: ItemList) {
         self.itemList = itemList
@@ -26,31 +34,115 @@ struct EditItemListView: View {
     }
     
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text(item.name)
-            }
-        }
-        .navigationTitle(itemList!.name)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
+        VStack(spacing: 0) {
+            HStack {
+                Group {
+                    Image(systemName: itemListImage)
+                        .foregroundColor(Color(itemListColor))
+                    TextField("Item List Name", text: $itemListName, prompt: Text("Item List Name"))
                 }
-                .buttonStyle(CircleButton(type: .cancel))
-            }
+                .font(.title2.bold())
+                HStack(spacing: 20) {
+                    Button {
+                        isSettingNotification = true
+                    } label: {
+                        Image(systemName: "bell")
+                            .padding()
+                    }
+                    .sheet(isPresented: $isSettingNotification) {
+                        Text("Setting Notification")
+                    }
+                    .buttonStyle(CircleButton(type: .primary))
+                    .disabled(editMode == .active)
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .padding()
+                    }
+                    .buttonStyle(CircleButton(type: .cancel))
+                    .disabled(editMode == .active)
+                } //: HStack
+            } //: HStack
+            .padding()
+            List {
+                Section {
+                    ForEach(items) { item in
+                        EditItemCellView(item: item)
+                            .disabled(editMode == .active)
+                    }
+                    .onDelete { _ in
+                        
+                    }
+                    .onMove { _, _ in
+                        
+                    }
+                } header: {
+                    HStack {
+                        Spacer()
+                        HStack(spacing: 12) {
+                            EditButtonView()
+                                .environment(\.editMode, $editMode)
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "plus")
+                                    .padding(4)
+                            }
+                            .disabled(editMode == .active)
+                        }
+                    }
+                }
+            } //: List
+            .listStyle(.plain)
+            .environment(\.editMode, $editMode)
+        } //: VStack
+        .onAppear {
+            itemListName = itemList!.name
+            itemListImage = itemList!.image
+            itemListColor = itemList!.color
         }
         .onDisappear {
-            if let itemList = itemList,
-                itemList.name == K.defaultName.newItemList {
-                withAnimation {
-                    viewContext.delete(itemList)
-                    saveData()
+            if let itemList = itemList {
+                let newAndUnEdited = (itemList.name == K.defaultName.newItemList)
+                if newAndUnEdited {
+                    withAnimation {
+                        viewContext.delete(itemList)
+                        saveData()
+                    }
+                } else {
+                    setValue(to: itemList)
+                    if viewContext.hasChanges {
+                        //print("The item list has been updated")
+                        itemList.updateDate = Date()
+                        saveData()
+                    }
                 }
             }
+        }
+        .onChange(of: scenePhase) { phase in
+            if phase == .background {
+                if let itemList = itemList {
+                    setValue(to: itemList)
+                    if viewContext.hasChanges {
+                        //print("The item list has been updated")
+                        itemList.updateDate = Date()
+                        saveData()
+                    }
+                }
+            }
+        }
+    }
+    
+    private func setValue(to itemList: ItemList) {
+        if itemList.name != itemListName {
+            itemList.name = itemListName
+        }
+        if itemList.image != itemListImage {
+            itemList.image = itemListImage
+        }
+        if itemList.color != itemListColor {
+            itemList.color = itemListColor
         }
     }
     

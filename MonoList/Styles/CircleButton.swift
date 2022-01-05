@@ -37,7 +37,7 @@ struct CircleButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.system(size: 12, weight: .bold, design: .rounded))
-            .frame(width: 28, height: 28, alignment: .center)
+            .frame(width: 32, height: 32, alignment: .center)
             .background(backgroundColor)
             .foregroundColor(foregroundColor)
             .clipShape(Circle())

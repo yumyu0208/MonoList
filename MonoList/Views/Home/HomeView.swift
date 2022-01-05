@@ -10,7 +10,9 @@ import CoreData
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.scenePhase) private var scenePhase
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
+    
     private var folders: FetchedResults<Folder>
     
     @State var manager = MonoListManager()
@@ -62,9 +64,7 @@ struct HomeView: View {
                     }
                     .disabled(isEditing)
                     .fullScreenCover(item: $editingItemList) { itemList in
-                        NavigationView {
-                            EditItemListView(of: itemList)
-                        }
+                        EditItemListView(of: itemList)
                     }
                     Button {
                         
