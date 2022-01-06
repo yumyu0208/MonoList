@@ -29,6 +29,7 @@
 		AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AA2783F176002B4C57 /* EditItemListView.swift */; };
 		AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */; };
 		AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9BD52278136D70055CD85 /* FolderSectionView.swift */; };
+		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAE293512781C5780010F093 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditButtonView.swift */; };
 		AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B28627852F98000B8B09 /* EditItemCellView.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		AA9977AA2783F176002B4C57 /* EditItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemListView.swift; sourceTree = "<group>"; };
 		AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListsView.swift; sourceTree = "<group>"; };
 		AAB9BD52278136D70055CD85 /* FolderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSectionView.swift; sourceTree = "<group>"; };
+		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAE293502781C5780010F093 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
 		AAE5B28627852F98000B8B09 /* EditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 		AA351A762776BB5300F53BDC /* MonoList */ = {
 			isa = PBXGroup;
 			children = (
+				AAD4B7BB27870BB900D73EBE /* Enums */,
 				AA82C03A277B0DF9001CEFFA /* Models */,
 				AA82C023277AC0B3001CEFFA /* Utilities */,
 				AA82C055277EEF53001CEFFA /* Styles */,
@@ -153,6 +156,14 @@
 				AAE5B28527848557000B8B09 /* EditItemList */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		AAD4B7BB27870BB900D73EBE /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				AAD4B7BC27870BCE00D73EBE /* Focusable.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		AAE5B282278484E6000B8B09 /* Home */ = {
@@ -270,6 +281,7 @@
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
+				AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */,
 				AAE293512781C5780010F093 /* EditButtonView.swift in Sources */,
 				AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */,
 				AA82C057277EF105001CEFFA /* CircleButton.swift in Sources */,

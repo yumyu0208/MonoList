@@ -22,6 +22,12 @@ struct EditItemListView: View {
     @State var itemListColor: String = K.listColors.basic.green
     
     @State var isSettingNotification = false
+    @FocusState var focusedItem: Focusable?
+    @FocusState var listNameTextFieldIsFocused: Bool
+    
+    var isNewItemList: Bool {
+        itemList!.name == K.defaultName.newItemList
+    }
     
     init(of itemList: ItemList) {
         self.itemList = itemList
@@ -39,9 +45,24 @@ struct EditItemListView: View {
                 Group {
                     Image(systemName: itemListImage)
                         .foregroundColor(Color(itemListColor))
-                    TextField("Item List Name", text: $itemListName, prompt: Text("Item List Name"))
-                        .submitLabel(.done)
+                    let itemsIsEmpty = items.isEmpty
+                    TextField("List Name", text: $itemListName, prompt: Text("List Name"))
+                        .focused($listNameTextFieldIsFocused)
+                        .submitLabel(itemsIsEmpty ? .return : .done)
                         .onSubmit {
+                            listNameTextFieldIsFocused = true
+                            if itemsIsEmpty {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    withAnimation {
+                                        let newItem = addItem(name: "", order: 0)
+                                        focusedItem = .row(id: newItem.id.uuidString)
+                                    }
+                                }
+                            } else {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                                    listNameTextFieldIsFocused = false
+                                }
+                            }
                             saveDataIfNeeded()
                         }
                 }
@@ -59,7 +80,14 @@ struct EditItemListView: View {
                     .buttonStyle(CircleButton(type: .primary))
                     .disabled(editMode == .active)
                     Button {
-                        dismiss()
+                        if itemListName.isEmpty && !items.isEmpty {
+                            print("アラート：List Nameを入力してください")
+                        } else {
+                            if let itemList = itemList {
+                                setValue(to: itemList)
+                            }
+                            dismiss()
+                        }
                     } label: {
                         Image(systemName: "xmark")
                             .padding()
@@ -73,15 +101,18 @@ struct EditItemListView: View {
                 Section {
                     ForEach(items) { item in
                         EditItemCellView(item: item,
+                        focusedItem: $focusedItem,
                         deleteAction: { item in
                             if let index = items.firstIndex(of: item) {
                                 let isLastItem = (index == items.count-1)
                                 deleteItems(offsets: IndexSet(integer: index), animation: isLastItem ? .none : .default)
                             }
                         }, addAction: { item in
+                            focusedItem = .row(id: item.id.uuidString)
                             if let index = items.firstIndex(of: item) {
                                 withAnimation {
-                                    addItem(name: "", order: index+1)
+                                    let newItem = addItem(name: "", order: index+1)
+                                    focusedItem = .row(id: newItem.id.uuidString)
                                 }
                             }
                         })
@@ -99,7 +130,8 @@ struct EditItemListView: View {
                                 .environment(\.editMode, $editMode)
                             Button {
                                 withAnimation {
-                                    addItem(name: "", order: items.count)
+                                    let newItem = addItem(name: "", order: items.count)
+                                    focusedItem = .row(id: newItem.id.uuidString)
                                 }
                             } label: {
                                 Image(systemName: "plus")
@@ -114,13 +146,13 @@ struct EditItemListView: View {
             .environment(\.editMode, $editMode)
         } //: VStack
         .onAppear {
-            itemListName = itemList!.name
+            itemListName = isNewItemList ? "" : itemList!.name
             itemListImage = itemList!.image
             itemListColor = itemList!.color
         }
         .onDisappear {
             if let itemList = itemList {
-                let newAndUnEdited = (itemListName == K.defaultName.newItemList)
+                let newAndUnEdited = (itemList.name == K.defaultName.newItemList) && items.isEmpty
                 if newAndUnEdited {
                     withAnimation {
                         viewContext.delete(itemList)
@@ -134,6 +166,14 @@ struct EditItemListView: View {
         .onChange(of: scenePhase) { phase in
             if phase == .background {
                 saveDataIfNeeded()
+            }
+        }
+        .onChange(of: focusedItem) { [focusedItem] _ in
+            if let index = items.firstIndex(where: {
+                focusedItem == .row(id: $0.id.uuidString)
+            }), items[index].name.isEmpty {
+                let isLastItem = (index == items.count-1)
+                deleteItems(offsets: IndexSet(integer: index), animation: isLastItem ? .none : .default)
             }
         }
     }
@@ -150,7 +190,7 @@ struct EditItemListView: View {
     }
     
     private func setValue(to itemList: ItemList) {
-        if itemList.name != itemListName {
+        if !itemListName.isEmpty && itemList.name != itemListName {
             itemList.name = itemListName
         }
         if itemList.image != itemListImage {
@@ -170,14 +210,14 @@ struct EditItemListView: View {
         }
     }
     
-    func addItem(name: String, order: Int) {
-        if let itemList = itemList {
-            for index in order ..< items.count {
-                items[index].order += 1
-            }
-            itemList.createNewItem(name: name, order: order, viewContext)
-            saveDataIfNeeded()
+    @discardableResult
+    private func addItem(name: String, order: Int) -> Item {
+        for index in order ..< items.count {
+            items[index].order += 1
         }
+        let newItem = itemList!.createNewItem(name: name, order: order, viewContext)
+        saveDataIfNeeded()
+        return newItem
     }
     
     private func deleteItems(offsets: IndexSet, animation: Animation? = .default) {
