@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-struct EditItemCellView: View {
+struct EditItemCellView: View, Equatable {
+    
+    static func == (lhs: EditItemCellView, rhs: EditItemCellView) -> Bool {
+        lhs.item == rhs.item
+    }
     
     @ObservedObject var item: Item
     

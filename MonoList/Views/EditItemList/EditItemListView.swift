@@ -41,11 +41,11 @@ struct EditItemListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
+            let itemsIsEmpty = items.isEmpty
             HStack {
                 Group {
                     Image(systemName: itemListImage)
                         .foregroundColor(Color(itemListColor))
-                    let itemsIsEmpty = items.isEmpty
                     TextField("List Name", text: $itemListName, prompt: Text("List Name"))
                         .focused($listNameTextFieldIsFocused)
                         .submitLabel(itemsIsEmpty ? .return : .done)
@@ -97,53 +97,89 @@ struct EditItemListView: View {
                 } //: HStack
             } //: HStack
             .padding()
-            List {
-                Section {
-                    ForEach(items) { item in
-                        EditItemCellView(item: item,
-                        focusedItem: $focusedItem,
-                        deleteAction: { item in
-                            if let index = items.firstIndex(of: item) {
-                                let isLastItem = (index == items.count-1)
-                                deleteItems(offsets: IndexSet(integer: index), animation: isLastItem ? .none : .default)
+            ZStack {
+                ScrollViewReader { proxy in
+                    List {
+                        Section {
+                            ForEach(items) { item in
+                                EditItemCellView(item: item,
+                                focusedItem: $focusedItem,
+                                deleteAction: { item in
+                                    if let index = items.firstIndex(of: item) {
+                                        let isLastItem = (index == items.count-1)
+                                        deleteItems(offsets: IndexSet(integer: index), animation: isLastItem ? .none : .default)
+                                    }
+                                }, addAction: { item in
+                                    focusedItem = .row(id: item.id.uuidString)
+                                    if let index = items.firstIndex(of: item) {
+                                        withAnimation {
+                                            let newItem = addItem(name: "", order: index+1)
+                                            focusedItem = .row(id: newItem.id.uuidString)
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                                withAnimation {
+                                                    proxy.scrollTo(newItem, anchor: .bottom)
+                                                }
+                                            }
+                                        }
+                                    }
+                                })
+                                    .listRowSeparator(.visible)
+                                    .disabled(editMode == .active)
+                                    .id(item)
                             }
-                        }, addAction: { item in
-                            focusedItem = .row(id: item.id.uuidString)
-                            if let index = items.firstIndex(of: item) {
-                                withAnimation {
-                                    let newItem = addItem(name: "", order: index+1)
-                                    focusedItem = .row(id: newItem.id.uuidString)
+                            .onDelete(perform: { indexSet in
+                                deleteItems(offsets: indexSet)
+                            })
+                            .onMove(perform: moveitem)
+                            Text("")
+                                .listRowSeparator(.hidden, edges: itemsIsEmpty ? .all : .bottom)
+                        } header: {
+                            HStack {
+                                Spacer()
+                                HStack(spacing: 12) {
+                                    EditButtonView()
+                                        .environment(\.editMode, $editMode)
+                                    Button {
+                                        withAnimation {
+                                            let newItem = addItem(name: "", order: items.count)
+                                            focusedItem = .row(id: newItem.id.uuidString)
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                withAnimation {
+                                                    proxy.scrollTo(newItem, anchor: .bottom)
+                                                }
+                                            }
+                                        }
+                                    } label: {
+                                        Image(systemName: "plus")
+                                            .padding(4)
+                                    }
+                                    .disabled(editMode == .active)
                                 }
                             }
-                        })
-                            .disabled(editMode == .active)
-                    }
-                    .onDelete(perform: { indexSet in
-                        deleteItems(offsets: indexSet)
-                    })
-                    .onMove(perform: moveitem)
-                } header: {
-                    HStack {
-                        Spacer()
-                        HStack(spacing: 12) {
-                            EditButtonView()
-                                .environment(\.editMode, $editMode)
-                            Button {
-                                withAnimation {
-                                    let newItem = addItem(name: "", order: items.count)
-                                    focusedItem = .row(id: newItem.id.uuidString)
-                                }
-                            } label: {
-                                Image(systemName: "plus")
-                                    .padding(4)
-                            }
-                            .disabled(editMode == .active)
                         }
-                    }
+                    } //: List
+                    .listStyle(.plain)
+                    .opacity(itemsIsEmpty ? 0 : 1)
+                    .environment(\.editMode, $editMode)
+                } //: ScrollViewReader
+                if itemsIsEmpty && !listNameTextFieldIsFocused {
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .contentShape(Rectangle())
+                        .overlay {
+                            Text("No Items")
+                                .font(.title3)
+                                .foregroundColor(Color(UIColor.tertiaryLabel))
+                                .offset(y: -28)
+                        }
+                        .onTapGesture {
+                            withAnimation {
+                                let newItem = addItem(name: "", order: items.count)
+                                focusedItem = .row(id: newItem.id.uuidString)
+                            }
+                        }
                 }
-            } //: List
-            .listStyle(.plain)
-            .environment(\.editMode, $editMode)
+            }
         } //: VStack
         .onAppear {
             itemListName = isNewItemList ? "" : itemList!.name
@@ -168,12 +204,12 @@ struct EditItemListView: View {
                 saveDataIfNeeded()
             }
         }
-        .onChange(of: focusedItem) { [focusedItem] _ in
-            if let index = items.firstIndex(where: {
+        .onChange(of: focusedItem) { [focusedItem] newItem in
+            if let oldIndex = items.firstIndex(where: {
                 focusedItem == .row(id: $0.id.uuidString)
-            }), items[index].name.isEmpty {
-                let isLastItem = (index == items.count-1)
-                deleteItems(offsets: IndexSet(integer: index), animation: isLastItem ? .none : .default)
+            }), items[oldIndex].name.isEmpty {
+                let isLastItem = (oldIndex == items.count-1)
+                deleteItems(offsets: IndexSet(integer: oldIndex), animation: isLastItem ? .none : .default)
             }
         }
     }
