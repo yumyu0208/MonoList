@@ -31,6 +31,7 @@ struct EditItemListView: View {
     
     init(of itemList: ItemList) {
         self.itemList = itemList
+        
         _items = FetchRequest(
             sortDescriptors: [
                 SortDescriptor(\.order, order: .forward)
@@ -131,8 +132,17 @@ struct EditItemListView: View {
                                 deleteItems(offsets: indexSet)
                             })
                             .onMove(perform: moveitem)
-                            Text("")
+                            Rectangle()
+                                .frame(height: 36)
+                                .foregroundColor(.clear)
                                 .listRowSeparator(.hidden, edges: itemsIsEmpty ? .all : .bottom)
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    withAnimation {
+                                        let newItem = addItem(name: "", order: items.count)
+                                        focusedItem = .row(id: newItem.id.uuidString)
+                                    }
+                                }
                         } header: {
                             HStack {
                                 Spacer()
@@ -156,7 +166,7 @@ struct EditItemListView: View {
                                     .disabled(editMode == .active)
                                 }
                             } //: HStack
-                        }
+                        } //: Section
                     } //: List
                     .listStyle(.plain)
                     .opacity(itemsIsEmpty ? 0 : 1)

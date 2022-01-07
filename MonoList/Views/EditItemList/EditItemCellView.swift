@@ -30,16 +30,25 @@ struct EditItemCellView: View, Equatable {
                         .font(.body.bold())
                         .foregroundColor(.red)
                 }
-                TextField("", text: $item.name)
-                    .focused(focusedItem, equals: .row(id: item.id.uuidString))
-                    .submitLabel(.return)
-                    .onSubmit {
-                        if item.name.isEmpty {
-                            deleteAction(item)
-                        } else {
-                            addAction(item)
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            focusedItem.wrappedValue = .row(id: item.id.uuidString)
                         }
-                    }
+                    TextField("", text: $item.name)
+                        .frame(height: 36)
+                        .focused(focusedItem, equals: .row(id: item.id.uuidString))
+                        .submitLabel(.return)
+                        .onSubmit {
+                            if item.name.isEmpty {
+                                deleteAction(item)
+                            } else {
+                                addAction(item)
+                            }
+                        }
+                }
                 Button {
                     isEditingItemDetail = true
                 } label: {
