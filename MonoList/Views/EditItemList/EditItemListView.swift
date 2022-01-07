@@ -155,7 +155,7 @@ struct EditItemListView: View {
                                     }
                                     .disabled(editMode == .active)
                                 }
-                            }
+                            } //: HStack
                         }
                     } //: List
                     .listStyle(.plain)

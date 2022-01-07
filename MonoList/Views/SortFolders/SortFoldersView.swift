@@ -26,11 +26,12 @@ struct SortFoldersView: View {
                 List {
                     Section {
                         ForEach(folders) { folder in
-                            if folder.name != K.defaultName.newFolder {
+                            if folder.name != K.defaultName.newFolder,
+                               folder.name != K.defaultName.lists {
                                 NavigationLink {
                                     EditFolderView(folder: folder)
                                 } label: {
-                                    Label("\(folder.order) - \(folder.name)", systemImage: folder.image)
+                                    Label(folder.name, systemImage: folder.image)
                                         .id(folder.name)
                                 }
                                 .moveDisabled(folder.order == 0)

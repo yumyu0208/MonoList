@@ -12,11 +12,12 @@ struct FolderSectionView: View {
     let title: String
     var body: some View {
         HStack {
-            Group {
-                Image(systemName: image)
-                    .foregroundColor(.accentColor)
+            Label {
                 Text(title)
                     .foregroundColor(.primary)
+            } icon: {
+                Image(systemName: image)
+                    .foregroundColor(.accentColor)
             }
             .font(.headline)
             Spacer()

@@ -20,10 +20,6 @@ struct EditItemCellView: View, Equatable {
     let deleteAction: (Item) -> Void
     let addAction: (Item) -> Void
     
-    var isFocused: Bool {
-        focusedItem.wrappedValue == .row(id: item.id.uuidString)
-    }
-    
     var body: some View {
         HStack {
             if item.isFault {
@@ -34,7 +30,6 @@ struct EditItemCellView: View, Equatable {
                         .font(.body.bold())
                         .foregroundColor(.red)
                 }
-                Text("\(item.order)")
                 TextField("", text: $item.name)
                     .focused(focusedItem, equals: .row(id: item.id.uuidString))
                     .submitLabel(.return)
@@ -45,15 +40,13 @@ struct EditItemCellView: View, Equatable {
                             addAction(item)
                         }
                     }
-                if isFocused {
-                    Button {
-                        isEditingItemDetail = true
-                    } label: {
-                        Image(systemName: "info.circle")
-                    }
-                    .buttonStyle(.plain)
-                    .foregroundColor(.accentColor)
+                Button {
+                    isEditingItemDetail = true
+                } label: {
+                    Image(systemName: "info.circle")
                 }
+                .buttonStyle(.plain)
+                .foregroundColor(.accentColor)
             }
         } //: HStack
         .padding(.leading, 8)

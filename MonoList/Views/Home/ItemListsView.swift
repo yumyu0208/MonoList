@@ -30,8 +30,13 @@ struct ItemListsView: View {
             Button {
                 action(itemList)
             } label: {
-                Label("\(itemList.order) - \(itemList.name)", systemImage: itemList.image)
-                    .foregroundColor(Color(itemList.color))
+                Label {
+                    Text(itemList.name)
+                        .foregroundColor(.primary)
+                } icon: {
+                    Image(systemName: itemList.image)
+                        .foregroundColor(Color(itemList.color))
+                }
             }
         }
         .onDelete(perform: deleteItemLists)
