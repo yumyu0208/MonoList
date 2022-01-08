@@ -13,7 +13,8 @@ struct ItemListsView: View {
     
     @FetchRequest var itemLists: FetchedResults<ItemList>
     
-    let action: (ItemList) -> Void
+    @State var isShowingInfo = false
+    let editAction: (ItemList) -> Void
     
     init(of folder: Folder, action: @escaping (ItemList) -> Void) {
         _itemLists = FetchRequest(
@@ -22,25 +23,30 @@ struct ItemListsView: View {
             ],
             predicate: NSPredicate(format: "parentFolder == %@", folder)
         )
-        self.action = action
+        self.editAction = action
     }
     
     var body: some View {
         ForEach(itemLists) { itemList in
-            Button {
-                action(itemList)
-            } label: {
-                Label {
-                    Text(itemList.name)
-                        .foregroundColor(.primary)
-                } icon: {
-                    Image(systemName: itemList.image)
-                        .foregroundColor(Color(itemList.color))
+            ItemListCellView(itemList: itemList) {
+                editAction(itemList)
+            } duplicateAction: {
+                
+            } changeFolderAction: {
+                
+            } showInfoAction: {
+                isShowingInfo = true
+            } deleteAction: {
+                if let index = itemLists.firstIndex(of: itemList) {
+                    deleteItemLists(offsets: IndexSet(integer: index))
                 }
             }
         }
         .onDelete(perform: deleteItemLists)
         .onMove(perform: moveitemList)
+        .sheet(isPresented: $isShowingInfo) {
+            Text("Info")
+        }
     }
     
     private func saveData() {

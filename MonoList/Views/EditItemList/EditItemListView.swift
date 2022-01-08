@@ -72,7 +72,7 @@ struct EditItemListView: View {
                     Button {
                         isSettingNotification = true
                     } label: {
-                        Image(systemName: "bell")
+                        Image(systemName: "ellipsis")
                             .padding()
                     }
                     .sheet(isPresented: $isSettingNotification) {
@@ -127,6 +127,25 @@ struct EditItemListView: View {
                                     .listRowSeparator(.visible)
                                     .disabled(editMode == .active)
                                     .id(item)
+                                    .swipeActions(edge: .trailing) {
+                                        Button(role: .destructive) {
+                                            if let index = items.firstIndex(of: item) {
+                                                deleteItems(offsets: IndexSet(integer: index))
+                                            }
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                        }
+                                    }
+                                    .swipeActions(edge: .leading) {
+                                        Button {
+                                            withAnimation {
+                                                item.isImportant.toggle()
+                                            }
+                                        } label: {
+                                            Label("Frag", systemImage: "exclamationmark")
+                                        }
+                                        .tint(.accentColor)
+                                    }
                             }
                             .onDelete(perform: { indexSet in
                                 deleteItems(offsets: indexSet)

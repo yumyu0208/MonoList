@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA2E0C272789C92400D23B6B /* ItemListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E0C262789C92400D23B6B /* ItemListCellView.swift */; };
 		AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA351A772776BB5300F53BDC /* MonoListApp.swift */; };
 		AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA351A792776BB5300F53BDC /* HomeView.swift */; };
 		AA351A7C2776BB5500F53BDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA351A7B2776BB5500F53BDC /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA2E0C262789C92400D23B6B /* ItemListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCellView.swift; sourceTree = "<group>"; };
 		AA351A742776BB5300F53BDC /* MonoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA351A772776BB5300F53BDC /* MonoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoListApp.swift; sourceTree = "<group>"; };
 		AA351A792776BB5300F53BDC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				AA351A792776BB5300F53BDC /* HomeView.swift */,
 				AAB9BD52278136D70055CD85 /* FolderSectionView.swift */,
 				AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */,
+				AA2E0C262789C92400D23B6B /* ItemListCellView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA2E0C272789C92400D23B6B /* ItemListCellView.swift in Sources */,
 				AA82C050277B319E001CEFFA /* Folder+CoreDataProperties.swift in Sources */,
 				AA82C04C277B319E001CEFFA /* Notification+CoreDataProperties.swift in Sources */,
 				AA82C049277B319E001CEFFA /* Item+CoreDataClass.swift in Sources */,

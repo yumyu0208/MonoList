@@ -16,6 +16,7 @@ extension Item {
         return NSFetchRequest<Item>(entityName: "Item")
     }
 
+    @NSManaged public var category: String?
     @NSManaged public var conditions: String?
     @NSManaged public var id: UUID
     @NSManaged public var image: String?
@@ -25,6 +26,7 @@ extension Item {
     @NSManaged public var order: Int32
     @NSManaged public var quantity: Int32
     @NSManaged public var state: String?
+    @NSManaged public var weight: Double
     @NSManaged public var parentItemList: ItemList
 
 }

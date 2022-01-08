@@ -31,11 +31,9 @@ struct SortFoldersView: View {
                                 NavigationLink {
                                     EditFolderView(folder: folder)
                                 } label: {
-                                    Label(folder.name, systemImage: folder.image)
+                                    Label("\(folder.order) \(folder.name)", systemImage: folder.image)
                                         .id(folder.name)
                                 }
-                                .moveDisabled(folder.order == 0)
-                                .deleteDisabled(folder.order == 0)
                             }
                         }
                         .onDelete(perform: deleteFolders)
@@ -47,7 +45,7 @@ struct SortFoldersView: View {
                                 saveData()
                             }) {
                                 ZStack {
-                                    Label("Add Folder", systemImage: "plus")
+                                    Label("Add Folder", systemImage: "folder.badge.plus")
                                 }
                             }
                         }
@@ -62,6 +60,7 @@ struct SortFoldersView: View {
                         }
                     } //: Section
                 } //: List
+                .listStyle(.insetGrouped)
                 .environment(\.editMode, $editMode)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -99,7 +98,7 @@ struct SortFoldersView: View {
         let newFolder = manager.createNewFolder(name: name, image: image, order: order, viewContext)
         return newFolder
     }
-
+    
     private func deleteFolders(offsets: IndexSet) {
         withAnimation {
             offsets.forEach { deleteIndex in

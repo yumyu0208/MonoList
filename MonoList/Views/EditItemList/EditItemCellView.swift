@@ -22,7 +22,7 @@ struct EditItemCellView: View, Equatable {
     
     var body: some View {
         HStack {
-            if item.isFault {
+            if item.isFault || item.isDeleted {
                 EmptyView()
             } else {
                 if item.isImportant {
@@ -38,7 +38,6 @@ struct EditItemCellView: View, Equatable {
                             focusedItem.wrappedValue = .row(id: item.id.uuidString)
                         }
                     TextField("", text: $item.name)
-                        .frame(height: 36)
                         .focused(focusedItem, equals: .row(id: item.id.uuidString))
                         .submitLabel(.return)
                         .onSubmit {
