@@ -31,7 +31,7 @@ struct ItemListsView: View {
             ItemListCellView(itemList: itemList) {
                 editAction(itemList)
             } duplicateAction: {
-                
+                duplicateItemList(itemList)
             } changeFolderAction: {
                 
             } showInfoAction: {
@@ -99,6 +99,17 @@ struct ItemListsView: View {
                 }
                 saveData()
             }
+        }
+    }
+    
+    func duplicateItemList(_ sourceItemList: ItemList) {
+        withAnimation {
+            guard let indexOfSource = itemLists.firstIndex(of: sourceItemList) else { return }
+            sourceItemList.duplicate(viewContext)
+            for index in indexOfSource + 1 ..< itemLists.count {
+                itemLists[index].order += 1
+            }
+            saveData()
         }
     }
 }

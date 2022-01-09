@@ -22,7 +22,7 @@ struct ItemListCellView: View {
                 editAction()
             } label: {
                 Label {
-                    Text(itemList.name)
+                    Text("\(itemList.order) \(itemList.name)")
                         .foregroundColor(.primary)
                 } icon: {
                     Image(systemName: itemList.image)
