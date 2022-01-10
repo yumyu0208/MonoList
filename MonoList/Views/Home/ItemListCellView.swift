@@ -30,38 +30,38 @@ struct ItemListCellView: View {
                 }
             } //: Button
             Spacer()
-            Menu {
-                Section {
-                    Button(action: editAction) {
-                        Label("Edit", systemImage: "pencil")
-                    }
-                    Button(action: duplicateAction) {
-                        Label("Duplicate", systemImage: "plus.rectangle.on.rectangle")
-                    }
-                    Button(action: changeFolderAction) {
-                        Label("Move", systemImage: "folder")
-                    }
-                    Button(action: showInfoAction) {
-                        Label("Info", systemImage: "info.circle")
-                    }
-                }
-                Section {
-                    Button(role: .destructive, action: deleteAction) {
-                        Label("Delete", systemImage: "trash")
-                    }
-                }
+            Button {
+                editAction()
             } label: {
                 Image(systemName: "ellipsis")
                     .padding(.vertical, 13)
                     .padding(.horizontal, 20)
-            } primaryAction: {
-                editAction()
             } //: Menu
-            .menuStyle(.borderlessButton)
+            .buttonStyle(.plain)
             .contentShape(Rectangle())
             .foregroundColor(.accentColor)
         } //: HStack
-        .listRowInsets(EdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 0))
+        .contextMenu {
+            Section {
+                Button(action: editAction) {
+                    Label("Edit", systemImage: "pencil")
+                }
+                Button(action: duplicateAction) {
+                    Label("Duplicate", systemImage: "plus.rectangle.on.rectangle")
+                }
+                Button(action: changeFolderAction) {
+                    Label("Move", systemImage: "folder")
+                }
+                Button(action: showInfoAction) {
+                    Label("Info", systemImage: "info.circle")
+                }
+            }
+            Section {
+                Button(role: .destructive, action: deleteAction) {
+                    Label("Delete", systemImage: "trash")
+                }
+            }
+        }
     }
 }
 
@@ -82,6 +82,7 @@ struct ItemListCellView_Previews: PreviewProvider {
                 
             }
             .environment(\.managedObjectContext, context)
+            .listRowInsets(EdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 0))
         }
     }
 }

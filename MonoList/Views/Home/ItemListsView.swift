@@ -41,6 +41,7 @@ struct ItemListsView: View {
                     deleteItemLists(offsets: IndexSet(integer: index))
                 }
             }
+            .listRowInsets(EdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 0))
         }
         .onDelete(perform: deleteItemLists)
         .onMove(perform: moveitemList)

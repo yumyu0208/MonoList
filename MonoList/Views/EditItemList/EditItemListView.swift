@@ -126,7 +126,6 @@ struct EditItemListView: View {
                                 })
                                     .listRowSeparator(.visible)
                                     .disabled(editMode == .active)
-                                    .id(item)
                                     .swipeActions(edge: .trailing) {
                                         Button(role: .destructive) {
                                             if let index = items.firstIndex(of: item) {
@@ -146,6 +145,7 @@ struct EditItemListView: View {
                                         }
                                         .tint(.accentColor)
                                     }
+                                    .id(item)
                             }
                             .onDelete(perform: { indexSet in
                                 deleteItems(offsets: indexSet)
@@ -214,6 +214,11 @@ struct EditItemListView: View {
             itemListName = isNewItemList ? "" : itemList!.name
             itemListImage = itemList!.image
             itemListColor = itemList!.color
+            if isNewItemList {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    listNameTextFieldIsFocused = true
+                }
+            }
         }
         .onDisappear {
             if let itemList = itemList {
