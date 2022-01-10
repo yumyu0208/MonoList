@@ -39,7 +39,7 @@ struct HomeView: View {
                     } //: Section
                 } //: ForEach
             } //: List
-            .navigationTitle("MONOLIST")
+            .navigationTitle(Text("MONOLIST"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 let isEditing = (editMode == .active)

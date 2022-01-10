@@ -12,6 +12,10 @@ import CoreData
 
 public class ItemList: NSManagedObject {
     
+    var hasNotifications: Bool {
+        return (notifications?.count ?? 0) != 0
+    }
+    
     func duplicate(_ context: NSManagedObjectContext) {
         let duplicatedItemList = parentFolder.createNewItemList(
             name: name + " Copied",

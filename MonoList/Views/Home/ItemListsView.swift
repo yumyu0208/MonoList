@@ -42,12 +42,14 @@ struct ItemListsView: View {
                 }
             }
             .listRowInsets(EdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 0))
+            .sheet(isPresented: $isShowingInfo) {
+                NavigationView {
+                    ItemListInfoView(itemList: itemList)
+                }
+            }
         }
         .onDelete(perform: deleteItemLists)
         .onMove(perform: moveitemList)
-        .sheet(isPresented: $isShowingInfo) {
-            Text("Info")
-        }
     }
     
     private func saveData() {

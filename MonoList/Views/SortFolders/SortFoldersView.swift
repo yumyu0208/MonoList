@@ -77,7 +77,7 @@ struct SortFoldersView: View {
                     EmptyView()
                 }
             } //: ZStack
-            .navigationTitle("Edit Folders")
+            .navigationTitle(Text("Edit Folders"))
             .navigationBarTitleDisplayMode(.inline)
         }
     }

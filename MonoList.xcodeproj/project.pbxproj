@@ -26,6 +26,8 @@
 		AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C051277DECC4001CEFFA /* MonoListManager.swift */; };
 		AA82C054277EA2B8001CEFFA /* EditFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C053277EA2B8001CEFFA /* EditFolderView.swift */; };
 		AA82C057277EF105001CEFFA /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C056277EF105001CEFFA /* CircleButton.swift */; };
+		AA8750B1278C4DAD00540BA0 /* ItemListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B0278C4DAD00540BA0 /* ItemListInfoView.swift */; };
+		AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B4278C57A700540BA0 /* InfoGroupBoxView.swift */; };
 		AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977A62782735A002B4C57 /* SortFoldersView.swift */; };
 		AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AA2783F176002B4C57 /* EditItemListView.swift */; };
 		AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */; };
@@ -56,6 +58,8 @@
 		AA82C051277DECC4001CEFFA /* MonoListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoListManager.swift; sourceTree = "<group>"; };
 		AA82C053277EA2B8001CEFFA /* EditFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderView.swift; sourceTree = "<group>"; };
 		AA82C056277EF105001CEFFA /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		AA8750B0278C4DAD00540BA0 /* ItemListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListInfoView.swift; sourceTree = "<group>"; };
+		AA8750B4278C57A700540BA0 /* InfoGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoGroupBoxView.swift; sourceTree = "<group>"; };
 		AA9977A62782735A002B4C57 /* SortFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFoldersView.swift; sourceTree = "<group>"; };
 		AA9977AA2783F176002B4C57 /* EditItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemListView.swift; sourceTree = "<group>"; };
 		AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListsView.swift; sourceTree = "<group>"; };
@@ -156,8 +160,18 @@
 				AAE5B282278484E6000B8B09 /* Home */,
 				AAE5B28427848535000B8B09 /* SortFolders */,
 				AAE5B28527848557000B8B09 /* EditItemList */,
+				AA8750B3278C4DB800540BA0 /* ItemListInfo */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		AA8750B3278C4DB800540BA0 /* ItemListInfo */ = {
+			isa = PBXGroup;
+			children = (
+				AA8750B0278C4DAD00540BA0 /* ItemListInfoView.swift */,
+				AA8750B4278C57A700540BA0 /* InfoGroupBoxView.swift */,
+			);
+			path = ItemListInfo;
 			sourceTree = "<group>";
 		};
 		AAD4B7BB27870BB900D73EBE /* Enums */ = {
@@ -283,6 +297,7 @@
 				AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */,
 				AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
+				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
 				AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */,
@@ -293,6 +308,7 @@
 				AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */,
 				AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */,
 				AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */,
+				AA8750B1278C4DAD00540BA0 /* ItemListInfoView.swift in Sources */,
 				AA82C04E277B319E001CEFFA /* ItemList+CoreDataProperties.swift in Sources */,
 				AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */,
 				AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */,

@@ -30,6 +30,8 @@ struct EditFolderView: View {
         } //: VStack
         .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(Text("Edit Folder"))
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button {
