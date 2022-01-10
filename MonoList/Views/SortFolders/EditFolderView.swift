@@ -14,6 +14,7 @@ struct EditFolderView: View {
     
     @State var image: String = "folder"
     @State var name: String = ""
+    @FocusState var folderNameTextFieldIsFocused: Bool
     @ObservedObject var folder: Folder
     
     var body: some View {
@@ -25,6 +26,7 @@ struct EditFolderView: View {
                 .multilineTextAlignment(.center)
                 .submitLabel(.done)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .focused($folderNameTextFieldIsFocused)
         } //: VStack
         .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
@@ -52,6 +54,9 @@ struct EditFolderView: View {
             image = folder.image
             if folder.name == K.defaultName.newFolder {
                 name = ""
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    folderNameTextFieldIsFocused = true
+                }
             } else {
                 name = folder.name
             }
