@@ -12,8 +12,20 @@ import CoreData
 
 public class ItemList: NSManagedObject {
     
+    var achievementCountString: String {
+        String(achievementCount)
+    }
+    
+    var numberOfItemsString: String {
+        String(items?.count ?? 0)
+    }
+    
+    var hasItems: Bool {
+        (items?.count ?? 0) != 0
+    }
+    
     var hasNotifications: Bool {
-        return (notifications?.count ?? 0) != 0
+        (notifications?.count ?? 0) != 0
     }
     
     func duplicate(_ context: NSManagedObjectContext) {

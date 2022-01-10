@@ -25,24 +25,43 @@ struct ItemListInfoView: View {
                 .font(.title.bold())
                 .padding(.vertical)
                 VStack(spacing: 20) {
-                    InfoGroupBoxView(title: "Achievements",
+                    InfoGroupBoxView(value: itemList.achievementCountString,
+                                     title: "Achievements",
                                      image: "checkmark.seal.fill",
                                      color: .orange,
-                                     value: "\(itemList.achievementCount)")
-                    InfoGroupBoxView(title: "Items",
+                                     canExpand: false)
+                    InfoGroupBoxView(value: itemList.numberOfItemsString,
+                                     title: "Items",
                                      image: "tray.2.fill",
                                      color: .mint,
-                                     value: "\(itemList.items?.count ?? 0)") {
-                        Text("Laptop, Bag, Mouse, Wallet, iPhone")
-                            .padding(.leading, 4)
+                                     canExpand: itemList.hasItems) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            if let items = itemList.items?.allObjects as? [Item] {
+                                ForEach(items) { item in
+                                    HStack(spacing: 0) {
+                                        Circle()
+                                            .frame(width: 4, height: 4)
+                                            .padding(.trailing, 8)
+                                        HStack(spacing: 2) {
+                                            if item.isImportant {
+                                                Image(systemName: "exclamationmark")
+                                                    .foregroundStyle(.red)
+                                            }
+                                            Text(item.name)
+                                        } //: HStack
+                                    } //: HStack
+                                } //: ForEach
+                            }
+                        } //: VStack
+                        .padding(.leading, 4)
                     }
-                    InfoGroupBoxView(title: "Alarm",
-                                     image: itemList.hasNotifications ? "bell.badge" : "bell",
+                    InfoGroupBoxView(title: itemList.hasNotifications ? "ON" : "OFF",
+                                     image: itemList.hasNotifications ? "bell" : "bell.slash",
                                      color: .yellow,
-                                     value: itemList.hasNotifications ? "\(itemList.notifications?.count ?? 0)" : "None", isActive: false)
+                                     canExpand: itemList.hasNotifications)
                     InfoGroupBoxView(title: "Others",
                                      image: "info.circle",
-                                     color: .gray) {
+                                     color: .gray, canExpand: true) {
                         VStack(spacing: 8) {
                             HStack {
                                 Label("Created", systemImage: "wand.and.stars")

@@ -9,19 +9,21 @@ import SwiftUI
 
 struct InfoGroupBoxView<Content: View>: View {
     
+    let value: String?
     let title: String
     let image: String
     let color: Color
-    let value: String?
-    let isActive: Bool
+    let canExpand: Bool
     let content: Content?
+    
+    @State var isExpanded = false
 
-    init(title: String, image: String, color: Color, value: String? = nil, isActive: Bool = true, @ViewBuilder content: () -> Content? = { nil }) {
+    init(value: String? = nil, title: String, image: String, color: Color, canExpand: Bool, @ViewBuilder content: () -> Content? = { nil }) {
+        self.value = value
         self.title = title
         self.image = image
         self.color = color
-        self.value = value
-        self.isActive = isActive
+        self.canExpand = canExpand
         self.content = content()
     }
     
@@ -30,9 +32,16 @@ struct InfoGroupBoxView<Content: View>: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
                     Label(title: {
-                        Text(title)
-                            .font(.system(.title3, design: .default))
-                            .fontWeight(.bold)
+                        HStack(spacing: 4) {
+                            if let value = value {
+                                Text(value)
+                                    .font(.system(.title3, design: .default))
+                                    .fontWeight(.bold)
+                            }
+                            Text(title)
+                                .font(.system(.title3, design: .default))
+                                .fontWeight(.bold)
+                        }
                     }, icon: {
                         Image(systemName: image)
                             .font(.system(.title2, design: .default).bold())
@@ -40,14 +49,19 @@ struct InfoGroupBoxView<Content: View>: View {
                             .frame(minWidth: 32)
                     })
                     Spacer()
-                    if let value = value {
-                        Text(value)
-                            .font(.system(.title, design: .rounded))
-                            .fontWeight(.bold)
-                            .foregroundColor(isActive ? .primary : .secondary)
+                    if canExpand {
+                        Button {
+                            withAnimation(.easeOut(duration: 0.2)) {
+                                isExpanded.toggle()
+                            }
+                        } label: {
+                            Image(systemName: "chevron.right")
+                                .font(.system(.title3, design: .default).weight(.semibold))
+                                .rotationEffect(Angle(degrees: isExpanded ? 90 : 0))
+                        }
                     }
                 } //: HStack
-                if let content = content {
+                if let content = content, isExpanded {
                     content
                 }
             } //: VStack
@@ -56,15 +70,15 @@ struct InfoGroupBoxView<Content: View>: View {
 }
 
 extension InfoGroupBoxView where Content == EmptyView {
-    init(title: String, image: String, color: Color, value: String? = nil, isActive: Bool = true) {
-        self.init(title: title, image: image, color: color, value: value, isActive: isActive, content: { EmptyView() })
+    init(value: String? = nil, title: String, image: String, color: Color, canExpand: Bool) {
+        self.init(value: value, title: title, image: image, color: color, canExpand: canExpand, content: { EmptyView() })
     }
 }
 
 struct InfoGroupBoxView_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
-            InfoGroupBoxView(title: "Achieve", image: "tray.2.fill", color: .pink, value: "10") {
+            InfoGroupBoxView(value: "6", title: "Achieve", image: "tray.2.fill", color: .pink, canExpand: true) {
                 Text("Content")
             }
         }
