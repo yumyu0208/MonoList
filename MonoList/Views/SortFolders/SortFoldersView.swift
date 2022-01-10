@@ -51,9 +51,6 @@ struct SortFoldersView: View {
                         }
                     } header: {
                         HStack(alignment: .center) {
-                            Text("Edit Folders")
-                                .font(.headline)
-                                .foregroundColor(.primary)
                             Spacer()
                             EditButtonView()
                                 .environment(\.editMode, $editMode)
@@ -80,6 +77,7 @@ struct SortFoldersView: View {
                     EmptyView()
                 }
             } //: ZStack
+            .navigationTitle("Edit Folders")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
