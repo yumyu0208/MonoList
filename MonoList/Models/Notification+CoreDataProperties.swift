@@ -16,6 +16,7 @@ extension Notification {
         return NSFetchRequest<Notification>(entityName: "Notification")
     }
 
+    @NSManaged public var creationDate: Date
     @NSManaged public var time: Date
     @NSManaged public var weekdays: String
     @NSManaged public var parentItemList: ItemList

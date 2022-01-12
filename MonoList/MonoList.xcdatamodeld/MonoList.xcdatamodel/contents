@@ -36,6 +36,7 @@
         <relationship name="parentFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="itemLists" inverseEntity="Folder"/>
     </entity>
     <entity name="Notification" representedClassName=".Notification" syncable="YES">
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="weekdays" attributeType="String"/>
         <relationship name="parentItemList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemList" inverseName="notifications" inverseEntity="ItemList"/>
@@ -44,6 +45,6 @@
         <element name="Folder" positionX="-451.9322509765625" positionY="-26.75711059570312" width="128" height="103"/>
         <element name="Item" positionX="-83.60821533203125" positionY="-25.2518310546875" width="128" height="209"/>
         <element name="ItemList" positionX="-278.1766357421875" positionY="-31.53518676757812" width="128" height="238"/>
-        <element name="Notification" positionX="-282.1820068359375" positionY="251.7786865234375" width="128" height="88"/>
+        <element name="Notification" positionX="-282.1820068359375" positionY="251.7786865234375" width="128" height="89"/>
     </elements>
 </model>

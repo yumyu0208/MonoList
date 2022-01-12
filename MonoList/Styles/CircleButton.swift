@@ -11,6 +11,7 @@ struct CircleButton: ButtonStyle {
     
     enum CircleButtonType {
         case primary
+        case secondary
         case cancel
     }
     
@@ -20,6 +21,8 @@ struct CircleButton: ButtonStyle {
         switch type {
         case .primary:
             return Color.accentColor
+        case .secondary:
+            return Color(UIColor.systemGray5)
         case .cancel:
             return Color(UIColor.systemGray5)
         }
@@ -29,6 +32,8 @@ struct CircleButton: ButtonStyle {
         switch type {
         case .primary:
             return Color.white
+        case .secondary:
+            return Color.accentColor
         case .cancel:
             return Color(UIColor.systemGray)
         }
@@ -66,10 +71,35 @@ struct CircleButton_Previews: PreviewProvider {
             Button {
                 
             } label: {
+                Image(systemName: "pencil")
+            }
+            .buttonStyle(CircleButton(type: .secondary))
+            .padding()
+            .previewLayout(.sizeThatFits)
+            Button {
+                
+            } label: {
+                Image(systemName: "xmark")
+            }
+            .buttonStyle(CircleButton(type: .cancel))
+            .padding()
+            .previewLayout(.sizeThatFits)
+            Button {
+                
+            } label: {
                 Image(systemName: "checkmark")
             }
             .preferredColorScheme(.dark)
             .buttonStyle(CircleButton(type: .primary))
+            .padding()
+            .previewLayout(.sizeThatFits)
+            Button {
+                
+            } label: {
+                Image(systemName: "pencil")
+            }
+            .preferredColorScheme(.dark)
+            .buttonStyle(CircleButton(type: .secondary))
             .padding()
             .previewLayout(.sizeThatFits)
             Button {

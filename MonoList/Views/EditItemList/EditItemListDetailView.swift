@@ -1,36 +1,34 @@
 //
-//  ItemListInfoView.swift
+//  EditItemListDetailView.swift
 //  MonoList
 //
-//  Created by 竹田悠真 on 2022/01/10.
+//  Created by 竹田悠真 on 2022/01/11.
 //
 
 import SwiftUI
 
-struct ItemListInfoView: View {
-    
+struct EditItemListDetailView: View {
     @Environment(\.dismiss) private var dismiss
-    
-    @State private var editMode: EditMode = .inactive
+    @Environment(\.managedObjectContext) private var viewContext
+    @State private var editMode: EditMode = .active
     @ObservedObject var itemList: ItemList
     
     var body: some View {
         ScrollView {
             VStack {
-                ListTitleView(itemList: itemList)
-                    .environment(\.editMode, $editMode)
+                ListTitleView(itemList: itemList) {
+                    saveData()
+                }
+                .environment(\.editMode, $editMode)
                 VStack(spacing: 20) {
-                    ItemsGroupBoxView(itemList: itemList)
                     NotificationsGroupBoxView(itemList: itemList)
                         .environment(\.editMode, $editMode)
-                    AchievementsGroupBoxView(itemList: itemList)
-                    OthersGroupBoxView(itemList: itemList)
                 }
             }
             .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarTitle(Text("List Info"))
+        .navigationBarTitle(Text("List Detail"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
@@ -46,14 +44,23 @@ struct ItemListInfoView: View {
                 .ignoresSafeArea(.all, edges: .all)
         )
     }
+    
+    private func saveData() {
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
 }
 
-struct ItemListInfoView_Previews: PreviewProvider {
+struct EditItemListDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
         NavigationView {
-            ItemListInfoView(itemList: itemList)
+            EditItemListDetailView(itemList: itemList)
                 .environment(\.managedObjectContext, context)
         }
     }

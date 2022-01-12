@@ -16,9 +16,9 @@ struct InfoGroupBoxView<Content: View>: View {
     let canExpand: Bool
     let content: Content?
     
-    @State var isExpanded = false
+    @State private var isExpanded = false
 
-    init(value: String? = nil, title: String, image: String, color: Color, canExpand: Bool, @ViewBuilder content: () -> Content? = { nil }) {
+    init(value: String? = nil, title: String, image: String, color: Color, canExpand: Bool = true, @ViewBuilder content: () -> Content? = { nil }) {
         self.value = value
         self.title = title
         self.image = image
@@ -50,35 +50,39 @@ struct InfoGroupBoxView<Content: View>: View {
                     })
                     Spacer()
                     if canExpand {
-                        Button {
-                            withAnimation(.easeOut(duration: 0.2)) {
-                                isExpanded.toggle()
-                            }
-                        } label: {
-                            Image(systemName: "chevron.right")
-                                .font(.system(.title3, design: .default).weight(.semibold))
-                                .rotationEffect(Angle(degrees: isExpanded ? 90 : 0))
-                        }
+                        Toggle("Expand", isOn: $isExpanded)
+                            .toggleStyle(.expand)
+                            .labelsHidden()
                     }
                 } //: HStack
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    if canExpand {
+                        withAnimation(.easeOut(duration: 0.2)) {
+                            isExpanded.toggle()
+                        }
+                    }
+                }
                 if let content = content, isExpanded {
                     content
                 }
             } //: VStack
         } //: GroupBox
+        .groupBoxStyle(.white)
     }
 }
 
 extension InfoGroupBoxView where Content == EmptyView {
-    init(value: String? = nil, title: String, image: String, color: Color, canExpand: Bool) {
-        self.init(value: value, title: title, image: image, color: color, canExpand: canExpand, content: { EmptyView() })
+    init(value: String? = nil, title: String, image: String, color: Color) {
+        self.init(value: value, title: title, image: image, color: color, canExpand: false, content: { EmptyView() })
     }
 }
 
 struct InfoGroupBoxView_Previews: PreviewProvider {
+    @State static private var isExpanded = true
     static var previews: some View {
         HStack {
-            InfoGroupBoxView(value: "6", title: "Achieve", image: "tray.2.fill", color: .pink, canExpand: true) {
+            InfoGroupBoxView(value: "6", title: "Achieve", image: "tray.2.fill", color: .pink) {
                 Text("Content")
             }
         }

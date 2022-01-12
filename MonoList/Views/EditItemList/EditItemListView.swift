@@ -76,10 +76,14 @@ struct EditItemListView: View {
                             .padding()
                     }
                     .sheet(isPresented: $isSettingNotification) {
-                        Text("Setting Notification")
+                        if let itemList = itemList {
+                            NavigationView {
+                                EditItemListDetailView(itemList: itemList)
+                            }
+                        }
                     }
                     .buttonStyle(CircleButton(type: .primary))
-                    .disabled(editMode == .active)
+                    .disabled(editMode == .active || itemListName.isEmpty)
                     Button {
                         if itemListName.isEmpty && !items.isEmpty {
                             print("アラート：List Nameを入力してください")
@@ -333,14 +337,6 @@ struct EditItemListView: View {
             }
         }
     }
-    
-//    @discardableResult
-//    func addNotification(weekdays: [String], time: Date) -> Notification {
-//        let newNotification = createNewNotification(weekdays: weekdays, time: time, viewContext)
-//        saveData()
-//        return newNotification
-//    }
-    
 }
 
 struct EditItemListView_Previews: PreviewProvider {

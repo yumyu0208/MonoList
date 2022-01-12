@@ -28,6 +28,16 @@
 		AA82C057277EF105001CEFFA /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C056277EF105001CEFFA /* CircleButton.swift */; };
 		AA8750B1278C4DAD00540BA0 /* ItemListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B0278C4DAD00540BA0 /* ItemListInfoView.swift */; };
 		AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B4278C57A700540BA0 /* InfoGroupBoxView.swift */; };
+		AA8750B7278D3B7D00540BA0 /* ItemsGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B6278D3B7D00540BA0 /* ItemsGroupBoxView.swift */; };
+		AA8750B9278D3D5D00540BA0 /* NotificationsGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B8278D3D5D00540BA0 /* NotificationsGroupBoxView.swift */; };
+		AA8750BB278D3DEA00540BA0 /* AchievementsGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750BA278D3DEA00540BA0 /* AchievementsGroupBoxView.swift */; };
+		AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750BC278D3E5E00540BA0 /* OthersGroupBoxView.swift */; };
+		AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750BE278D3F0D00540BA0 /* ListTitleView.swift */; };
+		AA8750C1278D518900540BA0 /* ExpandToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */; };
+		AA8750C5278DAB5C00540BA0 /* EditItemListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750C4278DAB5C00540BA0 /* EditItemListDetailView.swift */; };
+		AA8750C8278DB1FA00540BA0 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750C7278DB1FA00540BA0 /* DateExtension.swift */; };
+		AA8750CA278DB70000540BA0 /* NotificationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750C9278DB70000540BA0 /* NotificationListView.swift */; };
+		AA8BD47A278DD3D300488027 /* WhiteGroupBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8BD479278DD3D300488027 /* WhiteGroupBoxStyle.swift */; };
 		AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977A62782735A002B4C57 /* SortFoldersView.swift */; };
 		AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AA2783F176002B4C57 /* EditItemListView.swift */; };
 		AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */; };
@@ -60,6 +70,16 @@
 		AA82C056277EF105001CEFFA /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		AA8750B0278C4DAD00540BA0 /* ItemListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListInfoView.swift; sourceTree = "<group>"; };
 		AA8750B4278C57A700540BA0 /* InfoGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoGroupBoxView.swift; sourceTree = "<group>"; };
+		AA8750B6278D3B7D00540BA0 /* ItemsGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsGroupBoxView.swift; sourceTree = "<group>"; };
+		AA8750B8278D3D5D00540BA0 /* NotificationsGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsGroupBoxView.swift; sourceTree = "<group>"; };
+		AA8750BA278D3DEA00540BA0 /* AchievementsGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsGroupBoxView.swift; sourceTree = "<group>"; };
+		AA8750BC278D3E5E00540BA0 /* OthersGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersGroupBoxView.swift; sourceTree = "<group>"; };
+		AA8750BE278D3F0D00540BA0 /* ListTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTitleView.swift; sourceTree = "<group>"; };
+		AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandToggleStyle.swift; sourceTree = "<group>"; };
+		AA8750C4278DAB5C00540BA0 /* EditItemListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemListDetailView.swift; sourceTree = "<group>"; };
+		AA8750C7278DB1FA00540BA0 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		AA8750C9278DB70000540BA0 /* NotificationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListView.swift; sourceTree = "<group>"; };
+		AA8BD479278DD3D300488027 /* WhiteGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteGroupBoxStyle.swift; sourceTree = "<group>"; };
 		AA9977A62782735A002B4C57 /* SortFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFoldersView.swift; sourceTree = "<group>"; };
 		AA9977AA2783F176002B4C57 /* EditItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemListView.swift; sourceTree = "<group>"; };
 		AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListsView.swift; sourceTree = "<group>"; };
@@ -99,6 +119,7 @@
 		AA351A762776BB5300F53BDC /* MonoList */ = {
 			isa = PBXGroup;
 			children = (
+				AA8750C6278DB1C100540BA0 /* Extensions */,
 				AAD4B7BB27870BB900D73EBE /* Enums */,
 				AA82C03A277B0DF9001CEFFA /* Models */,
 				AA82C023277AC0B3001CEFFA /* Utilities */,
@@ -150,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				AA82C056277EF105001CEFFA /* CircleButton.swift */,
+				AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */,
+				AA8BD479278DD3D300488027 /* WhiteGroupBoxStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -170,8 +193,22 @@
 			children = (
 				AA8750B0278C4DAD00540BA0 /* ItemListInfoView.swift */,
 				AA8750B4278C57A700540BA0 /* InfoGroupBoxView.swift */,
+				AA8750BE278D3F0D00540BA0 /* ListTitleView.swift */,
+				AA8750B6278D3B7D00540BA0 /* ItemsGroupBoxView.swift */,
+				AA8750B8278D3D5D00540BA0 /* NotificationsGroupBoxView.swift */,
+				AA8750C9278DB70000540BA0 /* NotificationListView.swift */,
+				AA8750BA278D3DEA00540BA0 /* AchievementsGroupBoxView.swift */,
+				AA8750BC278D3E5E00540BA0 /* OthersGroupBoxView.swift */,
 			);
 			path = ItemListInfo;
+			sourceTree = "<group>";
+		};
+		AA8750C6278DB1C100540BA0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AA8750C7278DB1FA00540BA0 /* DateExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		AAD4B7BB27870BB900D73EBE /* Enums */ = {
@@ -215,6 +252,7 @@
 			children = (
 				AA9977AA2783F176002B4C57 /* EditItemListView.swift */,
 				AAE5B28627852F98000B8B09 /* EditItemCellView.swift */,
+				AA8750C4278DAB5C00540BA0 /* EditItemListDetailView.swift */,
 			);
 			path = EditItemList;
 			sourceTree = "<group>";
@@ -290,15 +328,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA2E0C272789C92400D23B6B /* ItemListCellView.swift in Sources */,
+				AA8750C8278DB1FA00540BA0 /* DateExtension.swift in Sources */,
 				AA82C050277B319E001CEFFA /* Folder+CoreDataProperties.swift in Sources */,
 				AA82C04C277B319E001CEFFA /* Notification+CoreDataProperties.swift in Sources */,
 				AA82C049277B319E001CEFFA /* Item+CoreDataClass.swift in Sources */,
+				AA8750B7278D3B7D00540BA0 /* ItemsGroupBoxView.swift in Sources */,
+				AA8750C1278D518900540BA0 /* ExpandToggleStyle.swift in Sources */,
 				AA351A812776BB5500F53BDC /* Persistence.swift in Sources */,
 				AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */,
+				AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */,
+				AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */,
 				AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
+				AA8BD47A278DD3D300488027 /* WhiteGroupBoxStyle.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
 				AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */,
 				AAE293512781C5780010F093 /* EditButtonView.swift in Sources */,
@@ -307,14 +351,18 @@
 				AA82C054277EA2B8001CEFFA /* EditFolderView.swift in Sources */,
 				AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */,
 				AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */,
+				AA8750C5278DAB5C00540BA0 /* EditItemListDetailView.swift in Sources */,
 				AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */,
 				AA8750B1278C4DAD00540BA0 /* ItemListInfoView.swift in Sources */,
+				AA8750B9278D3D5D00540BA0 /* NotificationsGroupBoxView.swift in Sources */,
 				AA82C04E277B319E001CEFFA /* ItemList+CoreDataProperties.swift in Sources */,
+				AA8750CA278DB70000540BA0 /* NotificationListView.swift in Sources */,
 				AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */,
 				AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */,
 				AA82C04F277B319E001CEFFA /* Folder+CoreDataClass.swift in Sources */,
 				AA82C04A277B319E001CEFFA /* Item+CoreDataProperties.swift in Sources */,
 				AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */,
+				AA8750BB278D3DEA00540BA0 /* AchievementsGroupBoxView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

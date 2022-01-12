@@ -12,6 +12,10 @@ import CoreData
 
 public class ItemList: NSManagedObject {
     
+    var sortedItems: [Item] {
+        (items?.allObjects as? [Item] ?? []).sorted(by: { $0.order < $1.order })
+    }
+    
     var achievementCountString: String {
         String(achievementCount)
     }
@@ -64,9 +68,10 @@ public class ItemList: NSManagedObject {
     }
     
     @discardableResult
-    func createNewNotification(weekdays: [String], time: Date, _ context: NSManagedObjectContext) -> Notification {
+    func createNewNotification(weekdays: String, time: Date, _ context: NSManagedObjectContext) -> Notification {
         let newNotification = Notification(context: context)
-        newNotification.weekdays = weekdays.joined(separator: ", ")
+        newNotification.creationDate = Date()
+        newNotification.weekdays = weekdays
         newNotification.time = time
         addToNotifications(newNotification)
         return newNotification
