@@ -28,6 +28,7 @@
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="notificationIsActive" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="order" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="type" attributeType="String"/>
         <attribute name="updateDate" attributeType="Date" usesScalarValueType="NO"/>
@@ -44,7 +45,7 @@
     <elements>
         <element name="Folder" positionX="-451.9322509765625" positionY="-26.75711059570312" width="128" height="103"/>
         <element name="Item" positionX="-83.60821533203125" positionY="-25.2518310546875" width="128" height="209"/>
-        <element name="ItemList" positionX="-278.1766357421875" positionY="-31.53518676757812" width="128" height="238"/>
+        <element name="ItemList" positionX="-278.1766357421875" positionY="-31.53518676757812" width="128" height="239"/>
         <element name="Notification" positionX="-282.1820068359375" positionY="251.7786865234375" width="128" height="89"/>
     </elements>
 </model>

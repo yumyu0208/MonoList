@@ -16,10 +16,6 @@ struct EditItemListDetailView: View {
     var body: some View {
         ScrollView {
             VStack {
-                ListTitleView(itemList: itemList) {
-                    saveData()
-                }
-                .environment(\.editMode, $editMode)
                 VStack(spacing: 20) {
                     NotificationsGroupBoxView(itemList: itemList)
                         .environment(\.editMode, $editMode)
@@ -28,15 +24,22 @@ struct EditItemListDetailView: View {
             .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarTitle(Text("List Detail"))
         .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Image(systemName: itemList.image)
+                        .foregroundStyle(Color(itemList.color))
+                    Text(itemList.name)
+                }
+                .font(.body.bold())
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     dismiss()
                 } label: {
                     Image(systemName: "xmark")
                 }
-                .buttonStyle(CircleButton(type: .cancel))
+                .buttonStyle(CircleButtonStyle(type: .cancel))
             } // :ToolBarItem
         }
         .background(

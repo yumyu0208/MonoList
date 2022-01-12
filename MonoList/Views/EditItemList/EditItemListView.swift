@@ -82,8 +82,8 @@ struct EditItemListView: View {
                             }
                         }
                     }
-                    .buttonStyle(CircleButton(type: .primary))
-                    .disabled(editMode == .active || itemListName.isEmpty)
+                    .buttonStyle(CircleButtonStyle(type: .primary))
+                    .disabled(editMode == .active || isNewItemList)
                     Button {
                         if itemListName.isEmpty && !items.isEmpty {
                             print("アラート：List Nameを入力してください")
@@ -97,7 +97,7 @@ struct EditItemListView: View {
                         Image(systemName: "xmark")
                             .padding()
                     }
-                    .buttonStyle(CircleButton(type: .cancel))
+                    .buttonStyle(CircleButtonStyle(type: .cancel))
                     .disabled(editMode == .active)
                 } //: HStack
             } //: HStack

@@ -13,7 +13,7 @@ import CoreData
 public class Folder: NSManagedObject {
     
     @discardableResult
-    func createNewItemList(name: String, color: String, image: String, achievementCount: Int = 0, displayFormat: String = "list", creationDate: Date = Date(), updateDate: Date = Date(), order: Int, type: String = "belongings", _ context: NSManagedObjectContext) -> ItemList {
+    func createNewItemList(name: String, color: String, image: String, achievementCount: Int = 0, displayFormat: String = "list", creationDate: Date = Date(), updateDate: Date = Date(), order: Int, type: String = "belongings", notificationIsActive: Bool = false, _ context: NSManagedObjectContext) -> ItemList {
         let newItemList = ItemList(context: context)
         newItemList.id = UUID()
         newItemList.name = name
@@ -25,6 +25,7 @@ public class Folder: NSManagedObject {
         newItemList.updateDate = updateDate
         newItemList.order = Int32(order)
         newItemList.type = type
+        newItemList.notificationIsActive = notificationIsActive
         addToItemLists(newItemList)
         return newItemList
     }

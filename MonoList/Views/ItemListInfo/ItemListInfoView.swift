@@ -38,7 +38,7 @@ struct ItemListInfoView: View {
                 } label: {
                     Image(systemName: "xmark")
                 }
-                .buttonStyle(CircleButton(type: .cancel))
+                .buttonStyle(CircleButtonStyle(type: .cancel))
             } // :ToolBarItem
         }
         .background(

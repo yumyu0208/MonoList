@@ -15,6 +15,10 @@ struct NotificationsGroupBoxView: View {
     
     @State private var isExpanded: Bool = false
     
+    var isActive: Bool {
+        itemList.notificationIsActive
+    }
+    
     var hasNotifications: Bool {
         itemList.hasNotifications
     }
@@ -29,13 +33,13 @@ struct NotificationsGroupBoxView: View {
                 HStack {
                     Label(title: {
                         HStack(spacing: 4) {
-                            Text(isEditing || hasNotifications ? "Alarm" : "No Alarm")
+                            Text(isActive ? "Alarm ON" : "Alarm OFF")
                                 .font(.system(.title3, design: .default))
                                 .fontWeight(.bold)
-                                .id(hasNotifications)
+                                .id(isActive)
                         }
                     }, icon: {
-                        Image(systemName: hasNotifications ? "bell" : "bell.slash")
+                        Image(systemName: isActive ? "bell" : "bell.slash")
                             .font(.system(.title2, design: .default).bold())
                             .foregroundStyle(.yellow)
                             .frame(minWidth: 32)
@@ -47,7 +51,7 @@ struct NotificationsGroupBoxView: View {
                                 .animation(.easeOut(duration: 0.2))
                         )
                         .labelsHidden()
-                    } else if hasNotifications {
+                    } else if isActive {
                         Toggle("Notification", isOn: $isExpanded.animation(.easeOut(duration: 0.2)))
                             .toggleStyle(.expand)
                             .labelsHidden()
@@ -55,7 +59,7 @@ struct NotificationsGroupBoxView: View {
                 } //: HStack
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    if !isEditing, hasNotifications {
+                    if !isEditing, isActive {
                         withAnimation(.easeOut(duration: 0.2)) {
                             isExpanded.toggle()
                         }
@@ -69,25 +73,25 @@ struct NotificationsGroupBoxView: View {
         .groupBoxStyle(.white)
         .onAppear {
             if isEditing {
-                isExpanded = itemList.hasNotifications
+                isExpanded = isActive
             } else {
                 isExpanded = false
             }
         }
         .onChange(of: isExpanded) { isExpanded in
             guard isEditing else { return }
-            if isExpanded {
-                if !hasNotifications {
-                    addNotification(weekdays: K.weekday.allWeekdays)
-                }
-            } else {
-                deleteAllNotification()
+            itemList.notificationIsActive = isExpanded
+            if isExpanded, !hasNotifications {
+                addNotification(weekdays: K.weekday.allWeekdays)
             }
         }
         .onChange(of: editMode?.wrappedValue) { editMode in
-            if isEditing, hasNotifications {
+            if isEditing, isActive {
                 isExpanded = true
             }
+        }
+        .onChange(of: itemList.notificationIsActive) { isActive in
+            isExpanded = isActive
         }
     }
     
@@ -103,12 +107,6 @@ struct NotificationsGroupBoxView: View {
             viewContext.delete(notification)
             saveData()
         }
-    }
-    
-    private func deleteAllNotification() {
-        (itemList.notifications?.allObjects as? [Notification])?.forEach({ notification in
-            deleteNotification(notification)
-        })
     }
     
     private func saveData() {
@@ -130,7 +128,7 @@ struct NotificationsGroupBoxView_Previews: PreviewProvider {
                 .environment(\.managedObjectContext, context1)
                 .environment(\.editMode, .constant(EditMode.active))
                 .padding()
-                .previewLayout(.fixed(width: 383, height: 200))
+                .previewLayout(.fixed(width: 383, height: 260))
             let context2 = PersistenceController.preview.container.viewContext
             let itemList2 = MonoListManager().fetchItemLists(context: context2)[0]
             NotificationsGroupBoxView(itemList: itemList2)

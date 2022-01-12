@@ -31,7 +31,6 @@ struct EditFolderView: View {
         .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(Text("Edit Folder"))
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button {
@@ -41,7 +40,7 @@ struct EditFolderView: View {
                 } label: {
                     Image(systemName: "checkmark")
                 }
-                .buttonStyle(CircleButton())
+                .buttonStyle(CircleButtonStyle())
                 .disabled(name == "")
             }
             ToolbarItem(placement: .cancellationAction) {

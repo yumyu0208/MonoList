@@ -22,6 +22,10 @@ public class Notification: NSManagedObject {
         calendar.weekdaySymbols
     }
     
+    static func sortedWeekdays(_ weekdays: String) -> String {
+        weekdays.map { Int(String($0))! }.sorted { $0 < $1 }.map { String($0) }.joined()
+    }
+    
     var weekdaysString: String {
         let shortWeekdaySymbols = Self.calendar.shortWeekdaySymbols
         let weekdaysString = weekdays.map { weekdayNumberString -> String in

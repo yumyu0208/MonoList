@@ -30,6 +30,7 @@ struct SortFoldersView: View {
                                folder.name != K.defaultName.lists {
                                 NavigationLink {
                                     EditFolderView(folder: folder)
+                                        .navigationTitle(Text("Edit Folder"))
                                 } label: {
                                     Label("\(folder.order) \(folder.name)", systemImage: folder.image)
                                         .id(folder.name)
@@ -66,12 +67,13 @@ struct SortFoldersView: View {
                         } label: {
                             Image(systemName: "xmark")
                         }
-                        .buttonStyle(CircleButton(type: .cancel))
+                        .buttonStyle(CircleButtonStyle(type: .cancel))
                     }
                 }
                 NavigationLink(isActive: $isEditingNewFolder) {
                     if let editingFolder = newFolder {
                         EditFolderView(folder: editingFolder)
+                            .navigationTitle(Text("New Folder"))
                     }
                 } label: {
                     EmptyView()

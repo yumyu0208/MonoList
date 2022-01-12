@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CircleButton: ButtonStyle {
+struct CircleButtonStyle: ButtonStyle {
     
     enum CircleButtonType {
         case primary
@@ -49,6 +49,10 @@ struct CircleButton: ButtonStyle {
     }
 }
 
+extension ButtonStyle where Self == CircleButtonStyle {
+    static var circle: CircleButtonStyle { .init() }
+}
+
 struct CircleButton_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -57,7 +61,7 @@ struct CircleButton_Previews: PreviewProvider {
             } label: {
                 Image(systemName: "checkmark")
             }
-            .buttonStyle(CircleButton(type: .primary))
+            .buttonStyle(CircleButtonStyle(type: .primary))
             .padding()
             .previewLayout(.sizeThatFits)
             Button {
@@ -65,7 +69,7 @@ struct CircleButton_Previews: PreviewProvider {
             } label: {
                 Image(systemName: "xmark")
             }
-            .buttonStyle(CircleButton(type: .cancel))
+            .buttonStyle(CircleButtonStyle(type: .cancel))
             .padding()
             .previewLayout(.sizeThatFits)
             Button {
@@ -73,7 +77,7 @@ struct CircleButton_Previews: PreviewProvider {
             } label: {
                 Image(systemName: "pencil")
             }
-            .buttonStyle(CircleButton(type: .secondary))
+            .buttonStyle(CircleButtonStyle(type: .secondary))
             .padding()
             .previewLayout(.sizeThatFits)
             Button {
@@ -81,7 +85,7 @@ struct CircleButton_Previews: PreviewProvider {
             } label: {
                 Image(systemName: "xmark")
             }
-            .buttonStyle(CircleButton(type: .cancel))
+            .buttonStyle(CircleButtonStyle(type: .cancel))
             .padding()
             .previewLayout(.sizeThatFits)
             Button {
@@ -90,7 +94,7 @@ struct CircleButton_Previews: PreviewProvider {
                 Image(systemName: "checkmark")
             }
             .preferredColorScheme(.dark)
-            .buttonStyle(CircleButton(type: .primary))
+            .buttonStyle(CircleButtonStyle(type: .primary))
             .padding()
             .previewLayout(.sizeThatFits)
             Button {
@@ -99,7 +103,7 @@ struct CircleButton_Previews: PreviewProvider {
                 Image(systemName: "pencil")
             }
             .preferredColorScheme(.dark)
-            .buttonStyle(CircleButton(type: .secondary))
+            .buttonStyle(CircleButtonStyle(type: .secondary))
             .padding()
             .previewLayout(.sizeThatFits)
             Button {
@@ -108,7 +112,7 @@ struct CircleButton_Previews: PreviewProvider {
                 Image(systemName: "xmark")
             }
             .preferredColorScheme(.dark)
-            .buttonStyle(CircleButton(type: .cancel))
+            .buttonStyle(CircleButtonStyle(type: .cancel))
             .padding()
             .previewLayout(.sizeThatFits)
         }

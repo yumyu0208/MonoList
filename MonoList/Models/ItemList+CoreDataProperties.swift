@@ -22,6 +22,7 @@ extension ItemList {
     @NSManaged public var displayFormat: String
     @NSManaged public var id: UUID
     @NSManaged public var image: String
+    @NSManaged public var notificationIsActive: Bool
     @NSManaged public var name: String
     @NSManaged public var order: Int32
     @NSManaged public var type: String
