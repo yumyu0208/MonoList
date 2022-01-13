@@ -147,7 +147,7 @@ struct EditItemListView: View {
                                         } label: {
                                             Label("Frag", systemImage: "exclamationmark")
                                         }
-                                        .tint(.accentColor)
+                                        .tint(.orange)
                                     }
                                     .id(item)
                             }

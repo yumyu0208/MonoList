@@ -15,6 +15,7 @@ struct FolderSectionView: View {
             Label {
                 Text(title)
                     .foregroundColor(.primary)
+                    .textCase(nil)
             } icon: {
                 Image(systemName: image)
                     .foregroundColor(.accentColor)

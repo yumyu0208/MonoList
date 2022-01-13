@@ -47,6 +47,7 @@
 		AAC3DDC1278FDBC600983100 /* EditAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC0278FDBC600983100 /* EditAlarmView.swift */; };
 		AAC3DDC3278FDFC100983100 /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC2278FDFC100983100 /* WeightView.swift */; };
 		AAC3DDC5278FE0BA00983100 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC4278FE0BA00983100 /* InfoView.swift */; };
+		AAC3DDC8278FE97200983100 /* SelectDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC7278FE97200983100 /* SelectDestinationView.swift */; };
 		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAE293512781C5780010F093 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditButtonView.swift */; };
 		AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B28627852F98000B8B09 /* EditItemCellView.swift */; };
@@ -94,6 +95,7 @@
 		AAC3DDC0278FDBC600983100 /* EditAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlarmView.swift; sourceTree = "<group>"; };
 		AAC3DDC2278FDFC100983100 /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
 		AAC3DDC4278FE0BA00983100 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		AAC3DDC7278FE97200983100 /* SelectDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDestinationView.swift; sourceTree = "<group>"; };
 		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAE293502781C5780010F093 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
 		AAE5B28627852F98000B8B09 /* EditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemCellView.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE5B282278484E6000B8B09 /* Home */,
+				AAC3DDC6278FE94C00983100 /* SelectDestination */,
 				AAE5B28427848535000B8B09 /* SortFolders */,
 				AAE5B28527848557000B8B09 /* EditItemList */,
 				AA8750B3278C4DB800540BA0 /* ItemListInfo */,
@@ -228,6 +231,14 @@
 				AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		AAC3DDC6278FE94C00983100 /* SelectDestination */ = {
+			isa = PBXGroup;
+			children = (
+				AAC3DDC7278FE97200983100 /* SelectDestinationView.swift */,
+			);
+			path = SelectDestination;
 			sourceTree = "<group>";
 		};
 		AAD4B7BB27870BB900D73EBE /* Enums */ = {
@@ -363,6 +374,7 @@
 				AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */,
 				AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */,
 				AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */,
+				AAC3DDC8278FE97200983100 /* SelectDestinationView.swift in Sources */,
 				AAC3DDC1278FDBC600983100 /* EditAlarmView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,

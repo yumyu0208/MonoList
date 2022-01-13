@@ -28,6 +28,7 @@ struct HomeView: View {
                         ItemListsView(of: folder) { itemList in
                             editingItemList = itemList
                         }
+                        .environmentObject(manager)
                     } header: {
                         HStack(alignment: .center) {
                             FolderSectionView(image: folder.image, title: folder.name)

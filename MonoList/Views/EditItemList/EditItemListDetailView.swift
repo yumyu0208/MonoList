@@ -24,30 +24,21 @@ struct EditItemListDetailView: View {
     var body: some View {
         VStack(spacing: 0) {
             Picker("Tab",
-                   selection: $selectedTab.animation(.easeOut(duration: 0.2))) {
+                   selection: $selectedTab.animation(.linear)) {
                 ForEach([Tab.alarm, Tab.info]) { tab in
                     Text(tab.rawValue)
                 }
             }
             .pickerStyle(.segmented)
             .padding()
-            TabView(selection: $selectedTab.animation(.easeOut(duration: 0.2))) {
+            TabView(selection: $selectedTab.animation(.linear)) {
                 EditAlarmView(itemList: itemList)
                     .tag(Tab.alarm.rawValue)
                 //WeightView(itemList: itemList).tag(Tab.weight.rawValue)
                 InfoView(itemList: itemList)
                     .tag(Tab.info.rawValue)
             }
-            .tabViewStyle(.page)
-            .menuIndicator(.hidden)
-//            switch Tab(rawValue: selectedTab) ?? .alarm {
-//            case .alarm:
-//                EditAlarmView(itemList: itemList)
-//            case .weight:
-//                WeightView(itemList: itemList)
-//            case .info:
-//                InfoView(itemList: itemList)
-//            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
         } //: VStack
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

@@ -62,6 +62,30 @@ struct ItemListCellView: View {
                 }
             }
         }
+        .swipeActions(edge: .trailing) {
+            Button(role: .destructive) {
+                deleteAction()
+            } label: {
+                Label("Delete", systemImage: "trash")
+            }
+            Button {
+                changeFolderAction()
+            } label: {
+                Label("Move", systemImage: "folder")
+            }
+            .tint(.accentColor)
+            Button {
+                showInfoAction()
+            } label: {
+                Label("Info", systemImage: "info.circle")
+            }
+        }
+        .swipeActions(edge: .leading) {
+            Button(action: duplicateAction) {
+                Label("Duplicate", systemImage: "plus.rectangle.on.rectangle")
+            }
+            .tint(.mint)
+        }
     }
 }
 

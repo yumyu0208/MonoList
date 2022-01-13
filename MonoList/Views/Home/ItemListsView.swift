@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ItemListsView: View {
-    
+    @EnvironmentObject var manager: MonoListManager
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest var itemLists: FetchedResults<ItemList>
     
-    @State var isShowingInfo = false
+    @State var showingInfoItemList: ItemList?
+    @State var movingItemList: ItemList?
     let editAction: (ItemList) -> Void
     
     init(of folder: Folder, action: @escaping (ItemList) -> Void) {
@@ -33,18 +34,26 @@ struct ItemListsView: View {
             } duplicateAction: {
                 duplicateItemList(itemList)
             } changeFolderAction: {
-                
+                movingItemList = itemList
             } showInfoAction: {
-                isShowingInfo = true
+                showingInfoItemList = itemList
             } deleteAction: {
                 if let index = itemLists.firstIndex(of: itemList) {
                     deleteItemLists(offsets: IndexSet(integer: index))
                 }
             }
             .listRowInsets(EdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 0))
-            .sheet(isPresented: $isShowingInfo) {
+            .sheet(item: $showingInfoItemList) { itemList in
                 NavigationView {
                     AllInfoView(itemList: itemList)
+                }
+            }
+            .sheet(item: $movingItemList) { itemList in
+                NavigationView {
+                    SelectDestinationView(itemList: itemList) { itemList, destinationFolder in
+                        moveItemList(itemList, to: destinationFolder)
+                    }
+                    .environmentObject(manager)
                 }
             }
         }
@@ -102,6 +111,21 @@ struct ItemListsView: View {
                 }
                 saveData()
             }
+        }
+    }
+    
+    private func moveItemList(_ itemList: ItemList, to folder: Folder) {
+        withAnimation {
+            let deleteIndex = itemLists.firstIndex(of: itemList) ?? 0
+            if deleteIndex != itemLists.count-1 {
+                for index in deleteIndex+1 ..< itemLists.count {
+                    itemLists[index].order -= 1
+                }
+            }
+            itemList.parentFolder.removeFromItemLists(itemList)
+            itemList.order = Int32(folder.itemLists?.count ?? 0)
+            folder.addToItemLists(itemList)
+            saveData()
         }
     }
     
