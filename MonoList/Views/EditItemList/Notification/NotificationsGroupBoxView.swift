@@ -91,7 +91,9 @@ struct NotificationsGroupBoxView: View {
             }
         }
         .onChange(of: itemList.notificationIsActive) { isActive in
-            isExpanded = isActive
+            withAnimation(.easeOut(duration: 0.2)) {
+                isExpanded = isActive
+            }
         }
     }
     
