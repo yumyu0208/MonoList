@@ -69,7 +69,7 @@ struct SelectDestinationView: View {
                     EditFolderView(folder: editingFolder)
                         .navigationTitle(Text("New Folder"))
                         .onDisappear {
-                            if !editingFolder.isFault {
+                            if !editingFolder.isFault && editingFolder.name != K.defaultName.newFolder {
                                 dismiss()
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                                     moveAciton(itemList, editingFolder)

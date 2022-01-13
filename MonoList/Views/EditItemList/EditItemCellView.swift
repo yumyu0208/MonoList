@@ -59,7 +59,9 @@ struct EditItemCellView: View, Equatable {
         } //: HStack
         .padding(.leading, 8)
         .sheet(isPresented: $isEditingItemDetail) {
-            Text("Edit Item Detail")
+            NavigationView {
+                EditItemDetail(item: item)
+            }
         }
     }
 }
