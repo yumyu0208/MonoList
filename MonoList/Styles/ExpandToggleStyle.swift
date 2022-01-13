@@ -15,7 +15,7 @@ struct ExpandToggleStyle: ToggleStyle {
             }
         } label: {
             Image(systemName: "chevron.right")
-                .font(.system(.title3, design: .default).weight(.semibold))
+                .font(.system(.headline, design: .default).weight(.semibold))
                 .frame(height: 31)
                 .rotationEffect(Angle(degrees: configuration.isOn ? 90 : 0))
         }

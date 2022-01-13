@@ -46,6 +46,7 @@ struct CircleButtonStyle: ButtonStyle {
             .background(backgroundColor)
             .foregroundColor(foregroundColor)
             .clipShape(Circle())
+            .opacity(configuration.isPressed ? 0.3 : 1)
     }
 }
 

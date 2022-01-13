@@ -20,6 +20,7 @@ struct CapsuleButtonStyle: ButtonStyle {
         .padding()
         .background(Color.accentColor)
         .clipShape(Capsule())
+        .opacity(configuration.isPressed ? 0.3 : 1)
     }
 }
 

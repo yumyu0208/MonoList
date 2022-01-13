@@ -33,7 +33,7 @@ struct NotificationsGroupBoxView: View {
                 HStack {
                     Label(title: {
                         HStack(spacing: 4) {
-                            Text(isActive ? "Alarm ON" : "Alarm OFF")
+                            Text(isActive ? "Alarm On" : "Alarm Off")
                                 .font(.system(.title3, design: .default))
                                 .fontWeight(.bold)
                                 .id(isActive)

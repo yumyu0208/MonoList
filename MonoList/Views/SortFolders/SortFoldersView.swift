@@ -26,8 +26,7 @@ struct SortFoldersView: View {
                 List {
                     Section {
                         ForEach(folders) { folder in
-                            if folder.name != K.defaultName.newFolder,
-                               folder.name != K.defaultName.lists {
+                            if folder.name != K.defaultName.lists {
                                 NavigationLink {
                                     EditFolderView(folder: folder)
                                         .navigationTitle(Text("Edit Folder"))
@@ -41,9 +40,11 @@ struct SortFoldersView: View {
                         .onMove(perform: moveFolder)
                         if editMode != .active {
                             Button(action: {
-                                newFolder = addFolder(order: folders.count)
-                                isEditingNewFolder = true
-                                saveData()
+                                withAnimation {
+                                    newFolder = addFolder(order: folders.count)
+                                    isEditingNewFolder = true
+                                    saveData()
+                                }
                             }) {
                                 ZStack {
                                     Label("Add Folder", systemImage: "folder.badge.plus")

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NotificationListView: View {
+    @Environment(\.editMode) var editMode
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest var notifications: FetchedResults<Notification>
     var itemList: ItemList?
@@ -15,6 +16,10 @@ struct NotificationListView: View {
     @State var isEditingNewNotification = false
     
     @State var newNotification: Notification?
+    
+    var isEditing: Bool {
+        (editMode?.wrappedValue ?? .inactive) == .active
+    }
     
     init(of itemList: ItemList) {
         self.itemList = itemList
@@ -55,22 +60,26 @@ struct NotificationListView: View {
                                 .font(.body.bold())
                                 .imageScale(.small)
                                 .foregroundColor(Color(UIColor.systemGray2))
+                                .opacity(isEditing ? 1 : 0)
                         } //: HStack
                         .padding(.horizontal, 6)
                         .padding(.vertical, 8)
                     }
+                    .disabled(!isEditing)
                 } //: ForEach
-                Button {
-                    withAnimation(.easeOut(duration: 0.2)) {
-                        newNotification = itemList?.createNewNotification(weekdays: K.weekday.allWeekdays, time: Notification.defaultDate, viewContext)
-                    }
-                    isEditingNewNotification = true
-                } label: {
-                    Label("Add Alarm", systemImage: "plus.circle.fill")
-                        .font(.headline)
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 8)
-                } //: Button
+                if isEditing {
+                    Button {
+                        withAnimation(.easeOut(duration: 0.2)) {
+                            newNotification = itemList?.createNewNotification(weekdays: K.weekday.allWeekdays, time: Notification.defaultDate, viewContext)
+                        }
+                        isEditingNewNotification = true
+                    } label: {
+                        Label("Add Alarm", systemImage: "plus.circle.fill")
+                            .font(.headline)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 8)
+                    } //: Button
+                }
             } //: VStack
             NavigationLink(isActive: $isEditingNewNotification) {
                 if let newNotification = newNotification {

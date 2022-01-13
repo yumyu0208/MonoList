@@ -8,21 +8,47 @@
 import SwiftUI
 
 struct EditItemListDetailView: View {
+    @AppStorage("SelectedItemDetailTab") private var selectedTab: String = Tab.alarm.rawValue
     @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var editMode: EditMode = .active
     @ObservedObject var itemList: ItemList
     
+    enum Tab: String, CaseIterable, Identifiable {
+        case alarm = "Alarm"
+        case weight = "Weight"
+        case info = "Info"
+        
+        var id: String { self.rawValue }
+    }
+    
     var body: some View {
-        ScrollView {
-            VStack {
-                VStack(spacing: 20) {
-                    NotificationsGroupBoxView(itemList: itemList)
-                        .environment(\.editMode, $editMode)
+        VStack(spacing: 0) {
+            Picker("Tab",
+                   selection: $selectedTab.animation(.easeOut(duration: 0.2))) {
+                ForEach([Tab.alarm, Tab.info]) { tab in
+                    Text(tab.rawValue)
                 }
             }
+            .pickerStyle(.segmented)
             .padding()
-        }
+            TabView(selection: $selectedTab.animation(.easeOut(duration: 0.2))) {
+                EditAlarmView(itemList: itemList)
+                    .tag(Tab.alarm.rawValue)
+                //WeightView(itemList: itemList).tag(Tab.weight.rawValue)
+                InfoView(itemList: itemList)
+                    .tag(Tab.info.rawValue)
+            }
+            .tabViewStyle(.page)
+            .menuIndicator(.hidden)
+//            switch Tab(rawValue: selectedTab) ?? .alarm {
+//            case .alarm:
+//                EditAlarmView(itemList: itemList)
+//            case .weight:
+//                WeightView(itemList: itemList)
+//            case .info:
+//                InfoView(itemList: itemList)
+//            }
+        } //: VStack
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -32,7 +58,7 @@ struct EditItemListDetailView: View {
                     Text(itemList.name)
                 }
                 .font(.body.bold())
-            }
+            } //: ToolBarItem
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     dismiss()

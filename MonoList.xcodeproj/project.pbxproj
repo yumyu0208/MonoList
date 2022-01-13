@@ -27,7 +27,7 @@
 		AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C051277DECC4001CEFFA /* MonoListManager.swift */; };
 		AA82C054277EA2B8001CEFFA /* EditFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C053277EA2B8001CEFFA /* EditFolderView.swift */; };
 		AA82C057277EF105001CEFFA /* CircleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C056277EF105001CEFFA /* CircleButtonStyle.swift */; };
-		AA8750B1278C4DAD00540BA0 /* ItemListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B0278C4DAD00540BA0 /* ItemListInfoView.swift */; };
+		AA8750B1278C4DAD00540BA0 /* AllInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B0278C4DAD00540BA0 /* AllInfoView.swift */; };
 		AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B4278C57A700540BA0 /* InfoGroupBoxView.swift */; };
 		AA8750B7278D3B7D00540BA0 /* ItemsGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B6278D3B7D00540BA0 /* ItemsGroupBoxView.swift */; };
 		AA8750B9278D3D5D00540BA0 /* NotificationsGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B8278D3D5D00540BA0 /* NotificationsGroupBoxView.swift */; };
@@ -44,6 +44,9 @@
 		AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */; };
 		AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9BD52278136D70055CD85 /* FolderSectionView.swift */; };
 		AAC3DDBE278F080600983100 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */; };
+		AAC3DDC1278FDBC600983100 /* EditAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC0278FDBC600983100 /* EditAlarmView.swift */; };
+		AAC3DDC3278FDFC100983100 /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC2278FDFC100983100 /* WeightView.swift */; };
+		AAC3DDC5278FE0BA00983100 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC4278FE0BA00983100 /* InfoView.swift */; };
 		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAE293512781C5780010F093 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditButtonView.swift */; };
 		AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B28627852F98000B8B09 /* EditItemCellView.swift */; };
@@ -71,7 +74,7 @@
 		AA82C051277DECC4001CEFFA /* MonoListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoListManager.swift; sourceTree = "<group>"; };
 		AA82C053277EA2B8001CEFFA /* EditFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderView.swift; sourceTree = "<group>"; };
 		AA82C056277EF105001CEFFA /* CircleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonStyle.swift; sourceTree = "<group>"; };
-		AA8750B0278C4DAD00540BA0 /* ItemListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListInfoView.swift; sourceTree = "<group>"; };
+		AA8750B0278C4DAD00540BA0 /* AllInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllInfoView.swift; sourceTree = "<group>"; };
 		AA8750B4278C57A700540BA0 /* InfoGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoGroupBoxView.swift; sourceTree = "<group>"; };
 		AA8750B6278D3B7D00540BA0 /* ItemsGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsGroupBoxView.swift; sourceTree = "<group>"; };
 		AA8750B8278D3D5D00540BA0 /* NotificationsGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsGroupBoxView.swift; sourceTree = "<group>"; };
@@ -88,6 +91,9 @@
 		AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListsView.swift; sourceTree = "<group>"; };
 		AAB9BD52278136D70055CD85 /* FolderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSectionView.swift; sourceTree = "<group>"; };
 		AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
+		AAC3DDC0278FDBC600983100 /* EditAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlarmView.swift; sourceTree = "<group>"; };
+		AAC3DDC2278FDFC100983100 /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
+		AAC3DDC4278FE0BA00983100 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAE293502781C5780010F093 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
 		AAE5B28627852F98000B8B09 /* EditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemCellView.swift; sourceTree = "<group>"; };
@@ -196,7 +202,7 @@
 		AA8750B3278C4DB800540BA0 /* ItemListInfo */ = {
 			isa = PBXGroup;
 			children = (
-				AA8750B0278C4DAD00540BA0 /* ItemListInfoView.swift */,
+				AA8750B0278C4DAD00540BA0 /* AllInfoView.swift */,
 				AA8750B4278C57A700540BA0 /* InfoGroupBoxView.swift */,
 				AA8750BE278D3F0D00540BA0 /* ListTitleView.swift */,
 				AA8750B6278D3B7D00540BA0 /* ItemsGroupBoxView.swift */,
@@ -266,6 +272,9 @@
 				AA9977AA2783F176002B4C57 /* EditItemListView.swift */,
 				AAE5B28627852F98000B8B09 /* EditItemCellView.swift */,
 				AA8750C4278DAB5C00540BA0 /* EditItemListDetailView.swift */,
+				AAC3DDC0278FDBC600983100 /* EditAlarmView.swift */,
+				AAC3DDC2278FDFC100983100 /* WeightView.swift */,
+				AAC3DDC4278FE0BA00983100 /* InfoView.swift */,
 				AAC3DDBF278F0E8000983100 /* Notification */,
 			);
 			path = EditItemList;
@@ -349,10 +358,12 @@
 				AA8750B7278D3B7D00540BA0 /* ItemsGroupBoxView.swift in Sources */,
 				AA8750C1278D518900540BA0 /* ExpandToggleStyle.swift in Sources */,
 				AA351A812776BB5500F53BDC /* Persistence.swift in Sources */,
+				AAC3DDC5278FE0BA00983100 /* InfoView.swift in Sources */,
 				AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */,
 				AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */,
 				AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */,
 				AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */,
+				AAC3DDC1278FDBC600983100 /* EditAlarmView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
@@ -368,8 +379,9 @@
 				AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */,
 				AA8750C5278DAB5C00540BA0 /* EditItemListDetailView.swift in Sources */,
 				AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */,
-				AA8750B1278C4DAD00540BA0 /* ItemListInfoView.swift in Sources */,
+				AA8750B1278C4DAD00540BA0 /* AllInfoView.swift in Sources */,
 				AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */,
+				AAC3DDC3278FDFC100983100 /* WeightView.swift in Sources */,
 				AA8750B9278D3D5D00540BA0 /* NotificationsGroupBoxView.swift in Sources */,
 				AA82C04E277B319E001CEFFA /* ItemList+CoreDataProperties.swift in Sources */,
 				AA8750CA278DB70000540BA0 /* NotificationListView.swift in Sources */,

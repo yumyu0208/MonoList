@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ItemListInfoView: View {
+struct AllInfoView: View {
     
     @Environment(\.dismiss) private var dismiss
     
@@ -53,7 +53,7 @@ struct ItemListInfoView_Previews: PreviewProvider {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
         NavigationView {
-            ItemListInfoView(itemList: itemList)
+            AllInfoView(itemList: itemList)
                 .environment(\.managedObjectContext, context)
         }
     }
