@@ -32,6 +32,30 @@ public class ItemList: NSManagedObject {
         (notifications?.count ?? 0) != 0
     }
     
+    static func delete(index: Int, itemLists: FetchedResults<ItemList>, _ context: NSManagedObjectContext) {
+        // Delete All Items
+        if let items = itemLists[index].items?.allObjects as? [Item] {
+            items.forEach { item in
+                context.delete(item)
+            }
+        }
+        // Delete All Notifications
+        if let notifications = itemLists[index].notifications?.allObjects as? [Notification] {
+            notifications.forEach { notification in
+                context.delete(notification)
+            }
+        }
+        // Delete All Histories
+        // ...
+        
+        context.delete(itemLists[index])
+        if index != itemLists.count-1 {
+            for index in index+1 ... itemLists.count-1 {
+                itemLists[index].order -= 1
+            }
+        }
+    }
+    
     func duplicate(_ context: NSManagedObjectContext) {
         let duplicatedItemList = parentFolder.createNewItemList(
             name: name + " Copied",

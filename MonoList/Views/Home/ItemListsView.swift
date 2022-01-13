@@ -73,12 +73,7 @@ struct ItemListsView: View {
     private func deleteItemLists(offsets: IndexSet) {
         withAnimation {
             offsets.forEach { deleteIndex in
-                viewContext.delete(itemLists[deleteIndex])
-                if deleteIndex != itemLists.count-1 {
-                    for index in deleteIndex+1 ... itemLists.count-1 {
-                        itemLists[index].order -= 1
-                    }
-                }
+                ItemList.delete(index: deleteIndex, itemLists: itemLists, viewContext)
             }
             saveData()
         }

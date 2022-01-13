@@ -69,9 +69,11 @@ struct SelectDestinationView: View {
                     EditFolderView(folder: editingFolder)
                         .navigationTitle(Text("New Folder"))
                         .onDisappear {
-                            dismiss()
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                moveAciton(itemList, editingFolder)
+                            if !editingFolder.isFault {
+                                dismiss()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                    moveAciton(itemList, editingFolder)
+                                }
                             }
                         }
                 }

@@ -31,7 +31,7 @@ struct SortFoldersView: View {
                                     EditFolderView(folder: folder)
                                         .navigationTitle(Text("Edit Folder"))
                                 } label: {
-                                    Label("\(folder.order) \(folder.name)", systemImage: folder.image)
+                                    Label(folder.name, systemImage: folder.image)
                                         .id(folder.name)
                                 }
                             }
@@ -103,12 +103,24 @@ struct SortFoldersView: View {
     private func deleteFolders(offsets: IndexSet) {
         withAnimation {
             offsets.forEach { deleteIndex in
-                viewContext.delete(folders[deleteIndex])
-                if deleteIndex != folders.count-1 {
-                    for index in deleteIndex+1 ... folders.count-1 {
-                        folders[index].order -= 1
+                Folder.delete(index: deleteIndex, folders: folders, viewContext)
+            }
+            saveData()
+        }
+    }
+    
+    private func deleteFoldersWithoutDeletingItemLists(offsets: IndexSet) {
+        guard let defaultFolder = folders.first else { return }
+        withAnimation {
+            offsets.forEach { deleteIndex in
+                
+                // Move ItemLists to Default Folder
+                if let itemLists = folders[deleteIndex].itemLists?.allObjects as? [ItemList] {
+                    itemLists.forEach { itemList in
+                        moveItemList(itemList, to: defaultFolder)
                     }
                 }
+                Folder.delete(index: deleteIndex, folders: folders, viewContext)
             }
             saveData()
         }
@@ -141,6 +153,22 @@ struct SortFoldersView: View {
                 }
                 saveData()
             }
+        }
+    }
+    
+    private func moveItemList(_ itemList: ItemList, to folder: Folder) {
+        withAnimation {
+            guard let itemLists = itemList.parentFolder.itemLists?.allObjects as? [ItemList] else { return }
+            let deleteIndex = itemLists.firstIndex(of: itemList) ?? 0
+            if deleteIndex != itemLists.count-1 {
+                for index in deleteIndex+1 ..< itemLists.count {
+                    itemLists[index].order -= 1
+                }
+            }
+            itemList.parentFolder.removeFromItemLists(itemList)
+            itemList.order = Int32(folder.itemLists?.count ?? 0)
+            folder.addToItemLists(itemList)
+            saveData()
         }
     }
 }

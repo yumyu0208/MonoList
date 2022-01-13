@@ -30,7 +30,6 @@ struct EditItemCellView: View, Equatable {
                         .font(.body.bold())
                         .foregroundColor(.red)
                 }
-                Text("\(item.order)")
                 ZStack {
                     Rectangle()
                         .foregroundColor(.clear)
