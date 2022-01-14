@@ -38,6 +38,7 @@ struct EditItemCellView: View, Equatable {
                             focusedItem.wrappedValue = .row(id: item.id.uuidString)
                         }
                     TextField("", text: $item.name)
+                        .font(.body)
                         .focused(focusedItem, equals: .row(id: item.id.uuidString))
                         .submitLabel(.return)
                         .onSubmit {
@@ -48,10 +49,17 @@ struct EditItemCellView: View, Equatable {
                             }
                         }
                 }
+                if item.weight != 0 {
+                    WeightLabelView(value: item.weight)
+                }
+                if item.quantity > 1 {
+                    QuantityLabelView(value: item.quantity)
+                }
                 Button {
                     isEditingItemDetail = true
                 } label: {
                     Image(systemName: "info.circle")
+                        .imageScale(.large)
                 }
                 .buttonStyle(.plain)
                 .foregroundColor(.accentColor)

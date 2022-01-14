@@ -15,21 +15,26 @@ struct ItemListsView: View {
     
     @State var showingInfoItemList: ItemList?
     @State var movingItemList: ItemList?
+    let checkListAction: (ItemList) -> Void
     let editAction: (ItemList) -> Void
     
-    init(of folder: Folder, action: @escaping (ItemList) -> Void) {
+    init(of folder: Folder, checkListAction: @escaping (ItemList) -> Void, editAction: @escaping (ItemList) -> Void) {
+        
         _itemLists = FetchRequest(
             sortDescriptors: [
                 SortDescriptor(\.order, order: .forward)
             ],
             predicate: NSPredicate(format: "parentFolder == %@", folder)
         )
-        self.editAction = action
+        self.checkListAction = checkListAction
+        self.editAction = editAction
     }
     
     var body: some View {
         ForEach(itemLists) { itemList in
             ItemListCellView(itemList: itemList) {
+                checkListAction(itemList)
+            } editAction: {
                 editAction(itemList)
             } duplicateAction: {
                 duplicateItemList(itemList)
@@ -42,7 +47,7 @@ struct ItemListsView: View {
                     deleteItemLists(offsets: IndexSet(integer: index))
                 }
             }
-            .listRowInsets(EdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 0))
+            .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
             .sheet(item: $showingInfoItemList) { itemList in
                 NavigationView {
                     AllInfoView(itemList: itemList)
@@ -143,6 +148,8 @@ struct FolderListsView_Previews: PreviewProvider {
         List {
             Section {
                 ItemListsView(of: folder) { _ in
+                    
+                } editAction: { _ in
                     
                 }
                     .environment(\.managedObjectContext, context)

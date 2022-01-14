@@ -24,12 +24,13 @@ struct EditItemListView: View {
     @State var isSettingNotification = false
     @FocusState var focusedItem: Focusable?
     @FocusState var listNameTextFieldIsFocused: Bool
+    let checkAction: () -> Void
     
     var isNewItemList: Bool {
         itemList!.name == K.defaultName.newItemList
     }
     
-    init(of itemList: ItemList) {
+    init(of itemList: ItemList, checkAction: @escaping () -> Void) {
         self.itemList = itemList
         
         _items = FetchRequest(
@@ -38,6 +39,7 @@ struct EditItemListView: View {
             ],
             predicate: NSPredicate(format: "parentItemList == %@", itemList)
         )
+        self.checkAction = checkAction
     }
     
     var body: some View {
@@ -81,6 +83,14 @@ struct EditItemListView: View {
                                 EditItemListDetailView(itemList: itemList)
                             }
                         }
+                    }
+                    .buttonStyle(CircleButtonStyle(type: .primary))
+                    .disabled(editMode == .active || isNewItemList)
+                    Button {
+                        checkAction()
+                    } label: {
+                        Image(systemName: "checklist")
+                            .padding()
                     }
                     .buttonStyle(CircleButtonStyle(type: .primary))
                     .disabled(editMode == .active || isNewItemList)
@@ -339,11 +349,11 @@ struct EditItemListView: View {
     }
 }
 
-struct EditItemListView_Previews: PreviewProvider {
-    static var previews: some View {
-        let context = PersistenceController.preview.container.viewContext
-        let itemList = MonoListManager().fetchItemLists(context: context)[0]
-        EditItemListView(of: itemList)
-            .environment(\.managedObjectContext, context)
-    }
-}
+//struct EditItemListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let context = PersistenceController.preview.container.viewContext
+//        let itemList = MonoListManager().fetchItemLists(context: context)[0]
+//        EditItemListView(of: itemList)
+//            .environment(\.managedObjectContext, context)
+//    }
+//}

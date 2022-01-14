@@ -49,6 +49,12 @@
 		AAC3DDC5278FE0BA00983100 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC4278FE0BA00983100 /* InfoView.swift */; };
 		AAC3DDC8278FE97200983100 /* SelectDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC7278FE97200983100 /* SelectDestinationView.swift */; };
 		AAC3DDCC27906B5700983100 /* EditItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDCB27906B5700983100 /* EditItemDetail.swift */; };
+		AAC3DDCE27911E4D00983100 /* SelectCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDCD27911E4D00983100 /* SelectCategoryView.swift */; };
+		AAC3DDD02791978D00983100 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDCF2791978D00983100 /* DoubleExtension.swift */; };
+		AAC3DDD22791A0F100983100 /* WeightLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDD12791A0F100983100 /* WeightLabelView.swift */; };
+		AAC3DDD42791A19F00983100 /* QuantityLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDD32791A19F00983100 /* QuantityLabelView.swift */; };
+		AAC3DDD72791AA4800983100 /* CheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDD62791AA4800983100 /* CheckListView.swift */; };
+		AAC3DDDB2791D68A00983100 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDDA2791D68A00983100 /* ItemListView.swift */; };
 		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAE293512781C5780010F093 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditButtonView.swift */; };
 		AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B28627852F98000B8B09 /* EditItemCellView.swift */; };
@@ -98,6 +104,12 @@
 		AAC3DDC4278FE0BA00983100 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		AAC3DDC7278FE97200983100 /* SelectDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDestinationView.swift; sourceTree = "<group>"; };
 		AAC3DDCB27906B5700983100 /* EditItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemDetail.swift; sourceTree = "<group>"; };
+		AAC3DDCD27911E4D00983100 /* SelectCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryView.swift; sourceTree = "<group>"; };
+		AAC3DDCF2791978D00983100 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
+		AAC3DDD12791A0F100983100 /* WeightLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightLabelView.swift; sourceTree = "<group>"; };
+		AAC3DDD32791A19F00983100 /* QuantityLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityLabelView.swift; sourceTree = "<group>"; };
+		AAC3DDD62791AA4800983100 /* CheckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListView.swift; sourceTree = "<group>"; };
+		AAC3DDDA2791D68A00983100 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
 		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAE293502781C5780010F093 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
 		AAE5B28627852F98000B8B09 /* EditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemCellView.swift; sourceTree = "<group>"; };
@@ -196,9 +208,9 @@
 			isa = PBXGroup;
 			children = (
 				AAE5B282278484E6000B8B09 /* Home */,
+				AAC3DDD52791AA2500983100 /* CheckList */,
 				AAC3DDC6278FE94C00983100 /* SelectDestination */,
 				AAE5B28427848535000B8B09 /* SortFolders */,
-				AAE5B28527848557000B8B09 /* EditItemList */,
 				AA8750B3278C4DB800540BA0 /* ItemListInfo */,
 			);
 			path = Views;
@@ -221,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				AA8750C7278DB1FA00540BA0 /* DateExtension.swift */,
+				AAC3DDCF2791978D00983100 /* DoubleExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -258,8 +271,19 @@
 			isa = PBXGroup;
 			children = (
 				AAC3DDCB27906B5700983100 /* EditItemDetail.swift */,
+				AAC3DDCD27911E4D00983100 /* SelectCategoryView.swift */,
 			);
 			path = EditItemDetail;
+			sourceTree = "<group>";
+		};
+		AAC3DDD52791AA2500983100 /* CheckList */ = {
+			isa = PBXGroup;
+			children = (
+				AAC3DDDA2791D68A00983100 /* ItemListView.swift */,
+				AAC3DDD62791AA4800983100 /* CheckListView.swift */,
+				AAE5B28527848557000B8B09 /* EditItemList */,
+			);
+			path = CheckList;
 			sourceTree = "<group>";
 		};
 		AAD4B7BB27870BB900D73EBE /* Enums */ = {
@@ -303,6 +327,8 @@
 			children = (
 				AA9977AA2783F176002B4C57 /* EditItemListView.swift */,
 				AAE5B28627852F98000B8B09 /* EditItemCellView.swift */,
+				AAC3DDD12791A0F100983100 /* WeightLabelView.swift */,
+				AAC3DDD32791A19F00983100 /* QuantityLabelView.swift */,
 				AAC3DDCA27906B4000983100 /* EditItemDetail */,
 				AAC3DDC927906B2400983100 /* EditItemListDetail */,
 				AAC3DDBF278F0E8000983100 /* Notification */,
@@ -388,6 +414,7 @@
 				AA8750B7278D3B7D00540BA0 /* ItemsGroupBoxView.swift in Sources */,
 				AA8750C1278D518900540BA0 /* ExpandToggleStyle.swift in Sources */,
 				AA351A812776BB5500F53BDC /* Persistence.swift in Sources */,
+				AAC3DDD42791A19F00983100 /* QuantityLabelView.swift in Sources */,
 				AAC3DDC5278FE0BA00983100 /* InfoView.swift in Sources */,
 				AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */,
 				AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */,
@@ -399,6 +426,7 @@
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
 				AA8BD47A278DD3D300488027 /* WhiteGroupBoxStyle.swift in Sources */,
+				AAC3DDDB2791D68A00983100 /* ItemListView.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
 				AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */,
 				AAE293512781C5780010F093 /* EditButtonView.swift in Sources */,
@@ -410,9 +438,13 @@
 				AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */,
 				AA8750C5278DAB5C00540BA0 /* EditItemListDetailView.swift in Sources */,
 				AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */,
+				AAC3DDD02791978D00983100 /* DoubleExtension.swift in Sources */,
 				AA8750B1278C4DAD00540BA0 /* AllInfoView.swift in Sources */,
 				AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */,
+				AAC3DDCE27911E4D00983100 /* SelectCategoryView.swift in Sources */,
+				AAC3DDD72791AA4800983100 /* CheckListView.swift in Sources */,
 				AAC3DDC3278FDFC100983100 /* WeightView.swift in Sources */,
+				AAC3DDD22791A0F100983100 /* WeightLabelView.swift in Sources */,
 				AA8750B9278D3D5D00540BA0 /* NotificationsGroupBoxView.swift in Sources */,
 				AA82C04E277B319E001CEFFA /* ItemList+CoreDataProperties.swift in Sources */,
 				AA8750CA278DB70000540BA0 /* NotificationListView.swift in Sources */,

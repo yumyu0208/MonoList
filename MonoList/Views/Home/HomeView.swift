@@ -18,6 +18,7 @@ struct HomeView: View {
     @State var manager = MonoListManager()
     @State var editMode: EditMode = .inactive
     @State var isSortingFolders = false
+    @State var checkingItemList: ItemList?
     @State var editingItemList: ItemList?
 
     var body: some View {
@@ -26,6 +27,8 @@ struct HomeView: View {
                 ForEach(folders) { folder in
                     Section {
                         ItemListsView(of: folder) { itemList in
+                            checkingItemList = itemList
+                        } editAction: { itemList in
                             editingItemList = itemList
                         }
                         .environmentObject(manager)
@@ -64,9 +67,6 @@ struct HomeView: View {
                         Label("Add Item List", systemImage: "plus")
                     }
                     .disabled(isEditing)
-                    .fullScreenCover(item: $editingItemList) { itemList in
-                        EditItemListView(of: itemList)
-                    }
                     Button {
                         
                     } label: {
@@ -81,6 +81,12 @@ struct HomeView: View {
             if folders.isEmpty {
                 manager.createSamples(context: viewContext)
             }
+        }
+        .fullScreenCover(item: $editingItemList) { itemList in
+            ItemListView(itemList: itemList, isEditMode: true)
+        }
+        .fullScreenCover(item: $checkingItemList) { itemList in
+            ItemListView(itemList: itemList, isEditMode: false)
         }
     }
     

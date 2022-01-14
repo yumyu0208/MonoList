@@ -10,6 +10,7 @@ import SwiftUI
 struct ItemListCellView: View {
     
     let itemList: ItemList
+    let checkListAction: () -> Void
     let editAction: () -> Void
     let duplicateAction: () -> Void
     let changeFolderAction: () -> Void
@@ -19,7 +20,7 @@ struct ItemListCellView: View {
     var body: some View {
         HStack {
             Button {
-                editAction()
+                checkListAction()
             } label: {
                 Label {
                     Text(itemList.name)
@@ -34,8 +35,10 @@ struct ItemListCellView: View {
                 editAction()
             } label: {
                 Image(systemName: "ellipsis")
-                    .padding(.vertical, 13)
-                    .padding(.horizontal, 20)
+                    .padding(.vertical, 19)
+                    .padding(.trailing, 20)
+                    .padding(.leading, 40)
+                    .contentShape(Rectangle())
             } //: Menu
             .buttonStyle(.plain)
             .contentShape(Rectangle())
@@ -96,6 +99,8 @@ struct ItemListCellView_Previews: PreviewProvider {
         List {
             ItemListCellView(itemList: itemList) {
                 
+            } editAction: {
+            
             } duplicateAction: {
                 
             } changeFolderAction: {
@@ -106,7 +111,7 @@ struct ItemListCellView_Previews: PreviewProvider {
                 
             }
             .environment(\.managedObjectContext, context)
-            .listRowInsets(EdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 0))
+            .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
         }
     }
 }
