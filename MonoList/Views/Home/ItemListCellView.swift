@@ -10,7 +10,6 @@ import SwiftUI
 struct ItemListCellView: View {
     
     let itemList: ItemList
-    let checkListAction: () -> Void
     let editAction: () -> Void
     let duplicateAction: () -> Void
     let changeFolderAction: () -> Void
@@ -18,32 +17,17 @@ struct ItemListCellView: View {
     let deleteAction: () -> Void
     
     var body: some View {
-        HStack {
-            Button {
-                checkListAction()
-            } label: {
-                Label {
-                    Text(itemList.name)
-                        .foregroundColor(.primary)
-                } icon: {
-                    Image(systemName: itemList.image)
-                        .foregroundColor(Color(itemList.color))
-                }
-            } //: Button
-            Spacer()
-            Button {
-                editAction()
-            } label: {
-                Image(systemName: "ellipsis")
-                    .padding(.vertical, 19)
-                    .padding(.trailing, 20)
-                    .padding(.leading, 40)
-                    .contentShape(Rectangle())
-            } //: Menu
-            .buttonStyle(.plain)
-            .contentShape(Rectangle())
-            .foregroundColor(.accentColor)
-        } //: HStack
+        NavigationLink {
+            ItemListView(itemList: itemList, isEditMode: false)
+        } label: {
+            Label {
+                Text(itemList.name)
+                    .foregroundColor(.primary)
+            } icon: {
+                Image(systemName: itemList.image)
+                    .foregroundColor(Color(itemList.color))
+            }
+        }
         .contextMenu {
             Section {
                 Button(action: editAction) {
@@ -72,16 +56,17 @@ struct ItemListCellView: View {
                 Label("Delete", systemImage: "trash")
             }
             Button {
+                editAction()
+            } label: {
+                Label("Edit", systemImage: "pencil")
+            }
+            .tint(.orange)
+            Button {
                 changeFolderAction()
             } label: {
                 Label("Move", systemImage: "folder")
             }
             .tint(.accentColor)
-            Button {
-                showInfoAction()
-            } label: {
-                Label("Info", systemImage: "info.circle")
-            }
         }
         .swipeActions(edge: .leading) {
             Button(action: duplicateAction) {
@@ -98,8 +83,6 @@ struct ItemListCellView_Previews: PreviewProvider {
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
         List {
             ItemListCellView(itemList: itemList) {
-                
-            } editAction: {
             
             } duplicateAction: {
                 
@@ -111,7 +94,6 @@ struct ItemListCellView_Previews: PreviewProvider {
                 
             }
             .environment(\.managedObjectContext, context)
-            .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
         }
     }
 }

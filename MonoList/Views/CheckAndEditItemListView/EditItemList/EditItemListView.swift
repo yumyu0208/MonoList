@@ -106,6 +106,7 @@ struct EditItemListView: View {
                                 HStack(spacing: 12) {
                                     EditButtonView()
                                         .environment(\.editMode, editMode)
+                                        .disabled(items.count == 1)
                                     Button {
                                         withAnimation {
                                             let newItem = addItem(name: "", order: items.count)

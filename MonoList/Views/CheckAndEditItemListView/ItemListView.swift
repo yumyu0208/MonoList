@@ -33,6 +33,14 @@ struct ItemListView: View {
         editMode == .active
     }
     
+    var navigationTitle: Text {
+        if isEditMode {
+            return isNewItemList ? Text("New List") : Text("Edit List")
+        } else {
+            return Text("Check List")
+        }
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -93,20 +101,6 @@ struct ItemListView: View {
                     .foregroundColor(.white)
                     .clipShape(Circle())
                     .disabled(isEditing || isNewItemList)
-                    
-                    Button {
-                        if itemListName.isEmpty && !itemsIsEmpty {
-                            print("アラート：List Nameを入力してください")
-                        } else {
-                            setValue(to: itemList)
-                            dismiss()
-                        }
-                    } label: {
-                        Image(systemName: "xmark")
-                            .padding()
-                    }
-                    .buttonStyle(CircleButtonStyle(type: .cancel))
-                    .disabled(isEditing)
                 } //: HStack
             } //: HStack
             .padding()
@@ -118,6 +112,28 @@ struct ItemListView: View {
                     .opacity(isEditMode ? 0 : 1)
             } //: ZStack
         } //: VStack
+        .navigationTitle(navigationTitle)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    if itemListName.isEmpty && !itemsIsEmpty {
+                        print("アラート：List Nameを入力してください")
+                    } else {
+                        setValue(to: itemList)
+                        dismiss()
+                    }
+                } label: {
+                    Image(systemName: "chevron.backward")
+                        .font(.body.bold())
+                        .imageScale(.large)
+                        .contentShape(Rectangle())
+                        .padding(.trailing)
+                }
+                .disabled(isEditing)
+            }
+        }
         .sheet(item: $isShowingTab) { tab in
             if let itemList = itemList {
                 NavigationView {

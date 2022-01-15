@@ -55,6 +55,7 @@
 		AAC3DDD42791A19F00983100 /* QuantityLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDD32791A19F00983100 /* QuantityLabelView.swift */; };
 		AAC3DDD72791AA4800983100 /* CheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDD62791AA4800983100 /* CheckListView.swift */; };
 		AAC3DDDB2791D68A00983100 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDDA2791D68A00983100 /* ItemListView.swift */; };
+		AAC3DDDE2793056600983100 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDDD2793056500983100 /* UINavigationControllerExtension.swift */; };
 		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAE293512781C5780010F093 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditButtonView.swift */; };
 		AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B28627852F98000B8B09 /* EditItemCellView.swift */; };
@@ -110,6 +111,7 @@
 		AAC3DDD32791A19F00983100 /* QuantityLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityLabelView.swift; sourceTree = "<group>"; };
 		AAC3DDD62791AA4800983100 /* CheckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListView.swift; sourceTree = "<group>"; };
 		AAC3DDDA2791D68A00983100 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
+		AAC3DDDD2793056500983100 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAE293502781C5780010F093 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
 		AAE5B28627852F98000B8B09 /* EditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemCellView.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				AA8750C7278DB1FA00540BA0 /* DateExtension.swift */,
 				AAC3DDCF2791978D00983100 /* DoubleExtension.swift */,
+				AAC3DDDD2793056500983100 /* UINavigationControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */,
 				AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */,
 				AA82C04F277B319E001CEFFA /* Folder+CoreDataClass.swift in Sources */,
+				AAC3DDDE2793056600983100 /* UINavigationControllerExtension.swift in Sources */,
 				AA82C04A277B319E001CEFFA /* Item+CoreDataProperties.swift in Sources */,
 				AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */,
 				AAC3DDCC27906B5700983100 /* EditItemDetail.swift in Sources */,

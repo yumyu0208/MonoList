@@ -16,77 +16,83 @@ struct HomeView: View {
     private var folders: FetchedResults<Folder>
     
     @State var manager = MonoListManager()
-    @State var editMode: EditMode = .inactive
-    @State var isSortingFolders = false
-    @State var checkingItemList: ItemList?
-    @State var editingItemList: ItemList?
+    @State private var editMode: EditMode = .inactive
+    @State private var isSortingFolders = false
+    
+    private let editItemListTag: Int = 888
+    @State var navigationLinkTag: Int?
+    @State var editItemListView: ItemListView?
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(folders) { folder in
-                    Section {
-                        ItemListsView(of: folder) { itemList in
-                            checkingItemList = itemList
-                        } editAction: { itemList in
-                            editingItemList = itemList
-                        }
-                        .environmentObject(manager)
-                    } header: {
-                        HStack(alignment: .center) {
-                            FolderSectionView(image: folder.image, title: folder.name)
-                            if folder.order == 0 {
-                                EditButtonView()
-                                    .environment(\.editMode, $editMode)
+            ZStack {
+                List {
+                    ForEach(folders) { folder in
+                        Section {
+                            ItemListsView(of: folder) { itemList in
+                                editItemListView = ItemListView(itemList: itemList, isEditMode: true)
+                                navigationLinkTag = editItemListTag
                             }
-                        }
-                    } //: Section
-                } //: ForEach
-            } //: List
-            .navigationTitle(Text("MONOLIST"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                let isEditing = (editMode == .active)
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        isSortingFolders = true
-                    } label: {
-                        Label("Folders", systemImage: "folder")
-                    }
-                    .disabled(isEditing)
-                    .sheet(isPresented: $isSortingFolders) {
-                        SortFoldersView()
                             .environmentObject(manager)
-                    }
-                } //: ToolBarItem
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        editingItemList = addItemList(order: folders.first!.itemLists?.count ?? 0)
-                        saveData()
-                    }) {
-                        Label("Add Item List", systemImage: "plus")
-                    }
-                    .disabled(isEditing)
-                    Button {
-                        
-                    } label: {
-                        Label("Settings", systemImage: "gearshape")
-                    }
-                    .disabled(isEditing)
-                } //: ToolBarItemGroup
-            }
-            .environment(\.editMode, $editMode)
+                        } header: {
+                            HStack(alignment: .center) {
+                                FolderSectionView(image: folder.image, title: folder.name)
+                                if folder.order == 0 {
+                                    EditButtonView()
+                                        .environment(\.editMode, $editMode)
+                                }
+                            }
+                        } //: Section
+                    } //: ForEach
+                } //: List
+                .navigationTitle(Text("MONOLIST"))
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    let isEditing = (editMode == .active)
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            isSortingFolders = true
+                        } label: {
+                            Label("Folders", systemImage: "folder")
+                        }
+                        .disabled(isEditing)
+                        .sheet(isPresented: $isSortingFolders) {
+                            SortFoldersView()
+                                .environmentObject(manager)
+                        }
+                    } //: ToolBarItem
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            let newItemList = addItemList(order: folders.first!.itemLists?.count ?? 0)
+                            saveData()
+                            editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
+                            navigationLinkTag = editItemListTag
+                        }) {
+                            Label("Add Item List", systemImage: "plus")
+                        }
+                        .disabled(isEditing)
+                        Button {
+                            
+                        } label: {
+                            Label("Settings", systemImage: "gearshape")
+                        }
+                        .disabled(isEditing)
+                    } //: ToolBarItemGroup
+                }
+                .listStyle(.insetGrouped)
+                .environment(\.editMode, $editMode)
+                NavigationLink(tag: editItemListTag,
+                               selection: $navigationLinkTag) {
+                    editItemListView
+                } label: {
+                    EmptyView()
+                } //: NavigationLink
+            } //: ZStack
         } //: Navigation
         .onAppear {
             if folders.isEmpty {
                 manager.createSamples(context: viewContext)
             }
-        }
-        .fullScreenCover(item: $editingItemList) { itemList in
-            ItemListView(itemList: itemList, isEditMode: true)
-        }
-        .fullScreenCover(item: $checkingItemList) { itemList in
-            ItemListView(itemList: itemList, isEditMode: false)
         }
     }
     
