@@ -108,6 +108,10 @@ struct EditItemListView: View {
                                         .environment(\.editMode, editMode)
                                         .disabled(items.count == 1)
                                     Button {
+                                        let focusedItemNameIsEmpty = items.first(where: {
+                                            focusedItem.wrappedValue == .row(id: $0.id.uuidString)
+                                        })?.name != ""
+                                        guard focusedItemNameIsEmpty else { return }
                                         withAnimation {
                                             let newItem = addItem(name: "", order: items.count)
                                             focusedItem.wrappedValue = .row(id: newItem.id.uuidString)

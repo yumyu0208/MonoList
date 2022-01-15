@@ -25,18 +25,13 @@ struct EditItemCellView: View, Equatable {
             if item.isFault || item.isDeleted {
                 EmptyView()
             } else {
+                Text("\(item.order)")
                 if item.isImportant {
                     Image(systemName: "exclamationmark")
                         .font(.body.bold())
                         .foregroundColor(.red)
                 }
                 ZStack {
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            focusedItem.wrappedValue = .row(id: item.id.uuidString)
-                        }
                     TextField("", text: $item.name)
                         .font(.body)
                         .focused(focusedItem, equals: .row(id: item.id.uuidString))
@@ -47,6 +42,12 @@ struct EditItemCellView: View, Equatable {
                             } else {
                                 addAction(item)
                             }
+                        }
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            focusedItem.wrappedValue = .row(id: item.id.uuidString)
                         }
                 }
                 if item.weight != 0 {
