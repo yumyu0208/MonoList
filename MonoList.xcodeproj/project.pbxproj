@@ -208,7 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE5B282278484E6000B8B09 /* Home */,
-				AAC3DDD52791AA2500983100 /* CheckList */,
+				AAC3DDD52791AA2500983100 /* CheckAndEditItemListView */,
 				AAC3DDC6278FE94C00983100 /* SelectDestination */,
 				AAE5B28427848535000B8B09 /* SortFolders */,
 				AA8750B3278C4DB800540BA0 /* ItemListInfo */,
@@ -276,12 +276,20 @@
 			path = EditItemDetail;
 			sourceTree = "<group>";
 		};
-		AAC3DDD52791AA2500983100 /* CheckList */ = {
+		AAC3DDD52791AA2500983100 /* CheckAndEditItemListView */ = {
 			isa = PBXGroup;
 			children = (
 				AAC3DDDA2791D68A00983100 /* ItemListView.swift */,
-				AAC3DDD62791AA4800983100 /* CheckListView.swift */,
+				AAC3DDDC2792ACE400983100 /* CheckList */,
 				AAE5B28527848557000B8B09 /* EditItemList */,
+			);
+			path = CheckAndEditItemListView;
+			sourceTree = "<group>";
+		};
+		AAC3DDDC2792ACE400983100 /* CheckList */ = {
+			isa = PBXGroup;
+			children = (
+				AAC3DDD62791AA4800983100 /* CheckListView.swift */,
 			);
 			path = CheckList;
 			sourceTree = "<group>";

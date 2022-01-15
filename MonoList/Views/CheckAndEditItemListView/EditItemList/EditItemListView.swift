@@ -8,29 +8,20 @@
 import SwiftUI
 
 struct EditItemListView: View {
-    
+    @Environment(\.editMode) private var editMode
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.dismiss) private var dismiss
-    @Environment(\.scenePhase) private var scenePhase
     
     @FetchRequest var items: FetchedResults<Item>
     
     var itemList: ItemList?
-    @State var editMode: EditMode = .inactive
-    @State var itemListName: String = ""
-    @State var itemListImage: String = "checklist"
-    @State var itemListColor: String = K.listColors.basic.green
     
-    @State var isSettingNotification = false
-    @FocusState var focusedItem: Focusable?
-    @FocusState var listNameTextFieldIsFocused: Bool
-    let checkAction: () -> Void
-    
-    var isNewItemList: Bool {
-        itemList!.name == K.defaultName.newItemList
+    var listNameTextFieldIsFocused: FocusState<Bool>.Binding
+    var focusedItem: FocusState<Focusable?>.Binding
+    var isEditing: Bool {
+        editMode?.wrappedValue == .active
     }
     
-    init(of itemList: ItemList, checkAction: @escaping () -> Void) {
+    init(of itemList: ItemList, listNameTextFieldIsFocused: FocusState<Bool>.Binding, focusedItem: FocusState<Focusable?>.Binding) {
         self.itemList = itemList
         
         _items = FetchRequest(
@@ -39,97 +30,30 @@ struct EditItemListView: View {
             ],
             predicate: NSPredicate(format: "parentItemList == %@", itemList)
         )
-        self.checkAction = checkAction
+        self.focusedItem = focusedItem
+        self.listNameTextFieldIsFocused = listNameTextFieldIsFocused
     }
     
     var body: some View {
         VStack(spacing: 0) {
-            let itemsIsEmpty = items.isEmpty
-            HStack {
-                Group {
-                    Image(systemName: itemListImage)
-                        .foregroundColor(Color(itemListColor))
-                    TextField("List Name", text: $itemListName, prompt: Text("List Name"))
-                        .focused($listNameTextFieldIsFocused)
-                        .submitLabel(itemsIsEmpty ? .return : .done)
-                        .onSubmit {
-                            listNameTextFieldIsFocused = true
-                            if itemsIsEmpty {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    withAnimation {
-                                        let newItem = addItem(name: "", order: 0)
-                                        focusedItem = .row(id: newItem.id.uuidString)
-                                    }
-                                }
-                            } else {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                                    listNameTextFieldIsFocused = false
-                                }
-                            }
-                            saveDataIfNeeded()
-                        }
-                }
-                .font(.title2.bold())
-                HStack(spacing: 20) {
-                    Button {
-                        isSettingNotification = true
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .padding()
-                    }
-                    .sheet(isPresented: $isSettingNotification) {
-                        if let itemList = itemList {
-                            NavigationView {
-                                EditItemListDetailView(itemList: itemList)
-                            }
-                        }
-                    }
-                    .buttonStyle(CircleButtonStyle(type: .primary))
-                    .disabled(editMode == .active || isNewItemList)
-                    Button {
-                        checkAction()
-                    } label: {
-                        Image(systemName: "checklist")
-                            .padding()
-                    }
-                    .buttonStyle(CircleButtonStyle(type: .primary))
-                    .disabled(editMode == .active || isNewItemList)
-                    Button {
-                        if itemListName.isEmpty && !items.isEmpty {
-                            print("アラート：List Nameを入力してください")
-                        } else {
-                            if let itemList = itemList {
-                                setValue(to: itemList)
-                            }
-                            dismiss()
-                        }
-                    } label: {
-                        Image(systemName: "xmark")
-                            .padding()
-                    }
-                    .buttonStyle(CircleButtonStyle(type: .cancel))
-                    .disabled(editMode == .active)
-                } //: HStack
-            } //: HStack
-            .padding()
             ZStack {
                 ScrollViewReader { proxy in
                     List {
                         Section {
                             ForEach(items) { item in
                                 EditItemCellView(item: item,
-                                focusedItem: $focusedItem,
+                                                 focusedItem: focusedItem,
                                 deleteAction: { item in
                                     if let index = items.firstIndex(of: item) {
                                         let isLastItem = (index == items.count-1)
                                         deleteItems(offsets: IndexSet(integer: index), animation: isLastItem ? .none : .default)
                                     }
                                 }, addAction: { item in
-                                    focusedItem = .row(id: item.id.uuidString)
+                                    focusedItem.wrappedValue = .row(id: item.id.uuidString)
                                     if let index = items.firstIndex(of: item) {
                                         withAnimation {
                                             let newItem = addItem(name: "", order: index+1)
-                                            focusedItem = .row(id: newItem.id.uuidString)
+                                            focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                                 withAnimation {
                                                     proxy.scrollTo(newItem, anchor: .bottom)
@@ -139,7 +63,7 @@ struct EditItemListView: View {
                                     }
                                 })
                                     .listRowSeparator(.visible)
-                                    .disabled(editMode == .active)
+                                    .disabled(isEditing)
                                     .swipeActions(edge: .trailing) {
                                         Button(role: .destructive) {
                                             if let index = items.firstIndex(of: item) {
@@ -168,12 +92,12 @@ struct EditItemListView: View {
                             Rectangle()
                                 .frame(height: 36)
                                 .foregroundColor(.clear)
-                                .listRowSeparator(.hidden, edges: itemsIsEmpty ? .all : .bottom)
+                                .listRowSeparator(.hidden, edges: items.isEmpty ? .all : .bottom)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
                                     withAnimation {
                                         let newItem = addItem(name: "", order: items.count)
-                                        focusedItem = .row(id: newItem.id.uuidString)
+                                        focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
                                     }
                                 }
                         } header: {
@@ -181,11 +105,11 @@ struct EditItemListView: View {
                                 Spacer()
                                 HStack(spacing: 12) {
                                     EditButtonView()
-                                        .environment(\.editMode, $editMode)
+                                        .environment(\.editMode, editMode)
                                     Button {
                                         withAnimation {
                                             let newItem = addItem(name: "", order: items.count)
-                                            focusedItem = .row(id: newItem.id.uuidString)
+                                            focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                                 withAnimation {
                                                     proxy.scrollTo(newItem, anchor: .bottom)
@@ -194,18 +118,19 @@ struct EditItemListView: View {
                                         }
                                     } label: {
                                         Image(systemName: "plus")
+                                            .imageScale(.large)
                                             .padding(4)
                                     }
-                                    .disabled(editMode == .active)
+                                    .disabled(isEditing)
                                 }
                             } //: HStack
                         } //: Section
                     } //: List
                     .listStyle(.plain)
-                    .opacity(itemsIsEmpty ? 0 : 1)
-                    .environment(\.editMode, $editMode)
+                    .opacity(items.isEmpty ? 0 : 1)
+                    .environment(\.editMode, editMode)
                 } //: ScrollViewReader
-                if itemsIsEmpty && !listNameTextFieldIsFocused {
+                if items.isEmpty && !listNameTextFieldIsFocused.wrappedValue {
                     Rectangle()
                         .foregroundColor(.clear)
                         .contentShape(Rectangle())
@@ -218,75 +143,18 @@ struct EditItemListView: View {
                         .onTapGesture {
                             withAnimation {
                                 let newItem = addItem(name: "", order: items.count)
-                                focusedItem = .row(id: newItem.id.uuidString)
+                                focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
                             }
                         }
                 }
             }
         } //: VStack
-        .onAppear {
-            itemListName = isNewItemList ? "" : itemList!.name
-            itemListImage = itemList!.image
-            itemListColor = itemList!.color
-            if isNewItemList {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    listNameTextFieldIsFocused = true
-                }
-            }
-        }
-        .onDisappear {
-            if let itemList = itemList {
-                let newAndUnEdited = (itemList.name == K.defaultName.newItemList) && items.isEmpty
-                if newAndUnEdited {
-                    withAnimation {
-                        viewContext.delete(itemList)
-                        saveData()
-                    }
-                } else {
-                    saveDataIfNeeded()
-                }
-            }
-        }
-        .onChange(of: scenePhase) { phase in
-            if phase == .background {
-                saveDataIfNeeded()
-            }
-        }
-        .onChange(of: focusedItem) { [focusedItem] newItem in
-            if let oldIndex = items.firstIndex(where: {
-                focusedItem == .row(id: $0.id.uuidString)
-            }), items[oldIndex].name.isEmpty {
-                let isLastItem = (oldIndex == items.count-1)
-                deleteItems(offsets: IndexSet(integer: oldIndex), animation: isLastItem ? .none : .default)
-            }
-        }
-    }
-    
-    private func saveDataIfNeeded() {
-        if let itemList = itemList {
-            setValue(to: itemList)
-            if viewContext.hasChanges {
-                //print("The item list has been updated")
-                itemList.updateDate = Date()
-                saveData()
-            }
-        }
-    }
-    
-    private func setValue(to itemList: ItemList) {
-        if !itemListName.isEmpty && itemList.name != itemListName {
-            itemList.name = itemListName
-        }
-        if itemList.image != itemListImage {
-            itemList.image = itemListImage
-        }
-        if itemList.color != itemListColor {
-            itemList.color = itemListColor
-        }
     }
     
     private func saveData() {
+        guard let itemList = itemList else { return }
         do {
+            itemList.updateDate = Date()
             try viewContext.save()
         } catch {
             let nsError = error as NSError
@@ -300,7 +168,7 @@ struct EditItemListView: View {
             items[index].order += 1
         }
         let newItem = itemList!.createNewItem(name: name, order: order, viewContext)
-        saveDataIfNeeded()
+        saveData()
         return newItem
     }
     
@@ -314,7 +182,7 @@ struct EditItemListView: View {
                     }
                 }
             }
-            saveDataIfNeeded()
+            saveData()
         }
     }
     
@@ -343,17 +211,21 @@ struct EditItemListView: View {
                     }
                     items[source].order = newOrder
                 }
-                saveDataIfNeeded()
+                saveData()
             }
         }
     }
 }
 
-//struct EditItemListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let context = PersistenceController.preview.container.viewContext
-//        let itemList = MonoListManager().fetchItemLists(context: context)[0]
-//        EditItemListView(of: itemList)
-//            .environment(\.managedObjectContext, context)
-//    }
-//}
+struct EditItemListView_Previews: PreviewProvider {
+    
+    @FocusState static var listNameTextFieldIsFocused: Bool
+    @FocusState static var focusedItem: Focusable?
+    
+    static var previews: some View {
+        let context = PersistenceController.preview.container.viewContext
+        let itemList = MonoListManager().fetchItemLists(context: context)[0]
+        EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem)
+            .environment(\.managedObjectContext, context)
+    }
+}
