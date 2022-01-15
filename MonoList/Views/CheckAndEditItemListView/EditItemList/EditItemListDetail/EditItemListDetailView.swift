@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct EditItemListDetailView: View {
-    @AppStorage("SelectedItemDetailTab") private var selectedTab: String = Tab.alarm.rawValue
     @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var itemList: ItemList
+    @State var selectedTab: String = Tab.alarm.rawValue
     
     enum Tab: String, CaseIterable, Identifiable {
         case alarm = "Alarm"

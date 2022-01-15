@@ -20,7 +20,7 @@ struct ItemListView: View {
     @State var itemListColor: String = K.listColors.basic.green
     @FocusState var listNameTextFieldIsFocused: Bool
     @FocusState var focusedItem: Focusable?
-    @State var isSettingNotification = false
+    @State var isShowingTab: EditItemListDetailView.Tab?
     
     var isNewItemList: Bool {
         itemList.name == K.defaultName.newItemList
@@ -62,34 +62,38 @@ struct ItemListView: View {
                 }
                 .font(.title2.bold())
                 HStack(spacing: 20) {
-                    Button {
-                        isSettingNotification = true
+                    Menu {
+                        Button {
+                            focusedItem = nil
+                            listNameTextFieldIsFocused = false
+                            withAnimation(.easeOut(duration: 0.2)) {
+                                isEditMode.toggle()
+                            }
+                        } label: {
+                            Label(isEditMode ? "Check" : "Edit", systemImage: isEditMode ? "checklist" : "pencil")
+                        }
+                        Button {
+                            isShowingTab = .alarm
+                        } label: {
+                            Label("Alarm", systemImage: "bell")
+                        }
+                        Button {
+                            isShowingTab = .info
+                        } label: {
+                            Label("Info", systemImage: "info.circle")
+                        }
                     } label: {
                         Image(systemName: "ellipsis")
                             .padding()
                     }
-                    .sheet(isPresented: $isSettingNotification) {
-                        if let itemList = itemList {
-                            NavigationView {
-                                EditItemListDetailView(itemList: itemList)
-                            }
-                        }
-                    }
-                    .buttonStyle(CircleButtonStyle(type: .primary))
+                    .imageScale(.medium)
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .frame(width: 36, height: 36, alignment: .center)
+                    .background(Color.accentColor)
+                    .foregroundColor(.white)
+                    .clipShape(Circle())
                     .disabled(isEditing || isNewItemList)
-                    Button {
-                        focusedItem = nil
-                        listNameTextFieldIsFocused = false
-                        withAnimation(.easeOut(duration: 0.2)) {
-                            isEditMode.toggle()
-                        }
-                    } label: {
-                        Image(systemName: isEditMode ? "checklist" : "pencil")
-                            .padding()
-                            .id(isEditMode)
-                    }
-                    .buttonStyle(CircleButtonStyle(type: .primary))
-                    .disabled(isEditing || isNewItemList)
+                    
                     Button {
                         if itemListName.isEmpty && !itemsIsEmpty {
                             print("アラート：List Nameを入力してください")
@@ -114,6 +118,13 @@ struct ItemListView: View {
                     .opacity(isEditMode ? 0 : 1)
             } //: ZStack
         } //: VStack
+        .sheet(item: $isShowingTab) { tab in
+            if let itemList = itemList {
+                NavigationView {
+                    EditItemListDetailView(itemList: itemList, selectedTab: tab.rawValue)
+                }
+            }
+        }
         .onAppear {
             itemListName = isNewItemList ? "" : itemList.name
             itemListImage = itemList.image

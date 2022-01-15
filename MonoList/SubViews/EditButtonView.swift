@@ -20,9 +20,9 @@ struct EditButtonView: View {
             }
         } label: {
             HStack(spacing: 4.0) {
-                Image(systemName: "slider.horizontal.3")
+                Image(systemName: "arrow.up.arrow.down")
                     .foregroundColor(isEditing ? .white : .accentColor)
-                Text("Edit")
+                Text("Sort")
                     .foregroundColor(.white)
                     .colorMultiply(sortButtonColor)
                     .onChange(of: isEditing) { isEditing in
