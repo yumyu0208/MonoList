@@ -26,61 +26,67 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                List {
-                    ForEach(folders) { folder in
-                        Section {
-                            ItemListsView(of: folder) { itemList in
-                                editItemListView = ItemListView(itemList: itemList, isEditMode: true)
-                                navigationLinkTag = editItemListTag
-                            }
-                            .environmentObject(manager)
-                        } header: {
-                            HStack(alignment: .center) {
-                                FolderSectionView(image: folder.image, title: folder.name)
-                                if folder.order == 0 {
-                                    EditButtonView()
-                                        .environment(\.editMode, $editMode)
+                VStack {
+                    HStack {
+                        Spacer()
+                        EditButtonView()
+                            .imageScale(.medium)
+                            .font(.subheadline.bold())
+                            .environment(\.editMode, $editMode)
+                    }
+                    .padding(.horizontal)
+                    .padding(.top)
+                    List {
+                        ForEach(folders) { folder in
+                            Section {
+                                ItemListsView(of: folder) { itemList in
+                                    editItemListView = ItemListView(itemList: itemList, isEditMode: true)
+                                    navigationLinkTag = editItemListTag
                                 }
-                            }
-                        } //: Section
-                    } //: ForEach
-                } //: List
-                .navigationTitle(Text("MONOLIST"))
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    let isEditing = (editMode == .active)
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            isSortingFolders = true
-                        } label: {
-                            Label("Folders", systemImage: "folder")
-                        }
-                        .disabled(isEditing)
-                        .sheet(isPresented: $isSortingFolders) {
-                            SortFoldersView()
                                 .environmentObject(manager)
-                        }
-                    } //: ToolBarItem
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            let newItemList = addItemList(order: folders.first!.itemLists?.count ?? 0)
-                            saveData()
-                            editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
-                            navigationLinkTag = editItemListTag
-                        }) {
-                            Label("Add Item List", systemImage: "plus")
-                        }
-                        .disabled(isEditing)
-                        Button {
-                            
-                        } label: {
-                            Label("Settings", systemImage: "gearshape")
-                        }
-                        .disabled(isEditing)
-                    } //: ToolBarItemGroup
-                }
-                .listStyle(.insetGrouped)
-                .environment(\.editMode, $editMode)
+                            } header: {
+                                FolderSectionView(image: folder.image, title: folder.name)
+                            } //: Section
+                        } //: ForEach
+                    } //: List
+                    .listStyle(.sidebar)
+                    .navigationTitle(Text("MONOLIST"))
+                    .navigationBarTitleDisplayMode(.inline)
+                    .environment(\.editMode, $editMode)
+                    .toolbar {
+                        let isEditing = (editMode == .active)
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button {
+                                isSortingFolders = true
+                            } label: {
+                                Label("Folders", systemImage: "folder")
+                            }
+                            .disabled(isEditing)
+                            .sheet(isPresented: $isSortingFolders) {
+                                SortFoldersView()
+                                    .environmentObject(manager)
+                            }
+                        } //: ToolBarItem
+                        ToolbarItemGroup(placement: .navigationBarTrailing) {
+                            Button(action: {
+                                let newItemList = addItemList(order: folders.first!.itemLists?.count ?? 0)
+                                saveData()
+                                editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
+                                navigationLinkTag = editItemListTag
+                            }) {
+                                Label("Add Item List", systemImage: "plus")
+                            }
+                            .disabled(isEditing)
+                            Button {
+                                
+                            } label: {
+                                Label("Settings", systemImage: "gearshape")
+                            }
+                            .disabled(isEditing)
+                        } //: ToolBarItemGroup
+                    }
+                } //: VStack
+                .background(Color(UIColor.systemGroupedBackground))
                 NavigationLink(tag: editItemListTag,
                                selection: $navigationLinkTag) {
                     editItemListView

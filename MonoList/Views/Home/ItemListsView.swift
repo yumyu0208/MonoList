@@ -30,33 +30,35 @@ struct ItemListsView: View {
     
     var body: some View {
         ForEach(itemLists) { itemList in
-            ItemListCellView(itemList: itemList) {
-                editAction(itemList)
-            } duplicateAction: {
-                duplicateItemList(itemList)
-            } changeFolderAction: {
-                movingItemList = itemList
-            } showInfoAction: {
-                showingInfoItemList = itemList
-            } deleteAction: {
-                if let index = itemLists.firstIndex(of: itemList) {
-                    deleteItemLists(offsets: IndexSet(integer: index))
-                }
-            }
-            .sheet(item: $showingInfoItemList) { itemList in
-                NavigationView {
-                    AllInfoView(itemList: itemList)
-                }
-            }
-            .sheet(item: $movingItemList) { itemList in
-                NavigationView {
-                    SelectDestinationView(itemList: itemList) { itemList, destinationFolder in
-                        moveItemList(itemList, to: destinationFolder)
+            if !itemList.isFault && !itemList.isDeleted {
+                ItemListCellView(itemList: itemList) {
+                    editAction(itemList)
+                } duplicateAction: {
+                    duplicateItemList(itemList)
+                } changeFolderAction: {
+                    movingItemList = itemList
+                } showInfoAction: {
+                    showingInfoItemList = itemList
+                } deleteAction: {
+                    if let index = itemLists.firstIndex(of: itemList) {
+                        deleteItemLists(offsets: IndexSet(integer: index))
                     }
-                    .environmentObject(manager)
+                }
+                .sheet(item: $showingInfoItemList) { itemList in
+                    NavigationView {
+                        AllInfoView(itemList: itemList)
+                    }
+                }
+                .sheet(item: $movingItemList) { itemList in
+                    NavigationView {
+                        SelectDestinationView(itemList: itemList) { itemList, destinationFolder in
+                            moveItemList(itemList, to: destinationFolder)
+                        }
+                        .environmentObject(manager)
+                    }
                 }
             }
-        }
+        } //: ForEach
         .onDelete(perform: deleteItemLists)
         .onMove(perform: moveitemList)
     }

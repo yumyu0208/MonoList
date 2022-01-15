@@ -55,7 +55,10 @@ struct SortFoldersView: View {
                         HStack(alignment: .center) {
                             Spacer()
                             EditButtonView()
+                                .imageScale(.medium)
+                                .font(.subheadline.bold())
                                 .environment(\.editMode, $editMode)
+                                .textCase(nil)
                         }
                     } //: Section
                 } //: List

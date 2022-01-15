@@ -41,50 +41,52 @@ struct EditItemListView: View {
                     List {
                         Section {
                             ForEach(items) { item in
-                                EditItemCellView(item: item,
-                                                 focusedItem: focusedItem,
-                                deleteAction: { item in
-                                    if let index = items.firstIndex(of: item) {
-                                        let isLastItem = (index == items.count-1)
-                                        deleteItems(offsets: IndexSet(integer: index), animation: isLastItem ? .none : .default)
-                                    }
-                                }, addAction: { item in
-                                    focusedItem.wrappedValue = .row(id: item.id.uuidString)
-                                    if let index = items.firstIndex(of: item) {
-                                        withAnimation {
-                                            let newItem = addItem(name: "", order: index+1)
-                                            focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                                withAnimation {
-                                                    proxy.scrollTo(newItem, anchor: .bottom)
+                                if !item.isFault && !item.isDeleted {
+                                    EditItemCellView(item: item,
+                                                     focusedItem: focusedItem,
+                                    deleteAction: { item in
+                                        if let index = items.firstIndex(of: item) {
+                                            let isLastItem = (index == items.count-1)
+                                            deleteItems(offsets: IndexSet(integer: index), animation: isLastItem ? .none : .default)
+                                        }
+                                    }, addAction: { item in
+                                        focusedItem.wrappedValue = .row(id: item.id.uuidString)
+                                        if let index = items.firstIndex(of: item) {
+                                            withAnimation {
+                                                let newItem = addItem(name: "", order: index+1)
+                                                focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                                    withAnimation {
+                                                        proxy.scrollTo(newItem, anchor: .bottom)
+                                                    }
                                                 }
                                             }
                                         }
-                                    }
-                                })
-                                    .listRowSeparator(.visible)
-                                    .disabled(isEditing)
-                                    .swipeActions(edge: .trailing) {
-                                        Button(role: .destructive) {
-                                            if let index = items.firstIndex(of: item) {
-                                                deleteItems(offsets: IndexSet(integer: index))
+                                    })
+                                        .listRowSeparator(.visible)
+                                        .disabled(isEditing)
+                                        .swipeActions(edge: .trailing) {
+                                            Button(role: .destructive) {
+                                                if let index = items.firstIndex(of: item) {
+                                                    deleteItems(offsets: IndexSet(integer: index))
+                                                }
+                                            } label: {
+                                                Label("Delete", systemImage: "trash")
                                             }
-                                        } label: {
-                                            Label("Delete", systemImage: "trash")
                                         }
-                                    }
-                                    .swipeActions(edge: .leading) {
-                                        Button {
-                                            withAnimation {
-                                                item.isImportant.toggle()
+                                        .swipeActions(edge: .leading) {
+                                            Button {
+                                                withAnimation {
+                                                    item.isImportant.toggle()
+                                                }
+                                            } label: {
+                                                Label("Frag", systemImage: "exclamationmark")
                                             }
-                                        } label: {
-                                            Label("Frag", systemImage: "exclamationmark")
+                                            .tint(.orange)
                                         }
-                                        .tint(.orange)
-                                    }
-                                    .id(item)
-                            }
+                                        .id(item)
+                                }
+                            } //: ForEach
                             .onDelete(perform: { indexSet in
                                 deleteItems(offsets: indexSet)
                             })
