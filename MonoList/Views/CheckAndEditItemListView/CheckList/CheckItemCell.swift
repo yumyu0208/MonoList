@@ -10,25 +10,59 @@ import SwiftUI
 struct CheckItemCell: View {
     
     @ObservedObject var item: Item
+    @State private var isOn: Bool = false
+    @State private var timer: Timer? = Timer()
     
     var body: some View {
         HStack(alignment: .top) {
-            Toggle("Complete Item", isOn: $item.isCompleted)
+            Toggle("Complete Item", isOn: $isOn)
                 .toggleStyle(.checkmark)
             VStack(spacing: 0) {
-                HStack {
-                    Text(item.name)
-                        .font(.title3)
-                        .foregroundStyle(item.isCompleted ? .secondary : .primary)
-                        .padding(.vertical, 6.5)
-                        .animation(.easeOut(duration: 0.2), value: item.isCompleted)
+                HStack(alignment: .top) {
+                    if item.isImportant {
+                        Image(systemName: "exclamationmark")
+                            .foregroundStyle(.red)
+                    }
+                    if item.quantity <= 1 {
+                        Text(item.name)
+                            .foregroundStyle(.primary)
+                    } else {
+                        Text("\(item.name) × \(item.quantity)")
+                            .foregroundStyle(.primary)
+                    }
                     Spacer()
+                } //: HStack
+                .font(.title3)
+                .padding(.vertical, 6.5)
+                if let note = item.note {
+                    HStack {
+                        Text(note)
+                            .font(.body)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                    }
                 }
-            }
+            } //: VStack
+            .opacity(isOn ? 0.4 : 1)
         } //: HStack
         .contentShape(Rectangle())
+        .onAppear {
+            isOn = item.isCompleted
+        }
         .onTapGesture {
-            item.isCompleted.toggle()
+            isOn.toggle()
+        }
+        .onChange(of: isOn) { isOn in
+            if isOn {
+                timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+                    item.isCompleted = true
+                }
+            } else {
+                if let timer = timer {
+                    timer.invalidate()
+                }
+                item.isCompleted = false
+            }
         }
     }
 }

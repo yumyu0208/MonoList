@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ItemListView: View {
+    @AppStorage(K.key.showCompleted) var showCompleted = true
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
@@ -100,6 +101,11 @@ struct ItemListView: View {
                                 Label(isEditMode ? "Check" : "Edit", systemImage: isEditMode ? "checklist" : "pencil")
                             }
                             Button {
+                                showCompleted.toggle()
+                            } label: {
+                                Label(showCompleted ? "Hide Completed" : "Show Completed", systemImage: showCompleted ? "eye.slash" : "eye")
+                            }
+                            Button {
                                 isShowingTab = .info
                             } label: {
                                 Label("Info", systemImage: "info.circle")
@@ -124,7 +130,7 @@ struct ItemListView: View {
                 EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem)
                     .opacity(isEditMode ? 1 : 0)
                     .environment(\.editMode, $editMode)
-                CheckListView(of: itemList)
+                CheckListView(of: itemList, showCompleted: showCompleted)
                     .opacity(isEditMode ? 0 : 1)
             } //: ZStack
             .tint(Color(itemList.color))

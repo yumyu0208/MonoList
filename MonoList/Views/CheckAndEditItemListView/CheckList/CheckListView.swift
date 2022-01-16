@@ -12,24 +12,27 @@ struct CheckListView: View {
     let itemList: ItemList
     @FetchRequest var items: FetchedResults<Item>
     
-    init(of itemList: ItemList) {
+    init(of itemList: ItemList, showCompleted: Bool) {
         self.itemList = itemList
+        
+        let predicateFormat = showCompleted ? "parentItemList == %@" : "parentItemList == %@ && isCompleted == NO"
         
         _items = FetchRequest(
             sortDescriptors: [
                 SortDescriptor(\.order, order: .forward)
             ],
-            predicate: NSPredicate(format: "parentItemList == %@", itemList)
+            predicate: NSPredicate(format: predicateFormat, itemList),
+            animation: .default
         )
     }
     
     var body: some View {
         ScrollView {
-            LazyVStack(spacing: 20) {
+            VStack(spacing: 20) {
                 ForEach(items) { item in
                     CheckItemCell(item: item)
                 } //: VStack
-            } //: LazyVStack
+            } //: VStack
             .padding()
         } //: ScrollView
     }
@@ -48,7 +51,7 @@ struct CheckListView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
-        CheckListView(of: itemList)
+        CheckListView(of: itemList, showCompleted: true)
             .environment(\.managedObjectContext, context)
     }
 }

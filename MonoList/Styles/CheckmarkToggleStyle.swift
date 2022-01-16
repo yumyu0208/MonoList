@@ -27,6 +27,7 @@ struct CheckmarkToggleStyle: ToggleStyle {
                                                    lineJoin: .round))
                         .foregroundStyle(.tertiary)
                         .opacity(configuration.isOn ? 0 : 1)
+                        .animation(.easeOut(duration: 0.2), value: configuration.isOn)
                     // Complete Circle
                     Circle()
                         .stroke(style: StrokeStyle(lineWidth: 1.2,
@@ -34,11 +35,12 @@ struct CheckmarkToggleStyle: ToggleStyle {
                                                    lineJoin: .round))
                         .foregroundStyle(.tint)
                         .opacity(configuration.isOn ? 1 : 0)
+                        .animation(.easeOut(duration: 0.2), value: configuration.isOn)
                     Circle()
                         .foregroundStyle(.tint)
                         .scaleEffect(configuration.isOn ? 1 : 0)
                         .padding(2.4)
-                        .animation(.interpolatingSpring(stiffness: 170, damping: 15),
+                        .animation(.interpolatingSpring(mass: 1.0, stiffness: 170, damping: 15, initialVelocity: 1.0),
                                    value: configuration.isOn)
                 }
             )
