@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct EditAlarmView: View {
+struct AlarmView: View {
     
+    @Environment(\.dismiss) private var dismiss
     @State private var editMode: EditMode = .active
     @ObservedObject var itemList: ItemList
     
@@ -20,6 +21,19 @@ struct EditAlarmView: View {
             }
             .padding()
         } //: ScrollView
+        .navigationTitle("Alarm")
+        .navigationBarTitleDisplayMode(.inline)
+        .background(Color(UIColor.systemGroupedBackground))
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                }
+                .buttonStyle(CircleButtonStyle(type: .cancel))
+            }
+        }
     }
 }
 
@@ -27,7 +41,7 @@ struct EditAlarmView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
-        EditAlarmView(itemList: itemList)
+        AlarmView(itemList: itemList)
             .environment(\.managedObjectContext, context)
     }
 }

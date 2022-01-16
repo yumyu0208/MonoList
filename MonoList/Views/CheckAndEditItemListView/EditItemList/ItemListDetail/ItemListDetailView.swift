@@ -7,14 +7,13 @@
 
 import SwiftUI
 
-struct EditItemListDetailView: View {
+struct ItemListDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var itemList: ItemList
-    @State var selectedTab: String = Tab.alarm.rawValue
+    @State var selectedTab: String = Tab.info.rawValue
     
     enum Tab: String, CaseIterable, Identifiable {
-        case alarm = "Alarm"
         case weight = "Weight"
         case info = "Info"
         
@@ -25,15 +24,13 @@ struct EditItemListDetailView: View {
         VStack(spacing: 0) {
             Picker("Tab",
                    selection: $selectedTab.animation(.linear)) {
-                ForEach([Tab.alarm, Tab.info]) { tab in
+                ForEach([Tab.info]) { tab in
                     Text(tab.rawValue)
                 }
             }
             .pickerStyle(.segmented)
             .padding()
             TabView(selection: $selectedTab.animation(.linear)) {
-                EditAlarmView(itemList: itemList)
-                    .tag(Tab.alarm.rawValue)
                 //WeightView(itemList: itemList).tag(Tab.weight.rawValue)
                 InfoView(itemList: itemList)
                     .tag(Tab.info.rawValue)
@@ -75,12 +72,12 @@ struct EditItemListDetailView: View {
     }
 }
 
-struct EditItemListDetailView_Previews: PreviewProvider {
+struct ItemListDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
         NavigationView {
-            EditItemListDetailView(itemList: itemList)
+            ItemListDetailView(itemList: itemList)
                 .environment(\.managedObjectContext, context)
         }
     }

@@ -35,7 +35,7 @@
 		AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750BC278D3E5E00540BA0 /* OthersGroupBoxView.swift */; };
 		AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750BE278D3F0D00540BA0 /* ListTitleView.swift */; };
 		AA8750C1278D518900540BA0 /* ExpandToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */; };
-		AA8750C5278DAB5C00540BA0 /* EditItemListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750C4278DAB5C00540BA0 /* EditItemListDetailView.swift */; };
+		AA8750C5278DAB5C00540BA0 /* ItemListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750C4278DAB5C00540BA0 /* ItemListDetailView.swift */; };
 		AA8750C8278DB1FA00540BA0 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750C7278DB1FA00540BA0 /* DateExtension.swift */; };
 		AA8750CA278DB70000540BA0 /* NotificationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750C9278DB70000540BA0 /* NotificationListView.swift */; };
 		AA8BD47A278DD3D300488027 /* WhiteGroupBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8BD479278DD3D300488027 /* WhiteGroupBoxStyle.swift */; };
@@ -44,7 +44,7 @@
 		AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */; };
 		AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9BD52278136D70055CD85 /* FolderSectionView.swift */; };
 		AAC3DDBE278F080600983100 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */; };
-		AAC3DDC1278FDBC600983100 /* EditAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC0278FDBC600983100 /* EditAlarmView.swift */; };
+		AAC3DDC1278FDBC600983100 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC0278FDBC600983100 /* AlarmView.swift */; };
 		AAC3DDC3278FDFC100983100 /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC2278FDFC100983100 /* WeightView.swift */; };
 		AAC3DDC5278FE0BA00983100 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC4278FE0BA00983100 /* InfoView.swift */; };
 		AAC3DDC8278FE97200983100 /* SelectDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC7278FE97200983100 /* SelectDestinationView.swift */; };
@@ -56,6 +56,8 @@
 		AAC3DDD72791AA4800983100 /* CheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDD62791AA4800983100 /* CheckListView.swift */; };
 		AAC3DDDB2791D68A00983100 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDDA2791D68A00983100 /* ItemListView.swift */; };
 		AAC3DDDE2793056600983100 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDDD2793056500983100 /* UINavigationControllerExtension.swift */; };
+		AAC3DDE227940EAD00983100 /* CheckmarkToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */; };
+		AAC3DDE42794408A00983100 /* CheckItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDE32794408A00983100 /* CheckItemCell.swift */; };
 		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAE293512781C5780010F093 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditButtonView.swift */; };
 		AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B28627852F98000B8B09 /* EditItemCellView.swift */; };
@@ -91,7 +93,7 @@
 		AA8750BC278D3E5E00540BA0 /* OthersGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersGroupBoxView.swift; sourceTree = "<group>"; };
 		AA8750BE278D3F0D00540BA0 /* ListTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTitleView.swift; sourceTree = "<group>"; };
 		AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandToggleStyle.swift; sourceTree = "<group>"; };
-		AA8750C4278DAB5C00540BA0 /* EditItemListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemListDetailView.swift; sourceTree = "<group>"; };
+		AA8750C4278DAB5C00540BA0 /* ItemListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDetailView.swift; sourceTree = "<group>"; };
 		AA8750C7278DB1FA00540BA0 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		AA8750C9278DB70000540BA0 /* NotificationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListView.swift; sourceTree = "<group>"; };
 		AA8BD479278DD3D300488027 /* WhiteGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteGroupBoxStyle.swift; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 		AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListsView.swift; sourceTree = "<group>"; };
 		AAB9BD52278136D70055CD85 /* FolderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSectionView.swift; sourceTree = "<group>"; };
 		AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
-		AAC3DDC0278FDBC600983100 /* EditAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlarmView.swift; sourceTree = "<group>"; };
+		AAC3DDC0278FDBC600983100 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		AAC3DDC2278FDFC100983100 /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
 		AAC3DDC4278FE0BA00983100 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		AAC3DDC7278FE97200983100 /* SelectDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDestinationView.swift; sourceTree = "<group>"; };
@@ -112,6 +114,8 @@
 		AAC3DDD62791AA4800983100 /* CheckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListView.swift; sourceTree = "<group>"; };
 		AAC3DDDA2791D68A00983100 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
 		AAC3DDDD2793056500983100 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
+		AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkToggleStyle.swift; sourceTree = "<group>"; };
+		AAC3DDE32794408A00983100 /* CheckItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckItemCell.swift; sourceTree = "<group>"; };
 		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAE293502781C5780010F093 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
 		AAE5B28627852F98000B8B09 /* EditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemCellView.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				AA82C056277EF105001CEFFA /* CircleButtonStyle.swift */,
 				AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */,
 				AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */,
+				AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */,
 				AA8BD479278DD3D300488027 /* WhiteGroupBoxStyle.swift */,
 			);
 			path = Styles;
@@ -244,6 +249,7 @@
 		AAC3DDBF278F0E8000983100 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				AAC3DDC0278FDBC600983100 /* AlarmView.swift */,
 				AA8750B8278D3D5D00540BA0 /* NotificationsGroupBoxView.swift */,
 				AA8750C9278DB70000540BA0 /* NotificationListView.swift */,
 				AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */,
@@ -259,15 +265,14 @@
 			path = SelectDestination;
 			sourceTree = "<group>";
 		};
-		AAC3DDC927906B2400983100 /* EditItemListDetail */ = {
+		AAC3DDC927906B2400983100 /* ItemListDetail */ = {
 			isa = PBXGroup;
 			children = (
-				AA8750C4278DAB5C00540BA0 /* EditItemListDetailView.swift */,
-				AAC3DDC0278FDBC600983100 /* EditAlarmView.swift */,
+				AA8750C4278DAB5C00540BA0 /* ItemListDetailView.swift */,
 				AAC3DDC2278FDFC100983100 /* WeightView.swift */,
 				AAC3DDC4278FE0BA00983100 /* InfoView.swift */,
 			);
-			path = EditItemListDetail;
+			path = ItemListDetail;
 			sourceTree = "<group>";
 		};
 		AAC3DDCA27906B4000983100 /* EditItemDetail */ = {
@@ -293,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				AAC3DDD62791AA4800983100 /* CheckListView.swift */,
+				AAC3DDE32794408A00983100 /* CheckItemCell.swift */,
 			);
 			path = CheckList;
 			sourceTree = "<group>";
@@ -341,7 +347,7 @@
 				AAC3DDD12791A0F100983100 /* WeightLabelView.swift */,
 				AAC3DDD32791A19F00983100 /* QuantityLabelView.swift */,
 				AAC3DDCA27906B4000983100 /* EditItemDetail */,
-				AAC3DDC927906B2400983100 /* EditItemListDetail */,
+				AAC3DDC927906B2400983100 /* ItemListDetail */,
 				AAC3DDBF278F0E8000983100 /* Notification */,
 			);
 			path = EditItemList;
@@ -432,9 +438,10 @@
 				AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */,
 				AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */,
 				AAC3DDC8278FE97200983100 /* SelectDestinationView.swift in Sources */,
-				AAC3DDC1278FDBC600983100 /* EditAlarmView.swift in Sources */,
+				AAC3DDC1278FDBC600983100 /* AlarmView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,
+				AAC3DDE227940EAD00983100 /* CheckmarkToggleStyle.swift in Sources */,
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
 				AA8BD47A278DD3D300488027 /* WhiteGroupBoxStyle.swift in Sources */,
 				AAC3DDDB2791D68A00983100 /* ItemListView.swift in Sources */,
@@ -447,10 +454,11 @@
 				AA82C054277EA2B8001CEFFA /* EditFolderView.swift in Sources */,
 				AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */,
 				AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */,
-				AA8750C5278DAB5C00540BA0 /* EditItemListDetailView.swift in Sources */,
+				AA8750C5278DAB5C00540BA0 /* ItemListDetailView.swift in Sources */,
 				AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */,
 				AAC3DDD02791978D00983100 /* DoubleExtension.swift in Sources */,
 				AA8750B1278C4DAD00540BA0 /* AllInfoView.swift in Sources */,
+				AAC3DDE42794408A00983100 /* CheckItemCell.swift in Sources */,
 				AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */,
 				AAC3DDCE27911E4D00983100 /* SelectCategoryView.swift in Sources */,
 				AAC3DDD72791AA4800983100 /* CheckListView.swift in Sources */,

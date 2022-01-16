@@ -12,11 +12,17 @@ struct EditButtonView: View {
     @Environment(\.editMode) var editMode
     @State var sortButtonColor: Color = .accentColor
     
+    var action: (() -> Void)?
+    
     var body: some View {
         let isEditing = (editMode?.wrappedValue == .active)
         Button {
             withAnimation {
-                editMode?.wrappedValue = isEditing ? .inactive : .active
+                if let action = action {
+                    action()
+                } else {
+                    editMode?.wrappedValue = isEditing ? .inactive : .active
+                }
             }
         } label: {
             HStack(spacing: 4.0) {

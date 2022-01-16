@@ -25,36 +25,9 @@ struct CheckListView: View {
     
     var body: some View {
         ScrollView {
-            LazyVStack {
+            LazyVStack(spacing: 20) {
                 ForEach(items) { item in
-                    let isComplete = (item.state == K.state.complete)
-                    VStack {
-                        HStack(alignment: .center) {
-                            Button {
-                                item.state = isComplete ? K.state.incomplete : K.state.complete
-                                saveData()
-                            } label: {
-                                ZStack {
-                                    Image(systemName: "square")
-                                        .imageScale(.large)
-                                        .foregroundColor(.primary)
-                                    Image(systemName: "checkmark")
-                                        .imageScale(.small)
-                                        .foregroundColor(.accentColor)
-                                        .opacity(isComplete ? 1 : 0)
-                                        .animation(.easeOut(duration: 0.2), value: isComplete)
-                                }
-                            }
-                            Text(item.name)
-                            Spacer()
-                        } //: HStack
-                        .font(.title3)
-                        .padding(.horizontal)
-                        .padding(.vertical, 4)
-                        Rectangle()
-                            .frame(height: 1)
-                            .foregroundColor(.primary)
-                    } //: VStack
+                    CheckItemCell(item: item)
                 } //: VStack
             } //: LazyVStack
             .padding()

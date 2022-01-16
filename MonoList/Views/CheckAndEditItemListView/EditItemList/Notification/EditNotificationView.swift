@@ -37,7 +37,7 @@ struct EditNotificationView: View {
                                     .foregroundColor(.primary)
                                 Spacer()
                                 Image(systemName: "checkmark")
-                                    .font(.footnote.bold())
+                                    .font(.headline)
                                     .opacity(isSelected ? 1 : 0)
                                     .animation(.easeOut(duration: 0.2), value: isSelected)
                             }

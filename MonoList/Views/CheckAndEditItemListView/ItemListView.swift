@@ -20,7 +20,8 @@ struct ItemListView: View {
     @State var itemListColor: String = K.listColors.basic.green
     @FocusState var listNameTextFieldIsFocused: Bool
     @FocusState var focusedItem: Focusable?
-    @State var isShowingTab: EditItemListDetailView.Tab?
+    @State var isShowingTab: ItemListDetailView.Tab?
+    @State var isShowingEditNotification = false
     
     var isNewItemList: Bool {
         itemList.name == K.defaultName.newItemList
@@ -82,30 +83,32 @@ struct ItemListView: View {
                 }
                 .font(.title2.bold())
                 HStack(spacing: 20) {
-                    Menu {
+                    Group {
                         Button {
-                            focusedItem = nil
-                            listNameTextFieldIsFocused = false
-                            withAnimation(.easeOut(duration: 0.2)) {
-                                isEditMode.toggle()
+                            isShowingEditNotification = true
+                        } label: {
+                            Image(systemName: itemList.notificationIsActive ? "bell" : "bell.slash")
+                        }
+                        Menu {
+                            Button {
+                                focusedItem = nil
+                                listNameTextFieldIsFocused = false
+                                withAnimation(.easeOut(duration: 0.2)) {
+                                    isEditMode.toggle()
+                                }
+                            } label: {
+                                Label(isEditMode ? "Check" : "Edit", systemImage: isEditMode ? "checklist" : "pencil")
+                            }
+                            Button {
+                                isShowingTab = .info
+                            } label: {
+                                Label("Info", systemImage: "info.circle")
                             }
                         } label: {
-                            Label(isEditMode ? "Check" : "Edit", systemImage: isEditMode ? "checklist" : "pencil")
+                            Image(systemName: "ellipsis")
+                                .padding()
                         }
-                        Button {
-                            isShowingTab = .alarm
-                        } label: {
-                            Label("Alarm", systemImage: "bell")
-                        }
-                        Button {
-                            isShowingTab = .info
-                        } label: {
-                            Label("Info", systemImage: "info.circle")
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .padding()
-                    }
+                    } //: Group
                     .imageScale(.medium)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .frame(width: 36, height: 36, alignment: .center)
@@ -150,7 +153,14 @@ struct ItemListView: View {
         .sheet(item: $isShowingTab) { tab in
             if let itemList = itemList {
                 NavigationView {
-                    EditItemListDetailView(itemList: itemList, selectedTab: tab.rawValue)
+                    ItemListDetailView(itemList: itemList, selectedTab: tab.rawValue)
+                }
+            }
+        }
+        .sheet(isPresented: $isShowingEditNotification) {
+            if let itemList = itemList {
+                NavigationView {
+                    AlarmView(itemList: itemList)
                 }
             }
         }
@@ -181,7 +191,8 @@ struct ItemListView: View {
             }
         }
         .onChange(of: focusedItem) { [focusedItem] newItem in
-            guard let items = itemList.items?.allObjects as? [Item] else { return }
+            guard var items = itemList.items?.allObjects as? [Item] else { return }
+            items.sort(by: { $0.order < $1.order })
             if let oldIndex = items.firstIndex(where: {
                 focusedItem == .row(id: $0.id.uuidString)
             }), items[oldIndex].name.isEmpty {

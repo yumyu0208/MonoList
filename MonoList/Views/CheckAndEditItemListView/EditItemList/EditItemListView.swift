@@ -97,16 +97,21 @@ struct EditItemListView: View {
                                 .listRowSeparator(.hidden, edges: items.isEmpty ? .all : .bottom)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
-                                    withAnimation {
-                                        let newItem = addItem(name: "", order: items.count)
-                                        focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
+                                    if !isEditing {
+                                        withAnimation {
+                                            let newItem = addItem(name: "", order: items.count)
+                                            focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
+                                        }
                                     }
                                 }
                         } header: {
                             HStack {
                                 Spacer()
                                 HStack(spacing: 12) {
-                                    EditButtonView()
+                                    EditButtonView() {
+                                        listNameTextFieldIsFocused.wrappedValue = false
+                                        editMode?.wrappedValue = isEditing ? .inactive : .active
+                                    }
                                         .environment(\.editMode, editMode)
                                         .disabled(items.count == 1)
                                     Button {
@@ -142,10 +147,14 @@ struct EditItemListView: View {
                         .foregroundColor(.clear)
                         .contentShape(Rectangle())
                         .overlay {
-                            Text("No Items")
-                                .font(.title3)
-                                .foregroundColor(Color(UIColor.tertiaryLabel))
-                                .offset(y: -28)
+                            VStack(spacing: 8) {
+                                Image(systemName: "tray")
+                                    .font(.largeTitle)
+                                Text("No Items")
+                                    .font(.title3)
+                            }
+                            .foregroundColor(Color(UIColor.tertiaryLabel))
+                            .offset(y: -28)
                         }
                         .onTapGesture {
                             withAnimation {
