@@ -41,6 +41,18 @@ struct ItemListView: View {
         }
     }
     
+    var edgePanGesture: some Gesture {
+        DragGesture()
+            .onChanged { gesture in
+                let xLength = gesture.startLocation.x - gesture.location.x
+                let yLength = gesture.startLocation.y - gesture.location.y
+                let slope = abs(yLength/xLength)
+                if gesture.startLocation.x <= 20, slope < 1, xLength <= -40 {
+                    print("アラート：List Nameを入力してください")
+                }
+            }
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -115,6 +127,7 @@ struct ItemListView: View {
         .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .gesture((itemListName.isEmpty && !itemsIsEmpty) ? edgePanGesture : nil)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {

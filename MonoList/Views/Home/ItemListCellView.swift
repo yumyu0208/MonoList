@@ -18,7 +18,7 @@ struct ItemListCellView: View {
     
     var body: some View {
         NavigationLink {
-            ItemListView(itemList: itemList, isEditMode: false)
+            ItemListView(itemList: itemList, isEditMode: !itemList.hasItems)
         } label: {
             Label {
                 Text(itemList.name)
