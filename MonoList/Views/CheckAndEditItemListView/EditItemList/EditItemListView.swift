@@ -73,6 +73,7 @@ struct EditItemListView: View {
                                             } label: {
                                                 Label("Delete", systemImage: "trash")
                                             }
+                                            .tint(.red)
                                         }
                                         .swipeActions(edge: .leading) {
                                             Button {
@@ -130,6 +131,7 @@ struct EditItemListView: View {
                                         }
                                     } label: {
                                         Image(systemName: "plus")
+                                            .foregroundColor(.accentColor)
                                             .imageScale(.large)
                                             .padding(4)
                                     }

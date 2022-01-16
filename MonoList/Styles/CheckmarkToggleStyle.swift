@@ -25,11 +25,17 @@ struct CheckmarkToggleStyle: ToggleStyle {
                         .stroke(style: StrokeStyle(lineWidth: 1.2,
                                                    lineCap: .round,
                                                    lineJoin: .round))
-                        .foregroundColor(configuration.isOn ? .accentColor : Color(UIColor.tertiaryLabel))
-                        //.opacity(configuration.isOn ? 0 : 1)
+                        .foregroundStyle(.tertiary)
+                        .opacity(configuration.isOn ? 0 : 1)
                     // Complete Circle
                     Circle()
-                        .foregroundColor(.accentColor)
+                        .stroke(style: StrokeStyle(lineWidth: 1.2,
+                                                   lineCap: .round,
+                                                   lineJoin: .round))
+                        .foregroundStyle(.tint)
+                        .opacity(configuration.isOn ? 1 : 0)
+                    Circle()
+                        .foregroundStyle(.tint)
                         .scaleEffect(configuration.isOn ? 1 : 0)
                         .padding(2.4)
                         .animation(.interpolatingSpring(stiffness: 170, damping: 15),
@@ -52,6 +58,7 @@ struct ContainerView: View {
     var body: some View {
         Toggle("Item Name", isOn: $isOn)
             .toggleStyle(.checkmark)
+            .tint(.blue)
         .padding()
         .previewLayout(.sizeThatFits)
     }

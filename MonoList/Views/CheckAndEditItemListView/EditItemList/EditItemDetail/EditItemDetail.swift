@@ -191,6 +191,7 @@ struct EditItemDetail: View {
                         focusedField = nil
                     } label: {
                         Text("Done")
+                            .foregroundColor(.accentColor)
                             .fontWeight(.bold)
                     }
                 }

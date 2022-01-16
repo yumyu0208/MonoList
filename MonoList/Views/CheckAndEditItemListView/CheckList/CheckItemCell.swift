@@ -19,7 +19,9 @@ struct CheckItemCell: View {
                 HStack {
                     Text(item.name)
                         .font(.title3)
+                        .foregroundStyle(item.isCompleted ? .secondary : .primary)
                         .padding(.vertical, 6.5)
+                        .animation(.easeOut(duration: 0.2), value: item.isCompleted)
                     Spacer()
                 }
             }

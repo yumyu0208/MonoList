@@ -112,13 +112,14 @@ struct ItemListView: View {
                     .imageScale(.medium)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .frame(width: 36, height: 36, alignment: .center)
-                    .background(Color.accentColor)
+                    .background(.tint)
                     .foregroundColor(.white)
                     .clipShape(Circle())
                     .disabled(isEditing || isNewItemList)
                 } //: HStack
             } //: HStack
             .padding()
+            .tint(Color(itemList.color))
             ZStack {
                 EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem)
                     .opacity(isEditMode ? 1 : 0)
@@ -126,6 +127,7 @@ struct ItemListView: View {
                 CheckListView(of: itemList)
                     .opacity(isEditMode ? 0 : 1)
             } //: ZStack
+            .tint(Color(itemList.color))
         } //: VStack
         .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)

@@ -63,7 +63,7 @@ struct EditItemCellView: View, Equatable {
                         .imageScale(.large)
                 }
                 .buttonStyle(.plain)
-                .foregroundColor(.accentColor)
+                .foregroundStyle(.tint)
             }
         } //: HStack
         .padding(.leading, 8)
