@@ -91,19 +91,23 @@ struct ItemListView: View {
                             Image(systemName: itemList.notificationIsActive ? "bell" : "bell.slash")
                         }
                         Menu {
-                            Button {
-                                focusedItem = nil
-                                listNameTextFieldIsFocused = false
-                                withAnimation(.easeOut(duration: 0.2)) {
-                                    isEditMode.toggle()
+                            Section {
+                                Button {
+                                    focusedItem = nil
+                                    listNameTextFieldIsFocused = false
+                                    withAnimation(.easeOut(duration: 0.2)) {
+                                        isEditMode.toggle()
+                                    }
+                                } label: {
+                                    Label(isEditMode ? "Check" : "Edit", systemImage: isEditMode ? "checklist" : "pencil")
                                 }
-                            } label: {
-                                Label(isEditMode ? "Check" : "Edit", systemImage: isEditMode ? "checklist" : "pencil")
                             }
-                            Button {
-                                showCompleted.toggle()
-                            } label: {
-                                Label(showCompleted ? "Hide Completed" : "Show Completed", systemImage: showCompleted ? "eye.slash" : "eye")
+                            if !isEditMode {
+                                Button {
+                                    showCompleted.toggle()
+                                } label: {
+                                    Label(showCompleted ? "Hide Completed" : "Show Completed", systemImage: showCompleted ? "eye.slash" : "eye")
+                                }
                             }
                             Button {
                                 isShowingTab = .info

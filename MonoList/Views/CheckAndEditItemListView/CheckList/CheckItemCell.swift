@@ -45,12 +45,8 @@ struct CheckItemCell: View {
             } //: VStack
             .opacity(isOn ? 0.4 : 1)
         } //: HStack
-        .contentShape(Rectangle())
         .onAppear {
             isOn = item.isCompleted
-        }
-        .onTapGesture {
-            isOn.toggle()
         }
         .onChange(of: isOn) { isOn in
             if isOn {
