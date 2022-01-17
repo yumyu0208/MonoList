@@ -174,6 +174,7 @@ struct EditItemListView: View {
         do {
             itemList.updateDate = Date()
             try viewContext.save()
+            print("Saved (List)")
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

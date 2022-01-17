@@ -161,6 +161,7 @@ class MonoListManager: ObservableObject {
         
         do {
             try context.save()
+            print("Saved")
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

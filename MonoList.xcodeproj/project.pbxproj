@@ -58,6 +58,7 @@
 		AAC3DDDE2793056600983100 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDDD2793056500983100 /* UINavigationControllerExtension.swift */; };
 		AAC3DDE227940EAD00983100 /* CheckmarkToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */; };
 		AAC3DDE42794408A00983100 /* CheckItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDE32794408A00983100 /* CheckItemCell.swift */; };
+		AAC3DDE627958FD800983100 /* LargeCircleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDE527958FD800983100 /* LargeCircleButtonStyle.swift */; };
 		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAE293512781C5780010F093 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditButtonView.swift */; };
 		AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B28627852F98000B8B09 /* EditItemCellView.swift */; };
@@ -116,6 +117,7 @@
 		AAC3DDDD2793056500983100 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkToggleStyle.swift; sourceTree = "<group>"; };
 		AAC3DDE32794408A00983100 /* CheckItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckItemCell.swift; sourceTree = "<group>"; };
+		AAC3DDE527958FD800983100 /* LargeCircleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCircleButtonStyle.swift; sourceTree = "<group>"; };
 		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAE293502781C5780010F093 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
 		AAE5B28627852F98000B8B09 /* EditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemCellView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				AA82C056277EF105001CEFFA /* CircleButtonStyle.swift */,
+				AAC3DDE527958FD800983100 /* LargeCircleButtonStyle.swift */,
 				AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */,
 				AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */,
 				AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */,
@@ -432,6 +435,7 @@
 				AA8750C1278D518900540BA0 /* ExpandToggleStyle.swift in Sources */,
 				AA351A812776BB5500F53BDC /* Persistence.swift in Sources */,
 				AAC3DDD42791A19F00983100 /* QuantityLabelView.swift in Sources */,
+				AAC3DDE627958FD800983100 /* LargeCircleButtonStyle.swift in Sources */,
 				AAC3DDC5278FE0BA00983100 /* InfoView.swift in Sources */,
 				AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */,
 				AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */,

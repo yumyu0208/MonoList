@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct CheckListView: View {
+    @AppStorage(K.key.showCompleted) var showCompleted = true
     @Environment(\.managedObjectContext) private var viewContext
     let itemList: ItemList
     @FetchRequest var items: FetchedResults<Item>
+    
+    @State var showUndo = false
+    @State private var showUndoTimer: Timer?
     
     init(of itemList: ItemList, showCompleted: Bool) {
         self.itemList = itemList
@@ -27,22 +31,59 @@ struct CheckListView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                ForEach(items) { item in
-                    CheckItemCell(item: item)
+        ZStack {
+            ScrollView {
+                VStack(spacing: 20) {
+                    ForEach(items) { item in
+                        CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+                    } //: VStack
                 } //: VStack
-            } //: VStack
-            .padding()
-        } //: ScrollView
+                .padding()
+            } //: ScrollView
+            Rectangle()
+                .opacity(0)
+        } //: ZStack
+        .overlay(alignment: .bottomTrailing) {
+            if !showCompleted && showUndo {
+                Button {
+                    if viewContext.hasChanges {
+                        viewContext.undo()
+                    }
+                    showUndoTimer?.invalidate()
+                    withAnimation {
+                        showUndo = false
+                    }
+                } label: {
+                    Image(systemName: "arrow.uturn.backward")
+                } //: Button
+                .buttonStyle(.largeCircle)
+                .foregroundStyle(.tint)
+                .padding()
+                .transition(.move(edge: .trailing))
+                .animation(.easeOut(duration: 0.2), value: showUndo)
+            }
+        }
     }
     
     private func saveData() {
         do {
             try viewContext.save()
+            print("Saved")
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+    
+    private func showAndHideUndoButton() {
+        showUndoTimer?.invalidate()
+        withAnimation {
+            showUndo = true
+        }
+        showUndoTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+            withAnimation {
+                showUndo = false
+            }
         }
     }
 }

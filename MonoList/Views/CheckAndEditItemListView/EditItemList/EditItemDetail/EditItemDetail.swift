@@ -217,6 +217,7 @@ struct EditItemDetail: View {
     private func saveData() {
         do {
             try viewContext.save()
+            print("Saved")
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

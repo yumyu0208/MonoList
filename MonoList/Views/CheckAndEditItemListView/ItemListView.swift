@@ -11,7 +11,6 @@ struct ItemListView: View {
     @AppStorage(K.key.showCompleted) var showCompleted = true
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.scenePhase) private var scenePhase
     @State var editMode: EditMode = .inactive
     @ObservedObject var itemList: ItemList
     @State var isEditMode: Bool
@@ -95,6 +94,7 @@ struct ItemListView: View {
                                 Button {
                                     focusedItem = nil
                                     listNameTextFieldIsFocused = false
+                                    saveData()
                                     withAnimation(.easeOut(duration: 0.2)) {
                                         isEditMode.toggle()
                                     }
@@ -160,7 +160,7 @@ struct ItemListView: View {
                         .padding(.trailing)
                 }
                 .disabled(isEditing)
-            }
+            } //: ToolBarItem
         }
         .sheet(item: $isShowingTab) { tab in
             if let itemList = itemList {
@@ -194,11 +194,6 @@ struct ItemListView: View {
                     saveData()
                 }
             } else {
-                saveDataIfNeeded()
-            }
-        }
-        .onChange(of: scenePhase) { phase in
-            if phase == .background {
                 saveDataIfNeeded()
             }
         }
@@ -263,6 +258,7 @@ struct ItemListView: View {
         do {
             itemList.updateDate = Date()
             try viewContext.save()
+            print("Saved (List)")
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

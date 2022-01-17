@@ -61,15 +61,6 @@ struct ItemListDetailView: View {
                 .ignoresSafeArea(.all, edges: .all)
         )
     }
-    
-    private func saveData() {
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-    }
 }
 
 struct ItemListDetailView_Previews: PreviewProvider {

@@ -10,11 +10,17 @@ import SwiftUI
 struct CheckItemCell: View {
     
     @ObservedObject var item: Item
+    let showAndHideUndoButton: () -> Void
     
     var body: some View {
         HStack(alignment: .top) {
             Toggle("Complete Item", isOn: $item.isCompleted)
                 .toggleStyle(.checkmark)
+                .onChange(of: item.isCompleted) { isCompleted in
+                    if isCompleted {
+                        showAndHideUndoButton()
+                    }
+                }
             VStack(spacing: 0) {
                 HStack(alignment: .top) {
                     if item.isImportant {
@@ -42,6 +48,7 @@ struct CheckItemCell: View {
                 }
             } //: VStack
             .opacity(item.isCompleted ? 0.4 : 1)
+            .animation(.none, value: item.isCompleted)
         } //: HStack
     }
 }
@@ -50,7 +57,7 @@ struct CheckItemCell_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let item = MonoListManager().fetchItems(context: context)[0]
-        CheckItemCell(item: item)
+        CheckItemCell(item: item) {}
             .padding()
             .environment(\.managedObjectContext, context)
             .previewLayout(.sizeThatFits)

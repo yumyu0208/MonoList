@@ -10,7 +10,6 @@ import CoreData
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.scenePhase) private var scenePhase
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
     
     private var folders: FetchedResults<Folder>
@@ -22,6 +21,8 @@ struct HomeView: View {
     private let editItemListTag: Int = 888
     @State var navigationLinkTag: Int?
     @State var editItemListView: ItemListView?
+    
+    private let willTerminateObserver = NotificationCenter.default.publisher(for: UIApplication.willTerminateNotification)
 
     var body: some View {
         NavigationView {
@@ -100,11 +101,15 @@ struct HomeView: View {
                 manager.createSamples(context: viewContext)
             }
         }
+        .onReceive(willTerminateObserver) { _ in
+            saveData()
+        }
     }
     
     private func saveData() {
         do {
             try viewContext.save()
+            print("Saved")
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
