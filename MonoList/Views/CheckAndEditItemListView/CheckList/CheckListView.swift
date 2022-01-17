@@ -31,18 +31,15 @@ struct CheckListView: View {
     }
     
     var body: some View {
-        ZStack {
-            ScrollView {
-                VStack(spacing: 20) {
-                    ForEach(items) { item in
-                        CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
-                    } //: VStack
+        ScrollView {
+            VStack(spacing: 20) {
+                ForEach(items) { item in
+                    CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
                 } //: VStack
-                .padding()
-            } //: ScrollView
-            Rectangle()
-                .opacity(0)
-        } //: ZStack
+            } //: VStack
+            .frame(maxWidth: .infinity)
+            .padding()
+        } //: ScrollView
         .overlay(alignment: .bottomTrailing) {
             if !showCompleted && showUndo {
                 Button {
