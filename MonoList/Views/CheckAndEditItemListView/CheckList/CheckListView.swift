@@ -22,7 +22,7 @@ struct CheckListView: View {
                 SortDescriptor(\.order, order: .forward)
             ],
             predicate: NSPredicate(format: predicateFormat, itemList),
-            animation: .default
+            animation: .default.delay(0.3)
         )
     }
     

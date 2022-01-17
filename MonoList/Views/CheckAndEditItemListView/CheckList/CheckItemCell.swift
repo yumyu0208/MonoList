@@ -10,12 +10,10 @@ import SwiftUI
 struct CheckItemCell: View {
     
     @ObservedObject var item: Item
-    @State private var isOn: Bool = false
-    @State private var timer: Timer? = Timer()
     
     var body: some View {
         HStack(alignment: .top) {
-            Toggle("Complete Item", isOn: $isOn)
+            Toggle("Complete Item", isOn: $item.isCompleted)
                 .toggleStyle(.checkmark)
             VStack(spacing: 0) {
                 HStack(alignment: .top) {
@@ -43,23 +41,8 @@ struct CheckItemCell: View {
                     }
                 }
             } //: VStack
-            .opacity(isOn ? 0.4 : 1)
+            .opacity(item.isCompleted ? 0.4 : 1)
         } //: HStack
-        .onAppear {
-            isOn = item.isCompleted
-        }
-        .onChange(of: isOn) { isOn in
-            if isOn {
-                timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
-                    item.isCompleted = true
-                }
-            } else {
-                if let timer = timer {
-                    timer.invalidate()
-                }
-                item.isCompleted = false
-            }
-        }
     }
 }
 
