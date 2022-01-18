@@ -18,8 +18,12 @@ public class Notification: NSManagedObject {
         calendar.date(bySettingHour: 7, minute: 0, second: 0, of: Date()) ?? Date()
     }
     
-    static var weekDaySymbols: [String] {
+    static var weekdaySymbols: [String] {
         calendar.weekdaySymbols
+    }
+    
+    static var shortWeekdaySymbols: [String] {
+        calendar.shortWeekdaySymbols
     }
     
     static func sortedWeekdays(_ weekdays: String) -> String {
@@ -27,12 +31,23 @@ public class Notification: NSManagedObject {
     }
     
     var weekdaysString: String {
-        let shortWeekdaySymbols = Self.calendar.shortWeekdaySymbols
-        let weekdaysString = weekdays.map { weekdayNumberString -> String in
-            let weekdayIndex = Int("\(weekdayNumberString)")!
-            return shortWeekdaySymbols[weekdayIndex]
-        }.joined(separator: ", ")
-        return weekdaysString
+        if weekdays == "0123456" {
+            return K.weekday.everyday
+        } else if weekdays == "12345" {
+            return K.weekday.weekdays
+        } else if weekdays.count == 1 {
+            let weekdaysString = weekdays.map { weekdayNumberString -> String in
+                let weekdayIndex = Int("\(weekdayNumberString)")!
+                return Self.weekdaySymbols[weekdayIndex]
+            }.joined(separator: ", ")
+            return "\(K.weekday.every) \(weekdaysString)"
+        } else {
+            let shortWeekdaysString = weekdays.map { weekdayNumberString -> String in
+                let weekdayIndex = Int("\(weekdayNumberString)")!
+                return Self.shortWeekdaySymbols[weekdayIndex]
+            }.joined(separator: ", ")
+            return shortWeekdaysString
+        }
     }
     
     var timeString: String {

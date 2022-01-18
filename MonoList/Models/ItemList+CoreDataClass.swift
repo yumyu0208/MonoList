@@ -32,6 +32,23 @@ public class ItemList: NSManagedObject {
         (notifications?.count ?? 0) != 0
     }
     
+    var creationDateString: String {
+        string(from: creationDate)
+    }
+    
+    var lastModifiedDateString: String {
+        string(from: updateDate)
+    }
+    
+    func string(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        dateFormatter.locale = Locale.current
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: date)
+    }
+    
     static func delete(index: Int, itemLists: FetchedResults<ItemList>, _ context: NSManagedObjectContext) {
         // Delete All Items
         if let items = itemLists[index].items?.allObjects as? [Item] {

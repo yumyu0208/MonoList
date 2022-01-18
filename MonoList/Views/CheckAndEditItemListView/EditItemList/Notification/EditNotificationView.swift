@@ -11,7 +11,7 @@ struct EditNotificationView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var notification: Notification
-    private let weekdaySymbols: [String] = Notification.weekDaySymbols
+    private let weekdaySymbols: [String] = Notification.weekdaySymbols
     @State private var selectedWeekdays: String = ""
     @State private var selectedTime: Date = Date()
     

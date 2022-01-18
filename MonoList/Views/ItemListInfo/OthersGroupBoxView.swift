@@ -20,12 +20,12 @@ struct OthersGroupBoxView: View {
                 HStack {
                     Label("Created", systemImage: "wand.and.stars")
                     Spacer()
-                    Text("2021/1/10 13:30")
+                    Text(itemList.creationDateString)
                 }
                 HStack {
                     Label("Last Modified", systemImage: "clock.arrow.circlepath")
                     Spacer()
-                    Text("Today")
+                    Text(itemList.lastModifiedDateString)
                 }
             } //: VStack
             .padding(.leading, 4)
