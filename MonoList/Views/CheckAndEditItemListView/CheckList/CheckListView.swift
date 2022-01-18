@@ -80,6 +80,7 @@ struct CheckListView: View {
         showUndoTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
             withAnimation {
                 showUndo = false
+                saveData()
             }
         }
     }
