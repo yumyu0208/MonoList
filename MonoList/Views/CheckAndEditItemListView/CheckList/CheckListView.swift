@@ -16,6 +16,14 @@ struct CheckListView: View {
     @State var showUndo = false
     @State private var showUndoTimer: Timer?
     
+    var numberOfCompletedItems: Int {
+        (itemList.items?.count ?? 0) - items.count
+    }
+    
+    var numberOfAllItems: Int {
+        (itemList.items?.count ?? 0)
+    }
+    
     init(of itemList: ItemList, showCompleted: Bool) {
         self.itemList = itemList
         
@@ -31,35 +39,39 @@ struct CheckListView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                ForEach(items) { item in
-                    CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+        VStack {
+            CheckListProgressView(numberOfCompletedItems: numberOfCompletedItems,
+                                  numberOfAllItems: numberOfAllItems)
+            ScrollView {
+                VStack(spacing: 20) {
+                    ForEach(items) { item in
+                        CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+                    } //: VStack
                 } //: VStack
-            } //: VStack
-            .frame(maxWidth: .infinity)
-            .padding()
-        } //: ScrollView
-        .overlay(alignment: .bottomTrailing) {
-            if !showCompleted && showUndo {
-                Button {
-                    if viewContext.hasChanges {
-                        viewContext.undo()
-                    }
-                    showUndoTimer?.invalidate()
-                    withAnimation {
-                        showUndo = false
-                    }
-                } label: {
-                    Image(systemName: "arrow.uturn.backward")
-                } //: Button
-                .buttonStyle(.largeCircle)
-                .foregroundStyle(.tint)
+                .frame(maxWidth: .infinity)
                 .padding()
-                .transition(.move(edge: .trailing))
-                .animation(.easeOut(duration: 0.2), value: showUndo)
+            } //: ScrollView
+            .overlay(alignment: .bottomTrailing) {
+                if !showCompleted && showUndo {
+                    Button {
+                        if viewContext.hasChanges {
+                            viewContext.undo()
+                        }
+                        showUndoTimer?.invalidate()
+                        withAnimation {
+                            showUndo = false
+                        }
+                    } label: {
+                        Image(systemName: "arrow.uturn.backward")
+                    } //: Button
+                    .buttonStyle(.largeCircle)
+                    .foregroundStyle(.tint)
+                    .padding()
+                    .transition(.move(edge: .trailing))
+                    .animation(.easeOut(duration: 0.2), value: showUndo)
+                }
             }
-        }
+        } //: VStack
     }
     
     private func saveData() {
