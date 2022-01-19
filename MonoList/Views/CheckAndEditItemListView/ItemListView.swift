@@ -94,7 +94,11 @@ struct ItemListView: View {
                                 Button {
                                     focusedItem = nil
                                     listNameTextFieldIsFocused = false
-                                    saveData()
+                                    if isEditMode {
+                                        saveDataIfNeeded()
+                                    } else {
+                                        saveData(update: false)
+                                    }
                                     withAnimation(.easeOut(duration: 0.2)) {
                                         isEditMode.toggle()
                                     }
@@ -107,6 +111,11 @@ struct ItemListView: View {
                                     showCompleted.toggle()
                                 } label: {
                                     Label(showCompleted ? "Hide Completed" : "Show Completed", systemImage: showCompleted ? "eye.slash" : "eye")
+                                }
+                                Button {
+                                    uncheckAllItems()
+                                } label: {
+                                    Label("Uncheck All", systemImage: "rays")
                                 }
                             }
                             Button {
@@ -191,7 +200,7 @@ struct ItemListView: View {
             if newAndUnEdited {
                 withAnimation {
                     viewContext.delete(itemList)
-                    saveData()
+                    saveData(update: false)
                 }
             } else {
                 saveDataIfNeeded()
@@ -216,7 +225,7 @@ struct ItemListView: View {
             items[index].order += 1
         }
         let newItem = itemList.createNewItem(name: name, order: order, viewContext)
-        saveData()
+        saveData(update: true)
         return newItem
     }
     
@@ -230,15 +239,21 @@ struct ItemListView: View {
                     }
                 }
             }
-            saveData()
+            saveData(update: true)
         }
+    }
+    
+    private func uncheckAllItems() {
+        guard let items = itemList.items?.allObjects as? [Item] else { return }
+        items.forEach { $0.isCompleted = false }
+        saveData(update: false)
     }
     
     private func saveDataIfNeeded() {
         setValue(to: itemList)
         if viewContext.hasChanges {
             //print("The item list has been updated")
-            saveData()
+            saveData(update: true)
         }
     }
     
@@ -254,9 +269,11 @@ struct ItemListView: View {
         }
     }
     
-    private func saveData() {
+    private func saveData(update: Bool) {
         do {
-            itemList.updateDate = Date()
+            if update {
+                itemList.updateDate = Date()
+            }
             try viewContext.save()
             print("Saved (List)")
         } catch {
