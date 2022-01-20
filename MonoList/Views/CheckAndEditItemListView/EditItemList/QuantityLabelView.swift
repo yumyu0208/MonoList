@@ -13,17 +13,13 @@ struct QuantityLabelView: View {
     
     var body: some View {
         
-        ZStack {
-            Image(systemName: "scalemass")
-                .foregroundColor(.clear)
-            Text(String(value))
-                .foregroundColor(.primary)
-        } //: ZStack
-        .font(.caption.bold())
-        .padding(.vertical, 4)
-        .padding(.horizontal, 4)
-        .background(Color.accentColor.opacity(0.5))
-        .clipShape(Capsule())
+        Text(String(value))
+            .foregroundColor(.white)
+            .font(.caption.bold())
+            .padding(.vertical, 4)
+            .padding(.horizontal, 4)
+            .background(.tint)
+            .clipShape(Capsule())
     }
 }
 

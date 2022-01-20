@@ -21,55 +21,79 @@ struct EditItemCellView: View, Equatable {
     let addAction: (Item) -> Void
     
     var body: some View {
-        HStack {
-            if item.isFault || item.isDeleted {
-                EmptyView()
-            } else {
-                Text("\(item.order)")
-                if item.isImportant {
-                    Image(systemName: "exclamationmark")
-                        .font(.body.bold())
-                        .foregroundColor(.red)
-                }
-                ZStack {
-                    TextField("", text: $item.name)
+        if item.isFault || item.isDeleted {
+            EmptyView()
+        } else {
+            VStack(spacing: 0) {
+                HStack(alignment: .center) {
+                    Image(systemName: "tag")
                         .font(.body)
-                        .focused(focusedItem, equals: .row(id: item.id.uuidString))
-                        .submitLabel(.return)
-                        .onSubmit {
-                            if item.name.isEmpty {
-                                deleteAction(item)
-                            } else {
-                                addAction(item)
+                        .padding(.vertical, 4)
+                    if item.isImportant {
+                        Image(systemName: "exclamationmark")
+                            .font(.body.bold())
+                            .foregroundColor(.red)
+                            .padding(.vertical, 4)
+                    }
+                    ZStack {
+                        TextField("", text: $item.name)
+                            .font(.body)
+                            .focused(focusedItem, equals: .row(id: item.id.uuidString))
+                            .submitLabel(.return)
+                            .padding(.vertical, 4)
+                            .onSubmit {
+                                if item.name.isEmpty {
+                                    deleteAction(item)
+                                } else {
+                                    addAction(item)
+                                }
                             }
-                        }
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            focusedItem.wrappedValue = .row(id: item.id.uuidString)
-                        }
+                            .overlay(
+                                Rectangle()
+                                    .font(.body)
+                                    .foregroundColor(.clear)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        focusedItem.wrappedValue = .row(id: item.id.uuidString)
+                                    }
+                            )
+                    }
+                    if item.weight != 0 {
+                        WeightLabelView(value: item.weight)
+                    }
+                    if item.quantity > 1 {
+                        QuantityLabelView(value: item.quantity)
+                    }
+                    Button {
+                        isEditingItemDetail = true
+                    } label: {
+                        Image(systemName: "info.circle")
+                            .imageScale(.large)
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(.tint)
+                    .padding(.vertical, 4)
+                } //: HStack
+                if let note = item.note {
+                    HStack(alignment: .center) {
+                        Image(systemName: "tag")
+                            .font(.body)
+                            .opacity(0)
+                        Text(note)
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        Image(systemName: "info.circle")
+                            .imageScale(.large)
+                            .opacity(0)
+                    }
                 }
-                if item.weight != 0 {
-                    WeightLabelView(value: item.weight)
+            } //: VStack
+            .padding(.leading, 8)
+            .sheet(isPresented: $isEditingItemDetail) {
+                NavigationView {
+                    EditItemDetail(item: item)
                 }
-                if item.quantity > 1 {
-                    QuantityLabelView(value: item.quantity)
-                }
-                Button {
-                    isEditingItemDetail = true
-                } label: {
-                    Image(systemName: "info.circle")
-                        .imageScale(.large)
-                }
-                .buttonStyle(.plain)
-                .foregroundStyle(.tint)
-            }
-        } //: HStack
-        .padding(.leading, 8)
-        .sheet(isPresented: $isEditingItemDetail) {
-            NavigationView {
-                EditItemDetail(item: item)
             }
         }
     }

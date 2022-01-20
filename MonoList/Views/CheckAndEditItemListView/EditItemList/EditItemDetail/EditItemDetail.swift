@@ -87,8 +87,8 @@ struct EditItemDetail: View {
                                 .focused($focusedField, equals: .weightField)
                         } icon: {
                             Image(systemName: "scalemass")
+                                .foregroundStyle(.tint)
                                 .font(.headline)
-                                .foregroundColor(.accentColor)
                         }
                         Button {
                             weight = ""
@@ -111,8 +111,8 @@ struct EditItemDetail: View {
                                 .focused($focusedField, equals: .quantityField)
                         } icon: {
                             Image(systemName: "number")
+                                .foregroundStyle(.tint)
                                 .font(.headline)
-                                .foregroundColor(.accentColor)
                         }
                         Button {
                             quantity = ""
@@ -135,8 +135,8 @@ struct EditItemDetail: View {
                                 Text("Category")
                             } icon: {
                                 Image(systemName: "tag")
+                                    .foregroundStyle(.tint)
                                     .font(.headline)
-                                    .foregroundColor(.accentColor)
                             } //: Label
                             Spacer()
                             Text(item.category ?? "None")

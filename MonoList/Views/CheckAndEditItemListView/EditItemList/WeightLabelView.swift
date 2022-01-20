@@ -8,21 +8,17 @@
 import SwiftUI
 
 struct WeightLabelView: View {
-    
+    @AppStorage(K.key.weightUnit) var weightUnit = "g"
     let value: Double
     
     var body: some View {
-        HStack(spacing: 4) {
-            Image(systemName: "scalemass")
-                .font(.caption.bold())
-            Text(value.string)
-        }
-        .font(.caption.bold())
-        .foregroundColor(.primary)
-        .padding(.vertical, 4)
-        .padding(.horizontal, 8)
-        .background(Color.accentColor.opacity(0.5))
-        .clipShape(Capsule())
+        Text("\(value.string)\(weightUnit)")
+            .font(.caption.bold())
+            .foregroundColor(.white)
+            .padding(.vertical, 4)
+            .padding(.horizontal, 8)
+            .background(.tint)
+            .clipShape(Capsule())
     }
 }
 
