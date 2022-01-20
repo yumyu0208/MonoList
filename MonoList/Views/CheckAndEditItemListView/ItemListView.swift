@@ -112,7 +112,7 @@ struct ItemListView: View {
                     Button {
                         isShowingEditNotification = true
                     } label: {
-                        Label("Alarm", systemImage: itemList.notificationIsActive ? "bell.circle.fill" : "bell.slash.circle.fill")
+                        Label("Alarm", systemImage: itemList.notificationIsActive ? "bell.circle" : "bell.slash.circle")
                     } //: Button
                     Button {
                         focusedItem = nil
@@ -126,7 +126,7 @@ struct ItemListView: View {
                             isEditMode.toggle()
                         }
                     } label: {
-                        Label(isEditMode ? "Check" : "Edit", systemImage: isEditMode ? "list.bullet.circle.fill" : "pencil.circle.fill")
+                        Label(isEditMode ? "Check" : "Edit", systemImage: isEditMode ? "list.bullet.circle" : "pencil.circle")
                     } //: Button
                     Menu {
                         if !isEditMode {
@@ -147,7 +147,7 @@ struct ItemListView: View {
                             Label("Info", systemImage: "info.circle")
                         }
                     } label: {
-                        Label("Menu", systemImage: "ellipsis.circle.fill")
+                        Label("Menu", systemImage: "ellipsis.circle")
                     } //: Menu
                 } //: Group
                 .imageScale(.large)
