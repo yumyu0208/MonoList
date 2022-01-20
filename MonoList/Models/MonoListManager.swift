@@ -97,7 +97,7 @@ class MonoListManager: ObservableObject {
         collegeList.createNewNotification(weekdays: "0", time: Notification.defaultDate, context)
         collegeList.createNewNotification(weekdays: "36", time: Date(), context)
         
-        let driveList = listsFolder.createNewItemList(name: "Drive", color: K.listColors.basic.lightBlue, image: "car", order: 3, notificationIsActive: true, context)
+        let driveList = listsFolder.createNewItemList(name: "Drive", color: K.listColors.basic.cyan, image: "car", order: 3, notificationIsActive: true, context)
         
         driveList.createNewItem(name: "Laptop", isImportant: true, order: 0, context)
         driveList.createNewItem(name: "Pen", order: 1, context)
