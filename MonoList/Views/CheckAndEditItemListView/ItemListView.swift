@@ -34,14 +34,6 @@ struct ItemListView: View {
         editMode == .active
     }
     
-    var navigationTitle: Text {
-        if isEditMode {
-            return isNewItemList ? Text("New List") : Text("Edit List")
-        } else {
-            return Text("Check List")
-        }
-    }
-    
     var edgePanGesture: some Gesture {
         DragGesture()
             .onChanged { gesture in
@@ -82,60 +74,6 @@ struct ItemListView: View {
                         }
                 }
                 .font(.title2.bold())
-                HStack(spacing: 20) {
-                    Group {
-                        Button {
-                            isShowingEditNotification = true
-                        } label: {
-                            Image(systemName: itemList.notificationIsActive ? "bell" : "bell.slash")
-                        }
-                        Menu {
-                            Section {
-                                Button {
-                                    focusedItem = nil
-                                    listNameTextFieldIsFocused = false
-                                    if isEditMode {
-                                        saveDataIfNeeded()
-                                    } else {
-                                        saveData(update: false)
-                                    }
-                                    withAnimation(.easeOut(duration: 0.2)) {
-                                        isEditMode.toggle()
-                                    }
-                                } label: {
-                                    Label(isEditMode ? "Check" : "Edit", systemImage: isEditMode ? "checklist" : "pencil")
-                                }
-                            }
-                            if !isEditMode {
-                                Button {
-                                    showCompleted.toggle()
-                                } label: {
-                                    Label(showCompleted ? "Hide Completed" : "Show Completed", systemImage: showCompleted ? "eye.slash" : "eye")
-                                }
-                                Button {
-                                    uncheckAllItems()
-                                } label: {
-                                    Label("Uncheck All", systemImage: "rays")
-                                }
-                            }
-                            Button {
-                                isShowingTab = .info
-                            } label: {
-                                Label("Info", systemImage: "info.circle")
-                            }
-                        } label: {
-                            Image(systemName: "ellipsis")
-                                .padding()
-                        }
-                    } //: Group
-                    .imageScale(.medium)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .frame(width: 36, height: 36, alignment: .center)
-                    .background(.tint)
-                    .foregroundColor(.white)
-                    .clipShape(Circle())
-                    .disabled(isEditing || isNewItemList)
-                } //: HStack
             } //: HStack
             .padding()
             .tint(Color(itemList.color))
@@ -148,7 +86,6 @@ struct ItemListView: View {
             } //: ZStack
             .tint(Color(itemList.color))
         } //: VStack
-        .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .gesture((itemListName.isEmpty && !itemsIsEmpty) ? edgePanGesture : nil)
@@ -170,6 +107,53 @@ struct ItemListView: View {
                 }
                 .disabled(isEditing)
             } //: ToolBarItem
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Group {
+                    Button {
+                        isShowingEditNotification = true
+                    } label: {
+                        Label("Alarm", systemImage: itemList.notificationIsActive ? "bell.circle.fill" : "bell.slash.circle.fill")
+                    } //: Button
+                    Button {
+                        focusedItem = nil
+                        listNameTextFieldIsFocused = false
+                        if isEditMode {
+                            saveDataIfNeeded()
+                        } else {
+                            saveData(update: false)
+                        }
+                        withAnimation(.easeOut(duration: 0.2)) {
+                            isEditMode.toggle()
+                        }
+                    } label: {
+                        Label(isEditMode ? "Check" : "Edit", systemImage: isEditMode ? "list.bullet.circle.fill" : "pencil.circle.fill")
+                    } //: Button
+                    Menu {
+                        if !isEditMode {
+                            Button {
+                                showCompleted.toggle()
+                            } label: {
+                                Label(showCompleted ? "Hide Completed" : "Show Completed", systemImage: showCompleted ? "eye.slash" : "eye")
+                            }
+                            Button {
+                                uncheckAllItems()
+                            } label: {
+                                Label("Uncheck All", systemImage: "rays")
+                            }
+                        }
+                        Button {
+                            isShowingTab = .info
+                        } label: {
+                            Label("Info", systemImage: "info.circle")
+                        }
+                    } label: {
+                        Label("Menu", systemImage: "ellipsis.circle.fill")
+                    } //: Menu
+                } //: Group
+                .imageScale(.large)
+                .font(.title2)
+                .disabled(isEditing || isNewItemList)
+            } //: ToolBarItemGroup
         }
         .sheet(item: $isShowingTab) { tab in
             if let itemList = itemList {
