@@ -17,7 +17,7 @@ struct CheckListView: View {
     @State private var showUndoTimer: Timer?
     
     var numberOfCompletedItems: Int {
-        (itemList.items?.count ?? 0) - items.count
+        numberOfAllItems - items.filter { $0.isCompleted == false }.count
     }
     
     var numberOfAllItems: Int {
