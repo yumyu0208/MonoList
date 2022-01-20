@@ -42,6 +42,7 @@ struct CheckListView: View {
         VStack {
             CheckListProgressView(numberOfCompletedItems: numberOfCompletedItems,
                                   numberOfAllItems: numberOfAllItems)
+                .frame(height: 44)
             ScrollView {
                 VStack(spacing: 20) {
                     ForEach(items) { item in

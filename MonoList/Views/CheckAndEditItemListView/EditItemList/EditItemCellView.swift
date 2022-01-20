@@ -26,8 +26,9 @@ struct EditItemCellView: View, Equatable {
         } else {
             VStack(spacing: 0) {
                 HStack(alignment: .center) {
-                    Image(systemName: "tag")
-                        .font(.body)
+                    Image(systemName: "checkmark.circle")
+                        .font(.body.bold())
+                        .foregroundStyle(.tint)
                         .padding(.vertical, 4)
                     if item.isImportant {
                         Image(systemName: "exclamationmark")
@@ -76,8 +77,8 @@ struct EditItemCellView: View, Equatable {
                 } //: HStack
                 if let note = item.note {
                     HStack(alignment: .center) {
-                        Image(systemName: "tag")
-                            .font(.body)
+                        Image(systemName: "checkmark.circle")
+                            .font(.body.bold())
                             .opacity(0)
                         Text(note)
                             .font(.callout)
