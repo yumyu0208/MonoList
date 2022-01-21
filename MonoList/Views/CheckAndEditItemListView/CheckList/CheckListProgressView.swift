@@ -9,33 +9,71 @@ import SwiftUI
 
 struct CheckListProgressView: View {
     
+    @AppStorage(K.key.rateDisplayType) var showPercentage = true
+    @State private var percentage: Int = 0
     let numberOfCompletedItems: Int
     let numberOfAllItems: Int
+    
+    let lineWidth: CGFloat = 4
     
     var completeRate: CGFloat {
         CGFloat(numberOfCompletedItems)/CGFloat(numberOfAllItems)
     }
     
+    var completePercentage: Int {
+        Int((completeRate*100).rounded())
+    }
+    
     var body: some View {
-        GeometryReader { geometry in
-            let width = geometry.size.width
-            let height = geometry.size.height
-            ZStack {
-                HStack(spacing: 0) {
-                    Rectangle()
-                        .frame(width: width * completeRate)
-                        .foregroundStyle(.tint)
-                    Spacer(minLength: 0)
-                }
-                .frame(width: width, height: height)
-                .animation(.linear(duration: 0.2), value: completeRate)
-                HStack {
-                    Spacer()
-                    Text("\(numberOfCompletedItems)/\(numberOfAllItems)")
+        ZStack(alignment: .center) {
+            HStack {
+                Spacer()
+                if showPercentage {
+                    HStack(spacing: 0) {
+                        Text("\(percentage)")
+                            .animation(number: percentage)
+                            .multilineTextAlignment(.trailing)
+                            .onChange(of: completePercentage) { newValue in
+                                withAnimation {
+                                    percentage = newValue
+                                }
+                        }
+                        Text("%")
+                    }
+                } else {
+                    HStack(spacing: 0) {
+                        Text("\(numberOfCompletedItems)")
+                            .multilineTextAlignment(.trailing)
                         .id(numberOfCompletedItems)
+                        Text("/\(numberOfAllItems)")
+                            .multilineTextAlignment(.trailing)
+                    }
                 }
-                .animation(.none, value: numberOfCompletedItems)
-                .padding(8)
+            }
+            .font(.system(.headline, design: .rounded))
+            .foregroundStyle(.tint)
+            .padding(.horizontal)
+            .padding(.vertical, 4)
+            .background(
+                GeometryReader { geometry in
+                    let width = geometry.size.width
+                    ZStack {
+                        HStack(spacing: 0) {
+                            Rectangle()
+                                .frame(width: width * completeRate)
+                                .foregroundStyle(.tint)
+                                .opacity(0.3)
+                            Spacer(minLength: 0)
+                        }
+                        .animation(.easeOut(duration: 0.2), value: completeRate)
+                    }
+                }
+            )
+            .contentShape(Rectangle())
+            .onTapGesture {
+                withAnimation {
+                    showPercentage.toggle()
+                }
             }
         }
     }
@@ -44,6 +82,7 @@ struct CheckListProgressView: View {
 struct CheckListProgressView_Previews: PreviewProvider {
     static var previews: some View {
         CheckListProgressView(numberOfCompletedItems: 2, numberOfAllItems: 5)
-            .previewLayout(.fixed(width: 360, height:44))
+            .padding()
+            .previewLayout(.sizeThatFits)
     }
 }

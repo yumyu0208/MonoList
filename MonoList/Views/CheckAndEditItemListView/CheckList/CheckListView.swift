@@ -39,10 +39,9 @@ struct CheckListView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             CheckListProgressView(numberOfCompletedItems: numberOfCompletedItems,
                                   numberOfAllItems: numberOfAllItems)
-                .frame(height: 44)
             ScrollView {
                 VStack(spacing: 20) {
                     ForEach(items) { item in
@@ -50,7 +49,8 @@ struct CheckListView: View {
                     } //: VStack
                 } //: VStack
                 .frame(maxWidth: .infinity)
-                .padding()
+                .padding(.horizontal)
+                .padding(.vertical, 20)
             } //: ScrollView
             .overlay(alignment: .bottomTrailing) {
                 if !showCompleted && showUndo {
