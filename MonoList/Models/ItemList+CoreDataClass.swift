@@ -91,9 +91,8 @@ public class ItemList: NSManagedObject {
     }
     
     @discardableResult
-    func createNewItem(name: String, category: String? = nil, weight: Double? = nil, quantity: Int? = nil, isCompleted: Bool = false, isImportant: Bool = false, note: String? = nil, image: String? = nil, conditions: String? = nil, order: Int, _ context: NSManagedObjectContext) -> Item {
+    func createNewItem(name: String, weight: Double? = nil, quantity: Int? = nil, isCompleted: Bool = false, isImportant: Bool = false, note: String? = nil, image: String? = nil, conditions: String? = nil, order: Int, _ context: NSManagedObjectContext) -> Item {
         let newItem = Item(context: context)
-        newItem.category = category
         newItem.id = UUID()
         newItem.name = name
         newItem.quantity = quantity != nil ? Int32(quantity!) : 0

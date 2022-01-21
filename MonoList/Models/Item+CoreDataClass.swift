@@ -2,20 +2,18 @@
 //  Item+CoreDataClass.swift
 //  MonoList
 //
-//  Created by 竹田悠真 on 2021/12/28.
+//  Created by 竹田悠真 on 2022/01/21.
 //
 //
 
-import SwiftUI
+import Foundation
 import CoreData
 
 
 public class Item: NSManagedObject {
-    
     func duplicate(for itemList: ItemList, _ context: NSManagedObjectContext) {
         itemList.createNewItem(
             name: name,
-            category: category,
             weight: weight,
             quantity: Int(quantity),
             isImportant: isImportant,

@@ -126,24 +126,24 @@ struct EditItemDetail: View {
                         .animation(.easeOut(duration: 0.2), value: quantity.isEmpty)
                     }
                 } //: Section
-                Section {
-                    NavigationLink {
-                        SelectCategoryView(selectedCategory: $item.category)
-                    } label: {
-                        HStack {
-                            Label {
-                                Text("Category")
-                            } icon: {
-                                Image(systemName: "tag")
-                                    .foregroundStyle(.tint)
-                                    .font(.headline)
-                            } //: Label
-                            Spacer()
-                            Text(item.category ?? "None")
-                                .foregroundColor(.secondary)
-                        } //: HStack
-                    }
-                } //: Section
+//                Section {
+//                    NavigationLink {
+//                        SelectCategoryView(selectedCategory: $item.category)
+//                    } label: {
+//                        HStack {
+//                            Label {
+//                                Text("Category")
+//                            } icon: {
+//                                Image(systemName: "tag")
+//                                    .foregroundStyle(.tint)
+//                                    .font(.headline)
+//                            } //: Label
+//                            Spacer()
+//                            Text(item.category ?? "None")
+//                                .foregroundColor(.secondary)
+//                        } //: HStack
+//                    }
+//                } //: Section
                 Section {
                     TextEditor(text: $note)
                         .frame(minHeight: 180)
@@ -232,6 +232,7 @@ struct EditItemDetail_Previews: PreviewProvider {
         NavigationView {
             EditItemDetail(item: items[0])
                 .environment(\.managedObjectContext, context)
+                .listStyle(.insetGrouped)
         }
     }
 }
