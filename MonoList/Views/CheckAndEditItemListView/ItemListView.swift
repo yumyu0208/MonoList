@@ -78,11 +78,16 @@ struct ItemListView: View {
             .padding()
             .tint(Color(itemList.color))
             ZStack {
+                NoItemsView()
+                    .opacity(!isEditMode && itemsIsEmpty ? 1 : 0)
+                    .onTapGesture {
+                        isEditMode = true
+                    }
                 EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem)
                     .opacity(isEditMode ? 1 : 0)
                     .environment(\.editMode, $editMode)
                 CheckListView(of: itemList, showCompleted: showCompleted)
-                    .opacity(isEditMode ? 0 : 1)
+                    .opacity(isEditMode || itemsIsEmpty ? 0 : 1)
             } //: ZStack
             .tint(Color(itemList.color))
         } //: VStack

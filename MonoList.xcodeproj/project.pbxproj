@@ -62,6 +62,7 @@
 		AACBBC73279AF8CD00A42108 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC6F279AF8CD00A42108 /* Category+CoreDataProperties.swift */; };
 		AACBBC74279AF8CD00A42108 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC70279AF8CD00A42108 /* Item+CoreDataClass.swift */; };
 		AACBBC75279AF8CD00A42108 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC71279AF8CD00A42108 /* Item+CoreDataProperties.swift */; };
+		AACBBC77279AFF2F00A42108 /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC76279AFF2F00A42108 /* NoItemsView.swift */; };
 		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAD949E42796B8CC004A51AC /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD949E32796B8CC004A51AC /* StringExtension.swift */; };
 		AAD949E6279866E5004A51AC /* CheckListProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD949E5279866E5004A51AC /* CheckListProgressView.swift */; };
@@ -126,6 +127,7 @@
 		AACBBC6F279AF8CD00A42108 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AACBBC70279AF8CD00A42108 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AACBBC71279AF8CD00A42108 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AACBBC76279AFF2F00A42108 /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
 		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAD949E32796B8CC004A51AC /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AAD949E5279866E5004A51AC /* CheckListProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListProgressView.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE293502781C5780010F093 /* EditButtonView.swift */,
+				AACBBC76279AFF2F00A42108 /* NoItemsView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				AAC3DDE42794408A00983100 /* CheckItemCell.swift in Sources */,
 				AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */,
 				AAC3DDCE27911E4D00983100 /* SelectCategoryView.swift in Sources */,
+				AACBBC77279AFF2F00A42108 /* NoItemsView.swift in Sources */,
 				AAC3DDD72791AA4800983100 /* CheckListView.swift in Sources */,
 				AAC3DDC3278FDFC100983100 /* WeightView.swift in Sources */,
 				AACBBC72279AF8CD00A42108 /* Category+CoreDataClass.swift in Sources */,

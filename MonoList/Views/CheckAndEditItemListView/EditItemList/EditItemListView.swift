@@ -145,19 +145,7 @@ struct EditItemListView: View {
                     .environment(\.editMode, editMode)
                 } //: ScrollViewReader
                 if items.isEmpty && !listNameTextFieldIsFocused.wrappedValue {
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .contentShape(Rectangle())
-                        .overlay {
-                            VStack(spacing: 8) {
-                                Image(systemName: "tray")
-                                    .font(.largeTitle)
-                                Text("No Items")
-                                    .font(.title3)
-                            }
-                            .foregroundColor(Color(UIColor.tertiaryLabel))
-                            .offset(y: -28)
-                        }
+                    NoItemsView()
                         .onTapGesture {
                             withAnimation {
                                 let newItem = addItem(name: "", order: items.count)

@@ -17,7 +17,9 @@ struct CheckListProgressView: View {
     let lineWidth: CGFloat = 4
     
     var completeRate: CGFloat {
-        CGFloat(numberOfCompletedItems)/CGFloat(numberOfAllItems)
+        if numberOfAllItems != 0 {
+            return CGFloat(numberOfCompletedItems)/CGFloat(numberOfAllItems)
+        } else { return 0 }
     }
     
     var completePercentage: Int {
