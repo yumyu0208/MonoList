@@ -85,12 +85,9 @@ struct SelectDestinationView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
+                XButtonView {
                     dismiss()
-                } label: {
-                    Image(systemName: "xmark")
                 }
-                .buttonStyle(CircleButtonStyle(type: .cancel))
             }
         }
     }

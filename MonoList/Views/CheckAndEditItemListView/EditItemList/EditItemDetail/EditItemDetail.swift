@@ -169,7 +169,7 @@ struct EditItemDetail: View {
         .interactiveDismissDisabled(weightIsInvalid || quantityIsInvalid)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
+                XButtonView {
                     if weightIsInvalid && quantityIsInvalid {
                         print("Error")
                     } else if weightIsInvalid {
@@ -180,10 +180,7 @@ struct EditItemDetail: View {
                         setValue()
                         dismiss()
                     }
-                } label: {
-                    Image(systemName: "xmark")
                 }
-                .buttonStyle(CircleButtonStyle(type: .cancel))
             }
             ToolbarItem(placement: .keyboard) {
                 HStack {

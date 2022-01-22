@@ -64,6 +64,7 @@
 		AACBBC75279AF8CD00A42108 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC71279AF8CD00A42108 /* Item+CoreDataProperties.swift */; };
 		AACBBC77279AFF2F00A42108 /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC76279AFF2F00A42108 /* NoItemsView.swift */; };
 		AACBBC79279C1F0D00A42108 /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC78279C1F0D00A42108 /* CategoryManager.swift */; };
+		AACBBC7B279C230E00A42108 /* XButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC7A279C230E00A42108 /* XButtonView.swift */; };
 		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAD949E42796B8CC004A51AC /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD949E32796B8CC004A51AC /* StringExtension.swift */; };
 		AAD949E6279866E5004A51AC /* CheckListProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD949E5279866E5004A51AC /* CheckListProgressView.swift */; };
@@ -130,6 +131,7 @@
 		AACBBC71279AF8CD00A42108 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AACBBC76279AFF2F00A42108 /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
 		AACBBC78279C1F0D00A42108 /* CategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
+		AACBBC7A279C230E00A42108 /* XButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XButtonView.swift; sourceTree = "<group>"; };
 		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAD949E32796B8CC004A51AC /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AAD949E5279866E5004A51AC /* CheckListProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListProgressView.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 			children = (
 				AAE293502781C5780010F093 /* EditButtonView.swift */,
 				AACBBC76279AFF2F00A42108 /* NoItemsView.swift */,
+				AACBBC7A279C230E00A42108 /* XButtonView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				AA82C04F277B319E001CEFFA /* Folder+CoreDataClass.swift in Sources */,
 				AAC3DDDE2793056600983100 /* UINavigationControllerExtension.swift in Sources */,
 				AACBBC75279AF8CD00A42108 /* Item+CoreDataProperties.swift in Sources */,
+				AACBBC7B279C230E00A42108 /* XButtonView.swift in Sources */,
 				AACBBC73279AF8CD00A42108 /* Category+CoreDataProperties.swift in Sources */,
 				AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */,
 				AAC3DDCC27906B5700983100 /* EditItemDetail.swift in Sources */,

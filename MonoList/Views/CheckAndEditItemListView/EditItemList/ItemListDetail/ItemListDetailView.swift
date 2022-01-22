@@ -48,12 +48,9 @@ struct ItemListDetailView: View {
                 .font(.body.bold())
             } //: ToolBarItem
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
+                XButtonView {
                     dismiss()
-                } label: {
-                    Image(systemName: "xmark")
                 }
-                .buttonStyle(CircleButtonStyle(type: .cancel))
             } // :ToolBarItem
         }
         .background(

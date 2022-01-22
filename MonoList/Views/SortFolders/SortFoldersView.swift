@@ -66,12 +66,9 @@ struct SortFoldersView: View {
                 .environment(\.editMode, $editMode)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
+                        XButtonView {
                             dismiss()
-                        } label: {
-                            Image(systemName: "xmark")
                         }
-                        .buttonStyle(CircleButtonStyle(type: .cancel))
                     }
                 }
                 NavigationLink(isActive: $isEditingNewFolder) {

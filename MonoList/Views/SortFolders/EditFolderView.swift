@@ -40,7 +40,7 @@ struct EditFolderView: View {
                 } label: {
                     Image(systemName: "checkmark")
                 }
-                .buttonStyle(CircleButtonStyle())
+                //.buttonStyle(CircleButtonStyle())
                 .disabled(name == "")
             }
             ToolbarItem(placement: .cancellationAction) {
