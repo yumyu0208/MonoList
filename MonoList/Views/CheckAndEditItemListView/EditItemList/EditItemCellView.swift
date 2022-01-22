@@ -26,10 +26,6 @@ struct EditItemCellView: View, Equatable {
         } else {
             VStack(spacing: 0) {
                 HStack(alignment: .center) {
-                    Image(systemName: "checkmark.circle")
-                        .font(.body.bold())
-                        .foregroundStyle(.tint)
-                        .padding(.vertical, 4)
                     if item.isImportant {
                         Image(systemName: "exclamationmark")
                             .font(.body.bold())

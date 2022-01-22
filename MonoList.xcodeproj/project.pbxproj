@@ -63,6 +63,7 @@
 		AACBBC74279AF8CD00A42108 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC70279AF8CD00A42108 /* Item+CoreDataClass.swift */; };
 		AACBBC75279AF8CD00A42108 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC71279AF8CD00A42108 /* Item+CoreDataProperties.swift */; };
 		AACBBC77279AFF2F00A42108 /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC76279AFF2F00A42108 /* NoItemsView.swift */; };
+		AACBBC79279C1F0D00A42108 /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC78279C1F0D00A42108 /* CategoryManager.swift */; };
 		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAD949E42796B8CC004A51AC /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD949E32796B8CC004A51AC /* StringExtension.swift */; };
 		AAD949E6279866E5004A51AC /* CheckListProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD949E5279866E5004A51AC /* CheckListProgressView.swift */; };
@@ -128,6 +129,7 @@
 		AACBBC70279AF8CD00A42108 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AACBBC71279AF8CD00A42108 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AACBBC76279AFF2F00A42108 /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
+		AACBBC78279C1F0D00A42108 /* CategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAD949E32796B8CC004A51AC /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AAD949E5279866E5004A51AC /* CheckListProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListProgressView.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				AA82C047277B319E001CEFFA /* Folder+CoreDataClass.swift */,
 				AA82C048277B319E001CEFFA /* Folder+CoreDataProperties.swift */,
 				AA82C051277DECC4001CEFFA /* MonoListManager.swift */,
+				AACBBC78279C1F0D00A42108 /* CategoryManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				AA82C050277B319E001CEFFA /* Folder+CoreDataProperties.swift in Sources */,
 				AA82C04C277B319E001CEFFA /* Notification+CoreDataProperties.swift in Sources */,
 				AA8750B7278D3B7D00540BA0 /* ItemsGroupBoxView.swift in Sources */,
+				AACBBC79279C1F0D00A42108 /* CategoryManager.swift in Sources */,
 				AA8750C1278D518900540BA0 /* ExpandToggleStyle.swift in Sources */,
 				AA351A812776BB5500F53BDC /* Persistence.swift in Sources */,
 				AAC3DDD42791A19F00983100 /* QuantityLabelView.swift in Sources */,

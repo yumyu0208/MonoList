@@ -126,6 +126,7 @@ struct EditItemDetail: View {
                         .animation(.easeOut(duration: 0.2), value: quantity.isEmpty)
                     }
                 } //: Section
+                // Select Category Section
 //                Section {
 //                    NavigationLink {
 //                        SelectCategoryView(selectedCategory: $item.category)

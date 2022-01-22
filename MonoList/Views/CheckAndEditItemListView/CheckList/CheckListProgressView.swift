@@ -14,8 +14,6 @@ struct CheckListProgressView: View {
     let numberOfCompletedItems: Int
     let numberOfAllItems: Int
     
-    let lineWidth: CGFloat = 4
-    
     var completeRate: CGFloat {
         if numberOfAllItems != 0 {
             return CGFloat(numberOfCompletedItems)/CGFloat(numberOfAllItems)
@@ -51,7 +49,7 @@ struct CheckListProgressView: View {
                             .multilineTextAlignment(.trailing)
                     }
                 }
-            }
+            } //: HStack
             .font(.system(.headline, design: .rounded))
             .foregroundStyle(.tint)
             .padding(.horizontal)
@@ -77,6 +75,9 @@ struct CheckListProgressView: View {
                     showPercentage.toggle()
                 }
             }
+        } //: ZStack
+        .onAppear {
+            percentage = completePercentage
         }
     }
 }
