@@ -23,7 +23,7 @@ struct EditFolderView: View {
         VStack(spacing: 20) {
             Spacer(minLength: 0)
             Image(systemName: selectedImage)
-                .font(.system(size: 52,design: .rounded))
+                .font(.system(size: 48,design: .rounded))
                 .foregroundColor(.accentColor)
                 .animation(.none, value: selectedImage)
             Spacer(minLength: 0)
@@ -35,7 +35,7 @@ struct EditFolderView: View {
                 .focused($folderNameTextFieldIsFocused)
                 .padding(.horizontal)
             if let images = images {
-                ScrollView(.horizontal) {
+                ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 16) {
                         ForEach(images["recommended"]!, id: \.self) { image in
                             let selected = (selectedImage == image)
@@ -57,7 +57,7 @@ struct EditFolderView: View {
                             }
                         }
                     }
-                    .padding(.horizontal)
+                    .padding()
                     .padding(.horizontal, 8)
                 }
             }
