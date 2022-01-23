@@ -66,7 +66,6 @@ struct ItemListCellView: View {
             } label: {
                 Label("Move", systemImage: "folder")
             }
-            .tint(.accentColor)
         }
         .swipeActions(edge: .leading) {
             Button(action: duplicateAction) {

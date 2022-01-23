@@ -117,7 +117,7 @@ struct HomeView: View {
     }
     
     @discardableResult
-    func addItemList(name: String = K.defaultName.newItemList, color: String = K.listColors.basic.green, image: String = "checklist", order: Int) -> ItemList {
+    func addItemList(name: String = K.defaultName.newItemList, color: String = K.colors.basic.green, image: String = "checklist", order: Int) -> ItemList {
         if let folder = folders.first {
             let newItemList = folder.createNewItemList(name: name, color: color, image: image, order: order, viewContext)
             saveData()

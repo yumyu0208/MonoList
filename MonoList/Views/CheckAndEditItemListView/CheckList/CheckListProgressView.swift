@@ -44,7 +44,7 @@ struct CheckListProgressView: View {
                     HStack(spacing: 0) {
                         Text("\(numberOfCompletedItems)")
                             .multilineTextAlignment(.trailing)
-                        .id(numberOfCompletedItems)
+                            .id(numberOfCompletedItems)
                         Text("/\(numberOfAllItems)")
                             .multilineTextAlignment(.trailing)
                     }
@@ -71,6 +71,7 @@ struct CheckListProgressView: View {
             )
             .contentShape(Rectangle())
             .onTapGesture {
+                percentage = completePercentage
                 withAnimation {
                     showPercentage.toggle()
                 }

@@ -27,13 +27,13 @@ struct EditButtonView: View {
         } label: {
             HStack(spacing: 4.0) {
                 Image(systemName: "arrow.up.arrow.down")
-                    .foregroundColor(isEditing ? .white : .accentColor)
+                    .foregroundColor(isEditing ? Color(K.colors.ui.buttonLabelColor) : .accentColor)
                 Text("Sort")
-                    .foregroundColor(.white)
+                    .foregroundColor(isEditing ? Color(K.colors.ui.buttonLabelColor) : .accentColor)
                     .colorMultiply(sortButtonColor)
                     .onChange(of: isEditing) { isEditing in
                         withAnimation(.easeOut(duration: 0.2)) {
-                            sortButtonColor = isEditing ? .white : .accentColor
+                            sortButtonColor = isEditing ? Color(K.colors.ui.buttonLabelColor) : .accentColor
                         }
                     }
             }

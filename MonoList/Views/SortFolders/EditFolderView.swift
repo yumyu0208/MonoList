@@ -12,37 +12,71 @@ struct EditFolderView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     
-    @State var image: String = "folder"
-    @State var name: String = ""
+    @State var selectedImage: String = "folder"
+    @State var selectedName: String = ""
     @FocusState var folderNameTextFieldIsFocused: Bool
     @ObservedObject var folder: Folder
     
+    let images: [String: [String]]? = ImageManager.loadImageNames()
+    
     var body: some View {
-        VStack(alignment: .center, spacing: 40) {
-            Image(systemName: image)
-                .font(.system(size: 60, weight: .semibold, design: .rounded))
+        VStack(spacing: 20) {
+            Spacer(minLength: 0)
+            Image(systemName: selectedImage)
+                .font(.system(size: 52,design: .rounded))
                 .foregroundColor(.accentColor)
-            TextField("Folder Name", text: $name, prompt: Text("Folder Name"))
+                .animation(.none, value: selectedImage)
+            Spacer(minLength: 0)
+            TextField("Folder Name", text: $selectedName, prompt: Text("Folder Name"))
+                .font(.title3)
                 .multilineTextAlignment(.center)
                 .submitLabel(.done)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(.roundedGray)
                 .focused($folderNameTextFieldIsFocused)
+                .padding(.horizontal)
+            if let images = images {
+                ScrollView(.horizontal) {
+                    HStack(spacing: 16) {
+                        ForEach(images["recommended"]!, id: \.self) { image in
+                            let selected = (selectedImage == image)
+                            Button {
+                                withAnimation {
+                                    self.selectedImage = image
+                                }
+                            } label: {
+                                ZStack {
+                                    Image(systemName: "square")
+                                        .padding(8)
+                                        .foregroundColor(.clear)
+                                    Image(systemName: image)
+                                }
+                                .font(.system(.title, design: .rounded))
+                                .background(selected ? Color(UIColor.systemGray5) : .clear)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .animation(.easeOut(duration: 0.2), value: selected)
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.horizontal, 8)
+                }
+            }
+            Button {
+                folder.image = selectedImage
+                folder.name = selectedName
+                saveData()
+                dismiss()
+            } label: {
+                Label("Done", systemImage: "checkmark")
+            }
+            .buttonStyle(.capsule)
+            .padding(.horizontal)
+            .disabled(selectedName.isEmpty)
         } //: VStack
-        .padding(.horizontal)
+        .padding(.vertical)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .confirmationAction) {
-                Button {
-                    folder.image = image
-                    folder.name = name
-                    dismiss()
-                } label: {
-                    Image(systemName: "checkmark")
-                }
-                //.buttonStyle(CircleButtonStyle())
-                .disabled(name == "")
-            }
             ToolbarItem(placement: .cancellationAction) {
                 Button {
                     dismiss()
@@ -52,14 +86,14 @@ struct EditFolderView: View {
             }
         }
         .onAppear {
-            image = folder.image
+            selectedImage = folder.image
             if folder.name == K.defaultName.newFolder {
-                name = ""
+                selectedName = ""
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     folderNameTextFieldIsFocused = true
                 }
             } else {
-                name = folder.name
+                selectedName = folder.name
             }
         }
         .onDisappear {

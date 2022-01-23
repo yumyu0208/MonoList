@@ -65,11 +65,15 @@
 		AACBBC77279AFF2F00A42108 /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC76279AFF2F00A42108 /* NoItemsView.swift */; };
 		AACBBC79279C1F0D00A42108 /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC78279C1F0D00A42108 /* CategoryManager.swift */; };
 		AACBBC7B279C230E00A42108 /* XButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC7A279C230E00A42108 /* XButtonView.swift */; };
+		AACBBC7D279C2F2200A42108 /* RoundedGrayTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC7C279C2F2200A42108 /* RoundedGrayTextFieldStyle.swift */; };
 		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAD949E42796B8CC004A51AC /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD949E32796B8CC004A51AC /* StringExtension.swift */; };
 		AAD949E6279866E5004A51AC /* CheckListProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD949E5279866E5004A51AC /* CheckListProgressView.swift */; };
 		AAE293512781C5780010F093 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditButtonView.swift */; };
 		AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B28627852F98000B8B09 /* EditItemCellView.swift */; };
+		AAF3A812279D55520084B7A9 /* SystemImageList.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF3A811279D55520084B7A9 /* SystemImageList.plist */; };
+		AAF3A814279D86B60084B7A9 /* Strings.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAF3A813279D86B60084B7A9 /* Strings.strings */; };
+		AAF3A817279D88700084B7A9 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A816279D88700084B7A9 /* ImageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,11 +136,15 @@
 		AACBBC76279AFF2F00A42108 /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
 		AACBBC78279C1F0D00A42108 /* CategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		AACBBC7A279C230E00A42108 /* XButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XButtonView.swift; sourceTree = "<group>"; };
+		AACBBC7C279C2F2200A42108 /* RoundedGrayTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGrayTextFieldStyle.swift; sourceTree = "<group>"; };
 		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAD949E32796B8CC004A51AC /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AAD949E5279866E5004A51AC /* CheckListProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListProgressView.swift; sourceTree = "<group>"; };
 		AAE293502781C5780010F093 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
 		AAE5B28627852F98000B8B09 /* EditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemCellView.swift; sourceTree = "<group>"; };
+		AAF3A811279D55520084B7A9 /* SystemImageList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SystemImageList.plist; sourceTree = "<group>"; };
+		AAF3A813279D86B60084B7A9 /* Strings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Strings.strings; sourceTree = "<group>"; };
+		AAF3A816279D88700084B7A9 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +186,7 @@
 				AA351A772776BB5300F53BDC /* MonoListApp.swift */,
 				AA82C058277EF500001CEFFA /* Views */,
 				AAE5B283278484FA000B8B09 /* SubViews */,
+				AAF3A815279D87EF0084B7A9 /* Data */,
 				AA351A7B2776BB5500F53BDC /* Assets.xcassets */,
 				AA351A802776BB5500F53BDC /* Persistence.swift */,
 				AA351A822776BB5500F53BDC /* MonoList.xcdatamodeld */,
@@ -225,6 +234,7 @@
 				AA82C048277B319E001CEFFA /* Folder+CoreDataProperties.swift */,
 				AA82C051277DECC4001CEFFA /* MonoListManager.swift */,
 				AACBBC78279C1F0D00A42108 /* CategoryManager.swift */,
+				AAF3A816279D88700084B7A9 /* ImageManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -238,6 +248,7 @@
 				AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */,
 				AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */,
 				AA8BD479278DD3D300488027 /* WhiteGroupBoxStyle.swift */,
+				AACBBC7C279C2F2200A42108 /* RoundedGrayTextFieldStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -388,6 +399,15 @@
 			path = EditItemList;
 			sourceTree = "<group>";
 		};
+		AAF3A815279D87EF0084B7A9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AAF3A813279D86B60084B7A9 /* Strings.strings */,
+				AAF3A811279D55520084B7A9 /* SystemImageList.plist */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -447,6 +467,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA351A7F2776BB5500F53BDC /* Preview Assets.xcassets in Resources */,
+				AAF3A814279D86B60084B7A9 /* Strings.strings in Resources */,
+				AAF3A812279D55520084B7A9 /* SystemImageList.plist in Resources */,
 				AA351A7C2776BB5500F53BDC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +510,7 @@
 				AAE293512781C5780010F093 /* EditButtonView.swift in Sources */,
 				AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */,
 				AA82C057277EF105001CEFFA /* CircleButtonStyle.swift in Sources */,
+				AAF3A817279D88700084B7A9 /* ImageManager.swift in Sources */,
 				AAC3DDBE278F080600983100 /* CapsuleButtonStyle.swift in Sources */,
 				AA82C054277EA2B8001CEFFA /* EditFolderView.swift in Sources */,
 				AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */,
@@ -498,6 +521,7 @@
 				AA8750B1278C4DAD00540BA0 /* AllInfoView.swift in Sources */,
 				AA469411279A71730083142D /* DoubleExtension.swift in Sources */,
 				AAC3DDE42794408A00983100 /* CheckItemCell.swift in Sources */,
+				AACBBC7D279C2F2200A42108 /* RoundedGrayTextFieldStyle.swift in Sources */,
 				AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */,
 				AAC3DDCE27911E4D00983100 /* SelectCategoryView.swift in Sources */,
 				AACBBC77279AFF2F00A42108 /* NoItemsView.swift in Sources */,

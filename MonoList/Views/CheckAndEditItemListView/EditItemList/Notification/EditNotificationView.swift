@@ -18,7 +18,7 @@ struct EditNotificationView: View {
     let isNew: Bool
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             List {
                 Section {
                     ForEach(0 ..< weekdaySymbols.count, id: \.self) { index in
@@ -62,6 +62,7 @@ struct EditNotificationView: View {
             }
             .buttonStyle(.capsule)
             .padding()
+            .background(Color(UIColor.systemGroupedBackground))
             .disabled(selectedWeekdays.isEmpty)
         } //: VStack
         .navigationBarBackButtonHidden(true)

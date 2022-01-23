@@ -16,7 +16,7 @@ struct CapsuleButtonStyle: ButtonStyle {
             Spacer()
         }
         .font(.headline.bold())
-        .foregroundColor(.white)
+        .foregroundColor(Color(K.colors.ui.buttonLabelColor))
         .padding()
         .background(Color.accentColor)
         .clipShape(Capsule())

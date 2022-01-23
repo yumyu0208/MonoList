@@ -1,0 +1,49 @@
+/* 
+  Strings.strings
+  MonoList
+
+  Created by 竹田悠真 on 2022/01/23.
+  
+*/
+//
+//                 <string>checklist</string>
+//                 <string>list.bullet</string>
+//                 <string>pencil</string>
+//                 <string>doc.text</string>
+//                 <string>note.text</string>
+//                 <string>books.vertical</string>
+//                 <string>person</string>
+//                 <string>sun.max</string>
+//                 <string>moon</string>
+//                 <string>umbrella</string>
+//                 <string>music.note</string>
+//                 <string>suit.heart</string>
+//                 <string>star</string>
+//                 <string>tag</string>
+//                 <string>tshirt</string>
+//                 <string>camera</string>
+//                 <string>ellipsis.bubble</string>
+//                 <string>phone</string>
+//                 <string>envelope</string>
+//                 <string>bag</string>
+//                 <string>cart</string>
+//                 <string>paintbrush</string>
+//                 <string>wrench.and.screwdriver</string>
+//                 <string>briefcase</string>
+//                 <string>suitcase</string>
+//                 <string>house</string>
+//                 <string>building.columns</string>
+//                 <string>building</string>
+//                 <string>key</string>
+//                 <string>tv</string>
+//                 <string>airplane</string>
+//                 <string>car</string>
+//                 <string>bed.double</string>
+//                 <string>pills</string>
+//                 <string>photo.on.rectangle.angled</string>
+//                 <string>shippingbox</string>
+//                 <string>clock</string>
+//                 <string>fork.knife</string>
+//                 <string>figure.walk</string>
+//                 <string>gift</string>
+//                 <string>banknote</string>

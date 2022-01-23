@@ -17,7 +17,7 @@ struct ItemListView: View {
     
     @State var itemListName: String = ""
     @State var itemListImage: String = "checklist"
-    @State var itemListColor: String = K.listColors.basic.green
+    @State var itemListColor: String = K.colors.basic.green
     @FocusState var listNameTextFieldIsFocused: Bool
     @FocusState var focusedItem: Focusable?
     @State var isShowingTab: ItemListDetailView.Tab?
