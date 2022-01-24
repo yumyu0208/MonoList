@@ -19,6 +19,8 @@ struct EditFolderView: View {
     
     let images: [String: [String]]? = ImageManager.loadImageNames()
     
+    @State private var rows: [GridItem] = Array(repeating: .init(.flexible(minimum: 60, maximum: 200), spacing: 16), count: 3)
+    
     var body: some View {
         VStack(spacing: 20) {
             Spacer(minLength: 0)
@@ -36,25 +38,29 @@ struct EditFolderView: View {
                 .padding(.horizontal)
             if let images = images {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 16) {
-                        ForEach(images["recommended"]!, id: \.self) { image in
-                            let selected = (selectedImage == image)
-                            Button {
-                                withAnimation {
-                                    self.selectedImage = image
-                                }
-                            } label: {
-                                ZStack {
-                                    Image(systemName: "square")
-                                        .padding(8)
-                                        .foregroundColor(.clear)
-                                    Image(systemName: image)
-                                }
-                                .font(.system(.title, design: .rounded))
-                                .background(selected ? Color(UIColor.systemGray5) : .clear)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .animation(.easeOut(duration: 0.2), value: selected)
-                            }
+                    LazyHGrid(rows: rows,
+                              spacing: 16,
+                              pinnedViews: [.sectionHeaders]) {
+                        Section {
+                            ForEach(images["recommended"]!, id: \.self) { image in
+                                let selected = (selectedImage == image)
+                                Button {
+                                    withAnimation {
+                                        self.selectedImage = image
+                                    }
+                                } label: {
+                                    ZStack {
+                                        Image(systemName: "square")
+                                            .padding(8)
+                                            .foregroundColor(.clear)
+                                        Image(systemName: image)
+                                    }
+                                    .font(.system(.title, design: .rounded))
+                                    .background(selected ? Color(UIColor.systemGray5) : .clear)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    .animation(.easeOut(duration: 0.2), value: selected)
+                                } //: Button
+                            } //: ForEach
                         }
                     }
                     .padding()
@@ -84,6 +90,9 @@ struct EditFolderView: View {
                     Text("Cancel")
                 }
             }
+        }
+        .onChange(of: folderNameTextFieldIsFocused) { focused in
+            rows = Array(repeating: .init(.flexible(minimum: 60, maximum: 200), spacing: 16), count: focused ? 1 : 3)
         }
         .onAppear {
             selectedImage = folder.image
