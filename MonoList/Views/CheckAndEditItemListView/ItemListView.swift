@@ -192,7 +192,11 @@ struct ItemListView: View {
                     saveData(update: false)
                 }
             } else {
-                saveDataIfNeeded()
+                if isEditMode {
+                    saveDataIfNeeded()
+                } else {
+                    saveData(update: false)
+                }
             }
         }
         .onChange(of: focusedItem) { [focusedItem] newItem in

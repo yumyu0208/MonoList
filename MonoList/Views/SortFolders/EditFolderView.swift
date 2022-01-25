@@ -25,7 +25,7 @@ struct EditFolderView: View {
         VStack(spacing: 20) {
             Spacer(minLength: 0)
             Image(systemName: selectedImage)
-                .font(.system(size: 48,design: .rounded))
+                .font(.system(size: 40,design: .rounded))
                 .foregroundColor(.accentColor)
                 .animation(.none, value: selectedImage)
             Spacer(minLength: 0)
@@ -39,16 +39,11 @@ struct EditFolderView: View {
             if let images = images {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHGrid(rows: rows,
-                              spacing: 16,
-                              pinnedViews: [.sectionHeaders]) {
-                        Section {
-                            ForEach(images["recommended"]!, id: \.self) { image in
-                                let selected = (selectedImage == image)
-                                Button {
-                                    withAnimation {
-                                        self.selectedImage = image
-                                    }
-                                } label: {
+                              spacing: 16) {
+                        ForEach(K.key.folderImages, id: \.self) { key in
+                            Section {
+                                ForEach(images[key]!, id: \.self) { image in
+                                    let selected = (selectedImage == image)
                                     ZStack {
                                         Image(systemName: "square")
                                             .padding(8)
@@ -58,9 +53,13 @@ struct EditFolderView: View {
                                     .font(.system(.title, design: .rounded))
                                     .background(selected ? Color(UIColor.systemGray5) : .clear)
                                     .clipShape(RoundedRectangle(cornerRadius: 8))
-                                    .animation(.easeOut(duration: 0.2), value: selected)
-                                } //: Button
-                            } //: ForEach
+                                    .onTapGesture {
+                                        if !selected {
+                                            self.selectedImage = image
+                                        }
+                                    }
+                                } //: ForEach
+                            } //: Section
                         }
                     }
                     .padding()
