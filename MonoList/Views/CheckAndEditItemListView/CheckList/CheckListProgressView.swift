@@ -25,58 +25,64 @@ struct CheckListProgressView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .center) {
-            HStack {
-                Spacer()
-                if showPercentage {
-                    HStack(spacing: 0) {
-                        Text("\(percentage)")
-                            .animation(number: percentage)
-                            .multilineTextAlignment(.trailing)
-                            .onChange(of: completePercentage) { newValue in
-                                withAnimation {
-                                    percentage = newValue
-                                }
-                        }
-                        Text("%")
+        HStack {
+            Spacer()
+            if showPercentage {
+                HStack(spacing: 0) {
+                    Text("\(percentage)")
+                        .animation(number: percentage)
+                        .multilineTextAlignment(.trailing)
+                        .onChange(of: completePercentage) { newValue in
+                            withAnimation {
+                                percentage = newValue
+                            }
                     }
-                } else {
-                    HStack(spacing: 0) {
-                        Text("\(numberOfCompletedItems)")
-                            .multilineTextAlignment(.trailing)
-                            .id(numberOfCompletedItems)
-                        Text("/\(numberOfAllItems)")
-                            .multilineTextAlignment(.trailing)
-                    }
+                    Text("%")
                 }
-            } //: HStack
-            .font(.system(.headline, design: .rounded))
-            .foregroundStyle(.tint)
-            .padding(.horizontal)
-            .padding(.vertical, 4)
-            .background(
+            } else {
+                HStack(spacing: 0) {
+                    Text("\(numberOfCompletedItems)")
+                        .multilineTextAlignment(.trailing)
+                        .id(numberOfCompletedItems)
+                    Text("/\(numberOfAllItems)")
+                        .multilineTextAlignment(.trailing)
+                }
+            }
+        } //: HStack
+        .font(.system(.headline, design: .rounded))
+        .foregroundStyle(.tint)
+        .background(
+            HStack {
                 GeometryReader { geometry in
                     let width = geometry.size.width
-                    ZStack {
+                    VStack {
+                        Spacer(minLength: 0)
                         HStack(spacing: 0) {
                             Rectangle()
                                 .frame(width: width * completeRate)
                                 .foregroundStyle(.tint)
-                                .opacity(0.3)
                             Spacer(minLength: 0)
                         }
+                        .frame(height: 8)
+                        .background(Color(UIColor.systemGray5))
+                        .clipShape(Capsule())
                         .animation(.easeOut(duration: 0.2), value: completeRate)
+                        Spacer(minLength: 0)
                     }
                 }
-            )
-            .contentShape(Rectangle())
-            .onTapGesture {
-                percentage = completePercentage
-                withAnimation {
-                    showPercentage.toggle()
-                }
+                Text("000%")
+                    .opacity(0)
+            } //: HStack
+        )
+        .padding(.horizontal)
+        .padding(.vertical, 4)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            percentage = completePercentage
+            withAnimation {
+                showPercentage.toggle()
             }
-        } //: ZStack
+        }
         .onAppear {
             percentage = completePercentage
         }
