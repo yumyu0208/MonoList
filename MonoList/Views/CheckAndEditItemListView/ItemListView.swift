@@ -117,7 +117,7 @@ struct ItemListView: View {
                     Button {
                         isShowingEditNotification = true
                     } label: {
-                        Label("Alarm", systemImage: itemList.notificationIsActive ? "bell.circle" : "bell.slash.circle")
+                        Label("Alarm", systemImage: itemList.notificationIsActive ? "bell" : "bell.slash")
                     } //: Button
                     Button {
                         focusedItem = nil
@@ -131,7 +131,11 @@ struct ItemListView: View {
                             isEditMode.toggle()
                         }
                     } label: {
-                        Label(isEditMode ? "Check" : "Edit", systemImage: isEditMode ? "list.bullet.circle" : "pencil.circle")
+                        Label("Edit", systemImage: "pencil")
+                            .foregroundColor(isEditMode ? Color(K.colors.ui.buttonLabelColor) : Color.accentColor)
+                            .padding(8)
+                            .background(isEditMode ? Color.accentColor : .clear)
+                            .clipShape(Circle())
                     } //: Button
                     Menu {
                         if !isEditMode {
@@ -152,11 +156,9 @@ struct ItemListView: View {
                             Label("Info", systemImage: "info.circle")
                         }
                     } label: {
-                        Label("Menu", systemImage: "ellipsis.circle")
+                        Label("Menu", systemImage: "ellipsis")
                     } //: Menu
                 } //: Group
-                .imageScale(.large)
-                .font(.title2)
                 .disabled(isEditing || isNewItemList)
             } //: ToolBarItemGroup
         }
