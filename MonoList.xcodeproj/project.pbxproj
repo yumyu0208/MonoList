@@ -74,6 +74,7 @@
 		AAF3A812279D55520084B7A9 /* SystemImageList.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF3A811279D55520084B7A9 /* SystemImageList.plist */; };
 		AAF3A814279D86B60084B7A9 /* Strings.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAF3A813279D86B60084B7A9 /* Strings.strings */; };
 		AAF3A817279D88700084B7A9 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A816279D88700084B7A9 /* ImageManager.swift */; };
+		AAF3A81927A2A4A20084B7A9 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +146,7 @@
 		AAF3A811279D55520084B7A9 /* SystemImageList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SystemImageList.plist; sourceTree = "<group>"; };
 		AAF3A813279D86B60084B7A9 /* Strings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Strings.strings; sourceTree = "<group>"; };
 		AAF3A816279D88700084B7A9 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +383,7 @@
 			children = (
 				AA9977A62782735A002B4C57 /* SortFoldersView.swift */,
 				AA82C053277EA2B8001CEFFA /* EditFolderView.swift */,
+				AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */,
 			);
 			path = SortFolders;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				AAC3DDE627958FD800983100 /* LargeCircleButtonStyle.swift in Sources */,
 				AAC3DDC5278FE0BA00983100 /* InfoView.swift in Sources */,
 				AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */,
+				AAF3A81927A2A4A20084B7A9 /* ImagePickerView.swift in Sources */,
 				AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */,
 				AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */,
 				AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */,

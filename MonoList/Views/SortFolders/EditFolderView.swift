@@ -17,8 +17,6 @@ struct EditFolderView: View {
     @FocusState var folderNameTextFieldIsFocused: Bool
     @ObservedObject var folder: Folder
     
-    let images: [String: [String]]? = ImageManager.loadImageNames()
-    
     @State private var rows: [GridItem] = Array(repeating: .init(.flexible(minimum: 60, maximum: 200), spacing: 16), count: 3)
     
     var body: some View {
@@ -36,36 +34,7 @@ struct EditFolderView: View {
                 .textFieldStyle(.roundedGray)
                 .focused($folderNameTextFieldIsFocused)
                 .padding(.horizontal)
-            if let images = images {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHGrid(rows: rows,
-                              spacing: 16) {
-                        ForEach(K.key.folderImages, id: \.self) { key in
-                            Section {
-                                ForEach(images[key]!, id: \.self) { image in
-                                    let selected = (selectedImage == image)
-                                    ZStack {
-                                        Image(systemName: "square")
-                                            .padding(8)
-                                            .foregroundColor(.clear)
-                                        Image(systemName: image)
-                                    }
-                                    .font(.system(.title, design: .rounded))
-                                    .background(selected ? Color(UIColor.systemGray5) : .clear)
-                                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                                    .onTapGesture {
-                                        if !selected {
-                                            self.selectedImage = image
-                                        }
-                                    }
-                                } //: ForEach
-                            } //: Section
-                        }
-                    }
-                    .padding()
-                    .padding(.horizontal, 8)
-                }
-            }
+            ImagePickerView(selectedImage: $selectedImage, rows: $rows)
             Button {
                 folder.image = selectedImage
                 folder.name = selectedName

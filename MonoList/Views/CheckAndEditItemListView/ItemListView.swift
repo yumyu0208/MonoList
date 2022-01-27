@@ -140,7 +140,10 @@ struct ItemListView: View {
                     Menu {
                         if !isEditMode {
                             Button {
-                                showCompleted.toggle()
+                                withAnimation(.easeOut(duration: 0.2)) {
+                                    showCompleted.toggle()
+                                    saveData(update: false)
+                                }
                             } label: {
                                 Label(showCompleted ? "Hide Completed" : "Show Completed", systemImage: showCompleted ? "eye.slash" : "eye")
                             }
