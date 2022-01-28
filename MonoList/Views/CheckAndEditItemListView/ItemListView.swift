@@ -22,6 +22,7 @@ struct ItemListView: View {
     @FocusState var focusedItem: Focusable?
     @State var isShowingTab: ItemListDetailView.Tab?
     @State var isShowingEditNotification = false
+    @State var isShowingEditIcon = false
     
     var isNewItemList: Bool {
         itemList.name == K.defaultName.newItemList
@@ -52,6 +53,9 @@ struct ItemListView: View {
                 Group {
                     Image(systemName: itemListImage)
                         .foregroundColor(Color(itemListColor))
+                        .onTapGesture {
+                            isShowingEditIcon = true
+                        }
                     TextField("List Name", text: $itemListName, prompt: Text("List Name"))
                         .focused($listNameTextFieldIsFocused)
                         .submitLabel(.done)
@@ -178,6 +182,9 @@ struct ItemListView: View {
                     AlarmView(itemList: itemList)
                 }
             }
+        }
+        .sheet(isPresented: $isShowingEditIcon) {
+            EditIconView()
         }
         .onAppear {
             itemListName = isNewItemList ? "" : itemList.name

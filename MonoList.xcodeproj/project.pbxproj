@@ -42,6 +42,13 @@
 		AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977A62782735A002B4C57 /* SortFoldersView.swift */; };
 		AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AA2783F176002B4C57 /* EditItemListView.swift */; };
 		AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */; };
+		AAA8867427A3E59C00FD4D5E /* Icons.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAA8867327A3E59C00FD4D5E /* Icons.plist */; };
+		AAA8867A27A3E76E00FD4D5E /* ListIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8867727A3E76D00FD4D5E /* ListIcon.swift */; };
+		AAA8867B27A3E76E00FD4D5E /* ListIconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8867827A3E76E00FD4D5E /* ListIconManager.swift */; };
+		AAA8867C27A3E76E00FD4D5E /* ListIconSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8867927A3E76E00FD4D5E /* ListIconSection.swift */; };
+		AAA8867E27A3E9A600FD4D5E /* EditIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8867D27A3E9A600FD4D5E /* EditIconView.swift */; };
+		AAA8868127A3EA4000FD4D5E /* IconSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8868027A3EA4000FD4D5E /* IconSectionHeaderView.swift */; };
+		AAA8868327A3EBD000FD4D5E /* IconImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8868227A3EBD000FD4D5E /* IconImageView.swift */; };
 		AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9BD52278136D70055CD85 /* FolderSectionView.swift */; };
 		AAC3DDBE278F080600983100 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */; };
 		AAC3DDC1278FDBC600983100 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC0278FDBC600983100 /* AlarmView.swift */; };
@@ -114,6 +121,13 @@
 		AA9977A62782735A002B4C57 /* SortFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFoldersView.swift; sourceTree = "<group>"; };
 		AA9977AA2783F176002B4C57 /* EditItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemListView.swift; sourceTree = "<group>"; };
 		AA9977AC2783F4AA002B4C57 /* ItemListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListsView.swift; sourceTree = "<group>"; };
+		AAA8867327A3E59C00FD4D5E /* Icons.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Icons.plist; sourceTree = "<group>"; };
+		AAA8867727A3E76D00FD4D5E /* ListIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListIcon.swift; sourceTree = "<group>"; };
+		AAA8867827A3E76E00FD4D5E /* ListIconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListIconManager.swift; sourceTree = "<group>"; };
+		AAA8867927A3E76E00FD4D5E /* ListIconSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListIconSection.swift; sourceTree = "<group>"; };
+		AAA8867D27A3E9A600FD4D5E /* EditIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIconView.swift; sourceTree = "<group>"; };
+		AAA8868027A3EA4000FD4D5E /* IconSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSectionHeaderView.swift; sourceTree = "<group>"; };
+		AAA8868227A3EBD000FD4D5E /* IconImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconImageView.swift; sourceTree = "<group>"; };
 		AAB9BD52278136D70055CD85 /* FolderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSectionView.swift; sourceTree = "<group>"; };
 		AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		AAC3DDC0278FDBC600983100 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
@@ -237,6 +251,9 @@
 				AA82C051277DECC4001CEFFA /* MonoListManager.swift */,
 				AACBBC78279C1F0D00A42108 /* CategoryManager.swift */,
 				AAF3A816279D88700084B7A9 /* ImageManager.swift */,
+				AAA8867827A3E76E00FD4D5E /* ListIconManager.swift */,
+				AAA8867927A3E76E00FD4D5E /* ListIconSection.swift */,
+				AAA8867727A3E76D00FD4D5E /* ListIcon.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -291,6 +308,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		AAA8867F27A3E9AC00FD4D5E /* EditIcon */ = {
+			isa = PBXGroup;
+			children = (
+				AAA8867D27A3E9A600FD4D5E /* EditIconView.swift */,
+				AAA8868027A3EA4000FD4D5E /* IconSectionHeaderView.swift */,
+				AAA8868227A3EBD000FD4D5E /* IconImageView.swift */,
+			);
+			path = EditIcon;
+			sourceTree = "<group>";
+		};
 		AAC3DDBF278F0E8000983100 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				AAC3DDDA2791D68A00983100 /* ItemListView.swift */,
+				AAA8867F27A3E9AC00FD4D5E /* EditIcon */,
 				AAC3DDDC2792ACE400983100 /* CheckList */,
 				AAE5B28527848557000B8B09 /* EditItemList */,
 			);
@@ -407,6 +435,7 @@
 			children = (
 				AAF3A813279D86B60084B7A9 /* Strings.strings */,
 				AAF3A811279D55520084B7A9 /* SystemImageList.plist */,
+				AAA8867327A3E59C00FD4D5E /* Icons.plist */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -472,6 +501,7 @@
 				AA351A7F2776BB5500F53BDC /* Preview Assets.xcassets in Resources */,
 				AAF3A814279D86B60084B7A9 /* Strings.strings in Resources */,
 				AAF3A812279D55520084B7A9 /* SystemImageList.plist in Resources */,
+				AAA8867427A3E59C00FD4D5E /* Icons.plist in Resources */,
 				AA351A7C2776BB5500F53BDC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,11 +514,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA2E0C272789C92400D23B6B /* ItemListCellView.swift in Sources */,
+				AAA8868327A3EBD000FD4D5E /* IconImageView.swift in Sources */,
 				AA8750C8278DB1FA00540BA0 /* DateExtension.swift in Sources */,
 				AA82C050277B319E001CEFFA /* Folder+CoreDataProperties.swift in Sources */,
 				AA82C04C277B319E001CEFFA /* Notification+CoreDataProperties.swift in Sources */,
 				AA8750B7278D3B7D00540BA0 /* ItemsGroupBoxView.swift in Sources */,
 				AACBBC79279C1F0D00A42108 /* CategoryManager.swift in Sources */,
+				AAA8867C27A3E76E00FD4D5E /* ListIconSection.swift in Sources */,
 				AA8750C1278D518900540BA0 /* ExpandToggleStyle.swift in Sources */,
 				AA351A812776BB5500F53BDC /* Persistence.swift in Sources */,
 				AAC3DDD42791A19F00983100 /* QuantityLabelView.swift in Sources */,
@@ -501,13 +533,16 @@
 				AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */,
 				AAC3DDC8278FE97200983100 /* SelectDestinationView.swift in Sources */,
 				AAC3DDC1278FDBC600983100 /* AlarmView.swift in Sources */,
+				AAA8868127A3EA4000FD4D5E /* IconSectionHeaderView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,
 				AAC3DDE227940EAD00983100 /* CheckmarkToggleStyle.swift in Sources */,
 				AAD949E6279866E5004A51AC /* CheckListProgressView.swift in Sources */,
 				AACBBC74279AF8CD00A42108 /* Item+CoreDataClass.swift in Sources */,
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
+				AAA8867A27A3E76E00FD4D5E /* ListIcon.swift in Sources */,
 				AA8BD47A278DD3D300488027 /* WhiteGroupBoxStyle.swift in Sources */,
+				AAA8867B27A3E76E00FD4D5E /* ListIconManager.swift in Sources */,
 				AAC3DDDB2791D68A00983100 /* ItemListView.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
 				AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */,
@@ -543,6 +578,7 @@
 				AACBBC75279AF8CD00A42108 /* Item+CoreDataProperties.swift in Sources */,
 				AACBBC7B279C230E00A42108 /* XButtonView.swift in Sources */,
 				AACBBC73279AF8CD00A42108 /* Category+CoreDataProperties.swift in Sources */,
+				AAA8867E27A3E9A600FD4D5E /* EditIconView.swift in Sources */,
 				AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */,
 				AAC3DDCC27906B5700983100 /* EditItemDetail.swift in Sources */,
 				AA8750BB278D3DEA00540BA0 /* AchievementsGroupBoxView.swift in Sources */,

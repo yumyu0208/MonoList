@@ -36,6 +36,9 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="notificationIsActive" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="order" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="primaryColor" optional="YES" attributeType="String"/>
+        <attribute name="secondaryColor" optional="YES" attributeType="String"/>
+        <attribute name="tertiaryColor" optional="YES" attributeType="String"/>
         <attribute name="type" attributeType="String"/>
         <attribute name="updateDate" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="parentItemList" inverseEntity="Item"/>
@@ -49,10 +52,10 @@
         <relationship name="parentItemList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemList" inverseName="notifications" inverseEntity="ItemList"/>
     </entity>
     <elements>
+        <element name="Category" positionX="131.13623046875" positionY="-25.4769287109375" width="128" height="103"/>
         <element name="Folder" positionX="-451.9322509765625" positionY="-26.75711059570312" width="128" height="103"/>
         <element name="Item" positionX="-80.2880859375" positionY="-22.15966796875" width="128" height="223"/>
-        <element name="ItemList" positionX="-278.1766357421875" positionY="-31.53518676757812" width="128" height="239"/>
+        <element name="ItemList" positionX="-278.1766357421875" positionY="-31.53518676757812" width="128" height="284"/>
         <element name="Notification" positionX="-282.1820068359375" positionY="251.7786865234375" width="128" height="89"/>
-        <element name="Category" positionX="131.13623046875" positionY="-25.4769287109375" width="128" height="103"/>
     </elements>
 </model>

@@ -43,11 +43,14 @@ public class Folder: NSManagedObject {
     }
     
     @discardableResult
-    func createNewItemList(name: String, color: String, image: String, achievementCount: Int = 0, displayFormat: String = "list", creationDate: Date = Date(), updateDate: Date = Date(), order: Int, type: String = "belongings", notificationIsActive: Bool = false, _ context: NSManagedObjectContext) -> ItemList {
+    func createNewItemList(name: String, color: String,primaryColor: String? = nil, secondaryColor: String? = nil, tertiaryColor: String? = nil, image: String, achievementCount: Int = 0, displayFormat: String = "list", creationDate: Date = Date(), updateDate: Date = Date(), order: Int, type: String = "belongings", notificationIsActive: Bool = false, _ context: NSManagedObjectContext) -> ItemList {
         let newItemList = ItemList(context: context)
         newItemList.id = UUID()
         newItemList.name = name
         newItemList.color = color
+        newItemList.primaryColor = primaryColor
+        newItemList.secondaryColor = secondaryColor
+        newItemList.tertiaryColor = tertiaryColor
         newItemList.image = image
         newItemList.achievementCount = Int32(achievementCount)
         newItemList.displayFormat = displayFormat

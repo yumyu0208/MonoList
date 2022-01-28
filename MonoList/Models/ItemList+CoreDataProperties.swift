@@ -25,6 +25,9 @@ extension ItemList {
     @NSManaged public var notificationIsActive: Bool
     @NSManaged public var name: String
     @NSManaged public var order: Int32
+    @NSManaged public var primaryColor: String?
+    @NSManaged public var secondaryColor: String?
+    @NSManaged public var tertiaryColor: String?
     @NSManaged public var type: String
     @NSManaged public var updateDate: Date
     @NSManaged public var items: NSSet?
