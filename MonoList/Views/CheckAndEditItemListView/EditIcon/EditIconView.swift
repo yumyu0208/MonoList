@@ -18,6 +18,8 @@ struct EditIconView: View {
     @Binding var secondaryColor: String?
     @Binding var tertiaryColor: String?
     
+    let saveAction: () -> Void
+    
     var columns: [GridItem] = Array(repeating: .init(.flexible(minimum: 60, maximum: 200), spacing: 4), count: 5)
     
     var body: some View {
@@ -45,6 +47,7 @@ struct EditIconView: View {
                                         primaryColor = icon.primaryColor
                                         secondaryColor = icon.secondaryColor
                                         tertiaryColor = icon.tertiaryColor
+                                        saveAction()
                                     }
                                     dismiss()
                                 }

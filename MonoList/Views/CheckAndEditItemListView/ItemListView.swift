@@ -215,11 +215,10 @@ struct ItemListView: View {
                          color: $itemListColor,
                          primaryColor: $itemListPrimaryColor,
                          secondaryColor: $itemListSecondaryColor,
-                         tertiaryColor: $itemListTertiaryColor)
-                .onDisappear {
-                    setValue(to: itemList)
-                    saveData(update: true)
-                }
+                         tertiaryColor: $itemListTertiaryColor) {
+                setValue(to: itemList)
+                saveData(update: true)
+            }
         }
         .onAppear {
             itemListName = isNewItemList ? "" : itemList.name
