@@ -62,7 +62,7 @@ struct ItemListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
+            HStack(spacing: isEditMode ? 14 : 8) {
                 Group {
                     ZStack {
                         Image(systemName: "square")
