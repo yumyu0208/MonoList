@@ -64,19 +64,23 @@ struct ItemListView: View {
         VStack(spacing: 0) {
             HStack {
                 Group {
-                    IconImageView(icon: itemListIcon)
-                        .padding(4)
-                        .background(
-                            RoundedRectangle(cornerRadius: 4, style: .continuous)
-                                .foregroundColor(isEditMode ? Color(K.colors.ui.secondaryBackgroundColor) : .clear)
-                                .shadow(radius: 2)
-                                .animation(.none, value: isEditMode)
-                        )
-                        .onTapGesture {
-                            if isEditMode {
-                                isShowingEditIcon = true
-                            }
+                    ZStack {
+                        Image(systemName: "square")
+                            .foregroundColor(.clear)
+                            .padding(4)
+                        IconImageView(icon: itemListIcon)
+                    }
+                    .background(
+                        RoundedRectangle(cornerRadius: 4, style: .continuous)
+                            .foregroundColor(isEditMode ? Color(K.colors.ui.secondaryBackgroundColor) : .clear)
+                            .shadow(radius: 2)
+                            .animation(.none, value: isEditMode)
+                    )
+                    .onTapGesture {
+                        if isEditMode {
+                            isShowingEditIcon = true
                         }
+                    }
                     TextField("List Name", text: $itemListName, prompt: Text("List Name"))
                         .focused($listNameTextFieldIsFocused)
                         .submitLabel(.done)
@@ -212,6 +216,10 @@ struct ItemListView: View {
                          primaryColor: $itemListPrimaryColor,
                          secondaryColor: $itemListSecondaryColor,
                          tertiaryColor: $itemListTertiaryColor)
+                .onDisappear {
+                    setValue(to: itemList)
+                    saveData(update: true)
+                }
         }
         .onAppear {
             itemListName = isNewItemList ? "" : itemList.name

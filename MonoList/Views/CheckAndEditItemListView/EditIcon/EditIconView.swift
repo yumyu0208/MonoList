@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct EditIconView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @State var manager = ListIconManager()
     @ObservedObject var itemList: ItemList
@@ -46,7 +45,6 @@ struct EditIconView: View {
                                         primaryColor = icon.primaryColor
                                         secondaryColor = icon.secondaryColor
                                         tertiaryColor = icon.tertiaryColor
-                                        saveData(update: true)
                                     }
                                     dismiss()
                                 }
@@ -67,19 +65,6 @@ struct EditIconView: View {
         } //: NavigationView
         .onAppear {
             manager.loadData()
-        }
-    }
-    
-    private func saveData(update: Bool) {
-        do {
-            if update {
-                itemList.updateDate = Date()
-            }
-            try viewContext.save()
-            print("Saved (List)")
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
 }
