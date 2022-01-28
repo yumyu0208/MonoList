@@ -77,6 +77,7 @@ public class ItemList: NSManagedObject {
         let duplicatedItemList = parentFolder.createNewItemList(
             name: name + " Copied",
             color: color,
+            iconName: iconName,
             image: image,
             achievementCount: 0,
             displayFormat: displayFormat,

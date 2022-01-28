@@ -31,6 +31,7 @@
         <attribute name="color" attributeType="String"/>
         <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="displayFormat" attributeType="String"/>
+        <attribute name="iconName" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -54,8 +55,8 @@
     <elements>
         <element name="Category" positionX="131.13623046875" positionY="-25.4769287109375" width="128" height="103"/>
         <element name="Folder" positionX="-451.9322509765625" positionY="-26.75711059570312" width="128" height="103"/>
-        <element name="Item" positionX="-80.2880859375" positionY="-22.15966796875" width="128" height="223"/>
-        <element name="ItemList" positionX="-278.1766357421875" positionY="-31.53518676757812" width="128" height="284"/>
+        <element name="Item" positionX="-80.2880859375" positionY="-22.15966796875" width="128" height="209"/>
+        <element name="ItemList" positionX="-278.1766357421875" positionY="-31.53518676757812" width="128" height="299"/>
         <element name="Notification" positionX="-282.1820068359375" positionY="251.7786865234375" width="128" height="89"/>
     </elements>
 </model>

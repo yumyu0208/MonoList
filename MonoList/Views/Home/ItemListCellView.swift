@@ -16,6 +16,15 @@ struct ItemListCellView: View {
     let showInfoAction: () -> Void
     let deleteAction: () -> Void
     
+    var itemListIcon: ListIcon {
+        ListIcon(name: itemList.iconName,
+                 image: itemList.image,
+                 color: itemList.color,
+                 primaryColor: itemList.primaryColor,
+                 secondaryColor: itemList.secondaryColor,
+                 tertiaryColor: itemList.tertiaryColor)
+    }
+    
     var body: some View {
         NavigationLink {
             ItemListView(itemList: itemList, isEditMode: !itemList.hasItems)
@@ -24,8 +33,7 @@ struct ItemListCellView: View {
                 Text(itemList.name)
                     .foregroundColor(.primary)
             } icon: {
-                Image(systemName: itemList.image)
-                    .foregroundColor(Color(itemList.color))
+                IconImageView(icon: itemListIcon)
             }
         }
         .contextMenu {

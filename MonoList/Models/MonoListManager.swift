@@ -66,7 +66,7 @@ class MonoListManager: ObservableObject {
     @discardableResult
     func createSamples(context: NSManagedObjectContext) -> [Folder] {
         let listsFolder = createNewFolder(name: K.defaultName.lists, image: "checklist", order: 0, context)
-        let workList = listsFolder.createNewItemList(name: "Work", color: K.colors.basic.blue, image: "briefcase", order: 0, notificationIsActive: true, context)
+        let workList = listsFolder.createNewItemList(name: "Work", color: K.colors.basic.blue, iconName: "Work", image: "briefcase", order: 0, notificationIsActive: true, context)
         
         workList.createNewItem(name: "Laptop", isImportant: true, order: 0, context)
         workList.createNewItem(name: "Pen", order: 1, context)
@@ -77,7 +77,7 @@ class MonoListManager: ObservableObject {
         workList.createNewNotification(weekdays: "0", time: Notification.defaultDate, context)
         workList.createNewNotification(weekdays: "36", time: Date(), context)
         
-        let shoppingList = listsFolder.createNewItemList(name: "Shopping", color: K.colors.basic.yellow, image: "cart", order: 1, notificationIsActive: true, context)
+        let shoppingList = listsFolder.createNewItemList(name: "Shopping", color: K.colors.basic.yellow, iconName: "Shopping Cart", image: "cart", order: 1, notificationIsActive: true, context)
         
         shoppingList.createNewItem(name: "Laptop", isImportant: true, order: 0, context)
         shoppingList.createNewItem(name: "Pen", order: 1, context)
@@ -87,7 +87,7 @@ class MonoListManager: ObservableObject {
         shoppingList.createNewNotification(weekdays: "0", time: Notification.defaultDate, context)
         shoppingList.createNewNotification(weekdays: "36", time: Date(), context)
         
-        let collegeList = listsFolder.createNewItemList(name: "College", color: K.colors.basic.green, image: "graduationcap", order: 2, notificationIsActive: true, context)
+        let collegeList = listsFolder.createNewItemList(name: "College", color: K.colors.basic.green, iconName: "School", image: "graduationcap", order: 2, notificationIsActive: true, context)
         
         collegeList.createNewItem(name: "Laptop", isImportant: true, order: 0, context)
         collegeList.createNewItem(name: "Pen", order: 1, context)
@@ -97,7 +97,7 @@ class MonoListManager: ObservableObject {
         collegeList.createNewNotification(weekdays: "0", time: Notification.defaultDate, context)
         collegeList.createNewNotification(weekdays: "36", time: Date(), context)
         
-        let driveList = listsFolder.createNewItemList(name: "Drive", color: K.colors.basic.cyan, image: "car", order: 3, notificationIsActive: true, context)
+        let driveList = listsFolder.createNewItemList(name: "Drive", color: K.colors.basic.cyan, iconName: "Car", image: "car", order: 3, notificationIsActive: true, context)
         
         driveList.createNewItem(name: "Laptop", isImportant: true, order: 0, context)
         driveList.createNewItem(name: "Pen", order: 1, context)
@@ -107,7 +107,7 @@ class MonoListManager: ObservableObject {
         driveList.createNewNotification(weekdays: "0", time: Notification.defaultDate, context)
         driveList.createNewNotification(weekdays: "36", time: Date(), context)
         
-        let campList = listsFolder.createNewItemList(name: "Camp", color: K.colors.basic.orange, image: "flame", order: 4, notificationIsActive: true, context)
+        let campList = listsFolder.createNewItemList(name: "Camp", color: K.colors.basic.orange, iconName: "Flame", image: "flame", order: 4, notificationIsActive: true, context)
         
         campList.createNewItem(name: "Laptop", isImportant: true, order: 0, context)
         campList.createNewItem(name: "Pen", order: 1, context)
@@ -117,7 +117,7 @@ class MonoListManager: ObservableObject {
         campList.createNewNotification(weekdays: "0", time: Notification.defaultDate, context)
         campList.createNewNotification(weekdays: "36", time: Date(), context)
         
-        let fishingList = listsFolder.createNewItemList(name: "Fishing", color: K.colors.basic.gray, image: "ferry", order: 5, notificationIsActive: true, context)
+        let fishingList = listsFolder.createNewItemList(name: "Fishing", color: K.colors.basic.gray, iconName: "Ferry", image: "ferry", order: 5, notificationIsActive: true, context)
         
         fishingList.createNewItem(name: "Laptop", isImportant: true, order: 0, context)
         fishingList.createNewItem(name: "Pen", order: 1, context)
@@ -127,7 +127,7 @@ class MonoListManager: ObservableObject {
         fishingList.createNewNotification(weekdays: "0", time: Notification.defaultDate, context)
         fishingList.createNewNotification(weekdays: "36", time: Date(), context)
         
-        let sportsList = listsFolder.createNewItemList(name: "Sports", color: K.colors.basic.purple, image: "sportscourt", order: 6, notificationIsActive: true, context)
+        let sportsList = listsFolder.createNewItemList(name: "Sports", color: K.colors.basic.purple, iconName: "Walk", image: "sportscourt", order: 6, notificationIsActive: true, context)
         
         sportsList.createNewItem(name: "Laptop", isImportant: true, order: 0, context)
         sportsList.createNewItem(name: "Pen", order: 1, context)
@@ -137,7 +137,7 @@ class MonoListManager: ObservableObject {
         sportsList.createNewNotification(weekdays: "0", time: Notification.defaultDate, context)
         sportsList.createNewNotification(weekdays: "36", time: Date(), context)
         
-        let domesticTravelList = listsFolder.createNewItemList(name: "Domestic Travel", color: K.colors.basic.pink, image: "suitcase", order: 7, notificationIsActive: true, context)
+        let domesticTravelList = listsFolder.createNewItemList(name: "Domestic Travel", color: K.colors.basic.pink, iconName: "Suit Case", image: "suitcase", order: 7, notificationIsActive: true, context)
         
         domesticTravelList.createNewItem(name: "Laptop", isImportant: true, order: 0, context)
         domesticTravelList.createNewItem(name: "Pen", order: 1, context)
@@ -147,7 +147,7 @@ class MonoListManager: ObservableObject {
         domesticTravelList.createNewNotification(weekdays: "0", time: Notification.defaultDate, context)
         domesticTravelList.createNewNotification(weekdays: "36", time: Date(), context)
         
-        let overseasTravelList = listsFolder.createNewItemList(name: "Overseas Travel", color: K.colors.basic.red, image: "airplane", order: 8, notificationIsActive: true, context)
+        let overseasTravelList = listsFolder.createNewItemList(name: "Overseas Travel", color: K.colors.basic.red, iconName: "Airplane", image: "airplane", order: 8, notificationIsActive: true, context)
         
         overseasTravelList.createNewItem(name: "Laptop", isImportant: true, order: 0, context)
         overseasTravelList.createNewItem(name: "Pen", order: 1, context)

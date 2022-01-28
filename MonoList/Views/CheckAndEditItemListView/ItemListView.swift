@@ -16,8 +16,12 @@ struct ItemListView: View {
     @State var isEditMode: Bool
     
     @State var itemListName: String = ""
+    @State var itemListIconName: String = "Checklist Red"
     @State var itemListImage: String = "checklist"
-    @State var itemListColor: String = K.colors.basic.green
+    @State var itemListColor: String = K.colors.basic.red
+    @State var itemListPrimaryColor: String? = K.colors.basic.red
+    @State var itemListSecondaryColor: String? = K.colors.basic.gray
+    @State var itemListTertiaryColor: String? = nil
     @FocusState var listNameTextFieldIsFocused: Bool
     @FocusState var focusedItem: Focusable?
     @State var isShowingTab: ItemListDetailView.Tab?
@@ -33,6 +37,15 @@ struct ItemListView: View {
     
     var isEditing: Bool {
         editMode == .active
+    }
+    
+    var itemListIcon: ListIcon {
+        ListIcon(name: itemListIconName,
+                 image: itemListImage,
+                 color: itemListColor,
+                 primaryColor: itemListPrimaryColor,
+                 secondaryColor: itemListSecondaryColor,
+                 tertiaryColor: itemListTertiaryColor)
     }
     
     var edgePanGesture: some Gesture {
@@ -51,10 +64,18 @@ struct ItemListView: View {
         VStack(spacing: 0) {
             HStack {
                 Group {
-                    Image(systemName: itemListImage)
-                        .foregroundColor(Color(itemListColor))
+                    IconImageView(icon: itemListIcon)
+                        .padding(4)
+                        .background(
+                            RoundedRectangle(cornerRadius: 4, style: .continuous)
+                                .foregroundColor(isEditMode ? Color(K.colors.ui.secondaryBackgroundColor) : .clear)
+                                .shadow(radius: 2)
+                                .animation(.none, value: isEditMode)
+                        )
                         .onTapGesture {
-                            isShowingEditIcon = true
+                            if isEditMode {
+                                isShowingEditIcon = true
+                            }
                         }
                     TextField("List Name", text: $itemListName, prompt: Text("List Name"))
                         .focused($listNameTextFieldIsFocused)
@@ -77,7 +98,7 @@ struct ItemListView: View {
                             saveDataIfNeeded()
                         }
                 }
-                .font(.title2.bold())
+                .font(.title.bold())
             } //: HStack
             .padding()
             .tint(Color(itemList.color))
@@ -184,12 +205,22 @@ struct ItemListView: View {
             }
         }
         .sheet(isPresented: $isShowingEditIcon) {
-            EditIconView()
+            EditIconView(itemList: itemList,
+                         selectedIcon: $itemListIconName,
+                         image: $itemListImage,
+                         color: $itemListColor,
+                         primaryColor: $itemListPrimaryColor,
+                         secondaryColor: $itemListSecondaryColor,
+                         tertiaryColor: $itemListTertiaryColor)
         }
         .onAppear {
             itemListName = isNewItemList ? "" : itemList.name
+            itemListIconName = itemList.iconName
             itemListImage = itemList.image
             itemListColor = itemList.color
+            itemListPrimaryColor = itemList.primaryColor
+            itemListSecondaryColor = itemList.secondaryColor
+            itemListTertiaryColor = itemList.tertiaryColor
             if isNewItemList {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     listNameTextFieldIsFocused = true
@@ -266,12 +297,16 @@ struct ItemListView: View {
         if !itemListName.isEmpty && itemList.name != itemListName {
             itemList.name = itemListName
         }
+        itemList.iconName = itemListIconName
         if itemList.image != itemListImage {
             itemList.image = itemListImage
         }
         if itemList.color != itemListColor {
             itemList.color = itemListColor
         }
+        itemList.primaryColor = itemListPrimaryColor
+        itemList.secondaryColor = itemListSecondaryColor
+        itemList.tertiaryColor = itemListTertiaryColor
     }
     
     private func saveData(update: Bool) {
