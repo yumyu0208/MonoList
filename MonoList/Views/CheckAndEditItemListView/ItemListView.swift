@@ -67,14 +67,14 @@ struct ItemListView: View {
                     ZStack {
                         Image(systemName: "square")
                             .foregroundColor(.clear)
-                            .padding(4)
+                            .padding(8)
                         IconImageView(icon: itemListIcon)
                     }
                     .background(
                         RoundedRectangle(cornerRadius: 4, style: .continuous)
-                            .foregroundColor(isEditMode ? Color(K.colors.ui.secondaryBackgroundColor) : .clear)
+                            .foregroundColor(Color(K.colors.ui.secondaryBackgroundColor))
                             .shadow(radius: 2)
-                            .animation(.none, value: isEditMode)
+                            .opacity(isEditMode ? 1 : 0)
                     )
                     .onTapGesture {
                         if isEditMode {
