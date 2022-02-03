@@ -50,7 +50,7 @@ struct HomeView: View {
                             } //: Section
                         } //: ForEach
                     } //: List
-                    .listStyle(.sidebar)
+                    .listStyle(.insetGrouped)
                     .navigationTitle(Text("MONOLIST"))
                     .navigationBarTitleDisplayMode(.inline)
                     .environment(\.editMode, $editMode)

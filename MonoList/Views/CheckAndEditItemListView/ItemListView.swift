@@ -95,7 +95,7 @@ struct ItemListView: View {
                                     }
                                 }
                             } else {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                     listNameTextFieldIsFocused = false
                                 }
                             }
@@ -103,6 +103,16 @@ struct ItemListView: View {
                         }
                 }
                 .font(.title.bold())
+                Button {
+                    itemListName = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .imageScale(.large)
+                }
+                .buttonStyle(.plain)
+                .foregroundColor(Color(UIColor.systemGray4))
+                .opacity(isEditMode && !itemListName.isEmpty ? 1 : 0)
+                .animation(.easeOut(duration: 0.2), value: itemListName.isEmpty)
             } //: HStack
             .padding()
             .tint(Color(itemList.color))
