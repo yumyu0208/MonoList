@@ -30,8 +30,14 @@ struct ItemListCellView: View {
             ItemListView(itemList: itemList, isEditMode: !itemList.hasItems)
         } label: {
             Label {
-                Text(itemList.name)
-                    .foregroundColor(.primary)
+                VStack(alignment: .leading) {
+                    Text(itemList.name)
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    Text("\(itemList.numberOfItemsString) items")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
             } icon: {
                 IconImageView(icon: itemListIcon)
             }

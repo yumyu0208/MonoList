@@ -24,4 +24,8 @@ struct ListIconManager: Codable {
             fatalError("Failed to load Icon Data.")
         }
     }
+    
+    func randomCheckListIcon() -> ListIcon {
+        return sections.first { $0.name == "List" }?.icons.filter { $0.image == "checklist" }.randomElement() ?? ListIcon(name: "CheckList Red", image: "checklist", color: K.colors.basic.red, primaryColor: K.colors.basic.red, secondaryColor: K.colors.basic.gray)
+    }
 }

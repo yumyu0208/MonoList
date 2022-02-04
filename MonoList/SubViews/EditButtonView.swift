@@ -12,6 +12,7 @@ struct EditButtonView: View {
     @Environment(\.editMode) var editMode
     @State var sortButtonColor: Color = .accentColor
     
+    var imageOnly = false
     var action: (() -> Void)?
     
     var body: some View {
@@ -25,23 +26,30 @@ struct EditButtonView: View {
                 }
             }
         } label: {
-            HStack(spacing: 4.0) {
+            if imageOnly {
                 Image(systemName: "arrow.up.arrow.down")
                     .foregroundColor(isEditing ? Color(K.colors.ui.buttonLabelColor) : .accentColor)
-                Text("Sort")
-                    .foregroundColor(isEditing ? Color(K.colors.ui.buttonLabelColor) : .accentColor)
-                    .colorMultiply(sortButtonColor)
-                    .onChange(of: isEditing) { isEditing in
-                        withAnimation(.easeOut(duration: 0.2)) {
-                            sortButtonColor = isEditing ? Color(K.colors.ui.buttonLabelColor) : .accentColor
+                    .padding(8)
+                    .background(isEditing ? Color.accentColor : .clear)
+                    .clipShape(Circle())
+            } else {
+                Label {
+                    Text("Sort")
+                        .foregroundColor(isEditing ? Color(K.colors.ui.buttonLabelColor) : .accentColor)
+                        .colorMultiply(sortButtonColor)
+                        .onChange(of: isEditing) { isEditing in
+                            withAnimation(.easeOut(duration: 0.2)) {
+                                sortButtonColor = isEditing ? Color(K.colors.ui.buttonLabelColor) : .accentColor
+                            }
                         }
-                    }
+                } icon: {
+                    Image(systemName: "arrow.up.arrow.down")
+                        .foregroundColor(isEditing ? Color(K.colors.ui.buttonLabelColor) : .accentColor)
+                }
+                .padding(8)
+                .background(isEditing ? Color.accentColor : .clear)
+                .clipShape(Capsule())
             }
-            .padding(8)
-            .background(
-                Capsule()
-                    .fill(isEditing ? Color.accentColor : .clear)
-            )
         }
         .animation(.easeOut(duration: 0.2), value: isEditing)
     }
