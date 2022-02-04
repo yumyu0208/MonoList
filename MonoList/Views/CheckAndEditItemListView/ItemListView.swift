@@ -48,18 +48,6 @@ struct ItemListView: View {
                  tertiaryColor: itemListTertiaryColor)
     }
     
-    var edgePanGesture: some Gesture {
-        DragGesture()
-            .onChanged { gesture in
-                let xLength = gesture.startLocation.x - gesture.location.x
-                let yLength = gesture.startLocation.y - gesture.location.y
-                let slope = abs(yLength/xLength)
-                if gesture.startLocation.x <= 20, slope < 1, xLength <= -40 {
-                    print("アラート：List Nameを入力してください")
-                }
-            }
-    }
-    
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: isEditMode ? 14 : 8) {
@@ -132,16 +120,11 @@ struct ItemListView: View {
         } //: VStack
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-        .gesture((itemListName.isEmpty && !itemsIsEmpty) ? edgePanGesture : nil)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    if itemListName.isEmpty && !itemsIsEmpty {
-                        print("アラート：List Nameを入力してください")
-                    } else {
-                        setValue(to: itemList)
-                        dismiss()
-                    }
+                    setValue(to: itemList)
+                    dismiss()
                 } label: {
                     Image(systemName: "chevron.backward")
                         .font(.body.bold())
@@ -258,7 +241,10 @@ struct ItemListView: View {
                 }
             } else {
                 if isEditMode {
-                    saveDataIfNeeded()
+                    withAnimation(.easeOut(duration: 0.2)) {
+                        setValue(to: itemList)
+                        saveDataIfNeeded()
+                    }
                 } else {
                     saveData(update: false)
                 }
@@ -316,19 +302,29 @@ struct ItemListView: View {
     }
     
     private func setValue(to itemList: ItemList) {
-        if !itemListName.isEmpty && itemList.name != itemListName {
+        if itemList.name == K.defaultName.newItemList && itemListName.isEmpty && !itemsIsEmpty {
+            itemList.name = "New List".localized
+        } else if !itemListName.isEmpty && itemList.name != itemListName {
             itemList.name = itemListName
         }
-        itemList.iconName = itemListIconName
+        if itemList.iconName != itemListIconName {
+            itemList.iconName = itemListIconName
+        }
         if itemList.image != itemListImage {
             itemList.image = itemListImage
         }
         if itemList.color != itemListColor {
             itemList.color = itemListColor
         }
-        itemList.primaryColor = itemListPrimaryColor
-        itemList.secondaryColor = itemListSecondaryColor
-        itemList.tertiaryColor = itemListTertiaryColor
+        if itemList.primaryColor != itemListPrimaryColor {
+            itemList.primaryColor = itemListPrimaryColor
+        }
+        if itemList.secondaryColor != itemListSecondaryColor {
+            itemList.secondaryColor = itemListSecondaryColor
+        }
+        if itemList.tertiaryColor != itemListTertiaryColor {
+            itemList.tertiaryColor = itemListTertiaryColor
+        }
     }
     
     private func saveData(update: Bool) {

@@ -34,6 +34,7 @@ struct ItemListCellView: View {
                     Text(itemList.name)
                         .font(.headline)
                         .foregroundColor(.primary)
+                        .id(itemList.name)
                 } icon: {
                     IconImageView(icon: itemListIcon)
                 }

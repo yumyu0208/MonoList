@@ -80,7 +80,50 @@ struct HomeView: View {
                     .onChange(of: listOffset) { newValue in
                         print(newValue)
                     }
-                }
+                    HStack {
+                        Group {
+                            Button {
+                                isSortingFolders = true
+                            } label: {
+                                Label("Folders", systemImage: "folder")
+                                    .animation(.none, value: isEditing)
+                            }
+                            .disabled(isEditing)
+                            .sheet(isPresented: $isSortingFolders) {
+                                SortFoldersView()
+                                    .environmentObject(manager)
+                            }
+                        } //: Group
+                        .imageScale(.large)
+                        .labelStyle(.iconOnly)
+                        .padding(8)
+                        Spacer()
+                        Group {
+                            Button(action: {
+                                let newItemList = addItemList(order: folders.first!.itemLists?.count ?? 0)
+                                saveData()
+                                editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
+                                navigationLinkTag = editItemListTag
+                            }) {
+                                Label {
+                                    Text("New List")
+                                } icon: {
+                                    Image(systemName: "plus.circle.fill")
+                                }
+                                .font(.body.bold())
+                                .labelStyle(.titleAndIcon)
+                                .animation(.none, value: isEditing)
+                            }
+                            .disabled(isEditing)
+                        } //: Group
+                        .imageScale(.large)
+                        .labelStyle(.iconOnly)
+                        .padding(8)
+                    } //: HStack
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 20)
+                    .background(Color(UIColor.systemGroupedBackground))
+                } //: VStack
                 NavigationLink(tag: editItemListTag,
                                selection: $navigationLinkTag) {
                     editItemListView
@@ -115,36 +158,6 @@ struct HomeView: View {
                     .imageScale(.large)
                     .padding(.horizontal, -4)
                 } //: ToolBarItemGroup
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Button {
-                        isSortingFolders = true
-                    } label: {
-                        Label("Folders", systemImage: "folder")
-                            .animation(.none, value: isEditing)
-                    }
-                    .disabled(isEditing)
-                    .sheet(isPresented: $isSortingFolders) {
-                        SortFoldersView()
-                            .environmentObject(manager)
-                    }
-                    Spacer()
-                    Button(action: {
-                        let newItemList = addItemList(order: folders.first!.itemLists?.count ?? 0)
-                        saveData()
-                        editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
-                        navigationLinkTag = editItemListTag
-                    }) {
-                        Label {
-                            Text("Add List")
-                        } icon: {
-                            Image(systemName: "plus.circle.fill")
-                        }
-                        .font(.body.bold())
-                        .labelStyle(.titleAndIcon)
-                        .animation(.none, value: isEditing)
-                    }
-                    .disabled(isEditing)
-                }
             }
         } //: Navigation
         .onAppear {
