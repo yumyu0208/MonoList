@@ -14,13 +14,15 @@ struct FolderSectionView: View {
         HStack {
             Label {
                 Text(title)
-                    .font(.title3.bold())
+                    .font(.headline)
                     .foregroundColor(.primary)
                     .textCase(nil)
             } icon: {
-                Image(systemName: image)
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
+                if title != K.defaultName.lists {
+                    Image(systemName: image)
+                        .imageScale(.medium)
+                        .foregroundColor(.accentColor)
+                }
             }
             .font(.headline)
             Spacer()

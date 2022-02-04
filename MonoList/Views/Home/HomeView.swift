@@ -36,9 +36,7 @@ struct HomeView: View {
                             }
                             .environmentObject(manager)
                         } header: {
-                            if folder.name != K.defaultName.lists {
-                                FolderSectionView(image: folder.image, title: folder.name)
-                            }
+                            FolderSectionView(image: folder.image, title: folder.name)
                         } //: Section
                     } //: ForEach
                 } //: List
@@ -51,16 +49,17 @@ struct HomeView: View {
                     EmptyView()
                 } //: NavigationLink
             } //: ZStack
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 let isEditing = (editMode == .active)
                 ToolbarItem(placement: .navigationBarLeading) {
                     Label {
                         Text("MONOLIST")
+                            .fontWeight(.heavy)
                     } icon: {
                         Image(systemName: "checklist")
                     }
-                    .font(.system(.title3, design: .rounded).bold())
+                    .font(.system(.title3, design: .default).bold())
                     .labelStyle(.titleAndIcon)
                 } //: ToolBarItem
                 ToolbarItemGroup(placement: .navigationBarTrailing) {

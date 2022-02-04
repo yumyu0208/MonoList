@@ -29,17 +29,18 @@ struct ItemListCellView: View {
         NavigationLink {
             ItemListView(itemList: itemList, isEditMode: !itemList.hasItems)
         } label: {
-            Label {
-                VStack(alignment: .leading) {
+            HStack {
+                Label {
                     Text(itemList.name)
                         .font(.headline)
                         .foregroundColor(.primary)
-                    Text("\(itemList.numberOfItemsString) items")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+                } icon: {
+                    IconImageView(icon: itemListIcon)
                 }
-            } icon: {
-                IconImageView(icon: itemListIcon)
+                Spacer()
+                Text(itemList.numberOfItemsString)
+                    .font(.body)
+                    .foregroundColor(.secondary)
             }
         }
         .contextMenu {
