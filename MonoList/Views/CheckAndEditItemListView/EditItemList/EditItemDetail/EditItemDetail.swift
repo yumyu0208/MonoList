@@ -16,6 +16,7 @@ struct EditItemDetail: View {
         case noteField
     }
     
+    @AppStorage(K.key.weightUnit) var weightUnit = "g"
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     
@@ -81,7 +82,7 @@ struct EditItemDetail: View {
                 Section {
                     HStack {
                         Label {
-                            TextField("Weight", text: $weight, prompt: Text("Weight (kg/pcs)"))
+                            TextField("Weight", text: $weight, prompt: Text("0"))
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.leading)
                                 .focused($focusedField, equals: .weightField)
@@ -101,11 +102,17 @@ struct EditItemDetail: View {
                         .opacity(weight.isEmpty ? 0 : 1)
                         .animation(.easeOut(duration: 0.2), value: weight.isEmpty)
                     }
+                } header: {
+                    HStack(spacing: 0) {
+                        Text("Weight")
+                        Text("  ( \(weightUnit)/pcs )")
+                            .textCase(nil)
+                    }
                 } //: Section
                 Section {
                     HStack {
                         Label {
-                            TextField("Quantity", text: $quantity, prompt: Text("Quantity"))
+                            TextField("Quantity", text: $quantity, prompt: Text("1"))
                                 .keyboardType(.numberPad)
                                 .multilineTextAlignment(.leading)
                                 .focused($focusedField, equals: .quantityField)
@@ -125,6 +132,8 @@ struct EditItemDetail: View {
                         .opacity(quantity.isEmpty ? 0 : 1)
                         .animation(.easeOut(duration: 0.2), value: quantity.isEmpty)
                     }
+                } header: {
+                    Text("Quantity")
                 } //: Section
                 // Select Category Section
 //                Section {
@@ -197,7 +206,7 @@ struct EditItemDetail: View {
         }
         .onAppear {
             weight = (item.weight == 0 ? "" : String(item.weight.string))
-            quantity = (item.quantity < 1 ? "1" : String(item.quantity))
+            quantity = (item.quantity <= 1 ? "" : String(item.quantity))
             note = item.note ?? ""
         }
         .onDisappear {
