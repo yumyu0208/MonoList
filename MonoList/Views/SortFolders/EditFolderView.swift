@@ -68,6 +68,11 @@ struct EditFolderView: View {
                 selectedName = ""
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     folderNameTextFieldIsFocused = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        if folderNameTextFieldIsFocused == false {
+                            folderNameTextFieldIsFocused = true
+                        }
+                    }
                 }
             } else {
                 selectedName = folder.name
