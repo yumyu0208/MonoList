@@ -10,6 +10,10 @@ import SwiftUI
 struct FolderSectionView: View {
     let image: String
     let title: String
+    
+    var isMyListFolder: Bool {
+        title == K.defaultName.lists
+    }
     var body: some View {
         HStack {
             Label {
@@ -18,7 +22,7 @@ struct FolderSectionView: View {
                     .foregroundColor(.primary)
                     .textCase(nil)
             } icon: {
-                if title != K.defaultName.lists {
+                if !isMyListFolder {
                     Image(systemName: image)
                         .imageScale(.medium)
                         .foregroundColor(.accentColor)

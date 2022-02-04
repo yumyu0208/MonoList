@@ -241,6 +241,11 @@ struct ItemListView: View {
             if isNewItemList {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     listNameTextFieldIsFocused = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        if listNameTextFieldIsFocused == false {
+                            listNameTextFieldIsFocused = true
+                        }
+                    }
                 }
             }
         }
