@@ -102,7 +102,8 @@ struct ItemListView: View {
                 .opacity(isEditMode && !itemListName.isEmpty ? 1 : 0)
                 .animation(.easeOut(duration: 0.2), value: itemListName.isEmpty)
             } //: HStack
-            .padding()
+            .padding(.horizontal)
+            .padding(.vertical, 8)
             .tint(Color(itemList.color))
             ZStack {
                 NoItemsView()
@@ -140,6 +141,7 @@ struct ItemListView: View {
                         isShowingEditNotification = true
                     } label: {
                         Label("Alarm", systemImage: itemList.notificationIsActive ? "bell" : "bell.slash")
+                            .padding(8)
                     } //: Button
                     Button {
                         focusedItem = nil
@@ -182,6 +184,7 @@ struct ItemListView: View {
                         }
                     } label: {
                         Label("Menu", systemImage: "ellipsis")
+                            .padding(8)
                     } //: Menu
                 } //: Group
                 .disabled(isEditing || isNewItemList)
