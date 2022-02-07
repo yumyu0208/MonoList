@@ -120,4 +120,32 @@ public class ItemList: NSManagedObject {
         addToNotifications(newNotification)
         return newNotification
     }
+    
+    func data() -> ItemListData {
+        var itemDataArray: [ItemData]?
+        if let items = items?.allObjects as? [Item] {
+            itemDataArray = items.map { $0.data() }
+        }
+        var notificationDataArray: [NotificationData]?
+        if let notifications = notifications?.allObjects as? [Notification] {
+            notificationDataArray = notifications.map { $0.data() }
+        }
+        return ItemListData(achievementCount: Int(achievementCount),
+                            color: color,
+                            creationDate: creationDate,
+                            displayFormat: displayFormat,
+                            iconName: iconName,
+                            id: id,
+                            image: image,
+                            notificationIsActive: notificationIsActive,
+                            name: name,
+                            order: Int(order),
+                            primaryColor: primaryColor,
+                            secondaryColor: secondaryColor,
+                            tertiaryColor: tertiaryColor,
+                            type: type,
+                            updateDate: updateDate,
+                            itemDataArray: itemDataArray,
+                            notificationDataArray: notificationDataArray)
+    }
 }

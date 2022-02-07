@@ -23,4 +23,18 @@ public class Item: NSManagedObject {
             order: Int(order),
             context)
     }
+    
+    func data() -> ItemData {
+        return ItemData(conditions: conditions,
+                        id: id,
+                        image: image,
+                        isCompleted: isCompleted,
+                        isImportant: isImportant,
+                        name: name,
+                        note: note,
+                        order: Int(order),
+                        quantity: Int(quantity),
+                        weight: weight,
+                        categoryData: category?.data())
+    }
 }

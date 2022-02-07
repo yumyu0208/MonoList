@@ -58,4 +58,10 @@ public class Notification: NSManagedObject {
         let timeString = formatter.string(from: time)
         return timeString
     }
+    
+    func data() -> NotificationData {
+        return NotificationData(creationDate: creationDate,
+                                time: time,
+                                weekdays: weekdays)
+    }
 }

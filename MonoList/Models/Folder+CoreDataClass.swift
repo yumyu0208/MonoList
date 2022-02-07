@@ -63,4 +63,15 @@ public class Folder: NSManagedObject {
         addToItemLists(newItemList)
         return newItemList
     }
+    
+    func data() -> FolderData {
+        var itemListDataArray: [ItemListData]?
+        if let itemLists = itemLists?.allObjects as? [ItemList] {
+            itemListDataArray = itemLists.map { $0.data() }
+        }
+        return FolderData(image: image,
+                          name: name,
+                          order: Int(order),
+                          itemListDataArray: itemListDataArray)
+    }
 }

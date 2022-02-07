@@ -59,7 +59,6 @@ struct ItemListsView: View {
                 }
             }
         } //: ForEach
-        .onDelete(perform: deleteItemLists)
         .onMove(perform: moveitemList)
     }
     

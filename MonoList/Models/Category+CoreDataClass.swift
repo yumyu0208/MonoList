@@ -11,5 +11,9 @@ import CoreData
 
 @objc(Category)
 public class Category: NSManagedObject {
-
+    func data() -> CategoryData {
+        CategoryData(id: id,
+                     name: name,
+                     image: image)
+    }
 }

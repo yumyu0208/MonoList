@@ -16,8 +16,8 @@ extension Category {
         return NSFetchRequest<Category>(entityName: "Category")
     }
 
-    @NSManaged public var id: UUID?
-    @NSManaged public var name: String?
+    @NSManaged public var id: UUID
+    @NSManaged public var name: String
     @NSManaged public var image: String?
     @NSManaged public var items: NSSet?
 
