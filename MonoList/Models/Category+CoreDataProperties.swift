@@ -20,6 +20,7 @@ extension Category {
     @NSManaged public var name: String
     @NSManaged public var image: String?
     @NSManaged public var items: NSSet?
+    @NSManaged public var order: Int32
 
 }
 

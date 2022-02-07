@@ -11,11 +11,25 @@ import CoreData
 class CategoryManager {
     
     @discardableResult
-    func createNewCategory(name: String, image: String, _ context: NSManagedObjectContext) -> Category {
+    func createNewCategory(name: String, image: String, order: Int, _ context: NSManagedObjectContext) -> Category {
         let newCategory = Category(context: context)
         newCategory.id = UUID()
         newCategory.name = name
         newCategory.image = image
+        newCategory.order = Int32(order)
         return newCategory
+    }
+    
+    func fetchAllCategories(_ context: NSManagedObjectContext) -> [Category] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
+        let sortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        do {
+            let categories = try context.fetch(request) as! [Category]
+            return categories
+        }
+        catch {
+            fatalError("Failed to fetch all categories")
+        }
     }
 }

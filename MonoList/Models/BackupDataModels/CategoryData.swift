@@ -13,11 +13,12 @@ struct CategoryData: Codable {
     var name: String
     var image: String?
     
-    func createCategory(context: NSManagedObjectContext) -> Category {
+    func createCategory(order: Int, context: NSManagedObjectContext) -> Category {
         let category = Category(context: context)
         category.id = id
         category.name = name
         category.image = image
+        category.order = Int32(order)
         return category
     }
 }

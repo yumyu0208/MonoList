@@ -33,7 +33,12 @@ struct ItemData: Codable {
         item.order = Int32(order)
         item.quantity = Int32(quantity)
         item.weight = weight
-        item.category = categoryData?.createCategory(context: context)
+        let categories = CategoryManager().fetchAllCategories(context)
+        if let category = categories.first(where: { $0.name == categoryData?.name }) {
+            item.category = category
+        } else {
+            item.category = categoryData?.createCategory(order: categories.count, context: context)
+        }
         return item
     }
 }
