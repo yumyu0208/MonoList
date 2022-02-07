@@ -48,7 +48,7 @@ struct ItemListData: Codable {
             itemList.addToItems($0.createItem(context: context))
         }
         notificationDataArray?.forEach {
-            itemList.addToNotifications($0.notification(context: context))
+            itemList.addToNotifications($0.createNotification(context: context))
         }
         return itemList
     }

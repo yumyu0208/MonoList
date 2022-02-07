@@ -18,6 +18,8 @@ struct HomeView: View {
     @State private var editMode: EditMode = .inactive
     @State private var isSortingFolders = false
     
+    @State private var isShowingSettings = false
+    
     private let editItemListTag: Int = 888
     @State var navigationLinkTag: Int?
     @State var editItemListView: ItemListView?
@@ -48,12 +50,16 @@ struct HomeView: View {
                             EditButtonView(imageOnly: true)
                                 .environment(\.editMode, $editMode)
                             Button {
-                                
+                                isShowingSettings = true
                             } label: {
                                 Label("Settings", systemImage: "gearshape")
                                     .padding(8)
                             }
                             .disabled(isEditing)
+                            .sheet(isPresented: $isShowingSettings) {
+                                SettingsView()
+                                    .environmentObject(manager)
+                            }
                         } //: Group
                         .imageScale(.large)
                         .labelStyle(.iconOnly)
@@ -133,32 +139,6 @@ struct HomeView: View {
             } //: ZStack
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Label {
-                        Text("MONOLIST")
-                            .fontWeight(.heavy)
-                    } icon: {
-                        Image(systemName: "checklist")
-                    }
-                    .font(.system(.title3, design: .default).bold())
-                    .labelStyle(.titleAndIcon)
-                } //: ToolBarItem
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Group {
-                        EditButtonView(imageOnly: true)
-                            .environment(\.editMode, $editMode)
-                        Button {
-                            
-                        } label: {
-                            Label("Settings", systemImage: "gearshape")
-                        }
-                        .disabled(isEditing)
-                    } //: Group
-                    .imageScale(.large)
-                    .padding(.horizontal, -4)
-                } //: ToolBarItemGroup
-            }
         } //: Navigation
         .onAppear {
             if folders.isEmpty {

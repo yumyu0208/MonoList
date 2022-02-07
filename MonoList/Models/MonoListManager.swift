@@ -30,6 +30,18 @@ class MonoListManager: ObservableObject {
         }
     }
     
+    func deleteAllFolders(context: NSManagedObjectContext) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Folder")
+        do {
+            let folders = try context.fetch(request) as! [Folder]
+            folders.forEach { context.delete($0) }
+            Self.saveData(context)
+        }
+        catch {
+            fatalError("Failed to fetch folders")
+        }
+    }
+    
     func fetchItemLists(context: NSManagedObjectContext) -> [ItemList] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemList")
         do {
@@ -167,5 +179,15 @@ class MonoListManager: ObservableObject {
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
         return [favoriteFolder, listsFolder]
+    }
+    
+    private static func saveData(_ context: NSManagedObjectContext) {
+        do {
+            try context.save()
+            print("Saved")
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
     }
 }

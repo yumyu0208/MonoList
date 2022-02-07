@@ -11,11 +11,11 @@ import CoreData
 struct MonoListData: Codable {
     var folders: [FolderData]
     
-    static var sampleArchiveURL: URL {
+    private static var sampleArchiveURL: URL {
         Bundle.main.url(forResource:"MonoListSampleData", withExtension: "plist")!
     }
     
-    static var backupArchiveURL: URL {
+    private static var backupArchiveURL: URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("MonoListBackupData").appendingPathExtension("plist")
     }
     
@@ -26,6 +26,7 @@ struct MonoListData: Codable {
             decodedData.folders.forEach { folderData in
                 folderData.createFolder(context: context)
             }
+            saveData(context)
             print("Successed to load sample MonoListData.")
         } catch {
             fatalError("Failed to load sample MonoListData.")
@@ -39,6 +40,7 @@ struct MonoListData: Codable {
             decodedData.folders.forEach { folderData in
                 folderData.createFolder(context: context)
             }
+            saveData(context)
             print("Successed to load MonoListData.")
         } catch {
             fatalError("Failed to load MonoListData.")
@@ -54,6 +56,16 @@ struct MonoListData: Codable {
             print("Saved MonoListData")
         } catch {
             print("Failed to save MonoListData.\nError \(error)")
+        }
+    }
+    
+    private static func saveData(_ context: NSManagedObjectContext) {
+        do {
+            try context.save()
+            print("Saved")
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
 }

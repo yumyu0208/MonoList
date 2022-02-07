@@ -20,6 +20,7 @@
 		AA3675BF27B0AED000611D8A /* NotificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675BE27B0AED000611D8A /* NotificationData.swift */; };
 		AA3675C127B0AF5200611D8A /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675C027B0AF5200611D8A /* CategoryData.swift */; };
 		AA3675C327B0AF6800611D8A /* MonoListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675C227B0AF6800611D8A /* MonoListData.swift */; };
+		AA3675CB27B0D59500611D8A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675CA27B0D59500611D8A /* SettingsView.swift */; };
 		AA469411279A71730083142D /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469410279A71730083142D /* DoubleExtension.swift */; };
 		AA469414279A735B0083142D /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469413279A735B0083142D /* NumberView.swift */; };
 		AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */; };
@@ -105,6 +106,7 @@
 		AA3675BE27B0AED000611D8A /* NotificationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationData.swift; sourceTree = "<group>"; };
 		AA3675C027B0AF5200611D8A /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
 		AA3675C227B0AF6800611D8A /* MonoListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoListData.swift; sourceTree = "<group>"; };
+		AA3675CA27B0D59500611D8A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AA469410279A71730083142D /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		AA469413279A735B0083142D /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationView.swift; sourceTree = "<group>"; };
@@ -231,6 +233,45 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		AA3675C427B0D48500611D8A /* BackupDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				AA3675C227B0AF6800611D8A /* MonoListData.swift */,
+				AA3675B827B0AE1F00611D8A /* FolderData.swift */,
+				AA3675BA27B0AEB600611D8A /* ItemListData.swift */,
+				AA3675BC27B0AEC400611D8A /* ItemData.swift */,
+				AA3675BE27B0AED000611D8A /* NotificationData.swift */,
+				AA3675C027B0AF5200611D8A /* CategoryData.swift */,
+			);
+			path = BackupDataModels;
+			sourceTree = "<group>";
+		};
+		AA3675C527B0D4B500611D8A /* ListIconDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				AAA8867827A3E76E00FD4D5E /* ListIconManager.swift */,
+				AAA8867927A3E76E00FD4D5E /* ListIconSection.swift */,
+				AAA8867727A3E76D00FD4D5E /* ListIcon.swift */,
+			);
+			path = ListIconDataModels;
+			sourceTree = "<group>";
+		};
+		AA3675C727B0D4E800611D8A /* FolderImage */ = {
+			isa = PBXGroup;
+			children = (
+				AAF3A816279D88700084B7A9 /* ImageManager.swift */,
+			);
+			path = FolderImage;
+			sourceTree = "<group>";
+		};
+		AA3675C927B0D57100611D8A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AA3675CA27B0D59500611D8A /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		AA469412279A73370083142D /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,16 +303,9 @@
 				AA82C048277B319E001CEFFA /* Folder+CoreDataProperties.swift */,
 				AA82C051277DECC4001CEFFA /* MonoListManager.swift */,
 				AACBBC78279C1F0D00A42108 /* CategoryManager.swift */,
-				AAF3A816279D88700084B7A9 /* ImageManager.swift */,
-				AAA8867827A3E76E00FD4D5E /* ListIconManager.swift */,
-				AAA8867927A3E76E00FD4D5E /* ListIconSection.swift */,
-				AAA8867727A3E76D00FD4D5E /* ListIcon.swift */,
-				AA3675C227B0AF6800611D8A /* MonoListData.swift */,
-				AA3675B827B0AE1F00611D8A /* FolderData.swift */,
-				AA3675BA27B0AEB600611D8A /* ItemListData.swift */,
-				AA3675BC27B0AEC400611D8A /* ItemData.swift */,
-				AA3675BE27B0AED000611D8A /* NotificationData.swift */,
-				AA3675C027B0AF5200611D8A /* CategoryData.swift */,
+				AA3675C727B0D4E800611D8A /* FolderImage */,
+				AA3675C527B0D4B500611D8A /* ListIconDataModels */,
+				AA3675C427B0D48500611D8A /* BackupDataModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,6 +331,7 @@
 				AAC3DDD52791AA2500983100 /* CheckAndEditItemListView */,
 				AAC3DDC6278FE94C00983100 /* SelectDestination */,
 				AAE5B28427848535000B8B09 /* SortFolders */,
+				AA3675C927B0D57100611D8A /* Settings */,
 				AA8750B3278C4DB800540BA0 /* ItemListInfo */,
 			);
 			path = Views;
@@ -552,6 +587,7 @@
 				AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */,
 				AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */,
 				AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */,
+				AA3675CB27B0D59500611D8A /* SettingsView.swift in Sources */,
 				AAC3DDC8278FE97200983100 /* SelectDestinationView.swift in Sources */,
 				AAC3DDC1278FDBC600983100 /* AlarmView.swift in Sources */,
 				AAA8868127A3EA4000FD4D5E /* IconSectionHeaderView.swift in Sources */,
