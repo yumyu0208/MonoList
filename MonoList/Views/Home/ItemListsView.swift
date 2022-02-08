@@ -149,7 +149,7 @@ struct FolderListsView_Previews: PreviewProvider {
                     .environment(\.managedObjectContext, context)
             } header: {
                 HStack(alignment: .center) {
-                    FolderSectionView(image: folder.image, title: folder.name)
+                    FolderSectionView(image: folder.image, title: folder.name) {}
                 }
             } //: Section
         }

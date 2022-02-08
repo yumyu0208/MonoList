@@ -77,7 +77,13 @@ struct HomeView: View {
                                 }
                                 .environmentObject(manager)
                             } header: {
-                                FolderSectionView(image: folder.image, title: folder.name)
+                                FolderSectionView(image: folder.image, title: folder.name) {
+                                    withAnimation {
+                                        let newItemList = addItemList(to: folder)
+                                        editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
+                                        navigationLinkTag = editItemListTag
+                                    }
+                                }
                             } //: Section
                         } //: ForEach
                     } //: List

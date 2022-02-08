@@ -11,6 +11,8 @@ struct FolderSectionView: View {
     let image: String
     let title: String
     
+    let addItemListAction: () -> Void
+    
     var isMyListFolder: Bool {
         title == K.defaultName.lists
     }
@@ -30,14 +32,22 @@ struct FolderSectionView: View {
             }
             .font(.headline)
             Spacer()
+            Button {
+                addItemListAction()
+            } label: {
+                Image(systemName: "plus")
+                    .font(.headline)
+                    .padding(8)
+            }
         } //: HStack
         .contentShape(Rectangle())
+        .padding(.trailing, 8)
     }
 }
 
 struct FolderSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        FolderSectionView(image: "folder", title: "name")
+        FolderSectionView(image: "folder", title: "name") {}
             .padding()
             .previewLayout(.sizeThatFits)
     }
