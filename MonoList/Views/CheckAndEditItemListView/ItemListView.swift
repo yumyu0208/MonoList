@@ -38,15 +38,6 @@ struct ItemListView: View {
         editMode == .active
     }
     
-    var itemListIcon: ListIcon {
-        ListIcon(name: itemListIconName,
-                 image: itemListImage,
-                 color: itemListColor,
-                 primaryColor: itemListPrimaryColor,
-                 secondaryColor: itemListSecondaryColor,
-                 tertiaryColor: itemListTertiaryColor)
-    }
-    
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: isEditMode ? 14 : 8) {
@@ -55,7 +46,7 @@ struct ItemListView: View {
                         Image(systemName: "square")
                             .foregroundColor(.clear)
                             .padding(8)
-                        IconImageView(icon: itemListIcon)
+                        IconImageView(for: itemList)
                     }
                     .background(
                         RoundedRectangle(cornerRadius: 4, style: .continuous)
@@ -140,7 +131,13 @@ struct ItemListView: View {
                         isShowingEditNotification = true
                     } label: {
                         Label("Alarm", systemImage: itemList.notificationIsActive ? "bell" : "bell.slash")
-                            .padding(8)
+                            .padding(4)
+                    } //: Button
+                    Button {
+                        isShowingEditNotification = true
+                    } label: {
+                        Label("Weight", systemImage: "scalemass")
+                            .padding(4)
                     } //: Button
                     Button {
                         focusedItem = nil
@@ -156,7 +153,7 @@ struct ItemListView: View {
                     } label: {
                         Label("Edit", systemImage: "pencil")
                             .foregroundColor(isEditMode ? Color(K.colors.ui.buttonLabelColor) : Color.accentColor)
-                            .padding(8)
+                            .padding(4)
                             .background(isEditMode ? Color.accentColor : .clear)
                             .clipShape(Circle())
                     } //: Button
@@ -178,7 +175,7 @@ struct ItemListView: View {
                         }
                     } label: {
                         Label("Menu", systemImage: "ellipsis")
-                            .padding(8)
+                            .padding(4)
                     } //: Menu
                 } //: Group
                 .disabled(isEditing || isNewItemList)
@@ -188,6 +185,7 @@ struct ItemListView: View {
             if let itemList = itemList {
                 NavigationView {
                     AlarmView(itemList: itemList)
+                        .tint(Color(itemList.color))
                 }
             }
         }

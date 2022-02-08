@@ -12,17 +12,15 @@ struct InfoGroupBoxView<Content: View>: View {
     let value: String?
     let title: String
     let image: String
-    let color: Color
     let canExpand: Bool
     let content: Content?
     
     @State private var isExpanded = false
 
-    init(value: String? = nil, title: String, image: String, color: Color = .accentColor, canExpand: Bool = true, @ViewBuilder content: () -> Content? = { nil }) {
+    init(value: String? = nil, title: String, image: String, canExpand: Bool = true, @ViewBuilder content: () -> Content? = { nil }) {
         self.value = value
         self.title = title
         self.image = image
-        self.color = color
         self.canExpand = canExpand
         self.content = content()
     }
@@ -45,7 +43,7 @@ struct InfoGroupBoxView<Content: View>: View {
                     }, icon: {
                         Image(systemName: image)
                             .font(.system(.title2, design: .default).bold())
-                            .foregroundStyle(color)
+                            .foregroundStyle(.tint)
                             .frame(minWidth: 32)
                     })
                     Spacer()
@@ -74,7 +72,7 @@ struct InfoGroupBoxView<Content: View>: View {
 
 extension InfoGroupBoxView where Content == EmptyView {
     init(value: String? = nil, title: String, image: String, color: Color) {
-        self.init(value: value, title: title, image: image, color: color, canExpand: false, content: { EmptyView() })
+        self.init(value: value, title: title, image: image, canExpand: false, content: { EmptyView() })
     }
 }
 
@@ -82,7 +80,7 @@ struct InfoGroupBoxView_Previews: PreviewProvider {
     @State static private var isExpanded = true
     static var previews: some View {
         HStack {
-            InfoGroupBoxView(value: "6", title: "Achieve", image: "tray.2.fill", color: .pink) {
+            InfoGroupBoxView(value: "6", title: "Achieve", image: "tray.2.fill") {
                 Text("Content")
             }
         }

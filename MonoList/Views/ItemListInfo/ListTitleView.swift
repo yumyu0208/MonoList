@@ -14,10 +14,6 @@ struct ListTitleView: View {
     @ObservedObject var itemList: ItemList
     var submitAction: (() -> Void)?
     
-    var icon: ListIcon {
-        ListIcon(name: itemList.iconName, image: itemList.image, color: itemList.color, primaryColor: itemList.primaryColor, secondaryColor: itemList.secondaryColor, tertiaryColor: itemList.tertiaryColor)
-    }
-    
     var body: some View {
         Label {
             TextField("List Name", text: $itemList.name, prompt: Text("List Name"))
@@ -29,7 +25,7 @@ struct ListTitleView: View {
                     }
                 }
         } icon: {
-            IconImageView(icon: icon)
+            IconImageView(for: itemList)
         }
         .font(.title.bold())
         .padding(.vertical)

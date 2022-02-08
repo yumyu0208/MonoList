@@ -28,6 +28,7 @@ struct ItemListInfoView: View {
             }
             .padding()
         }
+        .tint(Color(itemList.color))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle(Text("List Info"))
         .toolbar {

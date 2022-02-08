@@ -16,15 +16,6 @@ struct ItemListCellView: View {
     let showInfoAction: () -> Void
     let deleteAction: () -> Void
     
-    var itemListIcon: ListIcon {
-        ListIcon(name: itemList.iconName,
-                 image: itemList.image,
-                 color: itemList.color,
-                 primaryColor: itemList.primaryColor,
-                 secondaryColor: itemList.secondaryColor,
-                 tertiaryColor: itemList.tertiaryColor)
-    }
-    
     var isNewItemList: Bool {
         itemList.name == K.defaultName.newItemList
     }
@@ -40,7 +31,7 @@ struct ItemListCellView: View {
                         .foregroundColor(.primary)
                         .id(itemList.name)
                 } icon: {
-                    IconImageView(icon: itemListIcon)
+                    IconImageView(for: itemList)
                 }
                 Spacer()
                 Text(itemList.numberOfItemsString)

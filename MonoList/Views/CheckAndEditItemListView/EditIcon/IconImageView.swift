@@ -11,6 +11,14 @@ struct IconImageView: View {
     
     var icon: ListIcon
     
+    init(icon: ListIcon) {
+        self.icon = icon
+    }
+    
+    init(for itemList: ItemList) {
+        self.icon = ListIcon(name: itemList.iconName, image: itemList.image, color: itemList.color, primaryColor: itemList.primaryColor, secondaryColor: itemList.secondaryColor, tertiaryColor: itemList.tertiaryColor)
+    }
+    
     var body: some View {
         if icon.primaryColor == nil {
             Image(systemName: icon.image)

@@ -41,7 +41,7 @@ struct NotificationsGroupBoxView: View {
                     }, icon: {
                         Image(systemName: isActive ? "bell" : "bell.slash")
                             .font(.system(.title2, design: .default).bold())
-                            .foregroundColor(.accentColor)
+                            .foregroundStyle(.tint)
                             .frame(minWidth: 32)
                     })
                     Spacer()

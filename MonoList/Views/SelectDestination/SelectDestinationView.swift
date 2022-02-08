@@ -57,8 +57,7 @@ struct SelectDestinationView: View {
                             .foregroundColor(.primary)
                             .textCase(nil)
                     } icon: {
-                        Image(systemName: itemList.image)
-                            .foregroundStyle(Color(itemList.color))
+                        IconImageView(for: itemList)
                     }
                     .font(.headline.bold())
                     .padding(.bottom)
