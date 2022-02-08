@@ -25,13 +25,17 @@ struct ItemListCellView: View {
                  tertiaryColor: itemList.tertiaryColor)
     }
     
+    var isNewItemList: Bool {
+        itemList.name == K.defaultName.newItemList
+    }
+    
     var body: some View {
         NavigationLink {
             ItemListView(itemList: itemList, isEditMode: !itemList.hasItems)
         } label: {
             HStack {
                 Label {
-                    Text(itemList.name)
+                    Text(isNewItemList ? "New List" : itemList.name)
                         .font(.headline)
                         .foregroundColor(.primary)
                         .id(itemList.name)

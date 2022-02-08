@@ -17,7 +17,7 @@ struct FolderSectionView: View {
     var body: some View {
         HStack {
             Label {
-                Text(title)
+                Text(isMyListFolder ? "My Lists" : title)
                     .font(.headline)
                     .foregroundColor(.primary)
                     .textCase(nil)

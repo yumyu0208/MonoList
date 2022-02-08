@@ -107,10 +107,11 @@ struct HomeView: View {
                         Group {
                             Button(action: {
                                 if let defaultFolder = folders.first {
-                                    let newItemList = addItemList(to: defaultFolder)
-                                    saveData()
-                                    editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
-                                    navigationLinkTag = editItemListTag
+                                    withAnimation {
+                                        let newItemList = addItemList(to: defaultFolder)
+                                        editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
+                                        navigationLinkTag = editItemListTag
+                                    }
                                 }
                             }) {
                                 Label {
