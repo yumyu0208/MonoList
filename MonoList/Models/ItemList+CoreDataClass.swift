@@ -40,6 +40,13 @@ public class ItemList: NSManagedObject {
         string(from: updateDate)
     }
     
+    var totalWeight: Double {
+        guard let items = items?.allObjects as? [Item] else { return 0 }
+        let weights = items.map { $0.weight * Double($0.quantity) }
+        let totalWeight = weights.reduce(0, +)
+        return totalWeight
+    }
+    
     func string(from date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar(identifier: .gregorian)

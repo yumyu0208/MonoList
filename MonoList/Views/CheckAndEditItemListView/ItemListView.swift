@@ -25,6 +25,7 @@ struct ItemListView: View {
     @FocusState var listNameTextFieldIsFocused: Bool
     @FocusState var focusedItem: Focusable?
     @State var isShowingEditNotification = false
+    @State var isShowingWeight = false
     @State var isShowingEditIcon = false
     
     var isNewItemList: Bool {
@@ -134,7 +135,7 @@ struct ItemListView: View {
                             .padding(4)
                     } //: Button
                     Button {
-                        isShowingEditNotification = true
+                        isShowingWeight = true
                     } label: {
                         Label("Weight", systemImage: "scalemass")
                             .padding(4)
@@ -185,6 +186,14 @@ struct ItemListView: View {
             if let itemList = itemList {
                 NavigationView {
                     AlarmView(itemList: itemList)
+                        .tint(Color(itemList.color))
+                }
+            }
+        }
+        .sheet(isPresented: $isShowingWeight) {
+            if let itemList = itemList {
+                NavigationView {
+                    WeightView(itemList: itemList)
                         .tint(Color(itemList.color))
                 }
             }

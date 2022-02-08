@@ -21,6 +21,7 @@
 		AA3675C127B0AF5200611D8A /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675C027B0AF5200611D8A /* CategoryData.swift */; };
 		AA3675C327B0AF6800611D8A /* MonoListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675C227B0AF6800611D8A /* MonoListData.swift */; };
 		AA3675CB27B0D59500611D8A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675CA27B0D59500611D8A /* SettingsView.swift */; };
+		AA3675D127B2495C00611D8A /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675D027B2495C00611D8A /* WeightView.swift */; };
 		AA469411279A71730083142D /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469410279A71730083142D /* DoubleExtension.swift */; };
 		AA469414279A735B0083142D /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469413279A735B0083142D /* NumberView.swift */; };
 		AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */; };
@@ -103,6 +104,7 @@
 		AA3675C027B0AF5200611D8A /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
 		AA3675C227B0AF6800611D8A /* MonoListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoListData.swift; sourceTree = "<group>"; };
 		AA3675CA27B0D59500611D8A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA3675D027B2495C00611D8A /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
 		AA469410279A71730083142D /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		AA469413279A735B0083142D /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationView.swift; sourceTree = "<group>"; };
@@ -262,6 +264,14 @@
 				AA3675CA27B0D59500611D8A /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		AA3675CE27B248E800611D8A /* Weight */ = {
+			isa = PBXGroup;
+			children = (
+				AA3675D027B2495C00611D8A /* WeightView.swift */,
+			);
+			path = Weight;
 			sourceTree = "<group>";
 		};
 		AA469412279A73370083142D /* Modifiers */ = {
@@ -459,6 +469,7 @@
 				AAC3DDD32791A19F00983100 /* QuantityLabelView.swift */,
 				AAC3DDCA27906B4000983100 /* EditItemDetail */,
 				AAC3DDBF278F0E8000983100 /* Notification */,
+				AA3675CE27B248E800611D8A /* Weight */,
 			);
 			path = EditItemList;
 			sourceTree = "<group>";
@@ -576,6 +587,7 @@
 				AAD949E6279866E5004A51AC /* CheckListProgressView.swift in Sources */,
 				AACBBC74279AF8CD00A42108 /* Item+CoreDataClass.swift in Sources */,
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
+				AA3675D127B2495C00611D8A /* WeightView.swift in Sources */,
 				AAA8867A27A3E76E00FD4D5E /* ListIcon.swift in Sources */,
 				AA3675BF27B0AED000611D8A /* NotificationData.swift in Sources */,
 				AA8BD47A278DD3D300488027 /* WhiteGroupBoxStyle.swift in Sources */,
