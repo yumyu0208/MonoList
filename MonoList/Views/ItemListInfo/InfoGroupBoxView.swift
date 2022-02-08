@@ -18,7 +18,7 @@ struct InfoGroupBoxView<Content: View>: View {
     
     @State private var isExpanded = false
 
-    init(value: String? = nil, title: String, image: String, color: Color, canExpand: Bool = true, @ViewBuilder content: () -> Content? = { nil }) {
+    init(value: String? = nil, title: String, image: String, color: Color = .accentColor, canExpand: Bool = true, @ViewBuilder content: () -> Content? = { nil }) {
         self.value = value
         self.title = title
         self.image = image

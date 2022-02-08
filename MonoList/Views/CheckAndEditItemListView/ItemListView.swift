@@ -24,7 +24,6 @@ struct ItemListView: View {
     @State var itemListTertiaryColor: String? = nil
     @FocusState var listNameTextFieldIsFocused: Bool
     @FocusState var focusedItem: Focusable?
-    @State var isShowingTab: ItemListDetailView.Tab?
     @State var isShowingEditNotification = false
     @State var isShowingEditIcon = false
     
@@ -177,11 +176,6 @@ struct ItemListView: View {
                                 Label("Uncheck All", systemImage: "rays")
                             }
                         }
-                        Button {
-                            isShowingTab = .info
-                        } label: {
-                            Label("Info", systemImage: "info.circle")
-                        }
                     } label: {
                         Label("Menu", systemImage: "ellipsis")
                             .padding(8)
@@ -189,13 +183,6 @@ struct ItemListView: View {
                 } //: Group
                 .disabled(isEditing || isNewItemList)
             } //: ToolBarItemGroup
-        }
-        .sheet(item: $isShowingTab) { tab in
-            if let itemList = itemList {
-                NavigationView {
-                    ItemListDetailView(itemList: itemList, selectedTab: tab.rawValue)
-                }
-            }
         }
         .sheet(isPresented: $isShowingEditNotification) {
             if let itemList = itemList {

@@ -14,7 +14,6 @@ struct OthersGroupBoxView: View {
     var body: some View {
         InfoGroupBoxView(title: "Others",
                          image: "info.circle",
-                         color: .gray,
                          canExpand: true) {
             VStack(spacing: 8) {
                 HStack {

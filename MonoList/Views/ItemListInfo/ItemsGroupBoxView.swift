@@ -15,7 +15,6 @@ struct ItemsGroupBoxView: View {
         InfoGroupBoxView(value: itemList.numberOfItemsString,
                          title: "Items",
                          image: "tray.2.fill",
-                         color: .mint,
                          canExpand: itemList.hasItems) {
             VStack(alignment: .leading, spacing: 4) {
                 ForEach(itemList.sortedItems) { item in

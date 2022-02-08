@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AllInfoView: View {
+struct ItemListInfoView: View {
     
     @Environment(\.dismiss) private var dismiss
     
@@ -23,7 +23,6 @@ struct AllInfoView: View {
                     ItemsGroupBoxView(itemList: itemList)
                     NotificationsGroupBoxView(itemList: itemList)
                         .environment(\.editMode, $editMode)
-                    AchievementsGroupBoxView(itemList: itemList)
                     OthersGroupBoxView(itemList: itemList)
                 }
             }
@@ -50,7 +49,7 @@ struct ItemListInfoView_Previews: PreviewProvider {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
         NavigationView {
-            AllInfoView(itemList: itemList)
+            ItemListInfoView(itemList: itemList)
                 .environment(\.managedObjectContext, context)
         }
     }

@@ -46,7 +46,7 @@ struct ItemListsView: View {
                 }
                 .sheet(item: $showingInfoItemList) { itemList in
                     NavigationView {
-                        AllInfoView(itemList: itemList)
+                        ItemListInfoView(itemList: itemList)
                     }
                 }
                 .sheet(item: $movingItemList) { itemList in

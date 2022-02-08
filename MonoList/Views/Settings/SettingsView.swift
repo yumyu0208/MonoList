@@ -35,6 +35,13 @@ struct SettingsView: View {
             }
             .navigationTitle(Text("Settings"))
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    XButtonView {
+                        dismiss()
+                    }
+                }
+            }
         }
     }
 }
