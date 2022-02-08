@@ -106,10 +106,12 @@ struct HomeView: View {
                         Spacer()
                         Group {
                             Button(action: {
-                                let newItemList = addItemList(order: folders.first!.itemLists?.count ?? 0)
-                                saveData()
-                                editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
-                                navigationLinkTag = editItemListTag
+                                if let defaultFolder = folders.first {
+                                    let newItemList = addItemList(to: defaultFolder)
+                                    saveData()
+                                    editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
+                                    navigationLinkTag = editItemListTag
+                                }
                             }) {
                                 Label {
                                     Text("New List")
@@ -160,23 +162,24 @@ struct HomeView: View {
         }
     }
     
-    func addItemList(order: Int) -> ItemList {
-        if let folder = folders.first {
-            var iconManager = ListIconManager()
-            iconManager.loadData()
-            let randomIcon = iconManager.randomCheckListIcon()
-            let newItemList = folder.createNewItemList(name: K.defaultName.newItemList,
-                                                       color: randomIcon.color,
-                                                       primaryColor: randomIcon.primaryColor,
-                                                       secondaryColor: randomIcon.secondaryColor,
-                                                       iconName: randomIcon.name,
-                                                       image: randomIcon.image,
-                                                       order: order, viewContext)
-            saveData()
-            return newItemList
-        } else {
-            fatalError("Falied to add Item List - No Folders")
+    func addItemList(to folder: Folder) -> ItemList {
+        if let itemListsInSameFolders = folder.itemLists?.allObjects as? [ItemList] {
+            itemListsInSameFolders.forEach { itemList in
+                itemList.order += 1 
+            }
         }
+        var iconManager = ListIconManager()
+        iconManager.loadData()
+        let randomIcon = iconManager.randomCheckListIcon()
+        let newItemList = folder.createNewItemList(name: K.defaultName.newItemList,
+                                                   color: randomIcon.color,
+                                                   primaryColor: randomIcon.primaryColor,
+                                                   secondaryColor: randomIcon.secondaryColor,
+                                                   iconName: randomIcon.name,
+                                                   image: randomIcon.image,
+                                                   order: 0, viewContext)
+        saveData()
+        return newItemList
     }
 }
 
