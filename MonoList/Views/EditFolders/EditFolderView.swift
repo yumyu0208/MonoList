@@ -27,7 +27,7 @@ struct EditFolderView: View {
                 .foregroundColor(.accentColor)
                 .animation(.none, value: selectedImage)
             Spacer(minLength: 0)
-            TextField("Folder Name", text: $selectedName, prompt: Text("Folder Name"))
+            TextField("", text: $selectedName)
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .submitLabel(.done)

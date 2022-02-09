@@ -79,6 +79,26 @@ struct EditItemDetail: View {
                         } //: Label
                     } //: Toggle
                 } //: Section
+                // Select Category Section
+                Section {
+                    NavigationLink {
+                        SelectCategoryView(selectedCategory: $item.category)
+                    } label: {
+                        HStack {
+                            Label {
+                                Text("Category")
+                                    .foregroundStyle(.primary)
+                            } icon: {
+                                Image(systemName: "tag")
+                                    .foregroundStyle(.tint)
+                                    .font(.headline)
+                            } //: Label
+                            Spacer()
+                            Text(item.category?.name ?? "None")
+                                .foregroundColor(.secondary)
+                        } //: HStack
+                    }
+                } //: Section
                 Section {
                     HStack {
                         Label {
@@ -135,25 +155,6 @@ struct EditItemDetail: View {
                 } header: {
                     Text("Quantity")
                 } //: Section
-                // Select Category Section
-//                Section {
-//                    NavigationLink {
-//                        SelectCategoryView(selectedCategory: $item.category)
-//                    } label: {
-//                        HStack {
-//                            Label {
-//                                Text("Category")
-//                            } icon: {
-//                                Image(systemName: "tag")
-//                                    .foregroundStyle(.tint)
-//                                    .font(.headline)
-//                            } //: Label
-//                            Spacer()
-//                            Text(item.category ?? "None")
-//                                .foregroundColor(.secondary)
-//                        } //: HStack
-//                    }
-//                } //: Section
                 Section {
                     TextEditor(text: $note)
                         .frame(minHeight: 180)

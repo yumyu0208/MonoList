@@ -11,7 +11,7 @@ import CoreData
 class CategoryManager {
     
     @discardableResult
-    func createNewCategory(name: String, image: String, order: Int, _ context: NSManagedObjectContext) -> Category {
+    static func createNewCategory(name: String, image: String, order: Int, _ context: NSManagedObjectContext) -> Category {
         let newCategory = Category(context: context)
         newCategory.id = UUID()
         newCategory.name = name

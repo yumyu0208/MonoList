@@ -18,6 +18,11 @@ struct CheckItemCell: View {
                 .toggleStyle(.checkmark)
                 .onChange(of: item.isCompleted) { isCompleted in
                     if isCompleted {
+                        let feedBack = F.medium
+                        feedBack.prepare()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            feedBack.impactOccurred()
+                        }
                         showAndHideUndoButton()
                     }
                 }

@@ -31,7 +31,7 @@ struct SortFoldersView: View {
                                     EditFolderView(folder: folder)
                                         .navigationTitle(Text("Edit Folder"))
                                 } label: {
-                                    Label(folder.name, systemImage: folder.image)
+                                    Label(folder.name == K.defaultName.newFolder ? "New Folder" : folder.name, systemImage: folder.image)
                                         .id(folder.name)
                                 }
                             }
@@ -46,9 +46,7 @@ struct SortFoldersView: View {
                                     saveData()
                                 }
                             }) {
-                                ZStack {
-                                    Label("Add Folder", systemImage: "folder.badge.plus")
-                                }
+                                Label("Add Folder", systemImage: "folder.badge.plus")
                             }
                         }
                     } header: {
@@ -80,7 +78,7 @@ struct SortFoldersView: View {
                     EmptyView()
                 }
             } //: ZStack
-            .navigationTitle(Text("Edit Folders"))
+            .navigationTitle(Text("Folders"))
             .navigationBarTitleDisplayMode(.inline)
         }
     }

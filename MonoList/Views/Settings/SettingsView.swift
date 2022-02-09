@@ -32,6 +32,12 @@ struct SettingsView: View {
                         Label("Restore From Back Up", systemImage: "arrow.up.doc")
                     }
                 }
+                
+                Section {
+                    NavigationLink(destination: CategoriesView()) {
+                        Label("Categories", systemImage: "tag")
+                    }
+                }
             }
             .navigationTitle(Text("Settings"))
             .navigationBarTitleDisplayMode(.large)
