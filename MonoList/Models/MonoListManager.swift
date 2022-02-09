@@ -85,7 +85,7 @@ class MonoListManager: ObservableObject {
         let category3 = CategoryManager.createNewCategory(name: "Tickets", image: "ticket", order: 2, context)
         let category4 = CategoryManager.createNewCategory(name: "Identification", image: "person.text.rectangle", order: 3, context)
         let category5 = CategoryManager.createNewCategory(name: "Car", image: "car", order: 4, context)
-        let category6 = CategoryManager.createNewCategory(name: "Medicine", image: "cross", order: 6, context)
+        let category6 = CategoryManager.createNewCategory(name: "Medicine", image: "cross", order: 5, context)
         
         
         workList.createNewItem(name: "Laptop", isImportant: true, category: category1, order: 0, context)

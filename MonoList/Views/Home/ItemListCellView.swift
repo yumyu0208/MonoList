@@ -26,10 +26,13 @@ struct ItemListCellView: View {
         } label: {
             HStack {
                 Label {
-                    Text(isNewItemList ? "New List" : itemList.name)
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                        .id(itemList.name)
+                    HStack {
+                        Text("\(itemList.order)")
+                        Text(isNewItemList ? "New List" : itemList.name)
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                            .id(itemList.name)
+                    }
                 } icon: {
                     IconImageView(for: itemList)
                         .frame(height: 32)

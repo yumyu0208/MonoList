@@ -232,10 +232,7 @@ struct ItemListView: View {
         .onDisappear {
             let newAndUnEdited = (itemList.name == K.defaultName.newItemList) && itemsIsEmpty
             if newAndUnEdited {
-                withAnimation {
-                    viewContext.delete(itemList)
-                    saveData(update: false)
-                }
+                deleteItemList()
             } else {
                 if isEditMode {
                     withAnimation(.easeOut(duration: 0.2)) {
@@ -281,6 +278,18 @@ struct ItemListView: View {
                 }
             }
             saveData(update: true)
+        }
+    }
+    
+    private func deleteItemList() {
+        withAnimation {
+            if let itemListsInSameFolders = itemList.parentFolder.itemLists?.allObjects as? [ItemList] {
+                itemListsInSameFolders.forEach { itemList in
+                    itemList.order -= 1
+                }
+            }
+            viewContext.delete(itemList)
+            saveData(update: false)
         }
     }
     
