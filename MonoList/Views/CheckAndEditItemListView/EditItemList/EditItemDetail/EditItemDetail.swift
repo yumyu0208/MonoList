@@ -31,7 +31,7 @@ struct EditItemDetail: View {
     var weightIsInvalid: Bool {
         guard !weight.isEmpty else { return false }
         guard let weight = Double(weight) else { return true }
-        if weight >= 0 && weight < 100000000 {
+        if weight >= 0 && weight < 999999 {
             return false
         } else {
             return true
@@ -41,7 +41,7 @@ struct EditItemDetail: View {
     var quantityIsInvalid: Bool {
         guard !quantity.isEmpty else { return false }
         guard let quantity = Int32(quantity) else { return true }
-        if quantity >= 1 && quantity < 100000000 {
+        if quantity >= 1 && quantity < 999999 {
             return false
         } else {
             return true
