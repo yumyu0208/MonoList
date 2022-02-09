@@ -119,6 +119,46 @@ public class ItemList: NSManagedObject {
         return newItem
     }
     
+    enum Order {
+        case important
+        case category
+        case heavy
+        case light
+        case many
+        case few
+    }
+    
+    func sortItems(order: Order) {
+        guard let items = items?.allObjects as? [Item] else { return }
+        var sortedItems: [Item]?
+        switch order {
+        case .important:
+            sortedItems = items.sorted { lhs, rhs in lhs.isImportant}
+        case .category:
+            sortedItems = items.sorted { lhs, rhs in
+                if let lhs = lhs.category, let rhs = rhs.category {
+                    return lhs.order < rhs.order
+                } else {
+                    return lhs.order < rhs.order
+                }
+            }
+        case .heavy:
+            sortedItems = items.sorted { $0.weight > $1.weight }
+        case .light:
+            sortedItems = items.sorted { $0.weight < $1.weight }
+        case .many:
+            sortedItems = items.sorted { $0.quantity > $1.quantity }
+        case .few:
+            sortedItems = items.sorted { $0.quantity < $1.quantity }
+        }
+        guard let sortedItems = sortedItems else { return }
+        var count: Int32 = 0
+        for item in sortedItems {
+            item.order = count
+            count += 1
+        }
+    }
+    
     @discardableResult
     func createNewNotification(weekdays: String, time: Date, _ context: NSManagedObjectContext) -> Notification {
         let newNotification = Notification(context: context)
@@ -128,6 +168,7 @@ public class ItemList: NSManagedObject {
         addToNotifications(newNotification)
         return newNotification
     }
+    
     
     func data() -> ItemListData {
         var itemDataArray: [ItemData]?

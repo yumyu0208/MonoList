@@ -21,6 +21,8 @@ struct EditItemListView: View {
         editMode?.wrappedValue == .active
     }
     
+    @State var scrollViewProxy: ScrollViewProxy?
+    
     init(of itemList: ItemList, listNameTextFieldIsFocused: FocusState<Bool>.Binding, focusedItem: FocusState<Focusable?>.Binding) {
         self.itemList = itemList
         
@@ -115,27 +117,6 @@ struct EditItemListView: View {
                                     }
                                         .environment(\.editMode, editMode)
                                         .disabled(items.count == 1)
-                                    Button {
-                                        let focusedItemNameIsEmpty = items.first(where: {
-                                            focusedItem.wrappedValue == .row(id: $0.id.uuidString)
-                                        })?.name != ""
-                                        guard focusedItemNameIsEmpty else { return }
-                                        withAnimation {
-                                            let newItem = addItem(name: "", order: items.count)
-                                            focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                                withAnimation {
-                                                    proxy.scrollTo(newItem, anchor: .bottom)
-                                                }
-                                            }
-                                        }
-                                    } label: {
-                                        Image(systemName: "plus")
-                                            .foregroundColor(.accentColor)
-                                            .imageScale(.large)
-                                            .padding(4)
-                                    }
-                                    .disabled(isEditing)
                                 }
                             } //: HStack
                         } //: Section
@@ -143,6 +124,9 @@ struct EditItemListView: View {
                     .listStyle(.plain)
                     .opacity(items.isEmpty ? 0 : 1)
                     .environment(\.editMode, editMode)
+                    .onAppear {
+                        scrollViewProxy = proxy
+                    }
                 } //: ScrollViewReader
                 if items.isEmpty && !listNameTextFieldIsFocused.wrappedValue {
                     NoItemsView()
@@ -153,6 +137,43 @@ struct EditItemListView: View {
                             }
                         }
                 }
+            }
+            if !listNameTextFieldIsFocused.wrappedValue && focusedItem.wrappedValue == nil {
+                HStack {
+                    Spacer()
+                    Group {
+                        Button(action: {
+                            let focusedItemNameIsEmpty = items.first(where: {
+                                focusedItem.wrappedValue == .row(id: $0.id.uuidString)
+                            })?.name != ""
+                            guard focusedItemNameIsEmpty else { return }
+                            withAnimation {
+                                let newItem = addItem(name: "", order: items.count)
+                                focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    withAnimation {
+                                        scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
+                                    }
+                                }
+                            }
+                        }) {
+                            Label {
+                                Text("New Item")
+                            } icon: {
+                                Image(systemName: "plus.circle.fill")
+                            }
+                            .font(.body.bold())
+                            .labelStyle(.titleAndIcon)
+                            .animation(.none, value: isEditing)
+                        }
+                        .disabled(isEditing)
+                    } //: Group
+                    .imageScale(.large)
+                    .labelStyle(.iconOnly)
+                    .padding(8)
+                } //: HStack
+                .padding(.vertical, 8)
+                .padding(.horizontal, 20)
             }
         } //: VStack
     }
