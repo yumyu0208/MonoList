@@ -86,18 +86,17 @@ struct EditItemDetail: View {
                     } label: {
                         HStack {
                             Label {
-                                Text("Category")
+                                Text(item.category?.name ?? "None")
                                     .foregroundStyle(.primary)
                             } icon: {
-                                Image(systemName: "tag")
+                                Image(systemName: item.category?.image ?? "tag")
                                     .foregroundStyle(.tint)
                                     .font(.headline)
                             } //: Label
-                            Spacer()
-                            Text(item.category?.name ?? "None")
-                                .foregroundColor(.secondary)
                         } //: HStack
                     }
+                } header: {
+                    Text("Category")
                 } //: Section
                 Section {
                     HStack {
