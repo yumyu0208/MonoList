@@ -80,7 +80,7 @@ struct EditItemCellView: View, Equatable {
                     .padding(.vertical, 4)
                 } //: HStack
                 VStack(spacing: 2) {
-                    if showWeight {
+                    if showWeight || item.category != nil {
                         HStack(alignment: .center) {
                             if let category = item.category {
                                 CategoryLabelView(category: category)
