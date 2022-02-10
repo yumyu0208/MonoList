@@ -20,6 +20,14 @@ struct EditItemCellView: View, Equatable {
     let deleteAction: (Item) -> Void
     let addAction: (Item) -> Void
     
+    var showWeight: Bool {
+        item.weight != 0
+    }
+    
+    var showQuantity: Bool {
+        item.quantity > 1
+    }
+    
     var body: some View {
         if item.isFault || item.isDeleted {
             EmptyView()
@@ -55,11 +63,11 @@ struct EditItemCellView: View, Equatable {
                                     }
                             )
                     }
-                    if item.weight != 0 {
-                        WeightLabelView(value: item.weight)
-                    }
-                    if item.quantity > 1 {
+                    if showQuantity {
                         QuantityLabelView(value: item.quantity)
+                            .onTapGesture {
+                                isEditingItemDetail = true
+                            }
                     }
                     Button {
                         isEditingItemDetail = true
@@ -71,19 +79,35 @@ struct EditItemCellView: View, Equatable {
                     .foregroundStyle(.tint)
                     .padding(.vertical, 4)
                 } //: HStack
-                if let note = item.note {
-                    HStack(alignment: .center) {
-                        Image(systemName: "checkmark.circle")
-                            .font(.body.bold())
-                            .opacity(0)
-                        Text(note)
-                            .font(.callout)
-                            .foregroundStyle(.secondary)
-                        Spacer()
-                        Image(systemName: "info.circle")
-                            .imageScale(.large)
-                            .opacity(0)
+                VStack(spacing: 2) {
+                    if showWeight {
+                        HStack(alignment: .center) {
+                            if let category = item.category {
+                                CategoryLabelView(category: category)
+                            }
+                            if showWeight {
+                                WeightLabelView(value: item.weight)
+                            }
+                            Spacer()
+                            Image(systemName: "info.circle")
+                                .imageScale(.large)
+                                .opacity(0)
+                        }
                     }
+                    if let note = item.note {
+                        HStack(alignment: .center) {
+                            Text(note)
+                                .font(.callout)
+                                .foregroundStyle(.secondary)
+                            Spacer()
+                            Image(systemName: "info.circle")
+                                .imageScale(.large)
+                                .opacity(0)
+                        }
+                    }
+                }
+                .onTapGesture {
+                    isEditingItemDetail = true
                 }
             } //: VStack
             .padding(.leading, 8)

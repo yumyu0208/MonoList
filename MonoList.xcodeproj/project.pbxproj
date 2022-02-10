@@ -26,6 +26,7 @@
 		AA3675D527B32C4C00611D8A /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675D427B32C4C00611D8A /* CategoriesView.swift */; };
 		AA3675D827B33A7500611D8A /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675D727B33A7500611D8A /* EditCategoryView.swift */; };
 		AA3675DA27B4862200611D8A /* DarkHighlightButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675D927B4862200611D8A /* DarkHighlightButtonStyle.swift */; };
+		AA3675DC27B49FF600611D8A /* CategoryLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675DB27B49FF600611D8A /* CategoryLabelView.swift */; };
 		AA469411279A71730083142D /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469410279A71730083142D /* DoubleExtension.swift */; };
 		AA469414279A735B0083142D /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469413279A735B0083142D /* NumberView.swift */; };
 		AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */; };
@@ -113,6 +114,7 @@
 		AA3675D427B32C4C00611D8A /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		AA3675D727B33A7500611D8A /* EditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryView.swift; sourceTree = "<group>"; };
 		AA3675D927B4862200611D8A /* DarkHighlightButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkHighlightButtonStyle.swift; sourceTree = "<group>"; };
+		AA3675DB27B49FF600611D8A /* CategoryLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryLabelView.swift; sourceTree = "<group>"; };
 		AA469410279A71730083142D /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		AA469413279A735B0083142D /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationView.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 			children = (
 				AA9977AA2783F176002B4C57 /* EditItemListView.swift */,
 				AAE5B28627852F98000B8B09 /* EditItemCellView.swift */,
+				AA3675DB27B49FF600611D8A /* CategoryLabelView.swift */,
 				AAC3DDD12791A0F100983100 /* WeightLabelView.swift */,
 				AAC3DDD32791A19F00983100 /* QuantityLabelView.swift */,
 				AAC3DDCA27906B4000983100 /* EditItemDetail */,
@@ -628,6 +631,7 @@
 				AA3675C327B0AF6800611D8A /* MonoListData.swift in Sources */,
 				AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */,
 				AA3675BB27B0AEB600611D8A /* ItemListData.swift in Sources */,
+				AA3675DC27B49FF600611D8A /* CategoryLabelView.swift in Sources */,
 				AAD949E42796B8CC004A51AC /* StringExtension.swift in Sources */,
 				AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */,
 				AA8750B1278C4DAD00540BA0 /* ItemListInfoView.swift in Sources */,
