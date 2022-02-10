@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditButtonView: View {
+struct EditLabelView: View {
     
     @Environment(\.editMode) var editMode
     @State var sortButtonColor: Color = .accentColor
@@ -17,15 +17,7 @@ struct EditButtonView: View {
     
     var body: some View {
         let isEditing = (editMode?.wrappedValue == .active)
-        Button {
-            withAnimation {
-                if let action = action {
-                    action()
-                } else {
-                    editMode?.wrappedValue = isEditing ? .inactive : .active
-                }
-            }
-        } label: {
+        Group {
             if imageOnly {
                 Image(systemName: "arrow.up.arrow.down")
                     .foregroundColor(isEditing ? Color(K.colors.ui.buttonLabelColor) : .accentColor)
@@ -52,15 +44,24 @@ struct EditButtonView: View {
             }
         }
         .animation(.easeOut(duration: 0.2), value: isEditing)
+        .onTapGesture {
+            withAnimation {
+                if let action = action {
+                    action()
+                } else {
+                    editMode?.wrappedValue = isEditing ? .inactive : .active
+                }
+            }
+        }
     }
 }
 
 struct EditButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        EditButtonView()
+        EditLabelView()
             .padding()
             .previewLayout(.sizeThatFits)
-        EditButtonView()
+        EditLabelView()
             .padding()
             .previewLayout(.sizeThatFits)
             .environment(\.editMode, .constant(.active))

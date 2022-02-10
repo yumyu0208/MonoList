@@ -137,23 +137,59 @@ public class ItemList: NSManagedObject {
         var sortedItems: [Item]?
         switch order {
         case .important:
-            sortedItems = items.sorted { lhs, rhs in lhs.isImportant}
-        case .category:
             sortedItems = items.sorted { lhs, rhs in
-                if let lhs = lhs.category, let rhs = rhs.category {
+                if lhs.isImportant == rhs.isImportant {
                     return lhs.order < rhs.order
                 } else {
+                    return lhs.isImportant
+                }
+            }
+        case .category:
+            sortedItems = items.sorted { lhs, rhs in
+                if lhs.category == nil && rhs.category == nil {
                     return lhs.order < rhs.order
+                } else if lhs.category == nil || rhs.category == nil {
+                    return lhs.category != nil
+                } else {
+                    if lhs.category == rhs.category {
+                        return lhs.order < rhs.order
+                    } else {
+                        return lhs.category!.order < rhs.category!.order
+                    }
                 }
             }
         case .heavy:
-            sortedItems = items.sorted { $0.weight > $1.weight }
+            sortedItems = items.sorted { lhs, rhs in
+                if lhs.weight == rhs.weight {
+                    return lhs.order < rhs.order
+                } else {
+                    return lhs.weight > rhs.weight
+                }
+            }
         case .light:
-            sortedItems = items.sorted { $0.weight < $1.weight }
+            sortedItems = items.sorted { lhs, rhs in
+                if lhs.weight == rhs.weight {
+                    return lhs.order < rhs.order
+                } else {
+                    return lhs.weight < rhs.weight
+                }
+            }
         case .many:
-            sortedItems = items.sorted { $0.quantity > $1.quantity }
+            sortedItems = items.sorted { lhs, rhs in
+                if lhs.quantity == rhs.quantity {
+                    return lhs.order < rhs.order
+                } else {
+                    return lhs.quantity > rhs.quantity
+                }
+            }
         case .few:
-            sortedItems = items.sorted { $0.quantity < $1.quantity }
+            sortedItems = items.sorted { lhs, rhs in
+                if lhs.quantity == rhs.quantity {
+                    return lhs.order < rhs.order
+                } else {
+                    return lhs.quantity < rhs.quantity
+                }
+            }
         }
         guard let sortedItems = sortedItems else { return }
         var count: Int32 = 0

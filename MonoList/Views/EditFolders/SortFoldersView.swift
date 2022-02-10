@@ -52,7 +52,7 @@ struct SortFoldersView: View {
                     } header: {
                         HStack(alignment: .center) {
                             Spacer()
-                            EditButtonView()
+                            EditLabelView()
                                 .imageScale(.medium)
                                 .font(.subheadline.bold())
                                 .environment(\.editMode, $editMode)

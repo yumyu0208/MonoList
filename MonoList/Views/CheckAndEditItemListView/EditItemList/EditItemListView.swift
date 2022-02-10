@@ -132,12 +132,73 @@ struct EditItemListView: View {
                             HStack {
                                 Spacer()
                                 HStack(spacing: 12) {
-                                    EditButtonView() {
+                                    Menu {
+                                        Button {
+                                            withAnimation {
+                                                itemList?.sortItems(order: .category)
+                                                saveData()
+                                            }
+                                        } label: {
+                                            Label("Category", systemImage: "tag")
+                                        }
+                                        Button {
+                                            withAnimation {
+                                                itemList?.sortItems(order: .important)
+                                                saveData()
+                                            }
+                                        } label: {
+                                            Label("Priority", systemImage: "exclamationmark")
+                                        }
+                                        Menu {
+                                            Button {
+                                                withAnimation {
+                                                    itemList?.sortItems(order: .light)
+                                                    saveData()
+                                                }
+                                            } label: {
+                                                Label("Ascending", systemImage: "arrow.up.right")
+                                            }
+                                            Button {
+                                                withAnimation {
+                                                    itemList?.sortItems(order: .heavy)
+                                                    saveData()
+                                                }
+                                            } label: {
+                                                Label("Descending", systemImage: "arrow.down.right")
+                                            }
+                                        } label: {
+                                            Label("Weight", systemImage: "scalemass")
+                                        }
+                                        Menu {
+                                            Button {
+                                                withAnimation {
+                                                    itemList?.sortItems(order: .few)
+                                                    saveData()
+                                                }
+                                            } label: {
+                                                Label("Ascending", systemImage: "arrow.up.right")
+                                            }
+                                            Button {
+                                                withAnimation {
+                                                    itemList?.sortItems(order: .many)
+                                                    saveData()
+                                                }
+                                            } label: {
+                                                Label("Descending", systemImage: "arrow.down.right")
+                                            }
+                                        } label: {
+                                            Label("Quantity", systemImage: "number")
+                                        }
+                                    } label: {
+                                        EditLabelView {}
+                                            .environment(\.editMode, editMode)
+                                    } primaryAction: {
                                         listNameTextFieldIsFocused.wrappedValue = false
-                                        editMode?.wrappedValue = isEditing ? .inactive : .active
+                                        withAnimation {
+                                            editMode?.wrappedValue = isEditing ? .inactive : .active
+                                        }
                                     }
-                                        .environment(\.editMode, editMode)
-                                        .disabled(items.count == 1)
+                                    .disabled(items.count == 1)
                                 }
                             } //: HStack
                         } //: Section

@@ -47,7 +47,7 @@ struct HomeView: View {
                         .labelStyle(.titleAndIcon)
                         Spacer()
                         Group {
-                            EditButtonView(imageOnly: true)
+                            EditLabelView(imageOnly: true)
                                 .environment(\.editMode, $editMode)
                             Button {
                                 isShowingSettings = true

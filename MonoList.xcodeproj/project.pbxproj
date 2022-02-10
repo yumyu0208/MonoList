@@ -85,7 +85,7 @@
 		AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B7BC27870BCE00D73EBE /* Focusable.swift */; };
 		AAD949E42796B8CC004A51AC /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD949E32796B8CC004A51AC /* StringExtension.swift */; };
 		AAD949E6279866E5004A51AC /* CheckListProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD949E5279866E5004A51AC /* CheckListProgressView.swift */; };
-		AAE293512781C5780010F093 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditButtonView.swift */; };
+		AAE293512781C5780010F093 /* EditLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE293502781C5780010F093 /* EditLabelView.swift */; };
 		AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B28627852F98000B8B09 /* EditItemCellView.swift */; };
 		AAF3A812279D55520084B7A9 /* SystemImageList.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF3A811279D55520084B7A9 /* SystemImageList.plist */; };
 		AAF3A814279D86B60084B7A9 /* Strings.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAF3A813279D86B60084B7A9 /* Strings.strings */; };
@@ -173,7 +173,7 @@
 		AAD4B7BC27870BCE00D73EBE /* Focusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focusable.swift; sourceTree = "<group>"; };
 		AAD949E32796B8CC004A51AC /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AAD949E5279866E5004A51AC /* CheckListProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListProgressView.swift; sourceTree = "<group>"; };
-		AAE293502781C5780010F093 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
+		AAE293502781C5780010F093 /* EditLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLabelView.swift; sourceTree = "<group>"; };
 		AAE5B28627852F98000B8B09 /* EditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemCellView.swift; sourceTree = "<group>"; };
 		AAF3A811279D55520084B7A9 /* SystemImageList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SystemImageList.plist; sourceTree = "<group>"; };
 		AAF3A813279D86B60084B7A9 /* Strings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Strings.strings; sourceTree = "<group>"; };
@@ -465,7 +465,7 @@
 		AAE5B283278484FA000B8B09 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				AAE293502781C5780010F093 /* EditButtonView.swift */,
+				AAE293502781C5780010F093 /* EditLabelView.swift */,
 				AACBBC76279AFF2F00A42108 /* NoItemsView.swift */,
 				AACBBC7A279C230E00A42108 /* XButtonView.swift */,
 				AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */,
@@ -621,7 +621,7 @@
 				AAC3DDDB2791D68A00983100 /* ItemListView.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
 				AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */,
-				AAE293512781C5780010F093 /* EditButtonView.swift in Sources */,
+				AAE293512781C5780010F093 /* EditLabelView.swift in Sources */,
 				AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */,
 				AA82C057277EF105001CEFFA /* CircleButtonStyle.swift in Sources */,
 				AAF3A817279D88700084B7A9 /* ImageManager.swift in Sources */,
