@@ -84,6 +84,7 @@ struct HomeView: View {
                                         navigationLinkTag = editItemListTag
                                     }
                                 }
+                                .disabled(isEditing)
                             } //: Section
                         } //: ForEach
                     } //: List
