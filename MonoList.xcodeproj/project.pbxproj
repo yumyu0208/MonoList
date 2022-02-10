@@ -466,6 +466,7 @@
 				AAE293502781C5780010F093 /* EditButtonView.swift */,
 				AACBBC76279AFF2F00A42108 /* NoItemsView.swift */,
 				AACBBC7A279C230E00A42108 /* XButtonView.swift */,
+				AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -475,7 +476,6 @@
 			children = (
 				AA9977A62782735A002B4C57 /* SortFoldersView.swift */,
 				AA82C053277EA2B8001CEFFA /* EditFolderView.swift */,
-				AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */,
 			);
 			path = EditFolders;
 			sourceTree = "<group>";

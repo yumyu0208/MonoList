@@ -2,13 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>recommended</key>
+	<key>folderRecommended</key>
 	<array>
 		<string>folder</string>
 		<string>archivebox</string>
 		<string>tray.2</string>
-		<string>checklist</string>
-		<string>list.bullet</string>
 		<string>pencil</string>
 		<string>doc.text</string>
 		<string>note.text</string>
@@ -21,6 +19,48 @@
 		<string>suit.heart</string>
 		<string>star</string>
 		<string>tag</string>
+		<string>tshirt</string>
+		<string>camera</string>
+		<string>ellipsis.bubble</string>
+		<string>phone</string>
+		<string>envelope</string>
+		<string>bag</string>
+		<string>cart</string>
+		<string>paintbrush</string>
+		<string>wrench.and.screwdriver</string>
+		<string>briefcase</string>
+		<string>suitcase</string>
+		<string>house</string>
+		<string>building.columns</string>
+		<string>building</string>
+		<string>key</string>
+		<string>tv</string>
+		<string>airplane</string>
+		<string>car</string>
+		<string>bed.double</string>
+		<string>pills</string>
+		<string>photo.on.rectangle.angled</string>
+		<string>shippingbox</string>
+		<string>clock</string>
+		<string>fork.knife</string>
+		<string>figure.walk</string>
+		<string>gift</string>
+		<string>banknote</string>
+	</array>
+	<key>categoryRecommended</key>
+	<array>
+		<string>tag</string>
+		<string>pencil</string>
+		<string>doc.text</string>
+		<string>note.text</string>
+		<string>books.vertical</string>
+		<string>person</string>
+		<string>sun.max</string>
+		<string>moon</string>
+		<string>umbrella</string>
+		<string>music.note</string>
+		<string>suit.heart</string>
+		<string>star</string>
 		<string>tshirt</string>
 		<string>camera</string>
 		<string>ellipsis.bubble</string>
@@ -371,50 +411,6 @@
 		<string>larisign.circle</string>
 		<string>bitcoinsign.circle</string>
 		<string>brazilianrealsign.circle</string>
-	</array>
-	<key>listRecommended</key>
-	<array>
-		<string>pencil</string>
-		<string>doc.text</string>
-		<string>note.text</string>
-		<string>books.vertical</string>
-		<string>person</string>
-		<string>sun.max</string>
-		<string>moon</string>
-		<string>umbrella</string>
-		<string>music.note</string>
-		<string>suit.heart</string>
-		<string>star</string>
-		<string>tag</string>
-		<string>tshirt</string>
-		<string>camera</string>
-		<string>ellipsis.bubble</string>
-		<string>phone</string>
-		<string>envelope</string>
-		<string>bag</string>
-		<string>cart</string>
-		<string>paintbrush</string>
-		<string>wrench.and.screwdriver</string>
-		<string>briefcase</string>
-		<string>suitcase</string>
-		<string>house</string>
-		<string>building.columns</string>
-		<string>building</string>
-		<string>key</string>
-		<string>tv</string>
-		<string>airplane</string>
-		<string>car</string>
-		<string>bed.double</string>
-		<string>pills</string>
-		<string>photo.on.rectangle.angled</string>
-		<string>shippingbox</string>
-		<string>clock</string>
-		<string>fork.knife</string>
-		<string>figure.walk</string>
-		<string>gift</string>
-		<string>banknote</string>
-		<string>checklist</string>
-		<string>list.bullet</string>
 	</array>
 </dict>
 </plist>

@@ -34,7 +34,7 @@ struct EditFolderView: View {
                 .textFieldStyle(.roundedGray)
                 .focused($folderNameTextFieldIsFocused)
                 .padding(.horizontal)
-            ImagePickerView(selectedImage: $selectedImage, rows: $rows)
+            ImagePickerView(selectedImage: $selectedImage, type: .folder, rows: $rows)
             Button {
                 folder.image = selectedImage
                 folder.name = selectedName

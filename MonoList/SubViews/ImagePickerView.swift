@@ -9,18 +9,32 @@ import SwiftUI
 
 struct ImagePickerView: View {
     
+    enum ImagePickerType {
+        case folder
+        case category
+    }
     
     private let images: [String: [String]]? = ImageManager.loadImageNames()
     
     @Binding var selectedImage: String
+    @State var type: ImagePickerType
     @Binding var rows: [GridItem]
+    
+    var imageKeys: [String] {
+        switch type {
+        case .folder:
+            return K.key.folderImages
+        case .category:
+            return K.key.categoryImages
+        }
+    }
     
     var body: some View {
         if let images = images {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: rows,
                           spacing: 16) {
-                    ForEach(K.key.folderImages, id: \.self) { key in
+                    ForEach(imageKeys, id: \.self) { key in
                         Section {
                             ForEach(images[key]!, id: \.self) { image in
                                 let selected = (selectedImage == image)
@@ -54,7 +68,7 @@ struct ImagePickerView_Previews: PreviewProvider {
     @State static private var rows: [GridItem] = Array(repeating: .init(.flexible(minimum: 60, maximum: 200), spacing: 16), count: 3)
     
     static var previews: some View {
-        ImagePickerView(selectedImage: .constant("star"), rows: $rows)
+        ImagePickerView(selectedImage: .constant("star"), type: .folder, rows: $rows)
             .previewLayout(.fixed(width: 360, height: 300))
     }
 }

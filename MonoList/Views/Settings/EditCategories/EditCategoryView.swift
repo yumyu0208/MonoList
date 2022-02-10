@@ -35,7 +35,7 @@ struct EditCategoryView: View {
                 .textFieldStyle(.roundedGray)
                 .focused($categoryNameTextFieldIsFocused)
                 .padding(.horizontal)
-            ImagePickerView(selectedImage: $selectedImage, rows: $rows)
+            ImagePickerView(selectedImage: $selectedImage, type: .category, rows: $rows)
             Button {
                 category.image = selectedImage
                 category.name = selectedName
