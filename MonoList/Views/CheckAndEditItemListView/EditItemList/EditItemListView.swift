@@ -60,12 +60,10 @@ struct EditItemListView: View {
                                         if let index = items.firstIndex(of: item) {
                                             withAnimation {
                                                 let newItem = addItem(name: "", order: index+1)
-                                                focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                                    withAnimation {
-                                                        proxy.scrollTo(newItem, anchor: .bottom)
-                                                    }
+                                                withAnimation {
+                                                    proxy.scrollTo(newItem, anchor: .bottom)
                                                 }
+                                                focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
                                             }
                                         }
                                     })
@@ -98,19 +96,6 @@ struct EditItemListView: View {
                                 deleteItems(offsets: indexSet)
                             })
                             .onMove(perform: moveitem)
-                            Rectangle()
-                                .frame(height: 36)
-                                .foregroundColor(.clear)
-                                .listRowSeparator(.hidden, edges: items.isEmpty ? .all : .bottom)
-                                .contentShape(Rectangle())
-                                .onTapGesture {
-                                    if !isEditing {
-                                        withAnimation {
-                                            let newItem = addItem(name: "", order: items.count)
-                                            focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
-                                        }
-                                    }
-                                }
                         } header: {
                             HStack {
                                 Spacer()
@@ -154,10 +139,13 @@ struct EditItemListView: View {
                             guard focusedItemNameIsEmpty else { return }
                             withAnimation {
                                 let newItem = addItem(name: "", order: items.count)
-                                focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    withAnimation {
-                                        scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
+                                scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                                        withAnimation {
+                                            scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
+                                        }
                                     }
                                 }
                             }
