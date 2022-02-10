@@ -59,7 +59,7 @@ struct SelectCategoryView: View {
                                     .foregroundColor(.primary)
                             } icon: {
                                 Image(systemName: category.image ?? "tag")
-                                    .foregroundStyle(.tint)
+                                    .foregroundColor(.accentColor)
                             }
                             Spacer()
                             Image(systemName: "checkmark")
