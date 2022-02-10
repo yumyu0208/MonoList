@@ -43,23 +43,26 @@ struct ItemListView: View {
         VStack(spacing: 0) {
             HStack(spacing: isEditMode ? 14 : 8) {
                 Group {
-                    ZStack {
-                        Image(systemName: "square")
-                            .foregroundColor(.clear)
-                            .padding(8)
-                        IconImageView(for: itemList)
-                    }
-                    .background(
-                        RoundedRectangle(cornerRadius: 4, style: .continuous)
-                            .foregroundColor(Color(K.colors.ui.secondaryBackgroundColor))
-                            .shadow(radius: 2)
-                            .opacity(isEditMode ? 1 : 0)
-                    )
-                    .onTapGesture {
+                    Button {
                         if isEditMode {
                             isShowingEditIcon = true
                         }
+                    } label: {
+                        ZStack {
+                            Image(systemName: "square")
+                                .foregroundColor(.clear)
+                                .padding(8)
+                            IconImageView(for: itemList)
+                        }
                     }
+                    .background(
+                        Color(K.colors.ui.secondaryBackgroundColor)
+                            .opacity(isEditMode ? 1 : 0)
+                    )
+                    .buttonStyle(.darkHighlight)
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                    .shadow(color: isEditMode ? Color(.sRGBLinear, white: 0, opacity: 0.33) : .clear,
+                            radius: 2)
                     TextField("List Name", text: $itemListName, prompt: Text("List Name"))
                         .focused($listNameTextFieldIsFocused)
                         .submitLabel(.done)

@@ -38,7 +38,7 @@ struct EditIconView: View {
                                 }
                                 .font(.system(.title, design: .rounded))
                                 .background(selected ? Color(UIColor.systemGray5) : .clear)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                                 .onTapGesture {
                                     if !selected {
                                         selectedIcon = icon.name
