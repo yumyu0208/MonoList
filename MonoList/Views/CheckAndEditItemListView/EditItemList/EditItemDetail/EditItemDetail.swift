@@ -28,6 +28,14 @@ struct EditItemDetail: View {
     
     @Namespace var noteID
     
+    var itemIsInvalid: Bool {
+        nameIsInvalid || weightIsInvalid || quantityIsInvalid
+    }
+    
+    var nameIsInvalid: Bool {
+        item.name.isEmpty
+    }
+    
     var weightIsInvalid: Bool {
         guard !weight.isEmpty else { return false }
         guard let weight = Double(weight) else { return true }
@@ -175,15 +183,11 @@ struct EditItemDetail: View {
         } //: ScrollViewReader
         .navigationTitle(Text("Edit Item"))
         .navigationBarTitleDisplayMode(.inline)
-        .interactiveDismissDisabled(weightIsInvalid || quantityIsInvalid)
+        .interactiveDismissDisabled(itemIsInvalid)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 XButtonView {
-                    if weightIsInvalid && quantityIsInvalid {
-                        print("Error")
-                    } else if weightIsInvalid {
-                        print("Error")
-                    } else if quantityIsInvalid {
+                    if itemIsInvalid {
                         print("Error")
                     } else {
                         setValue()
