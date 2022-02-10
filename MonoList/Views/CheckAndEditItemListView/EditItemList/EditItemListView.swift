@@ -96,6 +96,38 @@ struct EditItemListView: View {
                                 deleteItems(offsets: indexSet)
                             })
                             .onMove(perform: moveitem)
+                            if !isEditing {
+                                Button(action: {
+                                    let focusedItemNameIsEmpty = items.first(where: {
+                                        focusedItem.wrappedValue == .row(id: $0.id.uuidString)
+                                    })?.name != ""
+                                    guard focusedItemNameIsEmpty else { return }
+                                    withAnimation {
+                                        let newItem = addItem(name: "", order: items.count)
+                                        scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                            focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                                                withAnimation {
+                                                    scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }) {
+                                    Label {
+                                        Text("New Item")
+                                            .foregroundStyle(.tint)
+                                    } icon: {
+                                        Image(systemName: "plus.circle.fill")
+                                            .foregroundStyle(.tint)
+                                    }
+                                    .font(.body.bold())
+                                    .labelStyle(.titleAndIcon)
+                                }
+                                .buttonStyle(.plain)
+                                .padding(.leading, 8)
+                            }
                         } header: {
                             HStack {
                                 Spacer()
@@ -127,46 +159,6 @@ struct EditItemListView: View {
                             }
                         }
                 }
-            }
-            if !listNameTextFieldIsFocused.wrappedValue && focusedItem.wrappedValue == nil {
-                HStack {
-                    Spacer()
-                    Group {
-                        Button(action: {
-                            let focusedItemNameIsEmpty = items.first(where: {
-                                focusedItem.wrappedValue == .row(id: $0.id.uuidString)
-                            })?.name != ""
-                            guard focusedItemNameIsEmpty else { return }
-                            withAnimation {
-                                let newItem = addItem(name: "", order: items.count)
-                                scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                                        withAnimation {
-                                            scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
-                                        }
-                                    }
-                                }
-                            }
-                        }) {
-                            Label {
-                                Text("New Item")
-                            } icon: {
-                                Image(systemName: "plus.circle.fill")
-                            }
-                            .font(.body.bold())
-                            .labelStyle(.titleAndIcon)
-                            .animation(.none, value: isEditing)
-                        }
-                        .disabled(isEditing)
-                    } //: Group
-                    .imageScale(.large)
-                    .labelStyle(.iconOnly)
-                    .padding(8)
-                } //: HStack
-                .padding(.vertical, 8)
-                .padding(.horizontal, 20)
             }
         } //: VStack
     }
