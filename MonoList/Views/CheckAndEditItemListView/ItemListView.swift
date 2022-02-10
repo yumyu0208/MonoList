@@ -63,6 +63,7 @@ struct ItemListView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                     .shadow(color: isEditMode ? Color(.sRGBLinear, white: 0, opacity: 0.33) : .clear,
                             radius: 2)
+                    .disabled(!isEditMode)
                     TextField("List Name", text: $itemListName, prompt: Text("List Name"))
                         .focused($listNameTextFieldIsFocused)
                         .submitLabel(.done)
