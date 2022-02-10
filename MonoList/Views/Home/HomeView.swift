@@ -77,7 +77,7 @@ struct HomeView: View {
                                 }
                                 .environmentObject(manager)
                             } header: {
-                                FolderSectionView(image: folder.image, title: folder.name) {
+                                FolderSectionView(image: folder.image, title: folder.name, showPlusButton: !folder.isDefault) {
                                     withAnimation {
                                         let newItemList = addItemList(to: folder)
                                         editItemListView = ItemListView(itemList: newItemList, isEditMode: true)

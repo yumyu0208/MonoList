@@ -12,6 +12,14 @@ import CoreData
 
 public class Folder: NSManagedObject {
     
+    var isDefault: Bool {
+        name == K.defaultName.lists
+    }
+    
+    var isNew: Bool {
+        name == K.defaultName.newFolder
+    }
+    
     static func delete(index: Int, folders: FetchedResults<Folder>, _ context: NSManagedObjectContext) {
         // Delete All ItemLists
         if let itemLists = folders[index].itemLists?.allObjects as? [ItemList] {

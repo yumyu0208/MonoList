@@ -12,6 +12,10 @@ import CoreData
 @objc(Category)
 public class Category: NSManagedObject {
     
+    var isNew: Bool {
+        name == K.defaultName.newCategory
+    }
+    
     static func delete(index: Int, categories: FetchedResults<Category>, _ context: NSManagedObjectContext) {
         context.delete(categories[index])
         if index != categories.count-1 {

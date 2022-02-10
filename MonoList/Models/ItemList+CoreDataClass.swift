@@ -12,6 +12,10 @@ import CoreData
 
 public class ItemList: NSManagedObject {
     
+    var isNew: Bool {
+        name == K.defaultName.newItemList
+    }
+    
     var sortedItems: [Item] {
         (items?.allObjects as? [Item] ?? []).sorted(by: { $0.order < $1.order })
     }

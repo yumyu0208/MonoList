@@ -10,6 +10,7 @@ import SwiftUI
 struct FolderSectionView: View {
     let image: String
     let title: String
+    var showPlusButton: Bool = false
     
     let addItemListAction: () -> Void
     
@@ -39,6 +40,7 @@ struct FolderSectionView: View {
                     .font(.headline)
                     .padding(8)
             }
+            .opacity(showPlusButton ? 1 : 0)
         } //: HStack
         .contentShape(Rectangle())
         .padding(.trailing, 8)
