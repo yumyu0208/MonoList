@@ -99,6 +99,7 @@ struct ItemListView: View {
             .padding(.horizontal)
             .padding(.vertical, 8)
             .tint(Color(itemList.color))
+            .disabled(isEditing)
             ZStack {
                 NoItemsView()
                     .opacity(!isEditMode && itemsIsEmpty ? 1 : 0)

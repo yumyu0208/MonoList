@@ -32,7 +32,7 @@ struct SelectDestinationView: View {
                                 }
                             } label: {
                                 Label {
-                                    Text(folder.name == K.defaultName.newFolder ? "New Folder" : folder.name)
+                                    Text(folder.name == K.defaultName.lists ? "My Lists" : folder.name)
                                         .foregroundColor(.primary)
                                 } icon: {
                                     Image(systemName: folder.image)
