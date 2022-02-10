@@ -21,6 +21,10 @@ struct EditItemListView: View {
         editMode?.wrappedValue == .active
     }
     
+    var isShowingNoItems: Bool {
+        items.isEmpty && !listNameTextFieldIsFocused.wrappedValue
+    }
+    
     @State var scrollViewProxy: ScrollViewProxy?
     
     init(of itemList: ItemList, listNameTextFieldIsFocused: FocusState<Bool>.Binding, focusedItem: FocusState<Focusable?>.Binding) {
@@ -128,8 +132,9 @@ struct EditItemListView: View {
                         scrollViewProxy = proxy
                     }
                 } //: ScrollViewReader
-                if items.isEmpty && !listNameTextFieldIsFocused.wrappedValue {
+                if isShowingNoItems {
                     NoItemsView()
+                        .animation(.easeOut(duration: 0.2), value: isShowingNoItems)
                         .onTapGesture {
                             withAnimation {
                                 let newItem = addItem(name: "", order: items.count)

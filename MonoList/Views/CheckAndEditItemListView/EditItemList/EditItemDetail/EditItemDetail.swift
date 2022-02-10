@@ -197,9 +197,8 @@ struct EditItemDetail: View {
                     Button {
                         focusedField = nil
                     } label: {
-                        Text("Done")
+                        Image(systemName: "chevron.down")
                             .foregroundColor(.accentColor)
-                            .fontWeight(.bold)
                     }
                 }
             }
