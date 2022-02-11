@@ -27,6 +27,8 @@
 		AA3675D827B33A7500611D8A /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675D727B33A7500611D8A /* EditCategoryView.swift */; };
 		AA3675DA27B4862200611D8A /* DarkHighlightButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675D927B4862200611D8A /* DarkHighlightButtonStyle.swift */; };
 		AA3675DC27B49FF600611D8A /* CategoryLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675DB27B49FF600611D8A /* CategoryLabelView.swift */; };
+		AA3675E127B5E73800611D8A /* RichAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675E027B5E73800611D8A /* RichAlert.swift */; };
+		AA3675E327B5F5BF00611D8A /* RichAlertButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675E227B5F5BF00611D8A /* RichAlertButtonStyle.swift */; };
 		AA469411279A71730083142D /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469410279A71730083142D /* DoubleExtension.swift */; };
 		AA469414279A735B0083142D /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469413279A735B0083142D /* NumberView.swift */; };
 		AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */; };
@@ -115,6 +117,8 @@
 		AA3675D727B33A7500611D8A /* EditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryView.swift; sourceTree = "<group>"; };
 		AA3675D927B4862200611D8A /* DarkHighlightButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkHighlightButtonStyle.swift; sourceTree = "<group>"; };
 		AA3675DB27B49FF600611D8A /* CategoryLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryLabelView.swift; sourceTree = "<group>"; };
+		AA3675E027B5E73800611D8A /* RichAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichAlert.swift; sourceTree = "<group>"; };
+		AA3675E227B5F5BF00611D8A /* RichAlertButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichAlertButtonStyle.swift; sourceTree = "<group>"; };
 		AA469410279A71730083142D /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		AA469413279A735B0083142D /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationView.swift; sourceTree = "<group>"; };
@@ -298,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				AA469413279A735B0083142D /* NumberView.swift */,
+				AA3675E027B5E73800611D8A /* RichAlert.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 				AAC3DDE527958FD800983100 /* LargeCircleButtonStyle.swift */,
 				AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */,
 				AA3675D927B4862200611D8A /* DarkHighlightButtonStyle.swift */,
+				AA3675E227B5F5BF00611D8A /* RichAlertButtonStyle.swift */,
 				AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */,
 				AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */,
 				AA8BD479278DD3D300488027 /* WhiteGroupBoxStyle.swift */,
@@ -609,6 +615,7 @@
 				AAA8868127A3EA4000FD4D5E /* IconSectionHeaderView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,
+				AA3675E327B5F5BF00611D8A /* RichAlertButtonStyle.swift in Sources */,
 				AAC3DDE227940EAD00983100 /* CheckmarkToggleStyle.swift in Sources */,
 				AAD949E6279866E5004A51AC /* CheckListProgressView.swift in Sources */,
 				AACBBC74279AF8CD00A42108 /* Item+CoreDataClass.swift in Sources */,
@@ -652,6 +659,7 @@
 				AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */,
 				AA82C04F277B319E001CEFFA /* Folder+CoreDataClass.swift in Sources */,
 				AAC3DDDE2793056600983100 /* UINavigationControllerExtension.swift in Sources */,
+				AA3675E127B5E73800611D8A /* RichAlert.swift in Sources */,
 				AACBBC75279AF8CD00A42108 /* Item+CoreDataProperties.swift in Sources */,
 				AACBBC7B279C230E00A42108 /* XButtonView.swift in Sources */,
 				AACBBC73279AF8CD00A42108 /* Category+CoreDataProperties.swift in Sources */,
