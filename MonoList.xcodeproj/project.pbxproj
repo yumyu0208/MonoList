@@ -29,6 +29,9 @@
 		AA3675DC27B49FF600611D8A /* CategoryLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675DB27B49FF600611D8A /* CategoryLabelView.swift */; };
 		AA3675E127B5E73800611D8A /* RichAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675E027B5E73800611D8A /* RichAlert.swift */; };
 		AA3675E327B5F5BF00611D8A /* RichAlertButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675E227B5F5BF00611D8A /* RichAlertButtonStyle.swift */; };
+		AA3675E527B733F800611D8A /* FitCapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675E427B733F800611D8A /* FitCapsuleButtonStyle.swift */; };
+		AA3675E727B73A4400611D8A /* MiniXButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675E627B73A4400611D8A /* MiniXButtonView.swift */; };
+		AA3675E927B745B800611D8A /* EditItemListButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675E827B745B800611D8A /* EditItemListButtonView.swift */; };
 		AA469411279A71730083142D /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469410279A71730083142D /* DoubleExtension.swift */; };
 		AA469414279A735B0083142D /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469413279A735B0083142D /* NumberView.swift */; };
 		AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */; };
@@ -119,6 +122,9 @@
 		AA3675DB27B49FF600611D8A /* CategoryLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryLabelView.swift; sourceTree = "<group>"; };
 		AA3675E027B5E73800611D8A /* RichAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichAlert.swift; sourceTree = "<group>"; };
 		AA3675E227B5F5BF00611D8A /* RichAlertButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichAlertButtonStyle.swift; sourceTree = "<group>"; };
+		AA3675E427B733F800611D8A /* FitCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitCapsuleButtonStyle.swift; sourceTree = "<group>"; };
+		AA3675E627B73A4400611D8A /* MiniXButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniXButtonView.swift; sourceTree = "<group>"; };
+		AA3675E827B745B800611D8A /* EditItemListButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemListButtonView.swift; sourceTree = "<group>"; };
 		AA469410279A71730083142D /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		AA469413279A735B0083142D /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationView.swift; sourceTree = "<group>"; };
@@ -344,6 +350,7 @@
 				AA82C056277EF105001CEFFA /* CircleButtonStyle.swift */,
 				AAC3DDE527958FD800983100 /* LargeCircleButtonStyle.swift */,
 				AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */,
+				AA3675E427B733F800611D8A /* FitCapsuleButtonStyle.swift */,
 				AA3675D927B4862200611D8A /* DarkHighlightButtonStyle.swift */,
 				AA3675E227B5F5BF00611D8A /* RichAlertButtonStyle.swift */,
 				AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */,
@@ -432,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				AAC3DDDA2791D68A00983100 /* ItemListView.swift */,
+				AA3675E827B745B800611D8A /* EditItemListButtonView.swift */,
 				AAA8867F27A3E9AC00FD4D5E /* EditIcon */,
 				AAC3DDDC2792ACE400983100 /* CheckList */,
 				AAE5B28527848557000B8B09 /* EditItemList */,
@@ -474,6 +482,7 @@
 				AAE293502781C5780010F093 /* EditLabelView.swift */,
 				AACBBC76279AFF2F00A42108 /* NoItemsView.swift */,
 				AACBBC7A279C230E00A42108 /* XButtonView.swift */,
+				AA3675E627B73A4400611D8A /* MiniXButtonView.swift */,
 				AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */,
 			);
 			path = SubViews;
@@ -601,6 +610,7 @@
 				AA8750C1278D518900540BA0 /* ExpandToggleStyle.swift in Sources */,
 				AA351A812776BB5500F53BDC /* Persistence.swift in Sources */,
 				AAC3DDD42791A19F00983100 /* QuantityLabelView.swift in Sources */,
+				AA3675E527B733F800611D8A /* FitCapsuleButtonStyle.swift in Sources */,
 				AAC3DDE627958FD800983100 /* LargeCircleButtonStyle.swift in Sources */,
 				AA3675D827B33A7500611D8A /* EditCategoryView.swift in Sources */,
 				AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */,
@@ -614,6 +624,7 @@
 				AAC3DDC1278FDBC600983100 /* AlarmView.swift in Sources */,
 				AAA8868127A3EA4000FD4D5E /* IconSectionHeaderView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
+				AA3675E727B73A4400611D8A /* MiniXButtonView.swift in Sources */,
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,
 				AA3675E327B5F5BF00611D8A /* RichAlertButtonStyle.swift in Sources */,
 				AAC3DDE227940EAD00983100 /* CheckmarkToggleStyle.swift in Sources */,
@@ -643,6 +654,7 @@
 				AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */,
 				AA8750B1278C4DAD00540BA0 /* ItemListInfoView.swift in Sources */,
 				AA469411279A71730083142D /* DoubleExtension.swift in Sources */,
+				AA3675E927B745B800611D8A /* EditItemListButtonView.swift in Sources */,
 				AAC3DDE42794408A00983100 /* CheckItemCell.swift in Sources */,
 				AACBBC7D279C2F2200A42108 /* RoundedGrayTextFieldStyle.swift in Sources */,
 				AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */,

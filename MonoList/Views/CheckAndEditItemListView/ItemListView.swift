@@ -27,6 +27,7 @@ struct ItemListView: View {
     @State var isShowingEditNotification = false
     @State var isShowingWeight = false
     @State var isShowingEditIcon = false
+    @State var doneAlertIsShowing = false
     
     var isNewItemList: Bool {
         itemList.name == K.defaultName.newItemList
@@ -145,7 +146,7 @@ struct ItemListView: View {
                         Label("Weight", systemImage: "scalemass")
                             .padding(4)
                     } //: Button
-                    Button {
+                    EditItemListButtonView(isEditMode: $isEditMode) {
                         focusedItem = nil
                         listNameTextFieldIsFocused = false
                         if isEditMode {
@@ -153,16 +154,7 @@ struct ItemListView: View {
                         } else {
                             saveData(update: false)
                         }
-                        withAnimation(.easeOut(duration: 0.2)) {
-                            isEditMode.toggle()
-                        }
-                    } label: {
-                        Label("Edit", systemImage: "pencil")
-                            .foregroundColor(isEditMode ? Color(K.colors.ui.buttonLabelColor) : Color.accentColor)
-                            .padding(4)
-                            .background(isEditMode ? Color.accentColor : .clear)
-                            .clipShape(Circle())
-                    } //: Button
+                    }
                     Menu {
                         if !isEditMode {
                             Button {
@@ -186,6 +178,29 @@ struct ItemListView: View {
                 } //: Group
                 .disabled(isEditing || isNewItemList)
             } //: ToolBarItemGroup
+        }
+        .richAlert(isShowing: $doneAlertIsShowing, vOffset: -24) {
+            VStack(spacing: 32) {
+                VStack {
+                    IconImageView(for: itemList)
+                        .font(.largeTitle)
+                        .padding()
+                    Text("Done")
+                        .font(.title.bold())
+                }
+                Button {
+                    withAnimation {
+                        doneAlertIsShowing = false
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        dismiss()
+                    }
+                } label: {
+                    Text("Close List")
+                }
+                .buttonStyle(.fitCapsule)
+            }
+            .padding()
         }
         .sheet(isPresented: $isShowingEditNotification) {
             if let itemList = itemList {
@@ -231,6 +246,11 @@ struct ItemListView: View {
                             listNameTextFieldIsFocused = true
                         }
                     }
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation {
+                    doneAlertIsShowing = true
                 }
             }
         }

@@ -8,30 +8,45 @@
 import SwiftUI
 
 struct RichAlert<RichAlertContent: View>: ViewModifier {
-    @Binding var isShowing: Bool // set this to show/hide the dialog
+    @Binding var isShowing: Bool
+    let vOffset: CGFloat
     let alertContent: RichAlertContent
 
-    init(isShowing: Binding<Bool>, @ViewBuilder content: () -> RichAlertContent) {
+    init(isShowing: Binding<Bool>, vOffset: CGFloat = 0, @ViewBuilder content: () -> RichAlertContent) {
         _isShowing = isShowing
-         self.alertContent = content()
+        self.vOffset = vOffset
+        self.alertContent = content()
     }
 
     func body(content: Content) -> some View {
         ZStack {
             content
+                .disabled(isShowing)
+                .zIndex(0)
             if isShowing {
                 Group {
                     Rectangle()
                         .foregroundColor(Color.black.opacity(0.3))
                         .ignoresSafeArea()
+                        .zIndex(1)
                     alertContent
                         .frame(width: 260)
                         .frame(minHeight: 170)
                         .background(Color(UIColor.secondarySystemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .overlay(
+                            MiniXButtonView {
+                                withAnimation {
+                                    isShowing = false
+                                }
+                            }
+                            .scaleEffect(0.8),
+                            alignment: .topTrailing)
+                        .offset(x: 0, y: vOffset)
+                        .zIndex(2)
                 }
-                .animation(.easeOut(duration: 0.2), value: isShowing)
                 .transition(.opacity)
+                .animation(.easeOut(duration: 0.2), value: isShowing)
             }
         } //: ZStack
     }
@@ -40,9 +55,10 @@ struct RichAlert<RichAlertContent: View>: ViewModifier {
 extension View {
   func richAlert<RichAlertContent: View>(
     isShowing: Binding<Bool>,
+    vOffset: CGFloat = 0,
     @ViewBuilder content: @escaping () -> RichAlertContent
   ) -> some View {
-    self.modifier(RichAlert(isShowing: isShowing, content: content))
+      self.modifier(RichAlert(isShowing: isShowing, vOffset: vOffset, content: content))
   }
 }
 
