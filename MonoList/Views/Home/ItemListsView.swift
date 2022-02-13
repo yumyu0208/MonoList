@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ItemListsView: View {
+    
     @EnvironmentObject var manager: MonoListManager
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -16,6 +17,9 @@ struct ItemListsView: View {
     @State var showingInfoItemList: ItemList?
     @State var movingItemList: ItemList?
     let editAction: (ItemList) -> Void
+    
+    @State var isShowingDeleteConfirmationDialog: Bool = false
+    @State var deleteIndexSet: IndexSet?
     
     init(of folder: Folder, editAction: @escaping (ItemList) -> Void) {
         
@@ -41,7 +45,8 @@ struct ItemListsView: View {
                     showingInfoItemList = itemList
                 } deleteAction: {
                     if let index = itemLists.firstIndex(of: itemList) {
-                        deleteItemLists(offsets: IndexSet(integer: index))
+                        deleteIndexSet = IndexSet(integer: index)
+                        isShowingDeleteConfirmationDialog = true
                     }
                 }
                 .sheet(item: $showingInfoItemList) { itemList in
@@ -59,8 +64,25 @@ struct ItemListsView: View {
                 }
             }
         } //: ForEach
-        .onDelete(perform: deleteItemLists)
+        .onDelete { indexSet in
+            deleteIndexSet = indexSet
+            isShowingDeleteConfirmationDialog = true
+        }
         .onMove(perform: moveitemList)
+        .confirmationDialog("Are you sure you want to delete this list?", isPresented: $isShowingDeleteConfirmationDialog, presenting: deleteIndexSet) { indexSet in
+            Button(role: .destructive) {
+                deleteItemLists(offsets: indexSet)
+            } label: {
+                Text("Delete List")
+            }
+            Button("Cancel", role: .cancel) {
+                deleteIndexSet = nil
+            }
+        } message: { indexSet in
+            if let itemListIndex = indexSet.first {
+                Text("Are you sure you want to delete \"\(itemLists[itemListIndex].name)\"?")
+            }
+        }
     }
     
     private func saveData() {
