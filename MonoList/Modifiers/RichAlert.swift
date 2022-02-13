@@ -23,31 +23,29 @@ struct RichAlert<RichAlertContent: View>: ViewModifier {
             content
                 .disabled(isShowing)
                 .zIndex(0)
-            if isShowing {
-                Group {
-                    Rectangle()
-                        .foregroundColor(Color.black.opacity(0.3))
-                        .ignoresSafeArea()
-                        .zIndex(1)
-                    alertContent
-                        .frame(width: 260)
-                        .frame(minHeight: 170)
-                        .background(Color(UIColor.secondarySystemBackground))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .overlay(
-                            MiniXButtonView {
-                                withAnimation {
-                                    isShowing = false
-                                }
+            Group {
+                Rectangle()
+                    .foregroundColor(Color.black.opacity(0.3))
+                    .ignoresSafeArea()
+                    .zIndex(1)
+                alertContent
+                    .frame(width: 260)
+                    .frame(minHeight: 170)
+                    .background(Color(UIColor.secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .overlay(
+                        MiniXButtonView {
+                            withAnimation(.easeOut(duration: 0.2)) {
+                                isShowing = false
                             }
-                            .scaleEffect(0.8),
-                            alignment: .topTrailing)
-                        .offset(x: 0, y: vOffset)
-                        .zIndex(2)
-                }
-                .transition(.opacity)
-                .animation(.easeOut(duration: 0.2), value: isShowing)
+                        }
+                        .scaleEffect(0.8),
+                        alignment: .topTrailing)
+                    .offset(x: 0, y: vOffset)
+                    .zIndex(2)
             }
+            .opacity(isShowing ? 1 : 0)
+            .animation(.easeOut(duration: 0.2), value: isShowing)
         } //: ZStack
     }
 }

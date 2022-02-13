@@ -111,8 +111,12 @@ struct ItemListView: View {
                 EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem)
                     .opacity(isEditMode ? 1 : 0)
                     .environment(\.editMode, $editMode)
-                CheckListView(of: itemList, showCompleted: showCompleted)
-                    .opacity(isEditMode || itemsIsEmpty ? 0 : 1)
+                CheckListView(of: itemList, showCompleted: showCompleted, allDoneAction: {
+                    withAnimation(.easeOut(duration: 0.2).delay(0.3)) {
+                        doneAlertIsShowing = true
+                    }
+                })
+                .opacity(isEditMode || itemsIsEmpty ? 0 : 1)
             } //: ZStack
             .tint(Color(itemList.color))
         } //: VStack
@@ -189,11 +193,15 @@ struct ItemListView: View {
                         .font(.title.bold())
                 }
                 Button {
-                    withAnimation {
+                    withAnimation(.easeOut(duration: 0.2)) {
                         doneAlertIsShowing = false
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            uncheckAllItems()
+                        }
+                        
                     }
                 } label: {
                     Text("Close List")
@@ -246,11 +254,6 @@ struct ItemListView: View {
                             listNameTextFieldIsFocused = true
                         }
                     }
-                }
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                withAnimation {
-                    doneAlertIsShowing = true
                 }
             }
         }

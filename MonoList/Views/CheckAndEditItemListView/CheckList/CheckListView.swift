@@ -8,24 +8,31 @@
 import SwiftUI
 
 struct CheckListView: View {
-    @AppStorage(K.key.showCompleted) var showCompleted = true
     @Environment(\.managedObjectContext) private var viewContext
-    let itemList: ItemList
+    var itemList: ItemList
+    var showCompleted: Bool
+    let allDoneAction: () -> Void
     @FetchRequest var items: FetchedResults<Item>
     
     @State var showUndo = false
     @State private var showUndoTimer: Timer?
     
-    var numberOfCompletedItems: Int {
-        numberOfAllItems - items.filter { $0.isCompleted == false }.count
+    var numberOfUnCompletedItems: Int {
+        items.filter { $0.isCompleted == false }.count
     }
     
     var numberOfAllItems: Int {
         (itemList.items?.count ?? 0)
     }
     
-    init(of itemList: ItemList, showCompleted: Bool) {
+    var numberOfCompletedItems: Int {
+        numberOfAllItems - numberOfUnCompletedItems
+    }
+    
+    init(of itemList: ItemList, showCompleted: Bool, allDoneAction: @escaping () -> Void) {
         self.itemList = itemList
+        self.showCompleted = showCompleted
+        self.allDoneAction = allDoneAction
         
         let predicateFormat = showCompleted ? "parentItemList == %@" : "parentItemList == %@ && isCompleted == NO"
         
@@ -73,6 +80,11 @@ struct CheckListView: View {
                 }
             }
         } //: VStack
+        .onChange(of: numberOfUnCompletedItems) { newValue in
+            if newValue == 0 {
+                allDoneAction()
+            }
+        }
     }
     
     private func saveData() {
@@ -103,7 +115,7 @@ struct CheckListView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
-        CheckListView(of: itemList, showCompleted: true)
+        CheckListView(of: itemList, showCompleted: true, allDoneAction: {})
             .environment(\.managedObjectContext, context)
     }
 }

@@ -38,7 +38,7 @@ struct CheckmarkToggleStyle: ToggleStyle {
                         .animation(.easeOut(duration: 0.2), value: configuration.isOn)
                     Circle()
                         .foregroundStyle(.tint)
-                        .scaleEffect(configuration.isOn ? 1 : 0)
+                        .scaleEffect(configuration.isOn ? 1 : 0.00001)
                         .padding(2.4)
                         .animation(.interpolatingSpring(mass: 1.0, stiffness: 170, damping: 15, initialVelocity: 1.0),
                                    value: configuration.isOn)
