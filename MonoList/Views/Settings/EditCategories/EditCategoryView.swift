@@ -15,6 +15,7 @@ struct EditCategoryView: View {
     @State var selectedName: String = ""
     @FocusState var categoryNameTextFieldIsFocused: Bool
     @ObservedObject var category: Category
+    @State var isShowingCancelConfirmationAlert: Bool = false
     
     @State private var rows: [GridItem] = Array(repeating: .init(.flexible(minimum: 60, maximum: 200), spacing: 16), count: 3)
     
@@ -57,10 +58,20 @@ struct EditCategoryView: View {
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button {
-                    dismiss()
+                    isShowingCancelConfirmationAlert = true
                 } label: {
                     Text("Cancel")
                 }
+            }
+        }
+        .alert("Are you sure you want to close without saving?", isPresented: $isShowingCancelConfirmationAlert) {
+            Button(role: .destructive) {
+                dismiss()
+            } label: {
+                Text("Close Without Saving")
+            }
+            Button("Cancel", role: .cancel) {
+                isShowingCancelConfirmationAlert = false
             }
         }
         .onChange(of: categoryNameTextFieldIsFocused) { focused in

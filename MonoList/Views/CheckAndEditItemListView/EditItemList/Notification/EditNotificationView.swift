@@ -14,7 +14,7 @@ struct EditNotificationView: View {
     private let weekdaySymbols: [String] = Notification.weekdaySymbols
     @State private var selectedWeekdays: String = ""
     @State private var selectedTime: Date = Date()
-    
+    @State var isShowingCancelConfirmationAlert: Bool = false
     let isNew: Bool
     
     var body: some View {
@@ -71,10 +71,7 @@ struct EditNotificationView: View {
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button {
-                    if isNew {
-                        deleteNotification(notification)
-                    }
-                    dismiss()
+                    isShowingCancelConfirmationAlert = true
                 } label: {
                     Text("Cancel")
                 }
@@ -89,6 +86,19 @@ struct EditNotificationView: View {
                     }
                     .foregroundColor(.red)
                 }
+            }
+        }
+        .alert("Are you sure you want to close without saving?", isPresented: $isShowingCancelConfirmationAlert) {
+            Button(role: .destructive) {
+                if isNew {
+                    deleteNotification(notification)
+                }
+                dismiss()
+            } label: {
+                Text("Close Without Saving")
+            }
+            Button("Cancel", role: .cancel) {
+                isShowingCancelConfirmationAlert = false
             }
         }
         .onAppear {
