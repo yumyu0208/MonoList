@@ -165,7 +165,69 @@ struct ItemListView: View {
                         }
                     }
                     Menu {
-                        if !isEditMode {
+                        if isEditMode {
+                            Menu {
+                                Button {
+                                    withAnimation {
+                                        itemList.sortItems(order: .category)
+                                        saveData(update: true)
+                                    }
+                                } label: {
+                                    Label("Category", systemImage: "tag")
+                                }
+                                Button {
+                                    withAnimation {
+                                        itemList.sortItems(order: .important)
+                                        saveData(update: true)
+                                    }
+                                } label: {
+                                    Label("Priority", systemImage: "exclamationmark")
+                                }
+                                Menu {
+                                    Button {
+                                        withAnimation {
+                                            itemList.sortItems(order: .light)
+                                            saveData(update: true)
+                                        }
+                                    } label: {
+                                        Label("Ascending", systemImage: "arrow.up.right")
+                                    }
+                                    Button {
+                                        withAnimation {
+                                            itemList.sortItems(order: .heavy)
+                                            saveData(update: true)
+                                        }
+                                    } label: {
+                                        Label("Descending", systemImage: "arrow.down.right")
+                                    }
+                                } label: {
+                                    Label("Weight", systemImage: "scalemass")
+                                }
+                                Menu {
+                                    Button {
+                                        withAnimation {
+                                            itemList.sortItems(order: .few)
+                                            saveData(update: true)
+                                        }
+                                    } label: {
+                                        Label("Ascending", systemImage: "arrow.up.right")
+                                    }
+                                    Button {
+                                        withAnimation {
+                                            itemList.sortItems(order: .many)
+                                            saveData(update: true)
+                                        }
+                                    } label: {
+                                        Label("Descending", systemImage: "arrow.down.right")
+                                    }
+                                } label: {
+                                    Label("Quantity", systemImage: "number")
+                                }
+                            } label: {
+                                Label("Sort", systemImage: "arrow.up.arrow.down")
+                            }
+                            .disabled(itemsIsEmpty)
+                        } else {
                             Button {
                                 withAnimation(.easeOut(duration: 0.2)) {
                                     showCompleted.toggle()
