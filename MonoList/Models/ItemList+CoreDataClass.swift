@@ -110,7 +110,7 @@ public class ItemList: NSManagedObject {
         let newItem = Item(context: context)
         newItem.id = UUID()
         newItem.name = name
-        newItem.quantity = quantity != nil ? Int32(quantity!) : 0
+        newItem.quantity = quantity != nil ? Int32(quantity!) : 1
         newItem.weight = weight ?? 0
         newItem.isCompleted = isCompleted
         newItem.isImportant = isImportant
@@ -196,6 +196,9 @@ public class ItemList: NSManagedObject {
         for item in sortedItems {
             item.order = count
             count += 1
+        }
+        sortedItems.forEach { item in
+            print(item.quantity)
         }
     }
     
