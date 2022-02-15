@@ -106,14 +106,18 @@ struct ItemListView: View {
                 NoItemsView()
                     .opacity(!isEditMode && itemsIsEmpty ? 1 : 0)
                     .onTapGesture {
-                        isEditMode = true
+                        withAnimation(.easeOut(duration: 0.2)) {
+                            isEditMode = true
+                        }
                     }
                 EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem)
                     .opacity(isEditMode ? 1 : 0)
                     .environment(\.editMode, $editMode)
                 CheckListView(of: itemList, showCompleted: showCompleted, allDoneAction: {
-                    withAnimation(.easeOut(duration: 0.2).delay(0.3)) {
-                        doneAlertIsShowing = true
+                    if !isEditMode && !itemsIsEmpty {
+                        withAnimation(.easeOut(duration: 0.2).delay(0.3)) {
+                            doneAlertIsShowing = true
+                        }
                     }
                 })
                 .opacity(isEditMode || itemsIsEmpty ? 0 : 1)
@@ -189,7 +193,7 @@ struct ItemListView: View {
                     IconImageView(for: itemList)
                         .font(.largeTitle)
                         .padding()
-                    Text("Done")
+                    Text("All Done")
                         .font(.title.bold())
                 }
                 Button {

@@ -45,7 +45,6 @@ struct RichAlert<RichAlertContent: View>: ViewModifier {
                     .zIndex(2)
             }
             .opacity(isShowing ? 1 : 0)
-            .animation(.easeOut(duration: 0.2), value: isShowing)
         } //: ZStack
     }
 }
