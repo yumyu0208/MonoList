@@ -16,6 +16,9 @@ struct CategoriesView: View {
     @State var isEditingNewCategory = false
     @State var newCategory: Category?
     
+    @State var isShowingDeleteConfirmationDialog: Bool = false
+    @State var deleteIndexSet: IndexSet?
+    
     var body: some View {
         ZStack {
             List {
@@ -31,8 +34,21 @@ struct CategoriesView: View {
                                 Image(systemName: category.image != nil ? category.image! : "tag")
                             }
                         }
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                if let index = categories.firstIndex(of: category) {
+                                    deleteIndexSet = IndexSet(integer: index)
+                                    isShowingDeleteConfirmationDialog = true
+                                }
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
                     }
-                    .onDelete(perform: deleteCategories)
+                    .onDelete { indexSet in
+                        deleteIndexSet = indexSet
+                        isShowingDeleteConfirmationDialog = true
+                    }
                     .onMove(perform: moveCategory)
                     if editMode != .active {
                         Button(action: {
@@ -70,6 +86,20 @@ struct CategoriesView: View {
         } //: ZStack
         .navigationBarTitle(Text("Categories"))
         .navigationBarTitleDisplayMode(.inline)
+        .confirmationDialog("Are you sure you want to delete this category?", isPresented: $isShowingDeleteConfirmationDialog, titleVisibility: .visible, presenting: deleteIndexSet) { indexSet in
+            Button(role: .destructive) {
+                deleteCategories(offsets: indexSet)
+            } label: {
+                Text("Delete Category")
+            }
+            Button("Cancel", role: .cancel) {
+                deleteIndexSet = nil
+            }
+        } message: { indexSet in
+            if let index = indexSet.first {
+                Text("The category of items in \(categories[index].name) will be \"None\"")
+            }
+        }
     }
     
     private func saveData() {

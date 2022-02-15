@@ -96,7 +96,7 @@ struct SortFoldersView: View {
             } //: ZStack
             .navigationTitle(Text("Folders"))
             .navigationBarTitleDisplayMode(.inline)
-            .confirmationDialog("Do you want to delete all the lists in this folder?", isPresented: $isShowingDeleteConfirmationDialog, presenting: deleteIndexSet) { indexSet in
+            .confirmationDialog("Delete Folder", isPresented: $isShowingDeleteConfirmationDialog, titleVisibility: .visible, presenting: deleteIndexSet) { indexSet in
                 Button(role: .destructive) {
                     deleteFolders(offsets: indexSet)
                 } label: {
@@ -105,7 +105,7 @@ struct SortFoldersView: View {
                 Button {
                     deleteFoldersWithoutDeletingItemLists(offsets: indexSet)
                 } label: {
-                    Text("Move Lists into \"List\"")
+                    Text("Move Lists into \"My List\"")
                 }
                 Button("Cancel", role: .cancel) {
                     deleteIndexSet = nil
