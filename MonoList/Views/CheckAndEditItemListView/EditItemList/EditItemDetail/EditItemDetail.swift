@@ -28,6 +28,9 @@ struct EditItemDetail: View {
     
     @Namespace var noteID
     
+    @State var isShowingAlert: Bool = false
+    @State var alertMessage: String?
+    
     var itemIsInvalid: Bool {
         nameIsInvalid || weightIsInvalid || quantityIsInvalid
     }
@@ -187,8 +190,15 @@ struct EditItemDetail: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 XButtonView {
-                    if itemIsInvalid {
-                        print("Error")
+                    if nameIsInvalid {
+                        alertMessage = "Please enter the item name"
+                        isShowingAlert = true
+                    } else if weightIsInvalid {
+                        alertMessage = "Invalid weight value"
+                        isShowingAlert = true
+                    } else if quantityIsInvalid {
+                        alertMessage = "Invalid quantity value"
+                        isShowingAlert = true
                     } else {
                         setValue()
                         dismiss()
@@ -206,6 +216,15 @@ struct EditItemDetail: View {
                     }
                 }
             }
+        }
+        .alert("Error", isPresented: $isShowingAlert, presenting: alertMessage) { message in
+            Button {
+                alertMessage = nil
+            } label: {
+                Text("OK")
+            }
+        } message: { message in
+            Text(message)
         }
         .onAppear {
             weight = (item.weight == 0 ? "" : String(item.weight.string))
