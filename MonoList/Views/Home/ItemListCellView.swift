@@ -32,6 +32,7 @@ struct ItemListCellView: View {
                         .id(itemList.name)
                 } icon: {
                     IconImageView(for: itemList)
+                        .font(.headline)
                         .frame(height: 32)
                 }
                 Spacer()

@@ -13,6 +13,7 @@ struct CheckListView: View {
     var showCompleted: Bool
     let allDoneAction: () -> Void
     @FetchRequest var items: FetchedResults<Item>
+    @FetchRequest var categories: FetchedResults<Category>
     
     @State var showUndo = false
     @State private var showUndoTimer: Timer?
@@ -43,6 +44,13 @@ struct CheckListView: View {
             predicate: NSPredicate(format: predicateFormat, itemList),
             animation: .default.delay(0.3)
         )
+        
+        _categories = FetchRequest(
+            sortDescriptors: [
+                SortDescriptor(\.order, order: .forward)
+            ],
+            animation: .default.delay(0.3)
+        )
     }
     
     var body: some View {
@@ -51,10 +59,32 @@ struct CheckListView: View {
                                   numberOfAllItems: numberOfAllItems)
             ScrollView {
                 VStack(spacing: 20) {
-                    ForEach(items) { item in
-                        CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+                    VStack(spacing: 20) {
+                        let itemsInNoneCategory = items.filter { $0.category == nil }
+                        ForEach(itemsInNoneCategory) { item in
+                            CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+                        } //: VStack
                     } //: VStack
-                } //: VStack
+                    ForEach(categories) { category in
+                        let itemsInThisCategory = items.filter { $0.category == category }
+                        if !itemsInThisCategory.isEmpty {
+                            HStack {
+                                Label {
+                                    Text(category.name)
+                                } icon: {
+                                    Image(systemName: category.image ?? "tag")
+                                }
+                                .padding(.leading, 2)
+                                Spacer()
+                            }
+                            VStack(spacing: 20) {
+                                ForEach(itemsInThisCategory) { item in
+                                    CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+                                } //: VStack
+                            } //: VStack
+                        }
+                    }
+                }
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
                 .padding(.vertical, 20)

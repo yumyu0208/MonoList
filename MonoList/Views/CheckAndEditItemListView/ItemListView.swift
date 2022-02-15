@@ -399,9 +399,11 @@ struct ItemListView: View {
     }
     
     private func uncheckAllItems() {
-        guard let items = itemList.items?.allObjects as? [Item] else { return }
-        items.forEach { $0.isCompleted = false }
-        saveData(update: false)
+        withAnimation {
+            guard let items = itemList.items?.allObjects as? [Item] else { return }
+            items.forEach { $0.isCompleted = false }
+            saveData(update: false)
+        }
     }
     
     private func saveDataIfNeeded() {
