@@ -28,6 +28,7 @@ struct ItemListView: View {
     @State var isShowingWeight = false
     @State var isShowingEditIcon = false
     @State var doneAlertIsShowing = false
+    @State var isShowingUncheckAllConfirmationAlert: Bool = false
     
     var isNewItemList: Bool {
         itemList.name == K.defaultName.newItemList
@@ -174,7 +175,7 @@ struct ItemListView: View {
                                 Label(showCompleted ? "Hide Completed" : "Show Completed", systemImage: showCompleted ? "eye.slash" : "eye")
                             }
                             Button {
-                                uncheckAllItems()
+                                isShowingUncheckAllConfirmationAlert = true
                             } label: {
                                 Label("Uncheck All", systemImage: "rays")
                             }
@@ -213,6 +214,16 @@ struct ItemListView: View {
                 .buttonStyle(.fitCapsule)
             }
             .padding()
+        }
+        .alert("Are you sure you want to uncheck all?", isPresented: $isShowingUncheckAllConfirmationAlert) {
+            Button(role: .destructive) {
+                uncheckAllItems()
+            } label: {
+                Text("Uncheck All")
+            }
+            Button("Cancel", role: .cancel) {
+                isShowingUncheckAllConfirmationAlert = false
+            }
         }
         .sheet(isPresented: $isShowingEditNotification) {
             if let itemList = itemList {
