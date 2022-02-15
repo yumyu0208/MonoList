@@ -20,6 +20,9 @@ struct SortFoldersView: View {
     @State var isEditingNewFolder = false
     @State var newFolder: Folder?
     
+    @State var isShowingDeleteConfirmationDialog: Bool = false
+    @State var deleteIndexSet: IndexSet?
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -34,9 +37,22 @@ struct SortFoldersView: View {
                                     Label(folder.name == K.defaultName.newFolder ? "New Folder" : folder.name, systemImage: folder.image)
                                         .id(folder.name)
                                 }
+                                .swipeActions(edge: .trailing) {
+                                    Button(role: .destructive) {
+                                        if let index = folders.firstIndex(of: folder) {
+                                            deleteIndexSet = IndexSet(integer: index)
+                                            isShowingDeleteConfirmationDialog = true
+                                        }
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
                             }
                         }
-                        .onDelete(perform: deleteFolders)
+                        .onDelete { indexSet in
+                            deleteIndexSet = indexSet
+                            isShowingDeleteConfirmationDialog = true
+                        }
                         .onMove(perform: moveFolder)
                         if editMode != .active {
                             Button(action: {
@@ -80,6 +96,25 @@ struct SortFoldersView: View {
             } //: ZStack
             .navigationTitle(Text("Folders"))
             .navigationBarTitleDisplayMode(.inline)
+            .confirmationDialog("Do you want to delete all the lists in this folder?", isPresented: $isShowingDeleteConfirmationDialog, presenting: deleteIndexSet) { indexSet in
+                Button(role: .destructive) {
+                    deleteFolders(offsets: indexSet)
+                } label: {
+                    Text("Delete All Lists")
+                }
+                Button {
+                    deleteFoldersWithoutDeletingItemLists(offsets: indexSet)
+                } label: {
+                    Text("Move Lists into \"List\"")
+                }
+                Button("Cancel", role: .cancel) {
+                    deleteIndexSet = nil
+                }
+            } message: { indexSet in
+                if let folderIndex = indexSet.first {
+                    Text("Do you want to delete all the lists in \"\(folders[folderIndex].name)\"?")
+                }
+            }
         }
     }
     

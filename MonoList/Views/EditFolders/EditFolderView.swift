@@ -17,6 +17,8 @@ struct EditFolderView: View {
     @FocusState var folderNameTextFieldIsFocused: Bool
     @ObservedObject var folder: Folder
     
+    @State var isShowingDeleteConfirmationDialog: Bool = false
+    
     @State private var rows: [GridItem] = Array(repeating: .init(.flexible(minimum: 60, maximum: 200), spacing: 16), count: 3)
     
     var body: some View {
@@ -50,13 +52,24 @@ struct EditFolderView: View {
         .padding(.vertical)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
+        .interactiveDismissDisabled(true)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button {
-                    dismiss()
+                    isShowingDeleteConfirmationDialog = true
                 } label: {
                     Text("Cancel")
                 }
+            }
+        }
+        .alert("Are you sure you want to close without saving?", isPresented: $isShowingDeleteConfirmationDialog) {
+            Button(role: .destructive) {
+                dismiss()
+            } label: {
+                Text("Close Without Saving")
+            }
+            Button("Cancel", role: .cancel) {
+                isShowingDeleteConfirmationDialog = false
             }
         }
         .onChange(of: folderNameTextFieldIsFocused) { focused in
