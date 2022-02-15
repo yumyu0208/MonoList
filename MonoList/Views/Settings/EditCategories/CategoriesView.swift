@@ -34,6 +34,16 @@ struct CategoriesView: View {
                                 Image(systemName: category.image != nil ? category.image! : "tag")
                             }
                         }
+                        .contextMenu {
+                            Button(role: .destructive) {
+                                if let index = categories.firstIndex(of: category) {
+                                    deleteIndexSet = IndexSet(integer: index)
+                                    isShowingDeleteConfirmationDialog = true
+                                }
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
                         .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
                                 if let index = categories.firstIndex(of: category) {

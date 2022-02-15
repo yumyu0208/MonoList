@@ -37,6 +37,16 @@ struct SortFoldersView: View {
                                     Label(folder.name == K.defaultName.newFolder ? "New Folder" : folder.name, systemImage: folder.image)
                                         .id(folder.name)
                                 }
+                                .contextMenu {
+                                    Button(role: .destructive) {
+                                        if let index = folders.firstIndex(of: folder) {
+                                            deleteIndexSet = IndexSet(integer: index)
+                                            isShowingDeleteConfirmationDialog = true
+                                        }
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
                                 .swipeActions(edge: .trailing) {
                                     Button(role: .destructive) {
                                         if let index = folders.firstIndex(of: folder) {
