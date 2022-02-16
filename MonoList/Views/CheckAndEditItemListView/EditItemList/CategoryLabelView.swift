@@ -15,11 +15,11 @@ struct CategoryLabelView: View {
             Image(systemName: category.image ?? "tag")
             Text(category.name)
         }
-        .font(.caption.bold())
-        .foregroundColor(.white)
+        .font(.caption)
+        .foregroundColor(.primary)
         .padding(.vertical, 4)
         .padding(.horizontal, 8)
-        .background(.tint)
+        .background(Color(UIColor.systemGray5))
         .clipShape(Capsule())
     }
 }

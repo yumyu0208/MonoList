@@ -8,9 +8,19 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 
 public class Item: NSManagedObject {
+    
+    var convertedPhoto: Image? {
+        if let photo = photo, let uiImage = UIImage(data: photo) {
+            return Image(uiImage: uiImage)
+        } else {
+            return nil
+        }
+    }
+    
     func duplicate(for itemList: ItemList, _ context: NSManagedObjectContext) {
         itemList.createNewItem(
             name: name,

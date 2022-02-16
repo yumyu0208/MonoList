@@ -12,7 +12,11 @@ struct WeightLabelView: View {
     let value: Double
     
     var body: some View {
-        Text("\(value.string)\(weightUnit)")
+        ZStack {
+            Image(systemName: "circle")
+                .opacity(0)
+            Text("\(value.string)\(weightUnit)")
+        }
             .font(.caption.bold())
             .foregroundColor(.white)
             .padding(.vertical, 4)

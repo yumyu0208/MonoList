@@ -12,6 +12,7 @@
 		AA340B9027BC98760080DD33 /* PhotoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */; };
 		AA340B9227BCA56D0080DD33 /* SampleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AA340B9127BCA56D0080DD33 /* SampleImage.png */; };
 		AA340B9827BCCE9A0080DD33 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B9727BCCE9A0080DD33 /* UIImageExtension.swift */; };
+		AA340B9C27BD51EE0080DD33 /* ImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B9B27BD51EE0080DD33 /* ImageLabelView.swift */; };
 		AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA351A772776BB5300F53BDC /* MonoListApp.swift */; };
 		AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA351A792776BB5300F53BDC /* HomeView.swift */; };
 		AA351A7C2776BB5500F53BDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA351A7B2776BB5500F53BDC /* Assets.xcassets */; };
@@ -108,6 +109,7 @@
 		AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButtonView.swift; sourceTree = "<group>"; };
 		AA340B9127BCA56D0080DD33 /* SampleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SampleImage.png; sourceTree = "<group>"; };
 		AA340B9727BCCE9A0080DD33 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		AA340B9B27BD51EE0080DD33 /* ImageLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelView.swift; sourceTree = "<group>"; };
 		AA351A742776BB5300F53BDC /* MONOLIST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MONOLIST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA351A772776BB5300F53BDC /* MonoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoListApp.swift; sourceTree = "<group>"; };
 		AA351A792776BB5300F53BDC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 				AA3675DB27B49FF600611D8A /* CategoryLabelView.swift */,
 				AAC3DDD12791A0F100983100 /* WeightLabelView.swift */,
 				AAC3DDD32791A19F00983100 /* QuantityLabelView.swift */,
+				AA340B9B27BD51EE0080DD33 /* ImageLabelView.swift */,
 				AAC3DDCA27906B4000983100 /* EditItemDetail */,
 				AAC3DDBF278F0E8000983100 /* Notification */,
 				AA3675CE27B248E800611D8A /* Weight */,
@@ -669,6 +672,7 @@
 				AAC3DDBE278F080600983100 /* CapsuleButtonStyle.swift in Sources */,
 				AA82C054277EA2B8001CEFFA /* EditFolderView.swift in Sources */,
 				AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */,
+				AA340B9C27BD51EE0080DD33 /* ImageLabelView.swift in Sources */,
 				AA3675C327B0AF6800611D8A /* MonoListData.swift in Sources */,
 				AA9977AB2783F176002B4C57 /* EditItemListView.swift in Sources */,
 				AA3675BB27B0AEB600611D8A /* ItemListData.swift in Sources */,

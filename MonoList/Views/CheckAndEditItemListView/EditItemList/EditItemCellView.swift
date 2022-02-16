@@ -63,6 +63,12 @@ struct EditItemCellView: View, Equatable {
                                     }
                             )
                     }
+                    if showWeight {
+                        WeightLabelView(value: item.weight)
+                            .onTapGesture {
+                                isEditingItemDetail = true
+                            }
+                    }
                     if showQuantity {
                         QuantityLabelView(value: item.quantity)
                             .onTapGesture {
@@ -79,21 +85,7 @@ struct EditItemCellView: View, Equatable {
                     .foregroundStyle(.tint)
                     .padding(.vertical, 4)
                 } //: HStack
-                VStack(spacing: 2) {
-                    if showWeight || item.category != nil {
-                        HStack(alignment: .center) {
-                            if let category = item.category {
-                                CategoryLabelView(category: category)
-                            }
-                            if showWeight {
-                                WeightLabelView(value: item.weight)
-                            }
-                            Spacer()
-                            Image(systemName: "info.circle")
-                                .imageScale(.large)
-                                .opacity(0)
-                        }
-                    }
+                VStack(spacing: 4) {
                     if let note = item.note {
                         HStack(alignment: .center) {
                             Text(note)
@@ -105,7 +97,26 @@ struct EditItemCellView: View, Equatable {
                                 .opacity(0)
                         }
                     }
+                    if let category = item.category {
+                        HStack(alignment: .center) {
+                            CategoryLabelView(category: category)
+                            Spacer()
+                            Image(systemName: "info.circle")
+                                .imageScale(.large)
+                                .opacity(0)
+                        }
+                    }
+                    if let image = item.convertedPhoto {
+                        HStack(alignment: .center) {
+                            ImageLabelView(image: image)
+                            Spacer()
+                            Image(systemName: "info.circle")
+                                .imageScale(.large)
+                                .opacity(0)
+                        }
+                    }
                 }
+                .padding(.bottom, 4)
                 .onTapGesture {
                     isEditingItemDetail = true
                 }

@@ -67,29 +67,29 @@ struct EditItemListView: View {
                                             }
                                         }
                                     })
-                                        .listRowSeparator(.visible)
-                                        .disabled(isEditing)
-                                        .swipeActions(edge: .trailing) {
-                                            Button(role: .destructive) {
-                                                if let index = items.firstIndex(of: item) {
-                                                    deleteItems(offsets: IndexSet(integer: index))
-                                                }
-                                            } label: {
-                                                Label("Delete", systemImage: "trash")
+                                    .listRowSeparator(.visible)
+                                    .disabled(isEditing)
+                                    .swipeActions(edge: .trailing) {
+                                        Button(role: .destructive) {
+                                            if let index = items.firstIndex(of: item) {
+                                                deleteItems(offsets: IndexSet(integer: index))
                                             }
-                                            .tint(.red)
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
                                         }
-                                        .swipeActions(edge: .leading) {
-                                            Button {
-                                                withAnimation {
-                                                    item.isImportant.toggle()
-                                                }
-                                            } label: {
-                                                Label("Frag", systemImage: "exclamationmark")
+                                        .tint(.red)
+                                    }
+                                    .swipeActions(edge: .leading) {
+                                        Button {
+                                            withAnimation {
+                                                item.isImportant.toggle()
                                             }
-                                            .tint(.orange)
+                                        } label: {
+                                            Label("Frag", systemImage: "exclamationmark")
                                         }
-                                        .id(item)
+                                        .tint(.orange)
+                                    }
+                                    .id(item)
                                 }
                             } //: ForEach
                             .onDelete(perform: { indexSet in
@@ -105,12 +105,18 @@ struct EditItemListView: View {
                                     withAnimation {
                                         let newItem = addItem(name: "", order: items.count)
                                         scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                            focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                                                withAnimation {
-                                                    scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
+                                        for index in 0 ..< 50 {
+                                            if focusedItem.wrappedValue != .row(id: newItem.id.uuidString) {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01*Double(index)) {
+                                                    focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
                                                 }
+                                            } else {
+                                                break
+                                            }
+                                        }
+                                        for index in 0 ..< 70 {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01*Double(index)) {
+                                                scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
                                             }
                                         }
                                     }

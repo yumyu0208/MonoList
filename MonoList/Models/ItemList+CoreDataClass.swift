@@ -198,9 +198,6 @@ public class ItemList: NSManagedObject {
             item.order = count
             count += 1
         }
-        sortedItems.forEach { item in
-            print(item.quantity)
-        }
     }
     
     @discardableResult
