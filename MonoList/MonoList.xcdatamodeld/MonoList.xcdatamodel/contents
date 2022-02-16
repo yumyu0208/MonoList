@@ -22,6 +22,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="order" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category"/>
@@ -56,7 +57,7 @@
     <elements>
         <element name="Category" positionX="131.13623046875" positionY="-25.4769287109375" width="128" height="104"/>
         <element name="Folder" positionX="-451.9322509765625" positionY="-26.75711059570312" width="128" height="103"/>
-        <element name="Item" positionX="-80.2880859375" positionY="-22.15966796875" width="128" height="209"/>
+        <element name="Item" positionX="-80.2880859375" positionY="-22.15966796875" width="128" height="224"/>
         <element name="ItemList" positionX="-278.1766357421875" positionY="-31.53518676757812" width="128" height="299"/>
         <element name="Notification" positionX="-282.1820068359375" positionY="251.7786865234375" width="128" height="89"/>
     </elements>

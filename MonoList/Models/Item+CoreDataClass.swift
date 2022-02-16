@@ -20,6 +20,8 @@ public class Item: NSManagedObject {
             note: note,
             image: image,
             conditions: conditions,
+            photo: photo,
+            category: category,
             order: Int(order),
             context)
     }

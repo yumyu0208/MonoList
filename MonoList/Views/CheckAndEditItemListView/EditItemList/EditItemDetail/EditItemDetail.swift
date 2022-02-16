@@ -63,7 +63,8 @@ struct EditItemDetail: View {
         ScrollViewReader { proxy in
             List {
                 Section {
-                    HStack {
+                    HStack(spacing: 12) {
+                        PhotoButtonView(imageData: $item.photo)
                         TextField("Item Name", text: $item.name, prompt: Text("Item Name"))
                             .multilineTextAlignment(.leading)
                             .focused($focusedField, equals: .nameField)
@@ -77,7 +78,8 @@ struct EditItemDetail: View {
                         .foregroundColor(Color(UIColor.systemGray4))
                         .opacity(item.name.isEmpty ? 0 : 1)
                         .animation(.easeOut(duration: 0.2), value: weight.isEmpty)
-                    }
+                    } //: HStack
+                    .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 20))
                 } //: Section
                 Section {
                     Toggle(isOn: $item.isImportant.animation()) {

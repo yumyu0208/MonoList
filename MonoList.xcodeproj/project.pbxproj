@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		AA2E0C272789C92400D23B6B /* ItemListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E0C262789C92400D23B6B /* ItemListCellView.swift */; };
+		AA340B8E27BC880B0080DD33 /* MLImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */; };
+		AA340B9027BC98760080DD33 /* PhotoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */; };
+		AA340B9227BCA56D0080DD33 /* SampleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AA340B9127BCA56D0080DD33 /* SampleImage.png */; };
+		AA340B9827BCCE9A0080DD33 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B9727BCCE9A0080DD33 /* UIImageExtension.swift */; };
 		AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA351A772776BB5300F53BDC /* MonoListApp.swift */; };
 		AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA351A792776BB5300F53BDC /* HomeView.swift */; };
 		AA351A7C2776BB5500F53BDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA351A7B2776BB5500F53BDC /* Assets.xcassets */; };
@@ -100,6 +104,10 @@
 
 /* Begin PBXFileReference section */
 		AA2E0C262789C92400D23B6B /* ItemListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCellView.swift; sourceTree = "<group>"; };
+		AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLImagePicker.swift; sourceTree = "<group>"; };
+		AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButtonView.swift; sourceTree = "<group>"; };
+		AA340B9127BCA56D0080DD33 /* SampleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SampleImage.png; sourceTree = "<group>"; };
+		AA340B9727BCCE9A0080DD33 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		AA351A742776BB5300F53BDC /* MONOLIST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MONOLIST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA351A772776BB5300F53BDC /* MonoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoListApp.swift; sourceTree = "<group>"; };
 		AA351A792776BB5300F53BDC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -202,6 +210,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA340B8C27BC879E0080DD33 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
 		AA351A6B2776BB5300F53BDC = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +248,7 @@
 				AAE5B283278484FA000B8B09 /* SubViews */,
 				AAF3A815279D87EF0084B7A9 /* Data */,
 				AA351A7B2776BB5500F53BDC /* Assets.xcassets */,
+				AA340B9127BCA56D0080DD33 /* SampleImage.png */,
 				AA351A802776BB5500F53BDC /* Persistence.swift */,
 				AA351A822776BB5500F53BDC /* MonoList.xcdatamodeld */,
 				AA351A7D2776BB5500F53BDC /* Preview Content */,
@@ -370,6 +387,7 @@
 				AAE5B28427848535000B8B09 /* EditFolders */,
 				AA3675C927B0D57100611D8A /* Settings */,
 				AA8750B3278C4DB800540BA0 /* ItemListInfo */,
+				AA340B8C27BC879E0080DD33 /* Photo */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -393,6 +411,7 @@
 				AA469410279A71730083142D /* DoubleExtension.swift */,
 				AAC3DDDD2793056500983100 /* UINavigationControllerExtension.swift */,
 				AAD949E32796B8CC004A51AC /* StringExtension.swift */,
+				AA340B9727BCCE9A0080DD33 /* UIImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -430,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				AAC3DDCB27906B5700983100 /* EditItemDetail.swift */,
+				AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */,
 				AAC3DDCD27911E4D00983100 /* SelectCategoryView.swift */,
 			);
 			path = EditItemDetail;
@@ -585,6 +605,7 @@
 				AAF3A812279D55520084B7A9 /* SystemImageList.plist in Resources */,
 				AAA8867427A3E59C00FD4D5E /* Icons.plist in Resources */,
 				AA351A7C2776BB5500F53BDC /* Assets.xcassets in Resources */,
+				AA340B9227BCA56D0080DD33 /* SampleImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,10 +654,12 @@
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
 				AA3675D127B2495C00611D8A /* WeightView.swift in Sources */,
 				AAA8867A27A3E76E00FD4D5E /* ListIcon.swift in Sources */,
+				AA340B8E27BC880B0080DD33 /* MLImagePicker.swift in Sources */,
 				AA3675BF27B0AED000611D8A /* NotificationData.swift in Sources */,
 				AA8BD47A278DD3D300488027 /* WhiteGroupBoxStyle.swift in Sources */,
 				AAA8867B27A3E76E00FD4D5E /* ListIconManager.swift in Sources */,
 				AAC3DDDB2791D68A00983100 /* ItemListView.swift in Sources */,
+				AA340B9027BC98760080DD33 /* PhotoButtonView.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
 				AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */,
 				AAE293512781C5780010F093 /* EditLabelView.swift in Sources */,
@@ -670,6 +693,7 @@
 				AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */,
 				AA351A782776BB5300F53BDC /* MonoListApp.swift in Sources */,
 				AA82C04F277B319E001CEFFA /* Folder+CoreDataClass.swift in Sources */,
+				AA340B9827BCCE9A0080DD33 /* UIImageExtension.swift in Sources */,
 				AAC3DDDE2793056600983100 /* UINavigationControllerExtension.swift in Sources */,
 				AA3675E127B5E73800611D8A /* RichAlert.swift in Sources */,
 				AACBBC75279AF8CD00A42108 /* Item+CoreDataProperties.swift in Sources */,
@@ -812,6 +836,7 @@
 				DEVELOPMENT_TEAM = GY28EP2J59;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Used to take pictures of items.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -842,6 +867,7 @@
 				DEVELOPMENT_TEAM = GY28EP2J59;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Used to take pictures of items.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

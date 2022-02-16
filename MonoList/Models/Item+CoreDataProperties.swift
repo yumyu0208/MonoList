@@ -26,6 +26,7 @@ extension Item {
     @NSManaged public var order: Int32
     @NSManaged public var quantity: Int32
     @NSManaged public var weight: Double
+    @NSManaged public var photo: Data?
     @NSManaged public var parentItemList: ItemList
     @NSManaged public var category: Category?
 

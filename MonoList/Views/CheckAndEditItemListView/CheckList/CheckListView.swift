@@ -58,33 +58,37 @@ struct CheckListView: View {
             CheckListProgressView(numberOfCompletedItems: numberOfCompletedItems,
                                   numberOfAllItems: numberOfAllItems)
             ScrollView {
-                VStack(spacing: 20) {
-                    VStack(spacing: 20) {
-                        let itemsInNoneCategory = items.filter { $0.category == nil }
-                        ForEach(itemsInNoneCategory) { item in
-                            CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+                VStack(spacing: 28) {
+                    let itemsInNoneCategory = items.filter { $0.category == nil }
+                    if !itemsInNoneCategory.isEmpty {
+                        VStack(spacing: 20) {
+                            ForEach(itemsInNoneCategory) { item in
+                                CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+                            } //: VStack
                         } //: VStack
-                    } //: VStack
+                    }
                     ForEach(categories) { category in
                         let itemsInThisCategory = items.filter { $0.category == category }
                         if !itemsInThisCategory.isEmpty {
-                            HStack {
-                                Label {
-                                    Text(category.name)
-                                } icon: {
-                                    Image(systemName: category.image ?? "tag")
-                                }
-                                .padding(.leading, 2)
-                                Spacer()
-                            }
                             VStack(spacing: 20) {
-                                ForEach(itemsInThisCategory) { item in
-                                    CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+                                HStack {
+                                    Label {
+                                        Text(category.name)
+                                    } icon: {
+                                        Image(systemName: category.image ?? "tag")
+                                    }
+                                    .padding(.leading, 2)
+                                    Spacer()
+                                }
+                                VStack(spacing: 20) {
+                                    ForEach(itemsInThisCategory) { item in
+                                        CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+                                    } //: VStack
                                 } //: VStack
                             } //: VStack
                         }
-                    }
-                }
+                    } //: ForEach
+                } //: VStack
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
                 .padding(.vertical, 20)
