@@ -68,6 +68,11 @@ struct EditItemDetail: View {
                         TextField("Item Name", text: $item.name, prompt: Text("Item Name"))
                             .multilineTextAlignment(.leading)
                             .focused($focusedField, equals: .nameField)
+                            .padding(.vertical)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                focusedField = .nameField
+                            }
                         Button {
                             item.name = ""
                         } label: {
@@ -84,7 +89,7 @@ struct EditItemDetail: View {
                 Section {
                     Toggle(isOn: $item.isImportant.animation()) {
                         Label {
-                            Text("Mark as Important")
+                            Text("Important")
                         } icon: {
                             Image(systemName: "exclamationmark")
                                 .font(.headline)
