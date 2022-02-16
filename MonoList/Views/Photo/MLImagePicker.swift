@@ -57,6 +57,7 @@ struct MLImagePicker: UIViewControllerRepresentable {
         let picker = UIImagePickerController()
         picker.sourceType = sourceType
         picker.delegate = context.coordinator
+        picker.allowsEditing = true
         return picker
     }
 
