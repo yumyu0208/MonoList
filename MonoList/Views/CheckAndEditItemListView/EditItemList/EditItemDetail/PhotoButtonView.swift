@@ -12,6 +12,7 @@ struct PhotoButtonView: View {
     @Binding var imageData: Data?
     @State var isShowingImagePicker = false
     @State var isShowingCamera = false
+    @State var isShowingDeleteConfirmationDialog: Bool = false
     
     var hasImage: Bool {
         imageData != nil
@@ -31,7 +32,7 @@ struct PhotoButtonView: View {
             }
             if hasImage {
                 Button(role: .destructive) {
-                    imageData = nil
+                    isShowingDeleteConfirmationDialog = true
                 } label: {
                     Label("Delete Photo", systemImage: "trash")
                 }
@@ -63,6 +64,21 @@ struct PhotoButtonView: View {
             .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
             .shadow(color: Color(K.colors.ui.shadowColor9), radius: 2, y: 2)
         } //: Menu
+        .confirmationDialog("Are you sure you want to delete this photo?", isPresented: $isShowingDeleteConfirmationDialog) {
+            Button(role: .destructive) {
+                withAnimation(.easeOut(duration: 0.2)) {
+                    imageData = nil
+                }
+                isShowingDeleteConfirmationDialog = false
+            } label: {
+                Text("Delete Photo")
+            }
+            Button("Cancel", role: .cancel) {
+                isShowingDeleteConfirmationDialog = false
+            }
+        } message: {
+            Text("Are you sure you want to delete this photo?")
+        }
         .sheet(isPresented: $isShowingImagePicker) {
             MLImagePicker(sourceType: .photoLibrary) { data in
                 imageData = data
