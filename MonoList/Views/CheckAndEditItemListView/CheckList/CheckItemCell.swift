@@ -6,14 +6,12 @@
 //
 
 import SwiftUI
-//import ImageViewer
 
 struct CheckItemCell: View {
     
     @ObservedObject var item: Item
     let showAndHideUndoButton: () -> Void
-    
-    @State var isShowingImageViewer = false
+    let showImageViewerAction: (Image) -> Void
     
     var body: some View {
         HStack(alignment: .top) {
@@ -63,7 +61,9 @@ struct CheckItemCell: View {
                     .opacity(0)
                     .overlay {
                         ImageLabelView(image: image, scale: 48)
-                            //.overlay(ImageViewer(image: .constant(image), viewerShown: $isShowingImageViewer))
+                            .onTapGesture {
+                                showImageViewerAction(image)
+                            }
                     }
             }
         } //: HStack
@@ -74,7 +74,7 @@ struct CheckItemCell_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let item = MonoListManager().fetchItems(context: context)[0]
-        CheckItemCell(item: item) {}
+        CheckItemCell(item: item, showAndHideUndoButton: {}, showImageViewerAction: { _ in })
             .padding()
             .environment(\.managedObjectContext, context)
             .previewLayout(.sizeThatFits)

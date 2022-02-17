@@ -18,6 +18,8 @@ struct CheckListView: View {
     @State var showUndo = false
     @State private var showUndoTimer: Timer?
     
+    var showImageViewerAction: (Image) -> Void
+    
     var numberOfUnCompletedItems: Int {
         items.filter { $0.isCompleted == false }.count
     }
@@ -30,10 +32,11 @@ struct CheckListView: View {
         numberOfAllItems - numberOfUnCompletedItems
     }
     
-    init(of itemList: ItemList, showCompleted: Bool, allDoneAction: @escaping () -> Void) {
+    init(of itemList: ItemList, showCompleted: Bool, allDoneAction: @escaping () -> Void, showImageViewerAction: @escaping (Image) -> Void) {
         self.itemList = itemList
         self.showCompleted = showCompleted
         self.allDoneAction = allDoneAction
+        self.showImageViewerAction = showImageViewerAction
         
         let predicateFormat = showCompleted ? "parentItemList == %@" : "parentItemList == %@ && isCompleted == NO"
         
@@ -63,7 +66,7 @@ struct CheckListView: View {
                     if !itemsInNoneCategory.isEmpty {
                         VStack(spacing: 20) {
                             ForEach(itemsInNoneCategory) { item in
-                                CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+                                CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton, showImageViewerAction: showImageViewerAction)
                             } //: VStack
                         } //: VStack
                     }
@@ -82,7 +85,7 @@ struct CheckListView: View {
                                 }
                                 VStack(spacing: 20) {
                                     ForEach(itemsInThisCategory) { item in
-                                        CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton)
+                                        CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton, showImageViewerAction: showImageViewerAction)
                                     } //: VStack
                                 } //: VStack
                             } //: VStack
@@ -149,7 +152,7 @@ struct CheckListView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
-        CheckListView(of: itemList, showCompleted: true, allDoneAction: {})
+        CheckListView(of: itemList, showCompleted: true, allDoneAction: {}, showImageViewerAction: { _ in })
             .environment(\.managedObjectContext, context)
     }
 }

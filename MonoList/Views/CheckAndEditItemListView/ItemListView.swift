@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ImageViewer
 
 struct ItemListView: View {
     @AppStorage(K.key.showCompleted) var showCompleted = true
@@ -29,6 +30,9 @@ struct ItemListView: View {
     @State var isShowingEditIcon = false
     @State var doneAlertIsShowing = false
     @State var isShowingUncheckAllConfirmationAlert: Bool = false
+    
+    @State var isShowingImageViewer = false
+    @State var showingImage: Image?
     
     var isNewItemList: Bool {
         itemList.name == K.defaultName.newItemList
@@ -120,6 +124,9 @@ struct ItemListView: View {
                             doneAlertIsShowing = true
                         }
                     }
+                }, showImageViewerAction: { image in
+                    showingImage = image
+                    isShowingImageViewer = true
                 })
                 .opacity(isEditMode || itemsIsEmpty ? 0 : 1)
             } //: ZStack
@@ -250,6 +257,7 @@ struct ItemListView: View {
                 .disabled(isEditing || isNewItemList)
             } //: ToolBarItemGroup
         }
+        .overlay(ImageViewer(image: $showingImage, viewerShown: $isShowingImageViewer, closeButtonTopRight: true))
         .richAlert(isShowing: $doneAlertIsShowing, vOffset: -24) {
             VStack(spacing: 32) {
                 VStack {
