@@ -102,6 +102,7 @@
 		AAF3A814279D86B60084B7A9 /* Strings.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAF3A813279D86B60084B7A9 /* Strings.strings */; };
 		AAF3A817279D88700084B7A9 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A816279D88700084B7A9 /* ImageManager.swift */; };
 		AAF3A81927A2A4A20084B7A9 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */; };
+		AAFF272627BDEA4D000585EE /* ImageViewer in Frameworks */ = {isa = PBXBuildFile; productRef = AAFF272527BDEA4D000585EE /* ImageViewer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAFF272627BDEA4D000585EE /* ImageViewer in Frameworks */,
 				4086694DC62426D57D5D4CE3 /* Pods_MonoList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,7 +225,6 @@
 				F0EE50D098480142DD53E46D /* Pods-MonoList.debug.xcconfig */,
 				A5E9CEE8228BBDA72956D0F6 /* Pods-MonoList.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -588,6 +589,9 @@
 			dependencies = (
 			);
 			name = MonoList;
+			packageProductDependencies = (
+				AAFF272527BDEA4D000585EE /* ImageViewer */,
+			);
 			productName = MonoList;
 			productReference = AA351A742776BB5300F53BDC /* MONOLIST.app */;
 			productType = "com.apple.product-type.application";
@@ -616,6 +620,9 @@
 				Base,
 			);
 			mainGroup = AA351A6B2776BB5300F53BDC;
+			packageReferences = (
+				AAFF272427BDEA4D000585EE /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */,
+			);
 			productRefGroup = AA351A752776BB5300F53BDC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -984,6 +991,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AAFF272427BDEA4D000585EE /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Jake-Short/swiftui-image-viewer.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AAFF272527BDEA4D000585EE /* ImageViewer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAFF272427BDEA4D000585EE /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */;
+			productName = ImageViewer;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		AA351A822776BB5500F53BDC /* MonoList.xcdatamodeld */ = {
