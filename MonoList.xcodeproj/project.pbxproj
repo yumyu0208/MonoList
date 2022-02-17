@@ -103,6 +103,7 @@
 		AAF3A817279D88700084B7A9 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A816279D88700084B7A9 /* ImageManager.swift */; };
 		AAF3A81927A2A4A20084B7A9 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */; };
 		AAFF272627BDEA4D000585EE /* ImageViewer in Frameworks */ = {isa = PBXBuildFile; productRef = AAFF272527BDEA4D000585EE /* ImageViewer */; };
+		AAFF272927BDF27E000585EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF272827BDF27E000585EE /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -203,6 +204,8 @@
 		AAF3A813279D86B60084B7A9 /* Strings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Strings.strings; sourceTree = "<group>"; };
 		AAF3A816279D88700084B7A9 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		AAFF272727BDED80000585EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAFF272827BDF27E000585EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0EE50D098480142DD53E46D /* Pods-MonoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MonoList.debug.xcconfig"; path = "Target Support Files/Pods-MonoList/Pods-MonoList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,6 +260,7 @@
 		AA351A762776BB5300F53BDC /* MonoList */ = {
 			isa = PBXGroup;
 			children = (
+				AAFF272727BDED80000585EE /* Info.plist */,
 				AA469412279A73370083142D /* Modifiers */,
 				AA8750C6278DB1C100540BA0 /* Extensions */,
 				AAD4B7BB27870BB900D73EBE /* Enums */,
@@ -264,6 +268,7 @@
 				AA82C023277AC0B3001CEFFA /* Utilities */,
 				AA82C055277EEF53001CEFFA /* Styles */,
 				AA351A772776BB5300F53BDC /* MonoListApp.swift */,
+				AAFF272827BDF27E000585EE /* AppDelegate.swift */,
 				AA82C058277EF500001CEFFA /* Views */,
 				AAE5B283278484FA000B8B09 /* SubViews */,
 				AAF3A815279D87EF0084B7A9 /* Data */,
@@ -725,6 +730,7 @@
 				AAA8868127A3EA4000FD4D5E /* IconSectionHeaderView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA3675E727B73A4400611D8A /* MiniXButtonView.swift in Sources */,
+				AAFF272927BDF27E000585EE /* AppDelegate.swift in Sources */,
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,
 				AA3675E327B5F5BF00611D8A /* RichAlertButtonStyle.swift in Sources */,
 				AAC3DDE227940EAD00983100 /* CheckmarkToggleStyle.swift in Sources */,
@@ -917,6 +923,7 @@
 				DEVELOPMENT_TEAM = GY28EP2J59;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MonoList/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used to take pictures of items.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -949,6 +956,7 @@
 				DEVELOPMENT_TEAM = GY28EP2J59;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MonoList/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used to take pictures of items.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

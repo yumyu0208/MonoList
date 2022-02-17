@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+//import ImageViewer
 
 struct CheckItemCell: View {
     
     @ObservedObject var item: Item
     let showAndHideUndoButton: () -> Void
+    
+    @State var isShowingImageViewer = false
     
     var body: some View {
         HStack(alignment: .top) {
@@ -58,7 +61,10 @@ struct CheckItemCell: View {
                 Toggle("Complete Item", isOn: .constant(false))
                     .toggleStyle(.checkmark)
                     .opacity(0)
-                    .overlay(ImageLabelView(image: image, scale: 48))
+                    .overlay {
+                        ImageLabelView(image: image, scale: 48)
+                            //.overlay(ImageViewer(image: .constant(image), viewerShown: $isShowingImageViewer))
+                    }
             }
         } //: HStack
     }
