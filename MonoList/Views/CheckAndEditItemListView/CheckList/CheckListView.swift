@@ -60,42 +60,20 @@ struct CheckListView: View {
         VStack(spacing: 0) {
             CheckListProgressView(numberOfCompletedItems: numberOfCompletedItems,
                                   numberOfAllItems: numberOfAllItems)
-            ScrollView {
-                VStack(spacing: 28) {
-                    let itemsInNoneCategory = items.filter { $0.category == nil }
-                    if !itemsInNoneCategory.isEmpty {
-                        VStack(spacing: 20) {
-                            ForEach(itemsInNoneCategory) { item in
-                                CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton, showImageViewerAction: showImageViewerAction)
-                            } //: VStack
-                        } //: VStack
-                    }
-                    ForEach(categories) { category in
-                        let itemsInThisCategory = items.filter { $0.category == category }
-                        if !itemsInThisCategory.isEmpty {
-                            VStack(spacing: 20) {
-                                HStack {
-                                    Label {
-                                        Text(category.name)
-                                    } icon: {
-                                        Image(systemName: category.image ?? "tag")
-                                    }
-                                    .padding(.leading, 2)
-                                    Spacer()
-                                }
-                                VStack(spacing: 20) {
-                                    ForEach(itemsInThisCategory) { item in
-                                        CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButton, showImageViewerAction: showImageViewerAction)
-                                    } //: VStack
-                                } //: VStack
-                            } //: VStack
-                        }
-                    } //: ForEach
-                } //: VStack
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal)
-                .padding(.vertical, 20)
-            } //: ScrollView
+            Group {
+                switch itemList.form {
+                case .normal:
+                    NomalCheckListView(items: items,
+                                       categories: categories,
+                                       showAndHideUndoButtonAction: showAndHideUndoButton,
+                                       showImageViewerAction: showImageViewerAction)
+                case .photo:
+                    PhotoCheckListView(items: items,
+                                       categories: categories,
+                                       showAndHideUndoButtonAction: showAndHideUndoButton,
+                                       showImageViewerAction: showImageViewerAction)
+                }
+            }
             .overlay(alignment: .bottomTrailing) {
                 if !showCompleted && showUndo {
                     Button {

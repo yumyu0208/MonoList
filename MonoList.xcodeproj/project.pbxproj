@@ -104,6 +104,11 @@
 		AAF3A81927A2A4A20084B7A9 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */; };
 		AAFF272627BDEA4D000585EE /* ImageViewer in Frameworks */ = {isa = PBXBuildFile; productRef = AAFF272527BDEA4D000585EE /* ImageViewer */; };
 		AAFF272927BDF27E000585EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF272827BDF27E000585EE /* AppDelegate.swift */; };
+		AAFF272B27BE8293000585EE /* NomalCheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF272A27BE8293000585EE /* NomalCheckListView.swift */; };
+		AAFF272D27BE85A6000585EE /* PhotoCheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF272C27BE85A6000585EE /* PhotoCheckListView.swift */; };
+		AAFF272F27BE89DB000585EE /* PhotoCheckItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF272E27BE89DB000585EE /* PhotoCheckItemCell.swift */; };
+		AAFF273127BE96B3000585EE /* PhotoCheckMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF273027BE96B3000585EE /* PhotoCheckMarkView.swift */; };
+		AAFF273327BE9DB6000585EE /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF273227BE9DB6000585EE /* CategoryHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -206,6 +211,11 @@
 		AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		AAFF272727BDED80000585EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAFF272827BDF27E000585EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AAFF272A27BE8293000585EE /* NomalCheckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomalCheckListView.swift; sourceTree = "<group>"; };
+		AAFF272C27BE85A6000585EE /* PhotoCheckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCheckListView.swift; sourceTree = "<group>"; };
+		AAFF272E27BE89DB000585EE /* PhotoCheckItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCheckItemCell.swift; sourceTree = "<group>"; };
+		AAFF273027BE96B3000585EE /* PhotoCheckMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCheckMarkView.swift; sourceTree = "<group>"; };
+		AAFF273227BE9DB6000585EE /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
 		F0EE50D098480142DD53E46D /* Pods-MonoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MonoList.debug.xcconfig"; path = "Target Support Files/Pods-MonoList/Pods-MonoList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -497,7 +507,12 @@
 			children = (
 				AAC3DDD62791AA4800983100 /* CheckListView.swift */,
 				AAD949E5279866E5004A51AC /* CheckListProgressView.swift */,
+				AAFF272A27BE8293000585EE /* NomalCheckListView.swift */,
 				AAC3DDE32794408A00983100 /* CheckItemCell.swift */,
+				AAFF272C27BE85A6000585EE /* PhotoCheckListView.swift */,
+				AAFF272E27BE89DB000585EE /* PhotoCheckItemCell.swift */,
+				AAFF273027BE96B3000585EE /* PhotoCheckMarkView.swift */,
+				AAFF273227BE9DB6000585EE /* CategoryHeaderView.swift */,
 			);
 			path = CheckList;
 			sourceTree = "<group>";
@@ -730,6 +745,7 @@
 				AAA8868127A3EA4000FD4D5E /* IconSectionHeaderView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA3675E727B73A4400611D8A /* MiniXButtonView.swift in Sources */,
+				AAFF272F27BE89DB000585EE /* PhotoCheckItemCell.swift in Sources */,
 				AAFF272927BDF27E000585EE /* AppDelegate.swift in Sources */,
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,
 				AA3675E327B5F5BF00611D8A /* RichAlertButtonStyle.swift in Sources */,
@@ -741,11 +757,14 @@
 				AAA8867A27A3E76E00FD4D5E /* ListIcon.swift in Sources */,
 				AA340B8E27BC880B0080DD33 /* MLImagePicker.swift in Sources */,
 				AA3675BF27B0AED000611D8A /* NotificationData.swift in Sources */,
+				AAFF273127BE96B3000585EE /* PhotoCheckMarkView.swift in Sources */,
+				AAFF272B27BE8293000585EE /* NomalCheckListView.swift in Sources */,
 				AA8BD47A278DD3D300488027 /* WhiteGroupBoxStyle.swift in Sources */,
 				AAA8867B27A3E76E00FD4D5E /* ListIconManager.swift in Sources */,
 				AAC3DDDB2791D68A00983100 /* ItemListView.swift in Sources */,
 				AA340B9027BC98760080DD33 /* PhotoButtonView.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
+				AAFF272D27BE85A6000585EE /* PhotoCheckListView.swift in Sources */,
 				AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */,
 				AAE293512781C5780010F093 /* EditLabelView.swift in Sources */,
 				AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */,
@@ -787,6 +806,7 @@
 				AACBBC73279AF8CD00A42108 /* Category+CoreDataProperties.swift in Sources */,
 				AAA8867E27A3E9A600FD4D5E /* EditIconView.swift in Sources */,
 				AAE5B28727852F98000B8B09 /* EditItemCellView.swift in Sources */,
+				AAFF273327BE9DB6000585EE /* CategoryHeaderView.swift in Sources */,
 				AAC3DDCC27906B5700983100 /* EditItemDetail.swift in Sources */,
 				AA469414279A735B0083142D /* NumberView.swift in Sources */,
 			);

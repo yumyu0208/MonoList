@@ -12,6 +12,36 @@ import CoreData
 
 public class ItemList: NSManagedObject {
     
+    enum Form: String {
+        case normal = "normal"
+        case photo = "photo"
+    }
+    
+    var form: Form {
+        get {
+            switch displayFormat {
+            case Form.normal.rawValue:
+                return .normal
+            case Form.photo.rawValue:
+                return .photo
+            default:
+                return .normal
+            }
+        }
+        set {
+            displayFormat = newValue.rawValue
+        }
+    }
+    
+    func changeForm() {
+        switch form {
+        case .normal:
+            form = .photo
+        case .photo:
+            form = .normal
+        }
+    }
+    
     var isNew: Bool {
         name == K.defaultName.newItemList
     }
