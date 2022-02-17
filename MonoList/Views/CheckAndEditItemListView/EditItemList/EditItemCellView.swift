@@ -108,7 +108,7 @@ struct EditItemCellView: View, Equatable {
                     }
                     if let image = item.convertedPhoto {
                         HStack(alignment: .center) {
-                            ImageLabelView(image: image)
+                            ImageLabelView(image: image, scale: 36)
                             Spacer()
                             Image(systemName: "info.circle")
                                 .imageScale(.large)

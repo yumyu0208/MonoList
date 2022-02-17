@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4086694DC62426D57D5D4CE3 /* Pods_MonoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395E573228CF870EA90A642E /* Pods_MonoList.framework */; };
 		AA2E0C272789C92400D23B6B /* ItemListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E0C262789C92400D23B6B /* ItemListCellView.swift */; };
 		AA340B8E27BC880B0080DD33 /* MLImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */; };
 		AA340B9027BC98760080DD33 /* PhotoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */; };
@@ -104,6 +105,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		395E573228CF870EA90A642E /* Pods_MonoList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MonoList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E9CEE8228BBDA72956D0F6 /* Pods-MonoList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MonoList.release.xcconfig"; path = "Target Support Files/Pods-MonoList/Pods-MonoList.release.xcconfig"; sourceTree = "<group>"; };
 		AA2E0C262789C92400D23B6B /* ItemListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCellView.swift; sourceTree = "<group>"; };
 		AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLImagePicker.swift; sourceTree = "<group>"; };
 		AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButtonView.swift; sourceTree = "<group>"; };
@@ -199,6 +202,7 @@
 		AAF3A813279D86B60084B7A9 /* Strings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Strings.strings; sourceTree = "<group>"; };
 		AAF3A816279D88700084B7A9 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		F0EE50D098480142DD53E46D /* Pods-MonoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MonoList.debug.xcconfig"; path = "Target Support Files/Pods-MonoList/Pods-MonoList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,12 +210,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4086694DC62426D57D5D4CE3 /* Pods_MonoList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10FF772F059DBF2E01BE3305 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F0EE50D098480142DD53E46D /* Pods-MonoList.debug.xcconfig */,
+				A5E9CEE8228BBDA72956D0F6 /* Pods-MonoList.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		AA340B8C27BC879E0080DD33 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +240,8 @@
 			children = (
 				AA351A762776BB5300F53BDC /* MonoList */,
 				AA351A752776BB5300F53BDC /* Products */,
+				10FF772F059DBF2E01BE3305 /* Pods */,
+				CD14DAF8542E1CB5A39B2337 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -545,6 +562,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		CD14DAF8542E1CB5A39B2337 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				395E573228CF870EA90A642E /* Pods_MonoList.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -552,9 +577,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA351A872776BB5500F53BDC /* Build configuration list for PBXNativeTarget "MonoList" */;
 			buildPhases = (
+				C6DEA8CB98889930192ED0FD /* [CP] Check Pods Manifest.lock */,
 				AA351A702776BB5300F53BDC /* Sources */,
 				AA351A712776BB5300F53BDC /* Frameworks */,
 				AA351A722776BB5300F53BDC /* Resources */,
+				1B4586D90FD6C076A69666AC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -613,6 +640,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B4586D90FD6C076A69666AC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MonoList/Pods-MonoList-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MonoList/Pods-MonoList-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MonoList/Pods-MonoList-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6DEA8CB98889930192ED0FD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MonoList-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA351A702776BB5300F53BDC /* Sources */ = {
@@ -831,6 +900,7 @@
 		};
 		AA351A882776BB5500F53BDC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0EE50D098480142DD53E46D /* Pods-MonoList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -862,6 +932,7 @@
 		};
 		AA351A892776BB5500F53BDC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5E9CEE8228BBDA72956D0F6 /* Pods-MonoList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

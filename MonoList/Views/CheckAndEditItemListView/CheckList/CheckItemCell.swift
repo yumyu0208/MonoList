@@ -54,6 +54,12 @@ struct CheckItemCell: View {
             } //: VStack
             .opacity(item.isCompleted ? 0.4 : 1)
             .animation(.none, value: item.isCompleted)
+            if let image = item.convertedPhoto {
+                Toggle("Complete Item", isOn: .constant(false))
+                    .toggleStyle(.checkmark)
+                    .opacity(0)
+                    .overlay(ImageLabelView(image: image, scale: 48))
+            }
         } //: HStack
     }
 }
