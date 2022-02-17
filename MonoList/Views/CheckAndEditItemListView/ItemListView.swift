@@ -134,6 +134,7 @@ struct ItemListView: View {
         } //: VStack
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .overlay(ImageViewer(image: $showingImage, viewerShown: $isShowingImageViewer, closeButtonTopRight: true))
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
@@ -146,7 +147,7 @@ struct ItemListView: View {
                         .contentShape(Rectangle())
                         .padding(.trailing)
                 }
-                .disabled(isEditing)
+                .disabled(isEditing || isShowingImageViewer)
             } //: ToolBarItem
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Group {
@@ -254,10 +255,9 @@ struct ItemListView: View {
                             .padding(4)
                     } //: Menu
                 } //: Group
-                .disabled(isEditing || isNewItemList)
+                .disabled(isEditing || isNewItemList || isShowingImageViewer)
             } //: ToolBarItemGroup
         }
-        .overlay(ImageViewer(image: $showingImage, viewerShown: $isShowingImageViewer, closeButtonTopRight: true))
         .richAlert(isShowing: $doneAlertIsShowing, vOffset: -24) {
             VStack(spacing: 32) {
                 VStack {

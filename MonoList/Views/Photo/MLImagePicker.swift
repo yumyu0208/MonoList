@@ -34,7 +34,7 @@ struct MLImagePicker: UIViewControllerRepresentable {
 
         func imagePickerController(_ picker: UIImagePickerController,
                                    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
             let data = image.smallImage(minValue: 120).jpegData(compressionQuality: 0.8)
             onImagePicked(data)
             presentationMode.dismiss()
