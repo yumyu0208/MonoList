@@ -76,6 +76,9 @@ struct EditItemCellView: View, Equatable {
                             }
                     }
                     Button {
+                        if item.name.isEmpty {
+                            item.name = "New Item"
+                        }
                         isEditingItemDetail = true
                     } label: {
                         Image(systemName: "info.circle")
