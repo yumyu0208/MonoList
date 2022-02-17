@@ -61,6 +61,8 @@ struct CheckItemCell: View {
                     .opacity(0)
                     .overlay {
                         ImageLabelView(image: image, scale: 48)
+                            .opacity(item.isCompleted ? 0.4 : 1)
+                            .animation(.none, value: item.isCompleted)
                             .onTapGesture {
                                 showImageViewerAction(image)
                             }
