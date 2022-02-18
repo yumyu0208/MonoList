@@ -15,6 +15,12 @@ public class ItemList: NSManagedObject {
     enum Form: String {
         case list = "List"
         case gallery = "Gallery"
+        case gallery2 = "2 Line Gallery"
+        case gallery3 = "3 Line Gallery"
+    }
+    
+    static var allForms: [Form] {
+        [.list, .gallery, .gallery2, .gallery3]
     }
     
     var form: Form {
@@ -24,6 +30,10 @@ public class ItemList: NSManagedObject {
                 return .list
             case Form.gallery.rawValue:
                 return .gallery
+            case Form.gallery2.rawValue:
+                return .gallery2
+            case Form.gallery3.rawValue:
+                return .gallery3
             default:
                 return .list
             }
@@ -31,19 +41,6 @@ public class ItemList: NSManagedObject {
         set {
             displayFormat = newValue.rawValue
         }
-    }
-    
-    var nextForm: Form {
-        switch form {
-        case .list:
-            return .gallery
-        case .gallery:
-            return .list
-        }
-    }
-    
-    func changeForm() {
-        form = nextForm
     }
     
     var isNew: Bool {

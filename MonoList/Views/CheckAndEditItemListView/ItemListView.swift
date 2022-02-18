@@ -236,15 +236,20 @@ struct ItemListView: View {
                             }
                             .disabled(itemsIsEmpty)
                         } else {
-                            Button {
-                                withAnimation(.easeOut(duration: 0.2)) {
-                                    itemList.changeForm()
-                                    saveData(update: false)
-                                }
+                            Menu {
+                                ForEach(ItemList.allForms, id: \.rawValue) { form in
+                                    Button {
+                                        withAnimation(.easeOut(duration: 0.2)) {
+                                            itemList.form = form
+                                            saveData(update: false)
+                                        }
+                                    } label: {
+                                        Label("View as \(form.rawValue)", systemImage: imageName(for: form))
+                                    } //: Button
+                                } //: ForEach
                             } label: {
-                                Label("View as \(itemList.nextForm.rawValue)", systemImage: imageName(for: itemList.nextForm))
-                                    .padding(4)
-                            } //: Button
+                                Label("Form", systemImage: imageName(for: itemList.form))
+                            }
                             Button {
                                 withAnimation(.easeOut(duration: 0.2)) {
                                     showCompleted.toggle()
@@ -475,7 +480,11 @@ struct ItemListView: View {
         case .list:
             return "list.bullet"
         case .gallery:
+            return "rectangle.grid.1x2"
+        case .gallery2:
             return "square.grid.2x2"
+        case .gallery3:
+            return "square.grid.3x2"
         }
     }
 }

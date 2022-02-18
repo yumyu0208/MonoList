@@ -67,11 +67,12 @@ struct CheckListView: View {
                                        categories: categories,
                                        showAndHideUndoButtonAction: showAndHideUndoButton,
                                        showImageViewerAction: showImageViewerAction)
-                case .gallery:
+                case .gallery, .gallery2, .gallery3:
+                    let columns: [GridItem] = Array(repeating: .init(.flexible(minimum: 20, maximum: 600), spacing: 12), count: numberOfColumns(for: itemList.form))
                     PhotoCheckListView(items: items,
                                        categories: categories,
                                        showAndHideUndoButtonAction: showAndHideUndoButton,
-                                       showImageViewerAction: showImageViewerAction)
+                                       showImageViewerAction: showImageViewerAction, columns: columns)
                 }
             }
             .overlay(alignment: .bottomTrailing) {
@@ -122,6 +123,19 @@ struct CheckListView: View {
                 showUndo = false
                 saveData()
             }
+        }
+    }
+    
+    func numberOfColumns(for form: ItemList.Form) -> Int {
+        switch form {
+        case .gallery:
+            return 1
+        case .gallery2:
+            return 2
+        case .gallery3:
+            return 3
+        default:
+            return 2
         }
     }
 }

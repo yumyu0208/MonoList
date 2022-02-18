@@ -12,8 +12,7 @@ struct PhotoCheckListView: View {
     var categories: FetchedResults<Category>
     var showAndHideUndoButtonAction: () -> Void
     var showImageViewerAction: (Image) -> Void
-    
-    var columns: [GridItem] = Array(repeating: .init(.flexible(minimum: 120, maximum: 180), spacing: 12), count: 2)
+    var columns: [GridItem]
     
     var body: some View {
         ScrollView {
