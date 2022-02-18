@@ -164,6 +164,18 @@ public class ItemList: NSManagedObject {
         case few
     }
     
+    func orderItems() {
+        guard let items = items?.allObjects as? [Item] else { return }
+        let orderedItems = items.sorted { $0.order < $1.order }
+        var count: Int32 = 0
+        for item in orderedItems {
+            if item.order != count {
+                item.order = count
+            }
+            count += 1
+        }
+    }
+    
     func sortItems(order: Order) {
         guard let items = items?.allObjects as? [Item] else { return }
         var sortedItems: [Item]?

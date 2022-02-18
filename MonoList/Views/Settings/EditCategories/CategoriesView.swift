@@ -110,6 +110,9 @@ struct CategoriesView: View {
                 Text("The category of items in \(categories[index].name) will be \"None\"")
             }
         }
+        .onAppear {
+            CategoryManager().orderCategory(context: viewContext)
+        }
     }
     
     private func saveData() {

@@ -19,6 +19,19 @@ class MonoListManager: ObservableObject {
         return newFolder
     }
     
+    func orderFolder(context: NSManagedObjectContext) {
+        let folders = fetchFolders(context: context)
+        let orderedFolders = folders.sorted { $0.order < $1.order }
+        var count: Int32 = 0
+        for folder in orderedFolders {
+            if folder.order != count {
+                folder.order = count
+            }
+            count += 1
+            folder.orderItemLists()
+        }
+    }
+    
     func fetchFolders(context: NSManagedObjectContext) -> [Folder] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Folder")
         do {

@@ -72,6 +72,19 @@ public class Folder: NSManagedObject {
         return newItemList
     }
     
+    func orderItemLists() {
+        guard let itemLists = itemLists?.allObjects as? [ItemList] else { return }
+        let orderedItemLists = itemLists.sorted { $0.order < $1.order }
+        var count: Int32 = 0
+        for itemList in orderedItemLists {
+            if itemList.order != count {
+                itemList.order = count
+            }
+            count += 1
+            itemList.orderItems()
+        }
+    }
+    
     func data() -> FolderData {
         var itemListDataArray: [ItemListData]?
         if let itemLists = itemLists?.allObjects as? [ItemList] {

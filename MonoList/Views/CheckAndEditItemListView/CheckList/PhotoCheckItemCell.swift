@@ -54,9 +54,25 @@ struct PhotoCheckItemCell: View {
                     showImageViewerAction(image)
                 }
             }
-            Text(item.name)
-                .font(.body)
-                .lineLimit(1)
+            HStack {
+                if item.isImportant {
+                    Image(systemName: "exclamationmark")
+                        .foregroundStyle(.red)
+                }
+                HStack(spacing: 0) {
+                    Text(item.name)
+                        .foregroundStyle(.primary)
+                        .lineLimit(1)
+                    if item.quantity > 1 {
+                        Text(" × \(item.quantity)")
+                            .foregroundStyle(.primary)
+                            .lineLimit(1)
+                    }
+                }
+            }
+            .font(.body)
+            .opacity(isCompleted ? 0.4 : 1)
+            .animation(.none, value: isCompleted)
         } //: VStack
     }
 }

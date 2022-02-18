@@ -154,6 +154,7 @@ struct HomeView: View {
             if folders.isEmpty {
                 manager.createSamples(context: viewContext)
             }
+            manager.orderFolder(context: viewContext)
         }
         .onReceive(willTerminateObserver) { _ in
             saveData()

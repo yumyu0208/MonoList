@@ -32,4 +32,16 @@ class CategoryManager {
             fatalError("Failed to fetch all categories")
         }
     }
+    
+    func orderCategory(context: NSManagedObjectContext) {
+        let categories = fetchAllCategories(context)
+        let orderedCategories = categories.sorted { $0.order < $1.order }
+        var count: Int32 = 0
+        for category in orderedCategories {
+            if category.order != count {
+                category.order = count
+            }
+            count += 1
+        }
+    }
 }
