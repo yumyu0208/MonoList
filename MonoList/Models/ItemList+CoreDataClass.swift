@@ -13,19 +13,19 @@ import CoreData
 public class ItemList: NSManagedObject {
     
     enum Form: String {
-        case normal = "normal"
-        case photo = "photo"
+        case list = "List"
+        case gallery = "Gallery"
     }
     
     var form: Form {
         get {
             switch displayFormat {
-            case Form.normal.rawValue:
-                return .normal
-            case Form.photo.rawValue:
-                return .photo
+            case Form.list.rawValue:
+                return .list
+            case Form.gallery.rawValue:
+                return .gallery
             default:
-                return .normal
+                return .list
             }
         }
         set {
@@ -33,13 +33,17 @@ public class ItemList: NSManagedObject {
         }
     }
     
-    func changeForm() {
+    var nextForm: Form {
         switch form {
-        case .normal:
-            form = .photo
-        case .photo:
-            form = .normal
+        case .list:
+            return .gallery
+        case .gallery:
+            return .list
         }
+    }
+    
+    func changeForm() {
+        form = nextForm
     }
     
     var isNew: Bool {

@@ -163,15 +163,6 @@ struct ItemListView: View {
                         Label("Weight", systemImage: "scalemass")
                             .padding(4)
                     } //: Button
-                    Button {
-                        withAnimation(.easeOut(duration: 0.2)) {
-                            itemList.changeForm()
-                            saveData(update: false)
-                        }
-                    } label: {
-                        Label("Form", systemImage: imageName(for: itemList.form))
-                            .padding(4)
-                    } //: Button
                     EditItemListButtonView(isEditMode: $isEditMode) {
                         focusedItem = nil
                         listNameTextFieldIsFocused = false
@@ -245,6 +236,15 @@ struct ItemListView: View {
                             }
                             .disabled(itemsIsEmpty)
                         } else {
+                            Button {
+                                withAnimation(.easeOut(duration: 0.2)) {
+                                    itemList.changeForm()
+                                    saveData(update: false)
+                                }
+                            } label: {
+                                Label("View as \(itemList.nextForm.rawValue)", systemImage: imageName(for: itemList.nextForm))
+                                    .padding(4)
+                            } //: Button
                             Button {
                                 withAnimation(.easeOut(duration: 0.2)) {
                                     showCompleted.toggle()
@@ -472,9 +472,9 @@ struct ItemListView: View {
     
     private func imageName(for form: ItemList.Form) -> String {
         switch form {
-        case .normal:
-            return "text.badge.checkmark"
-        case .photo:
+        case .list:
+            return "list.bullet"
+        case .gallery:
             return "square.grid.2x2"
         }
     }

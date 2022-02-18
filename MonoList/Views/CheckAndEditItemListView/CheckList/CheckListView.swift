@@ -62,12 +62,12 @@ struct CheckListView: View {
                                   numberOfAllItems: numberOfAllItems)
             Group {
                 switch itemList.form {
-                case .normal:
+                case .list:
                     NomalCheckListView(items: items,
                                        categories: categories,
                                        showAndHideUndoButtonAction: showAndHideUndoButton,
                                        showImageViewerAction: showImageViewerAction)
-                case .photo:
+                case .gallery:
                     PhotoCheckListView(items: items,
                                        categories: categories,
                                        showAndHideUndoButtonAction: showAndHideUndoButton,
