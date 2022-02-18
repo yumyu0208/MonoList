@@ -19,6 +19,7 @@ struct ItemData: Codable {
     var order: Int
     var quantity: Int
     var weight: Double
+    var photo: Data?
     var categoryData: CategoryData?
     
     func createItem(context: NSManagedObjectContext) -> Item {
@@ -33,6 +34,7 @@ struct ItemData: Codable {
         item.order = Int32(order)
         item.quantity = Int32(quantity)
         item.weight = weight
+        item.photo = photo
         let categories = CategoryManager().fetchAllCategories(context)
         if let category = categories.first(where: { $0.name == categoryData?.name }) {
             item.category = category

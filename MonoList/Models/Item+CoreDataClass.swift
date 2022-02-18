@@ -47,6 +47,7 @@ public class Item: NSManagedObject {
                         order: Int(order),
                         quantity: Int(quantity),
                         weight: weight,
+                        photo: photo,
                         categoryData: category?.data())
     }
 }
