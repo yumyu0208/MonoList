@@ -38,7 +38,9 @@ struct EditAlarmView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
-        AlarmView(itemList: itemList)
-            .environment(\.managedObjectContext, context)
+        NavigationView {
+            AlarmView(itemList: itemList)
+                .environment(\.managedObjectContext, context)
+        }
     }
 }

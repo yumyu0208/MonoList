@@ -321,6 +321,7 @@ struct ItemListView: View {
                 NavigationView {
                     WeightView(itemList: itemList)
                         .tint(Color(itemList.color))
+                        .environment(\.managedObjectContext, viewContext)
                 }
             }
         }

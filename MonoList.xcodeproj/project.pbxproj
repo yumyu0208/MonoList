@@ -40,6 +40,10 @@
 		AA3675E927B745B800611D8A /* EditItemListButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675E827B745B800611D8A /* EditItemListButtonView.swift */; };
 		AA469411279A71730083142D /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469410279A71730083142D /* DoubleExtension.swift */; };
 		AA469414279A735B0083142D /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469413279A735B0083142D /* NumberView.swift */; };
+		AA6F605427C0F1B400DCB446 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F605327C0F1B400DCB446 /* PieChartView.swift */; };
+		AA6F605627C0F1C500DCB446 /* PieSliceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F605527C0F1C500DCB446 /* PieSliceView.swift */; };
+		AA6F605A27C1309F00DCB446 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AA6F605927C1309F00DCB446 /* LICENSE */; };
+		AA6F605C27C13F6600DCB446 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F605B27C13F6600DCB446 /* UIColorExtension.swift */; };
 		AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */; };
 		AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C024277AC0D3001CEFFA /* Constants.swift */; };
 		AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C043277B319E001CEFFA /* Notification+CoreDataClass.swift */; };
@@ -147,6 +151,10 @@
 		AA3675E827B745B800611D8A /* EditItemListButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemListButtonView.swift; sourceTree = "<group>"; };
 		AA469410279A71730083142D /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		AA469413279A735B0083142D /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
+		AA6F605327C0F1B400DCB446 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
+		AA6F605527C0F1C500DCB446 /* PieSliceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieSliceView.swift; sourceTree = "<group>"; };
+		AA6F605927C1309F00DCB446 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		AA6F605B27C13F6600DCB446 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationView.swift; sourceTree = "<group>"; };
 		AA82C024277AC0D3001CEFFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA82C043277B319E001CEFFA /* Notification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -365,6 +373,16 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		AA6F605227C0F19D00DCB446 /* SwiftPieChart */ = {
+			isa = PBXGroup;
+			children = (
+				AA6F605327C0F1B400DCB446 /* PieChartView.swift */,
+				AA6F605527C0F1C500DCB446 /* PieSliceView.swift */,
+				AA6F605927C1309F00DCB446 /* LICENSE */,
+			);
+			path = SwiftPieChart;
+			sourceTree = "<group>";
+		};
 		AA82C023277AC0B3001CEFFA /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,6 +441,7 @@
 				AA3675C927B0D57100611D8A /* Settings */,
 				AA8750B3278C4DB800540BA0 /* ItemListInfo */,
 				AA340B8C27BC879E0080DD33 /* Photo */,
+				AA6F605227C0F19D00DCB446 /* SwiftPieChart */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -447,6 +466,7 @@
 				AAC3DDDD2793056500983100 /* UINavigationControllerExtension.swift */,
 				AAD949E32796B8CC004A51AC /* StringExtension.swift */,
 				AA340B9727BCCE9A0080DD33 /* UIImageExtension.swift */,
+				AA6F605B27C13F6600DCB446 /* UIColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -660,6 +680,7 @@
 				AA351A7F2776BB5500F53BDC /* Preview Assets.xcassets in Resources */,
 				AAF3A814279D86B60084B7A9 /* Strings.strings in Resources */,
 				AAF3A812279D55520084B7A9 /* SystemImageList.plist in Resources */,
+				AA6F605A27C1309F00DCB446 /* LICENSE in Resources */,
 				AAA8867427A3E59C00FD4D5E /* Icons.plist in Resources */,
 				AA351A7C2776BB5500F53BDC /* Assets.xcassets in Resources */,
 				AA340B9227BCA56D0080DD33 /* SampleImage.png in Resources */,
@@ -726,6 +747,7 @@
 				AA8750B7278D3B7D00540BA0 /* ItemsGroupBoxView.swift in Sources */,
 				AA3675D327B2548500611D8A /* Feedbacks.swift in Sources */,
 				AACBBC79279C1F0D00A42108 /* CategoryManager.swift in Sources */,
+				AA6F605427C0F1B400DCB446 /* PieChartView.swift in Sources */,
 				AAA8867C27A3E76E00FD4D5E /* ListIconSection.swift in Sources */,
 				AA8750C1278D518900540BA0 /* ExpandToggleStyle.swift in Sources */,
 				AA351A812776BB5500F53BDC /* Persistence.swift in Sources */,
@@ -742,6 +764,7 @@
 				AA3675CB27B0D59500611D8A /* SettingsView.swift in Sources */,
 				AAC3DDC8278FE97200983100 /* SelectDestinationView.swift in Sources */,
 				AAC3DDC1278FDBC600983100 /* AlarmView.swift in Sources */,
+				AA6F605C27C13F6600DCB446 /* UIColorExtension.swift in Sources */,
 				AAA8868127A3EA4000FD4D5E /* IconSectionHeaderView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA3675E727B73A4400611D8A /* MiniXButtonView.swift in Sources */,
@@ -800,6 +823,7 @@
 				AA82C04F277B319E001CEFFA /* Folder+CoreDataClass.swift in Sources */,
 				AA340B9827BCCE9A0080DD33 /* UIImageExtension.swift in Sources */,
 				AAC3DDDE2793056600983100 /* UINavigationControllerExtension.swift in Sources */,
+				AA6F605627C0F1C500DCB446 /* PieSliceView.swift in Sources */,
 				AA3675E127B5E73800611D8A /* RichAlert.swift in Sources */,
 				AACBBC75279AF8CD00A42108 /* Item+CoreDataProperties.swift in Sources */,
 				AACBBC7B279C230E00A42108 /* XButtonView.swift in Sources */,

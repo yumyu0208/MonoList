@@ -75,11 +75,31 @@ public class ItemList: NSManagedObject {
         string(from: updateDate)
     }
     
-    var totalWeight: Double {
-        guard let items = items?.allObjects as? [Item] else { return 0 }
-        let weights = items.map { $0.weight * Double($0.quantity) }
-        let totalWeight = weights.reduce(0, +)
-        return totalWeight
+    typealias ChartData = (values: [Double], names: [String], images: [String], colors: [Color])
+    
+    func weightChartData(_ context: NSManagedObjectContext) -> ChartData {
+        let categories = CategoryManager().fetchAllCategories(context).sorted { $0.order < $1.order }
+        let allItems = items?.allObjects as! [Item]
+        let itemsWithCategory = allItems.filter { $0.category != nil }
+        let categoriesAndTotalValues = categories.map { category -> (category: Category, totalValue: Double) in
+            let itemsInCategory = itemsWithCategory.filter { $0.category == category }
+            let weightValues = itemsInCategory.map { $0.weight * Double($0.quantity) }
+            let totalValue = weightValues.reduce(0, +)
+            return (category, totalValue)
+        }.filter { $0.totalValue > 0 }.sorted { $0.totalValue > $1.totalValue }
+        
+        let totalValues = categoriesAndTotalValues.map { $0.totalValue }
+        let names = categoriesAndTotalValues.map { $0.category.name }
+        let images = categoriesAndTotalValues.map { $0.category.image ?? "tag" }
+        let colors = categoriesAndTotalValues.enumerated().map { index, _ -> Color in
+            let numberOfAll = categoriesAndTotalValues.count
+            guard let listColor = UIColor(named: color),
+                  let lightStandardColor = listColor.lighter(by: 0.0),
+                  let uiColor = lightStandardColor.darker(by: CGFloat(index)/CGFloat(numberOfAll) * 0.5)
+            else { return .clear }
+            return Color(uiColor)
+        }
+        return (totalValues, names, images, colors)
     }
     
     func string(from date: Date) -> String {
