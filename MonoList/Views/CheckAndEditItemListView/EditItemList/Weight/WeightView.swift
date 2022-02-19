@@ -20,6 +20,7 @@ struct WeightView: View {
                          names: weightChartData.names,
                          formatter: {value in String(format: "%.2f\(itemList.unitLabel)", value)},
                          colors: weightChartData.colors,
+                         images: weightChartData.images,
                          backgroundColor: Color(UIColor.secondarySystemGroupedBackground),
                          widthFraction: 1.0,
                          innerRadiusFraction: 0.60)
