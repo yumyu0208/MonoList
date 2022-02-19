@@ -20,6 +20,7 @@ extension ItemList {
     @NSManaged public var color: String
     @NSManaged public var creationDate: Date
     @NSManaged public var displayFormat: String
+    @NSManaged public var hideCompleted: Bool
     @NSManaged public var iconName: String
     @NSManaged public var id: UUID
     @NSManaged public var image: String
@@ -30,6 +31,7 @@ extension ItemList {
     @NSManaged public var secondaryColor: String?
     @NSManaged public var tertiaryColor: String?
     @NSManaged public var type: String
+    @NSManaged public var unitLabel: String
     @NSManaged public var updateDate: Date
     @NSManaged public var items: NSSet?
     @NSManaged public var notifications: NSSet?

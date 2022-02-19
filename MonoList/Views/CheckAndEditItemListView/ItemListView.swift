@@ -9,7 +9,6 @@ import SwiftUI
 import ImageViewer
 
 struct ItemListView: View {
-    @AppStorage(K.key.showCompleted) var showCompleted = true
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @State var editMode: EditMode = .inactive
@@ -118,7 +117,7 @@ struct ItemListView: View {
                 EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem)
                     .opacity(isEditMode ? 1 : 0)
                     .environment(\.editMode, $editMode)
-                CheckListView(of: itemList, showCompleted: showCompleted, allDoneAction: {
+                CheckListView(of: itemList, allDoneAction: {
                     if !isEditMode && !itemsIsEmpty {
                         withAnimation(.easeOut(duration: 0.2).delay(0.3)) {
                             doneAlertIsShowing = true
@@ -252,11 +251,11 @@ struct ItemListView: View {
                             }
                             Button {
                                 withAnimation(.easeOut(duration: 0.2)) {
-                                    showCompleted.toggle()
+                                    itemList.hideCompleted.toggle()
                                     saveData(update: false)
                                 }
                             } label: {
-                                Label(showCompleted ? "Hide Completed" : "Show Completed", systemImage: showCompleted ? "eye.slash" : "eye")
+                                Label(itemList.hideCompleted ? "Show Completed" : "Hide Completed", systemImage: itemList.hideCompleted ? "eye" : "eye.slash")
                             }
                             Button {
                                 isShowingUncheckAllConfirmationAlert = true

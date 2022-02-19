@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct WeightLabelView: View {
-    @AppStorage(K.key.weightUnit) var weightUnit = "g"
-    let value: Double
+    
+    var value: Double
+    var unitLabel: String
     
     var body: some View {
         ZStack {
             Image(systemName: "circle")
                 .opacity(0)
-            Text("\(value.string)\(weightUnit)")
+            Text("\(value.string)\(unitLabel)")
         }
             .font(.caption.bold())
             .foregroundColor(.white)
@@ -28,7 +29,7 @@ struct WeightLabelView: View {
 
 struct WeightLabelView_Previews: PreviewProvider {
     static var previews: some View {
-        WeightLabelView(value: 230.5)
+        WeightLabelView(value: 230.5, unitLabel: "g")
             .padding()
             .previewLayout(.sizeThatFits)
     }

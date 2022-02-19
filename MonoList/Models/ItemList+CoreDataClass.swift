@@ -126,10 +126,12 @@ public class ItemList: NSManagedObject {
             image: image,
             achievementCount: 0,
             displayFormat: displayFormat,
+            hideCompleted: hideCompleted,
             creationDate: Date(),
             updateDate: Date(),
             order: Int(order) + 1,
             type: type,
+            unitLabel: unitLabel,
             context)
         (items?.allObjects as? [Item])?.forEach({ item in
             item.duplicate(for: duplicatedItemList, context)
@@ -267,6 +269,7 @@ public class ItemList: NSManagedObject {
                             color: color,
                             creationDate: creationDate,
                             displayFormat: displayFormat,
+                            hideCompleted: hideCompleted,
                             iconName: iconName,
                             id: id,
                             image: image,
@@ -277,6 +280,7 @@ public class ItemList: NSManagedObject {
                             secondaryColor: secondaryColor,
                             tertiaryColor: tertiaryColor,
                             type: type,
+                            unitLabel: unitLabel,
                             updateDate: updateDate,
                             itemDataArray: itemDataArray,
                             notificationDataArray: notificationDataArray)

@@ -13,6 +13,7 @@ struct ItemListData: Codable {
     var color: String
     var creationDate: Date
     var displayFormat: String
+    var hideCompleted: Bool
     var iconName: String
     var id: UUID
     var image: String
@@ -23,6 +24,7 @@ struct ItemListData: Codable {
     var secondaryColor: String?
     var tertiaryColor: String?
     var type: String
+    var unitLabel: String
     var updateDate: Date
     var itemDataArray: [ItemData]?
     var notificationDataArray: [NotificationData]?
@@ -33,6 +35,7 @@ struct ItemListData: Codable {
         itemList.color = color
         itemList.creationDate = creationDate
         itemList.displayFormat = displayFormat
+        itemList.hideCompleted = hideCompleted
         itemList.iconName = iconName
         itemList.id = id
         itemList.image = image
@@ -43,6 +46,7 @@ struct ItemListData: Codable {
         itemList.secondaryColor = secondaryColor
         itemList.tertiaryColor = tertiaryColor
         itemList.type = type
+        itemList.unitLabel = unitLabel
         itemList.updateDate = updateDate
         itemDataArray?.forEach {
             itemList.addToItems($0.createItem(context: context))

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WeightView: View {
-    @AppStorage(K.key.weightUnit) var weightUnit = "g"
+    
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var itemList: ItemList
     
@@ -16,7 +16,7 @@ struct WeightView: View {
         ScrollView {
             HStack {
                 Text("Total Weight")
-                Text("\(itemList.totalWeight.string)\(weightUnit)")
+                Text("\(itemList.totalWeight.string)\(itemList.unitLabel)")
             }
         } //: Scroll
         .navigationBarTitleDisplayMode(.inline)

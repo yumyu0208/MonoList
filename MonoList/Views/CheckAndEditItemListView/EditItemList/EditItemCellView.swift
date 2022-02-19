@@ -64,7 +64,7 @@ struct EditItemCellView: View, Equatable {
                             )
                     }
                     if showWeight {
-                        WeightLabelView(value: item.weight)
+                        WeightLabelView(value: item.weight, unitLabel: item.parentItemList.unitLabel)
                             .onTapGesture {
                                 isEditingItemDetail = true
                             }

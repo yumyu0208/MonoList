@@ -10,7 +10,6 @@ import SwiftUI
 struct CheckListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     var itemList: ItemList
-    var showCompleted: Bool
     let allDoneAction: () -> Void
     @FetchRequest var items: FetchedResults<Item>
     @FetchRequest var categories: FetchedResults<Category>
@@ -32,13 +31,12 @@ struct CheckListView: View {
         numberOfAllItems - numberOfUnCompletedItems
     }
     
-    init(of itemList: ItemList, showCompleted: Bool, allDoneAction: @escaping () -> Void, showImageViewerAction: @escaping (Image) -> Void) {
+    init(of itemList: ItemList, allDoneAction: @escaping () -> Void, showImageViewerAction: @escaping (Image) -> Void) {
         self.itemList = itemList
-        self.showCompleted = showCompleted
         self.allDoneAction = allDoneAction
         self.showImageViewerAction = showImageViewerAction
         
-        let predicateFormat = showCompleted ? "parentItemList == %@" : "parentItemList == %@ && isCompleted == NO"
+        let predicateFormat = itemList.hideCompleted ? "parentItemList == %@ && isCompleted == NO" : "parentItemList == %@"
         
         _items = FetchRequest(
             sortDescriptors: [
@@ -76,7 +74,7 @@ struct CheckListView: View {
                 }
             }
             .overlay(alignment: .bottomTrailing) {
-                if !showCompleted && showUndo {
+                if itemList.hideCompleted && showUndo {
                     Button {
                         if viewContext.hasChanges {
                             viewContext.undo()
@@ -144,7 +142,7 @@ struct CheckListView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
-        CheckListView(of: itemList, showCompleted: true, allDoneAction: {}, showImageViewerAction: { _ in })
+        CheckListView(of: itemList, allDoneAction: {}, showImageViewerAction: { _ in })
             .environment(\.managedObjectContext, context)
     }
 }

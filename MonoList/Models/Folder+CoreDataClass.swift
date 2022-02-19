@@ -51,7 +51,7 @@ public class Folder: NSManagedObject {
     }
     
     @discardableResult
-    func createNewItemList(name: String, color: String,primaryColor: String? = nil, secondaryColor: String? = nil, tertiaryColor: String? = nil, iconName: String, image: String, achievementCount: Int = 0, displayFormat: String = ItemList.Form.list.rawValue, creationDate: Date = Date(), updateDate: Date = Date(), order: Int, type: String = "belongings", notificationIsActive: Bool = false, _ context: NSManagedObjectContext) -> ItemList {
+    func createNewItemList(name: String, color: String,primaryColor: String? = nil, secondaryColor: String? = nil, tertiaryColor: String? = nil, iconName: String, image: String, achievementCount: Int = 0, displayFormat: String = ItemList.Form.list.rawValue, hideCompleted: Bool = false, creationDate: Date = Date(), updateDate: Date = Date(), order: Int, type: String = "belongings", unitLabel: String = "g", notificationIsActive: Bool = false, _ context: NSManagedObjectContext) -> ItemList {
         let newItemList = ItemList(context: context)
         newItemList.id = UUID()
         newItemList.name = name
@@ -63,10 +63,12 @@ public class Folder: NSManagedObject {
         newItemList.image = image
         newItemList.achievementCount = Int32(achievementCount)
         newItemList.displayFormat = displayFormat
+        newItemList.hideCompleted = hideCompleted
         newItemList.creationDate = creationDate
         newItemList.updateDate = updateDate
         newItemList.order = Int32(order)
         newItemList.type = type
+        newItemList.unitLabel = unitLabel
         newItemList.notificationIsActive = notificationIsActive
         addToItemLists(newItemList)
         return newItemList

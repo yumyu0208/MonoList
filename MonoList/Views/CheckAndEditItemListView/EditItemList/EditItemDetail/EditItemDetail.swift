@@ -16,7 +16,6 @@ struct EditItemDetail: View {
         case noteField
     }
     
-    @AppStorage(K.key.weightUnit) var weightUnit = "g"
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     
@@ -142,7 +141,7 @@ struct EditItemDetail: View {
                 } header: {
                     HStack(spacing: 0) {
                         Text("Weight")
-                        Text("  ( \(weightUnit)/pcs )")
+                        Text("  ( \(item.parentItemList.unitLabel)/pcs )")
                             .textCase(nil)
                     }
                 } //: Section
