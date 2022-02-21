@@ -44,7 +44,7 @@
 		AA6F605627C0F1C500DCB446 /* PieSliceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F605527C0F1C500DCB446 /* PieSliceView.swift */; };
 		AA6F605A27C1309F00DCB446 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AA6F605927C1309F00DCB446 /* LICENSE */; };
 		AA6F605C27C13F6600DCB446 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F605B27C13F6600DCB446 /* UIColorExtension.swift */; };
-		AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */; };
+		AA7E1E8C278ED9840080D80F /* EditRepeatNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E1E8B278ED9840080D80F /* EditRepeatNotificationView.swift */; };
 		AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C024277AC0D3001CEFFA /* Constants.swift */; };
 		AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C043277B319E001CEFFA /* Notification+CoreDataClass.swift */; };
 		AA82C04C277B319E001CEFFA /* Notification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C044277B319E001CEFFA /* Notification+CoreDataProperties.swift */; };
@@ -75,6 +75,7 @@
 		AAA8867E27A3E9A600FD4D5E /* EditIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8867D27A3E9A600FD4D5E /* EditIconView.swift */; };
 		AAA8868127A3EA4000FD4D5E /* IconSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8868027A3EA4000FD4D5E /* IconSectionHeaderView.swift */; };
 		AAA8868327A3EBD000FD4D5E /* IconImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8868227A3EBD000FD4D5E /* IconImageView.swift */; };
+		AAB52BE227C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BE127C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift */; };
 		AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9BD52278136D70055CD85 /* FolderSectionView.swift */; };
 		AAC3DDBE278F080600983100 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */; };
 		AAC3DDC1278FDBC600983100 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC0278FDBC600983100 /* AlarmView.swift */; };
@@ -155,7 +156,7 @@
 		AA6F605527C0F1C500DCB446 /* PieSliceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieSliceView.swift; sourceTree = "<group>"; };
 		AA6F605927C1309F00DCB446 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		AA6F605B27C13F6600DCB446 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationView.swift; sourceTree = "<group>"; };
+		AA7E1E8B278ED9840080D80F /* EditRepeatNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRepeatNotificationView.swift; sourceTree = "<group>"; };
 		AA82C024277AC0D3001CEFFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA82C043277B319E001CEFFA /* Notification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AA82C044277B319E001CEFFA /* Notification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -186,6 +187,7 @@
 		AAA8867D27A3E9A600FD4D5E /* EditIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIconView.swift; sourceTree = "<group>"; };
 		AAA8868027A3EA4000FD4D5E /* IconSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSectionHeaderView.swift; sourceTree = "<group>"; };
 		AAA8868227A3EBD000FD4D5E /* IconImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconImageView.swift; sourceTree = "<group>"; };
+		AAB52BE127C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSpecificDateAndTimeNotificationView.swift; sourceTree = "<group>"; };
 		AAB9BD52278136D70055CD85 /* FolderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSectionView.swift; sourceTree = "<group>"; };
 		AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		AAC3DDC0278FDBC600983100 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
@@ -487,7 +489,8 @@
 				AAC3DDC0278FDBC600983100 /* AlarmView.swift */,
 				AA8750B8278D3D5D00540BA0 /* NotificationsGroupBoxView.swift */,
 				AA8750C9278DB70000540BA0 /* NotificationListView.swift */,
-				AA7E1E8B278ED9840080D80F /* EditNotificationView.swift */,
+				AA7E1E8B278ED9840080D80F /* EditRepeatNotificationView.swift */,
+				AAB52BE127C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -760,6 +763,7 @@
 				AAF3A81927A2A4A20084B7A9 /* ImagePickerView.swift in Sources */,
 				AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */,
 				AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */,
+				AAB52BE227C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift in Sources */,
 				AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */,
 				AA3675CB27B0D59500611D8A /* SettingsView.swift in Sources */,
 				AAC3DDC8278FE97200983100 /* SelectDestinationView.swift in Sources */,
@@ -808,7 +812,7 @@
 				AA3675E927B745B800611D8A /* EditItemListButtonView.swift in Sources */,
 				AAC3DDE42794408A00983100 /* CheckItemCell.swift in Sources */,
 				AACBBC7D279C2F2200A42108 /* RoundedGrayTextFieldStyle.swift in Sources */,
-				AA7E1E8C278ED9840080D80F /* EditNotificationView.swift in Sources */,
+				AA7E1E8C278ED9840080D80F /* EditRepeatNotificationView.swift in Sources */,
 				AAC3DDCE27911E4D00983100 /* SelectCategoryView.swift in Sources */,
 				AACBBC77279AFF2F00A42108 /* NoItemsView.swift in Sources */,
 				AAC3DDD72791AA4800983100 /* CheckListView.swift in Sources */,

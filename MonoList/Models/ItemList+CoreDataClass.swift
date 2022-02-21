@@ -266,10 +266,20 @@ public class ItemList: NSManagedObject {
     }
     
     @discardableResult
-    func createNewNotification(weekdays: String, time: Date, _ context: NSManagedObjectContext) -> Notification {
+    func createNewRepeatNotification(weekdays: String, time: Date, _ context: NSManagedObjectContext) -> Notification {
         let newNotification = Notification(context: context)
         newNotification.creationDate = Date()
         newNotification.weekdays = weekdays
+        newNotification.time = time
+        addToNotifications(newNotification)
+        return newNotification
+    }
+    
+    @discardableResult
+    func createNewSpecificDateAndTimeNotification(time: Date, _ context: NSManagedObjectContext) -> Notification {
+        let newNotification = Notification(context: context)
+        newNotification.creationDate = Date()
+        newNotification.weekdays = ""
         newNotification.time = time
         addToNotifications(newNotification)
         return newNotification

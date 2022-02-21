@@ -1,18 +1,16 @@
 //
-//  EditNotificationView.swift
+//  EditSpecificDateAndTimeNotificationView.swift
 //  MonoList
 //
-//  Created by 竹田悠真 on 2022/01/12.
+//  Created by 竹田悠真 on 2022/02/21.
 //
 
 import SwiftUI
 
-struct EditNotificationView: View {
+struct EditSpecificDateAndTimeNotificationView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var notification: Notification
-    private let weekdaySymbols: [String] = Notification.weekdaySymbols
-    @State private var selectedWeekdays: String = ""
     @State private var selectedTime: Date = Date()
     @State var isShowingCancelConfirmationAlert: Bool = false
     let isNew: Bool
@@ -21,39 +19,10 @@ struct EditNotificationView: View {
         VStack(spacing: 0) {
             List {
                 Section {
-                    ForEach(0 ..< weekdaySymbols.count, id: \.self) { index in
-                        let isSelected = selectedWeekdays.contains(String(index))
-                        Button {
-                            withAnimation {
-                                if isSelected {
-                                    selectedWeekdays.removeAll { String($0) == String(index) }
-                                } else {
-                                    selectedWeekdays.append(String(index))
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text(weekdaySymbols[index])
-                                    .foregroundColor(.primary)
-                                Spacer()
-                                Image(systemName: "checkmark")
-                                    .font(.headline)
-                                    .opacity(isSelected ? 1 : 0)
-                                    .animation(.easeOut(duration: 0.2), value: isSelected)
-                            }
-                        }
-                    }
-                } header: {
-                    Text("Every")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                }.textCase(nil)
-                Section {
-                    DatePicker("Time", selection: $selectedTime, displayedComponents: [.hourAndMinute])
+                    DatePicker("Time", selection: $selectedTime, in: Date()..., displayedComponents: [.date, .hourAndMinute])
                 }
             } //: List
             Button {
-                notification.weekdays = Notification.sortedWeekdays(selectedWeekdays)
                 notification.time = selectedTime
                 saveData()
                 dismiss()
@@ -63,7 +32,6 @@ struct EditNotificationView: View {
             .buttonStyle(.capsule)
             .padding()
             .background(Color(UIColor.systemGroupedBackground))
-            .disabled(selectedWeekdays.isEmpty)
         } //: VStack
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
@@ -103,12 +71,10 @@ struct EditNotificationView: View {
         }
         .onAppear {
             DispatchQueue.main.async {
-                selectedWeekdays = notification.weekdays
                 selectedTime = notification.time
             }
         }
     }
-    
     private func deleteNotification(_ notification: Notification) {
         withAnimation {
             viewContext.delete(notification)
@@ -127,13 +93,13 @@ struct EditNotificationView: View {
     }
 }
 
-struct EditNotificationView_Previews: PreviewProvider {
+struct EditSpecificDateAndTimeNotificationView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let notification = MonoListManager().fetchNotifications(context: context)[0]
         Group {
             NavigationView {
-                EditNotificationView(notification: notification, isNew: false)
+                EditSpecificDateAndTimeNotificationView(notification: notification, isNew: false)
                     .environment(\.managedObjectContext, context)
             }
         }

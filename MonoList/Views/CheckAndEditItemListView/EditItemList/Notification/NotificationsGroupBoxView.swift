@@ -99,7 +99,7 @@ struct NotificationsGroupBoxView: View {
     
     @discardableResult
     func addNotification(weekdays: String, time: Date = Notification.defaultDate) -> Notification {
-        let newNotification = itemList.createNewNotification(weekdays: weekdays, time: time, viewContext)
+        let newNotification = itemList.createNewRepeatNotification(weekdays: weekdays, time: time, viewContext)
         saveData()
         return newNotification
     }

@@ -30,6 +30,10 @@ public class Notification: NSManagedObject {
         weekdays.map { Int(String($0))! }.sorted { $0 < $1 }.map { String($0) }.joined()
     }
     
+    var isRepeat: Bool {
+        !weekdays.isEmpty
+    }
+    
     var weekdaysString: String {
         if weekdays == "0123456" {
             return K.weekday.everyday
@@ -53,6 +57,9 @@ public class Notification: NSManagedObject {
     var timeString: String {
         let formatter = DateFormatter()
         formatter.calendar = Self.calendar
+        if !isRepeat {
+            formatter.dateStyle = .full
+        }
         formatter.timeStyle = .short
         formatter.locale = Locale.current
         let timeString = formatter.string(from: time)

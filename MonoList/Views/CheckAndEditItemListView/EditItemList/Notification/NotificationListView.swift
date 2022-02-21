@@ -13,7 +13,8 @@ struct NotificationListView: View {
     @FetchRequest var notifications: FetchedResults<Notification>
     var itemList: ItemList?
     
-    @State var isEditingNewNotification = false
+    @State var isEditingNewRepeatNotification = false
+    @State var isEditingNewSpecificDateAndTimeNotification = false
     
     @State var newNotification: Notification?
     
@@ -37,22 +38,33 @@ struct NotificationListView: View {
             VStack(alignment: .leading, spacing: 8) {
                 ForEach(notifications) { notification in
                     NavigationLink {
-                        EditNotificationView(notification: notification, isNew: false)
-                            .onDisappear {
-                                if let itemList = itemList, !itemList.hasNotifications {
-                                    withAnimation {
-                                        itemList.notificationIsActive = false
-                                        saveData()
-                                    }
+                        Group {
+                            if notification.isRepeat {
+                                EditRepeatNotificationView(notification: notification, isNew: false)
+                            } else {
+                                EditSpecificDateAndTimeNotificationView(notification: notification, isNew: false)
+                            }
+                        }
+                        .onDisappear {
+                            if let itemList = itemList, !itemList.hasNotifications {
+                                withAnimation {
+                                    itemList.notificationIsActive = false
+                                    saveData()
                                 }
                             }
+                        }
                     } label: {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(notification.timeString)
                                     .font(.headline)
-                                Text(notification.weekdaysString)
-                                    .font(.subheadline)
+                                if notification.isRepeat {
+                                    Text(notification.weekdaysString)
+                                        .font(.subheadline)
+                                } else {
+                                    Text("Only Once")
+                                        .font(.subheadline)
+                                }
                             } //: VStack
                             .foregroundColor(.primary)
                             Spacer()
@@ -68,22 +80,41 @@ struct NotificationListView: View {
                     .disabled(!isEditing)
                 } //: ForEach
                 if isEditing {
-                    Button {
-                        withAnimation(.easeOut(duration: 0.2)) {
-                            newNotification = itemList?.createNewNotification(weekdays: K.weekday.allWeekdays, time: Notification.defaultDate, viewContext)
-                        }
-                        isEditingNewNotification = true
+                    Menu {
+                        Button {
+                            withAnimation(.easeOut(duration: 0.2)) {
+                                newNotification = itemList?.createNewRepeatNotification(weekdays: K.weekday.allWeekdays, time: Notification.defaultDate, viewContext)
+                            }
+                            isEditingNewRepeatNotification = true
+                        } label: {
+                            Label("Repeat", systemImage: "arrow.triangle.2.circlepath")
+                        } //: Button
+                        Button {
+                            withAnimation(.easeOut(duration: 0.2)) {
+                                newNotification = itemList?.createNewSpecificDateAndTimeNotification(time: Notification.defaultDate, viewContext)
+                            }
+                            isEditingNewSpecificDateAndTimeNotification = true
+                        } label: {
+                            Label("Only Once", systemImage: "calendar.badge.clock")
+                        } //: Button
                     } label: {
                         Label("Add Alarm", systemImage: "plus.circle.fill")
                             .font(.headline)
                             .padding(.horizontal, 6)
                             .padding(.vertical, 8)
-                    } //: Button
+                    }
                 }
             } //: VStack
-            NavigationLink(isActive: $isEditingNewNotification) {
+            NavigationLink(isActive: $isEditingNewRepeatNotification) {
                 if let newNotification = newNotification {
-                    EditNotificationView(notification: newNotification, isNew: true)
+                    EditRepeatNotificationView(notification: newNotification, isNew: true)
+                }
+            } label: {
+                EmptyView()
+            }
+            NavigationLink(isActive: $isEditingNewSpecificDateAndTimeNotification) {
+                if let newNotification = newNotification {
+                    EditSpecificDateAndTimeNotificationView(notification: newNotification, isNew: true)
                 }
             } label: {
                 EmptyView()
