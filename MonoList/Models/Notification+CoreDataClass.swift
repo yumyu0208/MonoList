@@ -57,13 +57,38 @@ public class Notification: NSManagedObject {
     var timeString: String {
         let formatter = DateFormatter()
         formatter.calendar = Self.calendar
-        if !isRepeat {
-            formatter.dateStyle = .full
-        }
         formatter.timeStyle = .short
         formatter.locale = Locale.current
         let timeString = formatter.string(from: time)
         return timeString
+    }
+    
+    var dateAndTimeString: String {
+        let formatter = DateFormatter()
+        formatter.calendar = Self.calendar
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMdE Hm", options: 0, locale: Locale.current)
+        let timeString = formatter.string(from: time)
+        return timeString
+    }
+    
+    var year: Int {
+        Self.calendar.component(.year, from: time)
+    }
+    
+    var month: Int {
+        Self.calendar.component(.month, from: time)
+    }
+    
+    var day: Int {
+        Self.calendar.component(.day, from: time)
+    }
+    
+    var hour: Int {
+        Self.calendar.component(.hour, from: time)
+    }
+    
+    var minute: Int {
+        Self.calendar.component(.minute, from: time)
     }
     
     func data() -> NotificationData {

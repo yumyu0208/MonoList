@@ -78,6 +78,7 @@
 		AAB52BE227C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BE127C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift */; };
 		AAB52BE527C34AC40050A912 /* Deeplinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BE427C34AC40050A912 /* Deeplinker.swift */; };
 		AAB52BEA27C351EC0050A912 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BE927C351EC0050A912 /* Environment.swift */; };
+		AAB52BEC27C383080050A912 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BEB27C383080050A912 /* NotificationManager.swift */; };
 		AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9BD52278136D70055CD85 /* FolderSectionView.swift */; };
 		AAC3DDBE278F080600983100 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */; };
 		AAC3DDC1278FDBC600983100 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC0278FDBC600983100 /* AlarmView.swift */; };
@@ -192,6 +193,7 @@
 		AAB52BE127C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSpecificDateAndTimeNotificationView.swift; sourceTree = "<group>"; };
 		AAB52BE427C34AC40050A912 /* Deeplinker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinker.swift; sourceTree = "<group>"; };
 		AAB52BE927C351EC0050A912 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		AAB52BEB27C383080050A912 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		AAB9BD52278136D70055CD85 /* FolderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSectionView.swift; sourceTree = "<group>"; };
 		AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		AAC3DDC0278FDBC600983100 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				AA82C048277B319E001CEFFA /* Folder+CoreDataProperties.swift */,
 				AA82C051277DECC4001CEFFA /* MonoListManager.swift */,
 				AACBBC78279C1F0D00A42108 /* CategoryManager.swift */,
+				AAB52BEB27C383080050A912 /* NotificationManager.swift */,
 				AA3675C727B0D4E800611D8A /* FolderImage */,
 				AA3675C527B0D4B500611D8A /* ListIconDataModels */,
 				AA3675C427B0D48500611D8A /* BackupDataModels */,
@@ -794,6 +797,7 @@
 				AAA8868127A3EA4000FD4D5E /* IconSectionHeaderView.swift in Sources */,
 				AA351A842776BB5500F53BDC /* MonoList.xcdatamodeld in Sources */,
 				AA3675E727B73A4400611D8A /* MiniXButtonView.swift in Sources */,
+				AAB52BEC27C383080050A912 /* NotificationManager.swift in Sources */,
 				AAFF272F27BE89DB000585EE /* PhotoCheckItemCell.swift in Sources */,
 				AAFF272927BDF27E000585EE /* AppDelegate.swift in Sources */,
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,

@@ -50,6 +50,7 @@ struct EditRepeatNotificationView: View {
                 }.textCase(nil)
                 Section {
                     DatePicker("Time", selection: $selectedTime, displayedComponents: [.hourAndMinute])
+                        .accentColor(.gray)
                 }
             } //: List
             Button {

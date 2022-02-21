@@ -56,12 +56,14 @@ struct NotificationListView: View {
                     } label: {
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(notification.timeString)
-                                    .font(.headline)
                                 if notification.isRepeat {
+                                    Text(notification.timeString)
+                                        .font(.headline)
                                     Text(notification.weekdaysString)
                                         .font(.subheadline)
                                 } else {
+                                    Text(notification.dateAndTimeString)
+                                        .font(.headline)
                                     Text("Only Once")
                                         .font(.subheadline)
                                 }

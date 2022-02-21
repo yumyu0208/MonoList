@@ -20,6 +20,7 @@ struct EditSpecificDateAndTimeNotificationView: View {
             List {
                 Section {
                     DatePicker("Time", selection: $selectedTime, in: Date()..., displayedComponents: [.date, .hourAndMinute])
+                        .accentColor(.gray)
                 }
             } //: List
             Button {
