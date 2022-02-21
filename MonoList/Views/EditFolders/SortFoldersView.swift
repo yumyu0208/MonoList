@@ -149,6 +149,8 @@ struct SortFoldersView: View {
             offsets.forEach { deleteIndex in
                 Folder.delete(index: deleteIndex, folders: folders, viewContext)
             }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             saveData()
         }
     }

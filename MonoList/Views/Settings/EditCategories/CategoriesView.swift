@@ -112,6 +112,7 @@ struct CategoriesView: View {
         }
         .onAppear {
             CategoryManager().orderCategory(context: viewContext)
+            saveData()
         }
     }
     
@@ -136,6 +137,8 @@ struct CategoriesView: View {
             offsets.forEach { deleteIndex in
                 Category.delete(index: deleteIndex, categories: categories, viewContext)
             }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             saveData()
         }
     }

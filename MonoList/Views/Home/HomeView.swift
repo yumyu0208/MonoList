@@ -155,6 +155,7 @@ struct HomeView: View {
                 manager.createSamples(context: viewContext)
             }
             manager.orderFolder(context: viewContext)
+            saveData()
         }
         .onReceive(willTerminateObserver) { _ in
             saveData()

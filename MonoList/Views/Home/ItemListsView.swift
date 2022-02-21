@@ -100,6 +100,8 @@ struct ItemListsView: View {
             offsets.forEach { deleteIndex in
                 ItemList.delete(index: deleteIndex, itemLists: itemLists, viewContext)
             }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             saveData()
         }
     }
