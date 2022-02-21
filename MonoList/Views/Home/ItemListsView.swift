@@ -11,7 +11,6 @@ struct ItemListsView: View {
     
     @EnvironmentObject var manager: MonoListManager
     @Environment(\.managedObjectContext) private var viewContext
-    
     @FetchRequest var itemLists: FetchedResults<ItemList>
     
     @State var showingInfoItemList: ItemList?

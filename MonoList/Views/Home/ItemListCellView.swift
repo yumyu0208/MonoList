@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ItemListCellView: View {
     
+    @Environment(\.deeplink) var deeplink
+    
     let itemList: ItemList
     let editAction: () -> Void
     let duplicateAction: () -> Void
@@ -16,13 +18,16 @@ struct ItemListCellView: View {
     let showInfoAction: () -> Void
     let deleteAction: () -> Void
     
+    @State var itemListViewIsActive: Bool = false
+    
     var isNewItemList: Bool {
         itemList.name == K.defaultName.newItemList
     }
     
     var body: some View {
-        NavigationLink {
+        NavigationLink(isActive: $itemListViewIsActive) {
             ItemListView(itemList: itemList, isEditMode: !itemList.hasItems)
+                .environment(\.deeplink, deeplink)
         } label: {
             HStack {
                 Label {
@@ -85,6 +90,11 @@ struct ItemListCellView: View {
                 Label("Duplicate", systemImage: "plus.rectangle.on.rectangle")
             }
             .tint(.mint)
+        }
+        .onChange(of: deeplink) { deeplink in
+            if let id = deeplink?.referenceId, id == itemList.id.uuidString {
+                itemListViewIsActive = true
+            }
         }
     }
 }

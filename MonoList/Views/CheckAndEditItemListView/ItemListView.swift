@@ -11,6 +11,7 @@ import ImageViewer
 struct ItemListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.deeplink) var deeplink
     @State var editMode: EditMode = .inactive
     @ObservedObject var itemList: ItemList
     @State var isEditMode: Bool
@@ -27,7 +28,7 @@ struct ItemListView: View {
     @State var isShowingEditNotification = false
     @State var isShowingWeight = false
     @State var isShowingEditIcon = false
-    @State var doneAlertIsShowing = false
+    @State var isShowingDoneAlert = false
     @State var isShowingUncheckAllConfirmationAlert: Bool = false
     
     @State var isShowingImageViewer = false
@@ -120,7 +121,7 @@ struct ItemListView: View {
                 CheckListView(of: itemList, allDoneAction: {
                     if !isEditMode && !itemsIsEmpty {
                         withAnimation(.easeOut(duration: 0.2).delay(0.3)) {
-                            doneAlertIsShowing = true
+                            isShowingDoneAlert = true
                         }
                     }
                 }, showImageViewerAction: { image in
@@ -271,7 +272,7 @@ struct ItemListView: View {
                 .disabled(isEditing || isNewItemList || isShowingImageViewer)
             } //: ToolBarItemGroup
         }
-        .richAlert(isShowing: $doneAlertIsShowing, vOffset: -24) {
+        .richAlert(isShowing: $isShowingDoneAlert, vOffset: -24) {
             VStack(spacing: 32) {
                 VStack {
                     IconImageView(for: itemList)
@@ -282,7 +283,7 @@ struct ItemListView: View {
                 }
                 Button {
                     withAnimation(.easeOut(duration: 0.2)) {
-                        doneAlertIsShowing = false
+                        isShowingDoneAlert = false
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         dismiss()
@@ -379,6 +380,17 @@ struct ItemListView: View {
             }), items[oldIndex].name.isEmpty {
                 let isLastItem = (oldIndex == items.count-1)
                 deleteItems(allItems: items, offsets: IndexSet(integer: oldIndex), animation: isLastItem ? .none : .default)
+            }
+        }
+        .onChange(of: deeplink) { deeplink in
+            if deeplink != nil {
+                isShowingEditNotification = false
+                isShowingWeight = false
+                isShowingEditIcon = false
+                isShowingDoneAlert = false
+                isShowingUncheckAllConfirmationAlert = false
+                isShowingImageViewer = false
+                dismiss()
             }
         }
     }

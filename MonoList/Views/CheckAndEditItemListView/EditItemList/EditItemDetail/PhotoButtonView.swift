@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PhotoButtonView: View {
     
+    @Environment(\.deeplink) var deeplink
     @Binding var imageData: Data?
     @State var isShowingImagePicker = false
     @State var isShowingCamera = false
@@ -90,6 +91,13 @@ struct PhotoButtonView: View {
                 imageData = data
             }
             .ignoresSafeArea(.all)
+        }
+        .onChange(of: deeplink) { deeplink in
+            if deeplink != nil {
+                isShowingImagePicker = false
+                isShowingCamera = false
+                isShowingDeleteConfirmationDialog = false
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ struct EditItemDetail: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.deeplink) var deeplink
     
     @ObservedObject var item: Item
     @FocusState private var focusedField: Field?
@@ -240,6 +241,12 @@ struct EditItemDetail: View {
         .onDisappear {
             setValue()
             saveData()
+        }
+        .onChange(of: deeplink) { deeplink in
+            if deeplink != nil {
+                isShowingAlert = false
+                dismiss()
+            }
         }
     }
     

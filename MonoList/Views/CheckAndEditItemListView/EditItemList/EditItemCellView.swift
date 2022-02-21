@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditItemCellView: View, Equatable {
-    
+    @Environment(\.deeplink) var deeplink
     static func == (lhs: EditItemCellView, rhs: EditItemCellView) -> Bool {
         lhs.item == rhs.item
     }
@@ -128,6 +128,7 @@ struct EditItemCellView: View, Equatable {
             .sheet(isPresented: $isEditingItemDetail) {
                 NavigationView {
                     EditItemDetail(item: item)
+                        .environment(\.deeplink, deeplink)
                 }
             }
         }

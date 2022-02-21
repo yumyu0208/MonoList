@@ -10,6 +10,7 @@ import CoreData
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.deeplink) var deeplink
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
     
     private var folders: FetchedResults<Folder>
@@ -113,13 +114,7 @@ struct HomeView: View {
                         Spacer()
                         Group {
                             Button(action: {
-                                if let defaultFolder = folders.first {
-                                    withAnimation {
-                                        let newItemList = addItemList(to: defaultFolder)
-                                        editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
-                                        navigationLinkTag = editItemListTag
-                                    }
-                                }
+                                newListAction()
                             }) {
                                 Label {
                                     Text("New List")
@@ -160,6 +155,17 @@ struct HomeView: View {
         .onReceive(willTerminateObserver) { _ in
             saveData()
         }
+        .onChange(of: deeplink) { deeplink in
+            if deeplink != nil {
+                isSortingFolders = false
+                isShowingSettings = false
+                editMode = .inactive
+                if deeplink == .newList {
+                    print("newlistlist")
+                    newListAction()
+                }
+            }
+        }
     }
     
     private func saveData() {
@@ -169,6 +175,16 @@ struct HomeView: View {
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+    
+    func newListAction() {
+        if let defaultFolder = folders.first {
+            withAnimation {
+                let newItemList = addItemList(to: defaultFolder)
+                editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
+                navigationLinkTag = editItemListTag
+            }
         }
     }
     

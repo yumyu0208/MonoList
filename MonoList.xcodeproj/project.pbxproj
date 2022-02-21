@@ -76,6 +76,8 @@
 		AAA8868127A3EA4000FD4D5E /* IconSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8868027A3EA4000FD4D5E /* IconSectionHeaderView.swift */; };
 		AAA8868327A3EBD000FD4D5E /* IconImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8868227A3EBD000FD4D5E /* IconImageView.swift */; };
 		AAB52BE227C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BE127C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift */; };
+		AAB52BE527C34AC40050A912 /* Deeplinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BE427C34AC40050A912 /* Deeplinker.swift */; };
+		AAB52BEA27C351EC0050A912 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BE927C351EC0050A912 /* Environment.swift */; };
 		AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9BD52278136D70055CD85 /* FolderSectionView.swift */; };
 		AAC3DDBE278F080600983100 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */; };
 		AAC3DDC1278FDBC600983100 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC0278FDBC600983100 /* AlarmView.swift */; };
@@ -188,6 +190,8 @@
 		AAA8868027A3EA4000FD4D5E /* IconSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSectionHeaderView.swift; sourceTree = "<group>"; };
 		AAA8868227A3EBD000FD4D5E /* IconImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconImageView.swift; sourceTree = "<group>"; };
 		AAB52BE127C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSpecificDateAndTimeNotificationView.swift; sourceTree = "<group>"; };
+		AAB52BE427C34AC40050A912 /* Deeplinker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinker.swift; sourceTree = "<group>"; };
+		AAB52BE927C351EC0050A912 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		AAB9BD52278136D70055CD85 /* FolderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSectionView.swift; sourceTree = "<group>"; };
 		AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		AAC3DDC0278FDBC600983100 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
@@ -280,6 +284,8 @@
 		AA351A762776BB5300F53BDC /* MonoList */ = {
 			isa = PBXGroup;
 			children = (
+				AAB52BE827C351C50050A912 /* Environment */,
+				AAB52BE327C34AA30050A912 /* DeepLink */,
 				AAFF272727BDED80000585EE /* Info.plist */,
 				AA469412279A73370083142D /* Modifiers */,
 				AA8750C6278DB1C100540BA0 /* Extensions */,
@@ -481,6 +487,22 @@
 				AAA8868227A3EBD000FD4D5E /* IconImageView.swift */,
 			);
 			path = EditIcon;
+			sourceTree = "<group>";
+		};
+		AAB52BE327C34AA30050A912 /* DeepLink */ = {
+			isa = PBXGroup;
+			children = (
+				AAB52BE427C34AC40050A912 /* Deeplinker.swift */,
+			);
+			path = DeepLink;
+			sourceTree = "<group>";
+		};
+		AAB52BE827C351C50050A912 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				AAB52BE927C351EC0050A912 /* Environment.swift */,
+			);
+			path = Environment;
 			sourceTree = "<group>";
 		};
 		AAC3DDBF278F0E8000983100 /* Notification */ = {
@@ -781,6 +803,7 @@
 				AACBBC74279AF8CD00A42108 /* Item+CoreDataClass.swift in Sources */,
 				AA82C04D277B319E001CEFFA /* ItemList+CoreDataClass.swift in Sources */,
 				AA3675D127B2495C00611D8A /* WeightView.swift in Sources */,
+				AAB52BE527C34AC40050A912 /* Deeplinker.swift in Sources */,
 				AAA8867A27A3E76E00FD4D5E /* ListIcon.swift in Sources */,
 				AA340B8E27BC880B0080DD33 /* MLImagePicker.swift in Sources */,
 				AA3675BF27B0AED000611D8A /* NotificationData.swift in Sources */,
@@ -807,6 +830,7 @@
 				AA3675DC27B49FF600611D8A /* CategoryLabelView.swift in Sources */,
 				AAD949E42796B8CC004A51AC /* StringExtension.swift in Sources */,
 				AA9977A72782735A002B4C57 /* SortFoldersView.swift in Sources */,
+				AAB52BEA27C351EC0050A912 /* Environment.swift in Sources */,
 				AA8750B1278C4DAD00540BA0 /* ItemListInfoView.swift in Sources */,
 				AA469411279A71730083142D /* DoubleExtension.swift in Sources */,
 				AA3675E927B745B800611D8A /* EditItemListButtonView.swift in Sources */,

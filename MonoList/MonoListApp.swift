@@ -10,12 +10,22 @@ import SwiftUI
 @main
 struct MonoListApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @State var deeplink: Deeplinker.Deeplink?
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.deeplink, deeplink)
+                .onOpenURL { url in
+                    let deeplinker = Deeplinker()
+                    guard let deeplink = deeplinker.manage(url: url) else { return }
+                    self.deeplink = deeplink
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
+                        self.deeplink = nil
+                    }
+                }
         }
     }
 }
