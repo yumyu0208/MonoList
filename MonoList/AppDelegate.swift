@@ -24,12 +24,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.banner, .sound])
     }
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if let listIdentifier = response.notification.request.content.userInfo[K.key.itemListIdentifier] {
             let url = URL(string:"\(K.url.scheme)://notification/\(K.url.listPath)?reference=\(listIdentifier)")
             if let url = url {
-                await UIApplication.shared.open(url)
+                UIApplication.shared.open(url)
             }
         }
+        completionHandler()
     }
 }
