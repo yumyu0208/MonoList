@@ -55,7 +55,7 @@ struct EditNotificationsGroupBoxView: View {
         .groupBoxStyle(.white)
         .onChange(of: isOn) { isOn in
             if isOn {
-                center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                center.requestAuthorization(options: [.alert, .sound]) { granted, error in
                     if let error = error {
                         print(error.localizedDescription)
                     }
