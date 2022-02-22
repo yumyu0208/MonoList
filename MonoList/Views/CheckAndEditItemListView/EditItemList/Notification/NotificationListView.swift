@@ -45,14 +45,6 @@ struct NotificationListView: View {
                                 EditSpecificDateAndTimeNotificationView(notification: notification, isNew: false)
                             }
                         }
-                        .onDisappear {
-                            if let itemList = itemList, !itemList.hasNotifications {
-                                withAnimation {
-                                    itemList.notificationIsActive = false
-                                    saveData()
-                                }
-                            }
-                        }
                     } label: {
                         HStack {
                             VStack(alignment: .leading) {

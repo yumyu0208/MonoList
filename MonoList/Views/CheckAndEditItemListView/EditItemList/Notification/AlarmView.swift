@@ -16,7 +16,7 @@ struct AlarmView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                NotificationsGroupBoxView(itemList: itemList)
+                EditNotificationsGroupBoxView(itemList: itemList)
                     .environment(\.editMode, $editMode)
             }
             .padding()

@@ -58,7 +58,7 @@
 		AA8750B1278C4DAD00540BA0 /* ItemListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B0278C4DAD00540BA0 /* ItemListInfoView.swift */; };
 		AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B4278C57A700540BA0 /* InfoGroupBoxView.swift */; };
 		AA8750B7278D3B7D00540BA0 /* ItemsGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B6278D3B7D00540BA0 /* ItemsGroupBoxView.swift */; };
-		AA8750B9278D3D5D00540BA0 /* NotificationsGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B8278D3D5D00540BA0 /* NotificationsGroupBoxView.swift */; };
+		AA8750B9278D3D5D00540BA0 /* EditNotificationsGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750B8278D3D5D00540BA0 /* EditNotificationsGroupBoxView.swift */; };
 		AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750BC278D3E5E00540BA0 /* OthersGroupBoxView.swift */; };
 		AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750BE278D3F0D00540BA0 /* ListTitleView.swift */; };
 		AA8750C1278D518900540BA0 /* ExpandToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */; };
@@ -79,6 +79,7 @@
 		AAB52BE527C34AC40050A912 /* Deeplinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BE427C34AC40050A912 /* Deeplinker.swift */; };
 		AAB52BEA27C351EC0050A912 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BE927C351EC0050A912 /* Environment.swift */; };
 		AAB52BEC27C383080050A912 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BEB27C383080050A912 /* NotificationManager.swift */; };
+		AAB52BF027C45DFE0050A912 /* NotificationsGroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB52BEF27C45DFE0050A912 /* NotificationsGroupBoxView.swift */; };
 		AAB9BD53278136D70055CD85 /* FolderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9BD52278136D70055CD85 /* FolderSectionView.swift */; };
 		AAC3DDBE278F080600983100 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */; };
 		AAC3DDC1278FDBC600983100 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDC0278FDBC600983100 /* AlarmView.swift */; };
@@ -173,7 +174,7 @@
 		AA8750B0278C4DAD00540BA0 /* ItemListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListInfoView.swift; sourceTree = "<group>"; };
 		AA8750B4278C57A700540BA0 /* InfoGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoGroupBoxView.swift; sourceTree = "<group>"; };
 		AA8750B6278D3B7D00540BA0 /* ItemsGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsGroupBoxView.swift; sourceTree = "<group>"; };
-		AA8750B8278D3D5D00540BA0 /* NotificationsGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsGroupBoxView.swift; sourceTree = "<group>"; };
+		AA8750B8278D3D5D00540BA0 /* EditNotificationsGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationsGroupBoxView.swift; sourceTree = "<group>"; };
 		AA8750BC278D3E5E00540BA0 /* OthersGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersGroupBoxView.swift; sourceTree = "<group>"; };
 		AA8750BE278D3F0D00540BA0 /* ListTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTitleView.swift; sourceTree = "<group>"; };
 		AA8750C0278D518900540BA0 /* ExpandToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandToggleStyle.swift; sourceTree = "<group>"; };
@@ -194,6 +195,7 @@
 		AAB52BE427C34AC40050A912 /* Deeplinker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinker.swift; sourceTree = "<group>"; };
 		AAB52BE927C351EC0050A912 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		AAB52BEB27C383080050A912 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		AAB52BEF27C45DFE0050A912 /* NotificationsGroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsGroupBoxView.swift; sourceTree = "<group>"; };
 		AAB9BD52278136D70055CD85 /* FolderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSectionView.swift; sourceTree = "<group>"; };
 		AAC3DDBD278F080600983100 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		AAC3DDC0278FDBC600983100 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
@@ -512,7 +514,8 @@
 			isa = PBXGroup;
 			children = (
 				AAC3DDC0278FDBC600983100 /* AlarmView.swift */,
-				AA8750B8278D3D5D00540BA0 /* NotificationsGroupBoxView.swift */,
+				AA8750B8278D3D5D00540BA0 /* EditNotificationsGroupBoxView.swift */,
+				AAB52BEF27C45DFE0050A912 /* NotificationsGroupBoxView.swift */,
 				AA8750C9278DB70000540BA0 /* NotificationListView.swift */,
 				AA7E1E8B278ED9840080D80F /* EditRepeatNotificationView.swift */,
 				AAB52BE127C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift */,
@@ -785,6 +788,7 @@
 				AA3675D827B33A7500611D8A /* EditCategoryView.swift in Sources */,
 				AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */,
 				AA3675C127B0AF5200611D8A /* CategoryData.swift in Sources */,
+				AAB52BF027C45DFE0050A912 /* NotificationsGroupBoxView.swift in Sources */,
 				AAF3A81927A2A4A20084B7A9 /* ImagePickerView.swift in Sources */,
 				AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */,
 				AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */,
@@ -846,7 +850,7 @@
 				AAC3DDD72791AA4800983100 /* CheckListView.swift in Sources */,
 				AACBBC72279AF8CD00A42108 /* Category+CoreDataClass.swift in Sources */,
 				AAC3DDD22791A0F100983100 /* WeightLabelView.swift in Sources */,
-				AA8750B9278D3D5D00540BA0 /* NotificationsGroupBoxView.swift in Sources */,
+				AA8750B9278D3D5D00540BA0 /* EditNotificationsGroupBoxView.swift in Sources */,
 				AA82C04E277B319E001CEFFA /* ItemList+CoreDataProperties.swift in Sources */,
 				AA8750CA278DB70000540BA0 /* NotificationListView.swift in Sources */,
 				AA3675D527B32C4C00611D8A /* CategoriesView.swift in Sources */,

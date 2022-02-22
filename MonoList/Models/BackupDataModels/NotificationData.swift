@@ -10,12 +10,14 @@ import CoreData
 
 struct NotificationData: Codable {
     var creationDate: Date
+    var id: UUID
     var time: Date
     var weekdays: String
     
     func createNotification(context: NSManagedObjectContext) -> Notification {
         let notification = Notification(context: context)
         notification.creationDate = creationDate
+        notification.id = id
         notification.time = time
         notification.weekdays = weekdays
         return notification

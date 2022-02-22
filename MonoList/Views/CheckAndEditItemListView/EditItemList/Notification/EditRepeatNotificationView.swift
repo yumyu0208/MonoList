@@ -17,6 +17,12 @@ struct EditRepeatNotificationView: View {
     @State var isShowingCancelConfirmationAlert: Bool = false
     let isNew: Bool
     
+    let manager = NotificationManager()
+    
+    var isEdited: Bool {
+        selectedTime != notification.time && selectedWeekdays == notification.weekdays
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             List {
@@ -29,6 +35,7 @@ struct EditRepeatNotificationView: View {
                                     selectedWeekdays.removeAll { String($0) == String(index) }
                                 } else {
                                     selectedWeekdays.append(String(index))
+                                    selectedWeekdays = selectedWeekdays.map { Int(String($0))! }.sorted { $0 < $1 }.map { String($0) }.joined()
                                 }
                             }
                         } label: {
@@ -57,6 +64,10 @@ struct EditRepeatNotificationView: View {
                 notification.weekdays = Notification.sortedWeekdays(selectedWeekdays)
                 notification.time = selectedTime
                 saveData()
+                if !isNew {
+                    manager.deleteNotifications([notification])
+                }
+                manager.setLocalNotifications([notification])
                 dismiss()
             } label: {
                 Label("Done", systemImage: "checkmark")
@@ -72,7 +83,11 @@ struct EditRepeatNotificationView: View {
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button {
-                    isShowingCancelConfirmationAlert = true
+                    if isNew || isEdited {
+                        isShowingCancelConfirmationAlert = true
+                    } else {
+                        dismiss()
+                    }
                 } label: {
                     Text("Cancel")
                 }
@@ -104,14 +119,15 @@ struct EditRepeatNotificationView: View {
         }
         .onAppear {
             DispatchQueue.main.async {
-                selectedWeekdays = notification.weekdays
-                selectedTime = notification.time
+                self.selectedWeekdays = notification.weekdays
+                self.selectedTime = notification.time
             }
         }
     }
     
     private func deleteNotification(_ notification: Notification) {
         withAnimation {
+            manager.deleteNotifications([notification])
             viewContext.delete(notification)
             saveData()
         }

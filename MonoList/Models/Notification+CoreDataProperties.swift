@@ -17,6 +17,7 @@ extension Notification {
     }
 
     @NSManaged public var creationDate: Date
+    @NSManaged public var id: UUID
     @NSManaged public var time: Date
     @NSManaged public var weekdays: String
     @NSManaged public var parentItemList: ItemList

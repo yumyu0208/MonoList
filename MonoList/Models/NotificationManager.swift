@@ -11,31 +11,24 @@ class NotificationManager {
     
     let center = UNUserNotificationCenter.current()
     
-    private func setLocalNotifications(_ notifications: [Notification]) {
+    func setLocalNotifications(_ notifications: [Notification]) {
         center.getNotificationSettings { settings in
             guard (settings.authorizationStatus == .authorized) ||
                   (settings.authorizationStatus == .provisional) else { return }
             notifications.forEach { notification in
-                if settings.alertSetting == .enabled {
-                    self.setNotification(notification, alert: true)
-                } else {
-                    self.setNotification(notification, alert: false)
-                }
+                self.setNotification(notification)
             }
         }
     }
     
-    private func setNotification(_ notification: Notification, alert: Bool) {
+    private func setNotification(_ notification: Notification) {
         // Content
         let content = UNMutableNotificationContent()
-        if alert {
-            content.title = notification.parentItemList.name
-            //content.body = "Body"
-        }
+        content.title = notification.parentItemList.name
+        //content.body = "Body"
+        content.sound = UNNotificationSound.default
         
         let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.removeAllDeliveredNotifications()
-        notificationCenter.removeAllPendingNotificationRequests()
         
         if notification.isRepeat {
             let weekdays = notification.weekdays.map { Int(String($0)) ?? -1 }.filter { $0 >= 0 && $0 < 7 }
@@ -49,7 +42,7 @@ class NotificationManager {
                          dateMatching: dateComponents, repeats: true)
             }
             triggers.forEach { trigger in
-                let uuidString = UUID().uuidString
+                let uuidString = notification.id.uuidString
                 let request = UNNotificationRequest(identifier: uuidString,
                             content: content, trigger: trigger)
                 notificationCenter.add(request) { (error) in
@@ -68,7 +61,7 @@ class NotificationManager {
             dateComponents.minute = notification.minute
             let trigger = UNCalendarNotificationTrigger(
                      dateMatching: dateComponents, repeats: false)
-            let uuidString = UUID().uuidString
+            let uuidString = notification.id.uuidString
             let request = UNNotificationRequest(identifier: uuidString,
                         content: content, trigger: trigger)
             notificationCenter.add(request) { (error) in
@@ -77,5 +70,10 @@ class NotificationManager {
                 }
             }
         }
+    }
+    
+    func deleteNotifications(_ notifications: [Notification]) {
+        let ids = notifications.map { $0.id.uuidString }
+        center.removePendingNotificationRequests(withIdentifiers: ids)
     }
 }

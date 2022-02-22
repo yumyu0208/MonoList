@@ -11,21 +11,30 @@ struct EditSpecificDateAndTimeNotificationView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var notification: Notification
-    @State private var selectedTime: Date = Date()
+    @State private var selectedDate: Date = Date()
     @State var isShowingCancelConfirmationAlert: Bool = false
     let isNew: Bool
+    let manager = NotificationManager()
+    
+    var isEdited: Bool {
+        selectedDate != notification.time
+    }
     
     var body: some View {
         VStack(spacing: 0) {
             List {
                 Section {
-                    DatePicker("Time", selection: $selectedTime, in: Date()..., displayedComponents: [.date, .hourAndMinute])
+                    DatePicker("Time", selection: $selectedDate, in: Date()..., displayedComponents: [.date, .hourAndMinute])
                         .accentColor(.gray)
                 }
             } //: List
             Button {
-                notification.time = selectedTime
+                notification.time = selectedDate
                 saveData()
+                if !isNew {
+                    manager.deleteNotifications([notification])
+                }
+                manager.setLocalNotifications([notification])
                 dismiss()
             } label: {
                 Label("Done", systemImage: "checkmark")
@@ -40,7 +49,11 @@ struct EditSpecificDateAndTimeNotificationView: View {
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button {
-                    isShowingCancelConfirmationAlert = true
+                    if isNew || isEdited {
+                        isShowingCancelConfirmationAlert = true
+                    } else {
+                        dismiss()
+                    }
                 } label: {
                     Text("Cancel")
                 }
@@ -72,12 +85,13 @@ struct EditSpecificDateAndTimeNotificationView: View {
         }
         .onAppear {
             DispatchQueue.main.async {
-                selectedTime = notification.time
+                self.selectedDate = notification.time
             }
         }
     }
     private func deleteNotification(_ notification: Notification) {
         withAnimation {
+            manager.deleteNotifications([notification])
             viewContext.delete(notification)
             saveData()
         }

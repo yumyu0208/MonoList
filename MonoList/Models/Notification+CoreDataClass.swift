@@ -93,6 +93,7 @@ public class Notification: NSManagedObject {
     
     func data() -> NotificationData {
         return NotificationData(creationDate: creationDate,
+                                id: id,
                                 time: time,
                                 weekdays: weekdays)
     }

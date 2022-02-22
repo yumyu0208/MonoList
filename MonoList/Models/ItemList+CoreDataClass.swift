@@ -75,6 +75,11 @@ public class ItemList: NSManagedObject {
         string(from: updateDate)
     }
     
+    var notificationIdentifiers: [String] {
+        guard let notifications = notifications?.allObjects as? [Notification] else { return [] }
+        return notifications.map { $0.id.uuidString }
+    }
+    
     typealias ChartData = (values: [Double], names: [String], images: [String], colors: [Color])
     
     func weightChartData(_ context: NSManagedObjectContext) -> ChartData {
@@ -269,6 +274,7 @@ public class ItemList: NSManagedObject {
     func createNewRepeatNotification(weekdays: String, time: Date, _ context: NSManagedObjectContext) -> Notification {
         let newNotification = Notification(context: context)
         newNotification.creationDate = Date()
+        newNotification.id = UUID()
         newNotification.weekdays = weekdays
         newNotification.time = time
         addToNotifications(newNotification)
@@ -279,6 +285,7 @@ public class ItemList: NSManagedObject {
     func createNewSpecificDateAndTimeNotification(time: Date, _ context: NSManagedObjectContext) -> Notification {
         let newNotification = Notification(context: context)
         newNotification.creationDate = Date()
+        newNotification.id = UUID()
         newNotification.weekdays = ""
         newNotification.time = time
         addToNotifications(newNotification)
