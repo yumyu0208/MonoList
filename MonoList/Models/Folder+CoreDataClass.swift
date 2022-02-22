@@ -33,6 +33,7 @@ public class Folder: NSManagedObject {
                 // Delete All Notifications
                 if let notifications = itemList.notifications?.allObjects as? [Notification] {
                     notifications.forEach { notification in
+                        NotificationManager().deletePendingNotificationRequests([notification])
                         context.delete(notification)
                     }
                 }

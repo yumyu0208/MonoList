@@ -126,6 +126,7 @@ public class ItemList: NSManagedObject {
         // Delete All Notifications
         if let notifications = itemLists[index].notifications?.allObjects as? [Notification] {
             notifications.forEach { notification in
+                NotificationManager().deletePendingNotificationRequests([notification])
                 context.delete(notification)
             }
         }
