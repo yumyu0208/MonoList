@@ -383,7 +383,7 @@ struct ItemListView: View {
             }
         }
         .onChange(of: deeplink) { deeplink in
-            if deeplink != nil {
+            if let deeplink = deeplink, deeplink.referenceId != itemList.id.uuidString  {
                 isShowingEditNotification = false
                 isShowingWeight = false
                 isShowingEditIcon = false

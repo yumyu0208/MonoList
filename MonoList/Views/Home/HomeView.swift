@@ -162,7 +162,6 @@ struct HomeView: View {
                 isShowingSettings = false
                 editMode = .inactive
                 if deeplink == .newList {
-                    print("newlistlist")
                     newListAction()
                 }
             }

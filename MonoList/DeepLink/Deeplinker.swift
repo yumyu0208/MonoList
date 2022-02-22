@@ -26,7 +26,6 @@ class Deeplinker {
     func manage(url: URL) -> Deeplink? {
         guard url.scheme == K.url.scheme else { return nil }
         let pathComponents = url.pathComponents
-        print(pathComponents)
         if pathComponents.contains(K.url.listPath) {
             guard let query = url.query else { return nil }
             let components = query.split(separator: ",").flatMap { $0.split(separator: "=")}

@@ -45,6 +45,7 @@ class NotificationManager {
         content.title = notification.parentItemList.name
         //content.body = notification.dateAndTimeString
         content.sound = UNNotificationSound.default
+        content.userInfo = ["ItemListIdentifier": notification.parentItemList.id.uuidString]
         
         if notification.isRepeat {
             let weekdays = notification.weekdays.map { Int(String($0)) ?? -1 }.filter { $0 >= 0 && $0 < 7 }
