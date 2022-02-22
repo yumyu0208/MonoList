@@ -6,10 +6,28 @@
 //
 
 import UIKit
+import CoreData
 
 class NotificationManager {
     
     let center = UNUserNotificationCenter.current()
+    
+    func checkNotificationSettings(_ context: NSManagedObjectContext) {
+        DispatchQueue.global(qos: .background).async {
+            self.center.getNotificationSettings { settings in
+                if settings.authorizationStatus == .denied || settings.authorizationStatus == .notDetermined {
+                    self.turnAllListNotificationOff(context)
+                }
+            }
+        }
+    }
+    
+    func turnAllListNotificationOff(_ context: NSManagedObjectContext) {
+        deleteAllPendingNotificationRequests()
+        let allItemLists = MonoListManager().fetchItemLists(context: context)
+        allItemLists.forEach { $0.notificationIsActive = false }
+        saveData(context)
+    }
     
     func setLocalNotifications(_ notifications: [Notification]) {
         center.getNotificationSettings { settings in
@@ -115,6 +133,16 @@ class NotificationManager {
             print("\(requests.count) Requests")
         }
         #endif
+    }
+    
+    private func saveData(_ context: NSManagedObjectContext) {
+        do {
+            try context.save()
+            print("Saved")
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
     }
     
 }

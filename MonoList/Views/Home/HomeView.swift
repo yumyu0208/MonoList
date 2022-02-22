@@ -151,6 +151,7 @@ struct HomeView: View {
             }
             manager.orderFolder(context: viewContext)
             saveData()
+            NotificationManager().checkNotificationSettings(viewContext)
         }
         .onReceive(willTerminateObserver) { _ in
             saveData()

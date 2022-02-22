@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct MonoListApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @Environment(\.scenePhase) var scene
     @State var deeplink: Deeplinker.Deeplink?
     let persistenceController = PersistenceController.shared
     
@@ -24,6 +25,13 @@ struct MonoListApp: App {
                     self.deeplink = deeplink
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
                         self.deeplink = nil
+                    }
+                }
+                .onChange(of: scene) { scene in
+                    if scene == .active {
+                        DispatchQueue.global(qos: .background).async {
+                            NotificationManager().deleteAllDeliveredNotificationRequests()
+                        }
                     }
                 }
         }
