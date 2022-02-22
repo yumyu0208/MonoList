@@ -21,6 +21,14 @@ struct EditCategoryView: View {
     
     var completion: ((Category) -> Void)? = nil
     
+    var isNew: Bool {
+        category.name == K.defaultName.newCategory
+    }
+    
+    var isEdited: Bool {
+        selectedImage != category.image || selectedName != category.name
+    }
+    
     var body: some View {
         VStack(spacing: 20) {
             Spacer(minLength: 0)
@@ -58,7 +66,12 @@ struct EditCategoryView: View {
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button {
-                    isShowingCancelConfirmationAlert = true
+                    if isNew || isEdited {
+                        categoryNameTextFieldIsFocused = false
+                        isShowingCancelConfirmationAlert = true
+                    } else {
+                        dismiss()
+                    }
                 } label: {
                     Text("Cancel")
                 }
@@ -79,7 +92,7 @@ struct EditCategoryView: View {
         }
         .onAppear {
             selectedImage = category.image ?? "tag"
-            if category.name == K.defaultName.newCategory {
+            if isNew {
                 selectedName = ""
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     categoryNameTextFieldIsFocused = true
@@ -94,7 +107,7 @@ struct EditCategoryView: View {
             }
         }
         .onDisappear {
-            if category.name == K.defaultName.newCategory {
+            if isNew {
                 withAnimation {
                     viewContext.delete(category)
                     // Crash when doing the following

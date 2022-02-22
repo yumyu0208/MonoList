@@ -74,7 +74,9 @@ struct EditNotificationsGroupBoxView: View {
                 withAnimation(.easeOut(duration: 0.2)) {
                     itemList.notificationIsActive = false
                 }
-                center.removePendingNotificationRequests(withIdentifiers: itemList.notificationIdentifiers)
+                if let notifications = itemList.notifications?.allObjects as? [Notification] {
+                    NotificationManager().deletePendingNotificationRequests(notifications)
+                }
             }
         }
     }

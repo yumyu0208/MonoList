@@ -20,7 +20,7 @@ struct EditRepeatNotificationView: View {
     let manager = NotificationManager()
     
     var isEdited: Bool {
-        selectedTime != notification.time && selectedWeekdays == notification.weekdays
+        selectedTime != notification.time || selectedWeekdays != notification.weekdays
     }
     
     var body: some View {
@@ -65,7 +65,7 @@ struct EditRepeatNotificationView: View {
                 notification.time = selectedTime
                 saveData()
                 if !isNew {
-                    manager.deleteNotifications([notification])
+                    manager.deletePendingNotificationRequests([notification])
                 }
                 manager.setLocalNotifications([notification])
                 dismiss()
@@ -127,7 +127,7 @@ struct EditRepeatNotificationView: View {
     
     private func deleteNotification(_ notification: Notification) {
         withAnimation {
-            manager.deleteNotifications([notification])
+            manager.deletePendingNotificationRequests([notification])
             viewContext.delete(notification)
             saveData()
         }

@@ -32,7 +32,7 @@ struct EditSpecificDateAndTimeNotificationView: View {
                 notification.time = selectedDate
                 saveData()
                 if !isNew {
-                    manager.deleteNotifications([notification])
+                    manager.deletePendingNotificationRequests([notification])
                 }
                 manager.setLocalNotifications([notification])
                 dismiss()
@@ -91,7 +91,7 @@ struct EditSpecificDateAndTimeNotificationView: View {
     }
     private func deleteNotification(_ notification: Notification) {
         withAnimation {
-            manager.deleteNotifications([notification])
+            manager.deletePendingNotificationRequests([notification])
             viewContext.delete(notification)
             saveData()
         }

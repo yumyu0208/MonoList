@@ -21,6 +21,14 @@ struct EditFolderView: View {
     
     @State private var rows: [GridItem] = Array(repeating: .init(.flexible(minimum: 60, maximum: 200), spacing: 16), count: 3)
     
+    var isNew: Bool {
+        folder.name == K.defaultName.newFolder
+    }
+    
+    var isEdited: Bool {
+        selectedImage != folder.image || selectedName != folder.name
+    }
+    
     var body: some View {
         VStack(spacing: 20) {
             Spacer(minLength: 0)
@@ -56,7 +64,12 @@ struct EditFolderView: View {
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button {
-                    isShowingCancelConfirmationAlert = true
+                    if isNew || isEdited {
+                        folderNameTextFieldIsFocused = false
+                        isShowingCancelConfirmationAlert = true
+                    } else {
+                        dismiss()
+                    }
                 } label: {
                     Text("Cancel")
                 }
@@ -92,7 +105,7 @@ struct EditFolderView: View {
             }
         }
         .onDisappear {
-            if folder.name == K.defaultName.newFolder {
+            if isNew {
                 withAnimation {
                     viewContext.delete(folder)
                     saveData()

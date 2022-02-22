@@ -20,6 +20,7 @@ struct SortFoldersView: View {
     @State var isEditingNewFolder = false
     @State var newFolder: Folder?
     
+    @State var isShowingDeleteConfirmationDialogWithOptions: Bool = false
     @State var isShowingDeleteConfirmationDialog: Bool = false
     @State var deleteIndexSet: IndexSet?
     
@@ -40,8 +41,7 @@ struct SortFoldersView: View {
                                 .contextMenu {
                                     Button(role: .destructive) {
                                         if let index = folders.firstIndex(of: folder) {
-                                            deleteIndexSet = IndexSet(integer: index)
-                                            isShowingDeleteConfirmationDialog = true
+                                            deleteConfirmationAction(indexSet: IndexSet(integer: index))
                                         }
                                     } label: {
                                         Label("Delete", systemImage: "trash")
@@ -50,8 +50,7 @@ struct SortFoldersView: View {
                                 .swipeActions(edge: .trailing) {
                                     Button(role: .destructive) {
                                         if let index = folders.firstIndex(of: folder) {
-                                            deleteIndexSet = IndexSet(integer: index)
-                                            isShowingDeleteConfirmationDialog = true
+                                            deleteConfirmationAction(indexSet: IndexSet(integer: index))
                                         }
                                     } label: {
                                         Label("Delete", systemImage: "trash")
@@ -60,8 +59,7 @@ struct SortFoldersView: View {
                             }
                         }
                         .onDelete { indexSet in
-                            deleteIndexSet = indexSet
-                            isShowingDeleteConfirmationDialog = true
+                            deleteConfirmationAction(indexSet: indexSet)
                         }
                         .onMove(perform: moveFolder)
                         if editMode != .active {
@@ -106,7 +104,7 @@ struct SortFoldersView: View {
             } //: ZStack
             .navigationTitle(Text("Folders"))
             .navigationBarTitleDisplayMode(.inline)
-            .confirmationDialog("Delete Folder", isPresented: $isShowingDeleteConfirmationDialog, titleVisibility: .visible, presenting: deleteIndexSet) { indexSet in
+            .confirmationDialog("Delete Folder", isPresented: $isShowingDeleteConfirmationDialogWithOptions, titleVisibility: .visible, presenting: deleteIndexSet) { indexSet in
                 Button(role: .destructive) {
                     deleteFolders(offsets: indexSet)
                 } label: {
@@ -123,6 +121,20 @@ struct SortFoldersView: View {
             } message: { indexSet in
                 if let folderIndex = indexSet.first {
                     Text("Do you want to delete all the lists in \"\(folders[folderIndex].name)\"?")
+                }
+            }
+            .confirmationDialog("Are you sure you want to delete this folder?", isPresented: $isShowingDeleteConfirmationDialog, titleVisibility: .hidden, presenting: deleteIndexSet) { indexSet in
+                Button(role: .destructive) {
+                    deleteFolders(offsets: indexSet)
+                } label: {
+                    Text("Delete Folder")
+                }
+                Button("Cancel", role: .cancel) {
+                    deleteIndexSet = nil
+                }
+            } message: { indexSet in
+                if let folderIndex = indexSet.first {
+                    Text("Are you sure you want to delete \"\(folders[folderIndex].name)\"?")
                 }
             }
         }
@@ -142,6 +154,15 @@ struct SortFoldersView: View {
     private func addFolder(name: String = K.defaultName.newFolder, image: String = "folder", order: Int) -> Folder {
         let newFolder = manager.createNewFolder(name: name, image: image, order: order, viewContext)
         return newFolder
+    }
+    
+    private func deleteConfirmationAction(indexSet: IndexSet) {
+        deleteIndexSet = indexSet
+        if let index = deleteIndexSet?.first, let count = folders[index].itemLists?.count, count == 0 {
+            isShowingDeleteConfirmationDialog = true
+        } else {
+            isShowingDeleteConfirmationDialogWithOptions = true
+        }
     }
     
     private func deleteFolders(offsets: IndexSet) {

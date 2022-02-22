@@ -15,7 +15,7 @@ public class Notification: NSManagedObject {
     static private let calendar = Calendar(identifier: .gregorian)
     
     static var defaultDate: Date {
-        calendar.date(bySettingHour: 7, minute: 0, second: 0, of: Date()) ?? Date()
+        calendar.date(bySettingHour: 7, minute: 0, second: 0, of: Date().addingTimeInterval(24*60*60)) ?? Date()
     }
     
     static var weekdaySymbols: [String] {
