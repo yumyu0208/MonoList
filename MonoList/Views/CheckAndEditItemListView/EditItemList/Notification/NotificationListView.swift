@@ -114,6 +114,9 @@ struct NotificationListView: View {
                 EmptyView()
             }
         } //: ZStack
+        .onAppear {
+            deleteExpiredNotifications(in: notifications)
+        }
     }
     
     private func saveData() {
@@ -124,6 +127,15 @@ struct NotificationListView: View {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
+    }
+    
+    func deleteExpiredNotifications(in notifications: FetchedResults<Notification>) {
+        let expiredNotifications = notifications.filter { !$0.isRepeat && $0.time <= Date() }
+        expiredNotifications.forEach { viewContext.delete($0) }
+        saveData()
+        #if DEBUG
+        print("Delete Expired Notifications")
+        #endif
     }
 }
 
