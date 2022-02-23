@@ -383,14 +383,23 @@ struct ItemListView: View {
             }
         }
         .onChange(of: deeplink) { deeplink in
-            if let deeplink = deeplink, deeplink.referenceId != itemList.id.uuidString  {
-                isShowingEditNotification = false
-                isShowingWeight = false
-                isShowingEditIcon = false
-                isShowingDoneAlert = false
-                isShowingUncheckAllConfirmationAlert = false
-                isShowingImageViewer = false
-                dismiss()
+            if let deeplink = deeplink {
+                if deeplink.referenceId != itemList.id.uuidString {
+                    isShowingEditNotification = false
+                    isShowingWeight = false
+                    isShowingEditIcon = false
+                    isShowingDoneAlert = false
+                    isShowingUncheckAllConfirmationAlert = false
+                    isShowingImageViewer = false
+                    listNameTextFieldIsFocused = false
+                    focusedItem = nil
+                    dismiss()
+                } else {
+                    listNameTextFieldIsFocused = false
+                    focusedItem = nil
+                    editMode = .inactive
+                    isEditMode = false
+                }
             }
         }
     }
