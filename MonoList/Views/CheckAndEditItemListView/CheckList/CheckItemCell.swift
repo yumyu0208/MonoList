@@ -13,6 +13,14 @@ struct CheckItemCell: View {
     let showAndHideUndoButton: () -> Void
     let showImageViewerAction: (Image) -> Void
     
+    var parentList: ItemList {
+        item.parentItemList
+    }
+    
+    var showQuantity: Bool {
+        !parentList.quantityIsHidden && item.quantity > 1
+    }
+    
     var body: some View {
         HStack(alignment: .top) {
             Toggle("Complete Item", isOn: $item.isCompleted)
@@ -33,11 +41,11 @@ struct CheckItemCell: View {
                         Image(systemName: "exclamationmark")
                             .foregroundStyle(.red)
                     }
-                    if item.quantity <= 1 {
-                        Text(item.name)
+                    if showQuantity {
+                        Text("\(item.name) × \(item.quantity)")
                             .foregroundStyle(.primary)
                     } else {
-                        Text("\(item.name) × \(item.quantity)")
+                        Text(item.name)
                             .foregroundStyle(.primary)
                     }
                     Spacer()

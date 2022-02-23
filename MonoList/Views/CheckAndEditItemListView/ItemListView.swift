@@ -158,12 +158,14 @@ struct ItemListView: View {
                         Label("Alarm", systemImage: itemList.notificationIsActive ? "bell" : "bell.slash")
                             .padding(4)
                     } //: Button
-                    Button {
-                        isShowingWeight = true
-                    } label: {
-                        Label("Weight", systemImage: "scalemass")
-                            .padding(4)
-                    } //: Button
+                    if !itemList.weightIsHidden {
+                        Button {
+                            isShowingWeight = true
+                        } label: {
+                            Label("Weight", systemImage: "scalemass")
+                                .padding(4)
+                        } //: Button
+                    }
                     EditItemListButtonView(isEditMode: $isEditMode) {
                         focusedItem = nil
                         listNameTextFieldIsFocused = false

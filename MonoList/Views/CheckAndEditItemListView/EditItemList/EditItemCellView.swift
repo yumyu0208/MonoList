@@ -20,12 +20,20 @@ struct EditItemCellView: View, Equatable {
     let deleteAction: (Item) -> Void
     let addAction: (Item) -> Void
     
+    var parentList: ItemList {
+        item.parentItemList
+    }
+    
     var showWeight: Bool {
-        item.weight != 0
+        !parentList.weightIsHidden && item.weight != 0
     }
     
     var showQuantity: Bool {
-        item.quantity > 1
+        !parentList.quantityIsHidden && item.quantity > 1
+    }
+    
+    var showCategory: Bool {
+        !parentList.categoryIsHidden
     }
     
     var body: some View {
@@ -100,7 +108,7 @@ struct EditItemCellView: View, Equatable {
                                 .opacity(0)
                         }
                     }
-                    if let category = item.category {
+                    if showCategory, let category = item.category {
                         HStack(alignment: .center) {
                             CategoryLabelView(category: category)
                             Spacer()
