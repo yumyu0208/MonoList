@@ -85,17 +85,22 @@ public class ItemList: NSManagedObject {
     func weightChartData(_ context: NSManagedObjectContext) -> ChartData {
         let categories = CategoryManager().fetchAllCategories(context).sorted { $0.order < $1.order }
         let allItems = items?.allObjects as! [Item]
+        let itemsWithNoCategory = allItems.filter { $0.category == nil }
         let itemsWithCategory = allItems.filter { $0.category != nil }
-        let categoriesAndTotalValues = categories.map { category -> (category: Category, totalValue: Double) in
+        
+        let weightValuesOfNoCategory = itemsWithNoCategory.map { $0.weight * Double($0.quantity) }
+        let totalValueOfNoCategory = weightValuesOfNoCategory.reduce(0, +)
+        
+        let categoriesAndTotalValues = (categories.map { category -> (category: Category?, totalValue: Double) in
             let itemsInCategory = itemsWithCategory.filter { $0.category == category }
             let weightValues = itemsInCategory.map { $0.weight * Double($0.quantity) }
             let totalValue = weightValues.reduce(0, +)
             return (category, totalValue)
-        }.filter { $0.totalValue > 0 }.sorted { $0.totalValue > $1.totalValue }
+        } + [(nil, totalValueOfNoCategory)]).filter { $0.totalValue > 0 }.sorted { $0.totalValue > $1.totalValue }
         
         let totalValues = categoriesAndTotalValues.map { $0.totalValue }
-        let names = categoriesAndTotalValues.map { $0.category.name }
-        let images = categoriesAndTotalValues.map { $0.category.image ?? "tag" }
+        let names = categoriesAndTotalValues.map { $0.category?.name ?? "No Category" }
+        let images = categoriesAndTotalValues.map { $0.category?.image ?? "tag" }
         let colors = categoriesAndTotalValues.enumerated().map { index, _ -> Color in
             let numberOfAll = categoriesAndTotalValues.count
             guard let listColor = UIColor(named: color),
