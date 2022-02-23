@@ -94,6 +94,7 @@ struct ItemListView: View {
                 .font(.title.bold())
                 Button {
                     itemListName = ""
+                    listNameTextFieldIsFocused = true
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .imageScale(.large)

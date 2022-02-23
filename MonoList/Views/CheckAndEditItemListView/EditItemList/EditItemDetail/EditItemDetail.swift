@@ -75,6 +75,7 @@ struct EditItemDetail: View {
                             }
                         Button {
                             item.name = ""
+                            focusedField = .nameField
                         } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .imageScale(.medium)
@@ -130,6 +131,7 @@ struct EditItemDetail: View {
                         }
                         Button {
                             weight = ""
+                            focusedField = .weightField
                         } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .imageScale(.medium)
@@ -160,6 +162,7 @@ struct EditItemDetail: View {
                         }
                         Button {
                             quantity = ""
+                            focusedField = .quantityField
                         } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .imageScale(.medium)
