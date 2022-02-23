@@ -82,7 +82,7 @@ public class ItemList: NSManagedObject {
     
     typealias ChartData = (values: [Double], names: [String], images: [String], colors: [Color])
     
-    func weightChartData(_ context: NSManagedObjectContext) -> ChartData {
+    func weightChartData(_ context: NSManagedObjectContext) -> ChartData? {
         let categories = CategoryManager().fetchAllCategories(context).sorted { $0.order < $1.order }
         let allItems = items?.allObjects as! [Item]
         let itemsWithNoCategory = allItems.filter { $0.category == nil }
@@ -97,6 +97,8 @@ public class ItemList: NSManagedObject {
             let totalValue = weightValues.reduce(0, +)
             return (category, totalValue)
         } + [(nil, totalValueOfNoCategory)]).filter { $0.totalValue > 0 }.sorted { $0.totalValue > $1.totalValue }
+        
+        guard !categoriesAndTotalValues.isEmpty else { return nil }
         
         let totalValues = categoriesAndTotalValues.map { $0.totalValue }
         let names = categoriesAndTotalValues.map { $0.category?.name ?? "No Category" }

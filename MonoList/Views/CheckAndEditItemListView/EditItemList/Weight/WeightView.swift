@@ -14,18 +14,23 @@ struct WeightView: View {
     @ObservedObject var itemList: ItemList
     
     var body: some View {
-        ScrollView {
-            let weightChartData = itemList.weightChartData(viewContext)
-            PieChartView(values: weightChartData.values,
-                         names: weightChartData.names,
-                         formatter: {value in String(format: "%.2f\(itemList.unitLabel)", value)},
-                         colors: weightChartData.colors,
-                         images: weightChartData.images,
-                         backgroundColor: Color(UIColor.secondarySystemGroupedBackground),
-                         widthFraction: 1.0,
-                         innerRadiusFraction: 0.60)
-                .padding()
-        } //: Scroll
+        ZStack {
+            if let weightChartData = itemList.weightChartData(viewContext) {
+                ScrollView {
+                    PieChartView(values: weightChartData.values,
+                                 names: weightChartData.names,
+                                 formatter: {value in String(format: "%.2f\(itemList.unitLabel)", value)},
+                                 colors: weightChartData.colors,
+                                 images: weightChartData.images,
+                                 backgroundColor: Color(UIColor.secondarySystemGroupedBackground),
+                                 widthFraction: 1.0,
+                                 innerRadiusFraction: 0.60)
+                        .padding()
+                } //: Scroll
+            } else {
+                NoWeightView()
+            }
+        }
         .navigationTitle(Text("Weight"))
         .navigationBarTitleDisplayMode(.inline)
         .background(Color(UIColor.systemGroupedBackground))
