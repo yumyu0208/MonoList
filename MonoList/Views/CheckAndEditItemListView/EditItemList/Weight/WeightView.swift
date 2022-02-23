@@ -19,7 +19,7 @@ struct WeightView: View {
                 ScrollView {
                     PieChartView(values: weightChartData.values,
                                  names: weightChartData.names,
-                                 formatter: {value in String(format: "%.2f\(itemList.unitLabel)", value)},
+                                 formatter: { "\($0.string)\(itemList.unitLabel)" },
                                  colors: weightChartData.colors,
                                  images: weightChartData.images,
                                  backgroundColor: Color(UIColor.secondarySystemGroupedBackground),

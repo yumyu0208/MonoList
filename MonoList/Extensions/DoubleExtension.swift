@@ -9,6 +9,11 @@ import UIKit
 
 extension Double {
     var string: String {
-        String(format: "%g", self)
+        let roundedValue = (self*10000).rounded(.toNearestOrAwayFromZero)/10000
+        var string = String(roundedValue)
+        if let range = string.range(of: ".0") {
+            string.replaceSubrange(range, with: "")
+        }
+        return string
     }
 }
