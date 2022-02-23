@@ -35,6 +35,10 @@ struct EditItemDetail: View {
     @State var isShowingChangeUnitConfirmationDialog = false
     @State var newUnitLabel: String?
     
+    @State var categoryIsHidden = true
+    @State var weightIsHidden = true
+    @State var quantityIsHidden = true
+    
     var itemIsInvalid: Bool {
         nameIsInvalid || weightIsInvalid || quantityIsInvalid
     }
@@ -61,6 +65,10 @@ struct EditItemDetail: View {
         } else {
             return true
         }
+    }
+    
+    var showAddDetailButton: Bool {
+        categoryIsHidden || weightIsHidden || quantityIsHidden
     }
     
     var body: some View {
@@ -94,8 +102,9 @@ struct EditItemDetail: View {
                 Section {
                     TextEditor(text: $note)
                         .focused($focusedField, equals: .noteField)
-                        .frame(minWidth: 50)
+                        .frame(minHeight: 40)
                         .id(noteID)
+                        .offset(x: 0, y: 2)
                         .background(alignment: .leading) {
                             Text("Note")
                                 .foregroundStyle(.tertiary)
@@ -115,112 +124,187 @@ struct EditItemDetail: View {
                         } //: Label
                     } //: Toggle
                 } //: Section
-                // Select Category Section
-                Section {
-                    NavigationLink {
-                        SelectCategoryView(selectedCategory: $item.category)
-                    } label: {
+                if !categoryIsHidden {
+                    // Select Category Section
+                    Section {
+                        NavigationLink {
+                            SelectCategoryView(selectedCategory: $item.category)
+                        } label: {
+                            HStack {
+                                Label {
+                                    Text(item.category?.name ?? "None")
+                                        .foregroundStyle(.primary)
+                                } icon: {
+                                    Image(systemName: item.category?.image ?? "tag")
+                                        .foregroundStyle(.tint)
+                                        .font(.headline)
+                                } //: Label
+                            } //: HStack
+                        }
+                    } header: {
+                        HStack {
+                            Text("Category")
+                            Spacer()
+                            Button {
+                                withAnimation(.easeOut(duration: 0.2)) {
+                                    categoryIsHidden = true
+                                }
+                            } label: {
+                                Text("hide")
+                                    .textCase(nil)
+                            }
+                        }
+                    } //: Section
+                }
+                if !weightIsHidden {
+                    Section {
                         HStack {
                             Label {
-                                Text(item.category?.name ?? "None")
-                                    .foregroundStyle(.primary)
+                                TextField("Weight", text: $weight, prompt: Text("0"))
+                                    .keyboardType(.decimalPad)
+                                    .multilineTextAlignment(.leading)
+                                    .focused($focusedField, equals: .weightField)
                             } icon: {
-                                Image(systemName: item.category?.image ?? "tag")
+                                Image(systemName: "scalemass")
                                     .foregroundStyle(.tint)
                                     .font(.headline)
-                            } //: Label
-                        } //: HStack
-                    }
-                } header: {
-                    Text("Category")
-                } //: Section
-                Section {
-                    HStack {
-                        Label {
-                            TextField("Weight", text: $weight, prompt: Text("0"))
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.leading)
-                                .focused($focusedField, equals: .weightField)
-                        } icon: {
-                            Image(systemName: "scalemass")
-                                .foregroundStyle(.tint)
-                                .font(.headline)
-                        }
-                        Menu {
-                            ForEach(K.unitLabel.all, id: \.self) { unitLabel in
-                                Button {
-                                    newUnitLabel = unitLabel
-                                    isShowingChangeUnitConfirmationDialog = true
-                                } label: {
-                                    if self.unitLabel == unitLabel {
-                                        Label(unitLabel, systemImage: "checkmark")
-                                    } else {
-                                        Text(unitLabel)
+                            }
+                            Menu {
+                                ForEach(K.unitLabel.all, id: \.self) { unitLabel in
+                                    Button {
+                                        newUnitLabel = unitLabel
+                                        isShowingChangeUnitConfirmationDialog = true
+                                    } label: {
+                                        if self.unitLabel == unitLabel {
+                                            Label(unitLabel, systemImage: "checkmark")
+                                        } else {
+                                            Text(unitLabel)
+                                        }
                                     }
                                 }
+                            } label: {
+                                ZStack {
+                                    Text("kg")
+                                        .opacity(0)
+                                    Text(unitLabel)
+                                        .id(unitLabel)
+                                }
+                                .foregroundColor(.primary)
+                                .padding(.vertical, 4)
+                                .padding(.horizontal, 16)
+                                .background(Color(UIColor.systemGray6))
+                                .clipShape(Capsule())
+                                .shadow(color: Color(K.colors.ui.shadowColor9), radius: 2, y: 2)
+                            } //: Menu
+                            if !weight.isEmpty {
+                                Button {
+                                    weight = ""
+                                    focusedField = .weightField
+                                } label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .imageScale(.medium)
+                                }
+                                .buttonStyle(.plain)
+                                .foregroundColor(Color(UIColor.systemGray4))
                             }
-                        } label: {
-                            ZStack {
-                                Text("kg")
-                                    .opacity(0)
-                                Text(unitLabel)
+                        } //: HStack
+                        .animation(.easeOut(duration: 0.2), value: weight.isEmpty)
+                    } header: {
+                        HStack {
+                            HStack(spacing: 0) {
+                                Text("Weight")
+                                Text("  ( \(unitLabel)/pcs )")
+                                    .textCase(nil)
                                     .id(unitLabel)
                             }
-                            .foregroundColor(.primary)
-                            .padding(.vertical, 4)
-                            .padding(.horizontal, 16)
-                            .background(Color(UIColor.systemGray6))
-                            .clipShape(Capsule())
-                            .shadow(color: Color(K.colors.ui.shadowColor9), radius: 2, y: 2)
-                        } //: Menu
-                        if !weight.isEmpty {
+                            Spacer()
                             Button {
-                                weight = ""
-                                focusedField = .weightField
+                                withAnimation(.easeOut(duration: 0.2)) {
+                                    weightIsHidden = true
+                                }
+                            } label: {
+                                Text("hide")
+                                    .textCase(nil)
+                            }
+                        } //: HStack
+                    } //: Section
+                }
+                if !quantityIsHidden {
+                    Section {
+                        HStack {
+                            Label {
+                                TextField("Quantity", text: $quantity, prompt: Text("1"))
+                                    .keyboardType(.numberPad)
+                                    .multilineTextAlignment(.leading)
+                                    .focused($focusedField, equals: .quantityField)
+                            } icon: {
+                                Image(systemName: "number")
+                                    .foregroundStyle(.tint)
+                                    .font(.headline)
+                            }
+                            Button {
+                                quantity = ""
+                                focusedField = .quantityField
                             } label: {
                                 Image(systemName: "xmark.circle.fill")
                                     .imageScale(.medium)
                             }
                             .buttonStyle(.plain)
                             .foregroundColor(Color(UIColor.systemGray4))
+                            .opacity(quantity.isEmpty ? 0 : 1)
+                            .animation(.easeOut(duration: 0.2), value: quantity.isEmpty)
                         }
-                    } //: HStack
-                    .animation(.easeOut(duration: 0.2), value: weight.isEmpty)
-                } header: {
-                    HStack(spacing: 0) {
-                        Text("Weight")
-                        Text("  ( \(unitLabel)/pcs )")
-                            .textCase(nil)
-                            .id(unitLabel)
-                    }
-                } //: Section
-                Section {
-                    HStack {
-                        Label {
-                            TextField("Quantity", text: $quantity, prompt: Text("1"))
-                                .keyboardType(.numberPad)
-                                .multilineTextAlignment(.leading)
-                                .focused($focusedField, equals: .quantityField)
-                        } icon: {
-                            Image(systemName: "number")
-                                .foregroundStyle(.tint)
-                                .font(.headline)
+                    } header: {
+                        HStack {
+                            Text("Quantity")
+                            Spacer()
+                            Button {
+                                withAnimation(.easeOut(duration: 0.2)) {
+                                    quantityIsHidden = true
+                                }
+                            } label: {
+                                Text("hide")
+                                    .textCase(nil)
+                            }
                         }
-                        Button {
-                            quantity = ""
-                            focusedField = .quantityField
+                    } //: Section
+                }
+                if showAddDetailButton {
+                    Section {
+                        Menu {
+                            if quantityIsHidden {
+                                Button {
+                                    withAnimation(.easeOut(duration: 0.2)) {
+                                        quantityIsHidden = false
+                                    }
+                                } label: {
+                                    Label("Quantity", systemImage: "number")
+                                }
+                            }
+                            if weightIsHidden {
+                                Button {
+                                    withAnimation(.easeOut(duration: 0.2)) {
+                                        weightIsHidden = false
+                                    }
+                                } label: {
+                                    Label("Weight", systemImage: "scalemass")
+                                }
+                            }
+                            if categoryIsHidden {
+                                Button {
+                                    withAnimation(.easeOut(duration: 0.2)) {
+                                        categoryIsHidden = false
+                                    }
+                                } label: {
+                                    Label("Category", systemImage: "tag")
+                                }
+                            }
                         } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .imageScale(.medium)
-                        }
-                        .buttonStyle(.plain)
-                        .foregroundColor(Color(UIColor.systemGray4))
-                        .opacity(quantity.isEmpty ? 0 : 1)
-                        .animation(.easeOut(duration: 0.2), value: quantity.isEmpty)
-                    }
-                } header: {
-                    Text("Quantity")
-                } //: Section
+                            Label("Add Detail", systemImage: "plus.circle")
+                                .foregroundStyle(.tint)
+                        } //: Menu
+                    } //: Section
+                }
             } //: List
             .onChange(of: focusedField) { focusedField in
                 if focusedField == .noteField {
@@ -293,7 +377,11 @@ struct EditItemDetail: View {
             quantity = (item.quantity <= 1 ? "" : String(item.quantity))
             note = item.note ?? ""
             
-            unitLabel = item.parentItemList.unitLabel
+            let parentItemList = item.parentItemList
+            unitLabel = parentItemList.unitLabel
+            categoryIsHidden = parentItemList.categoryIsHidden
+            weightIsHidden = parentItemList.weightIsHidden
+            quantityIsHidden = parentItemList.quantityIsHidden
         }
         .onDisappear {
             setValue()
@@ -313,6 +401,9 @@ struct EditItemDetail: View {
         item.note = note.isEmpty ? nil : note
         
         item.parentItemList.unitLabel = unitLabel
+        item.parentItemList.categoryIsHidden = categoryIsHidden
+        item.parentItemList.weightIsHidden = weightIsHidden
+        item.parentItemList.quantityIsHidden = quantityIsHidden
     }
     
     private func saveData() {
