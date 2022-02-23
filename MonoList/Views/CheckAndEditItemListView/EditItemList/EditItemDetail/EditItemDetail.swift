@@ -31,6 +31,10 @@ struct EditItemDetail: View {
     @State var isShowingAlert: Bool = false
     @State var alertMessage: String?
     
+    @State var unitLabel: String = ""
+    @State var isShowingChangeUnitConfirmationDialog = false
+    @State var newUnitLabel: String?
+    
     var itemIsInvalid: Bool {
         nameIsInvalid || weightIsInvalid || quantityIsInvalid
     }
@@ -90,7 +94,7 @@ struct EditItemDetail: View {
                 Section {
                     TextEditor(text: $note)
                         .focused($focusedField, equals: .noteField)
-                        .frame(minWidth: 48)
+                        .frame(minWidth: 50)
                         .id(noteID)
                         .background(alignment: .leading) {
                             Text("Note")
@@ -142,23 +146,52 @@ struct EditItemDetail: View {
                                 .foregroundStyle(.tint)
                                 .font(.headline)
                         }
-                        Button {
-                            weight = ""
-                            focusedField = .weightField
+                        Menu {
+                            ForEach(K.unitLabel.all, id: \.self) { unitLabel in
+                                Button {
+                                    newUnitLabel = unitLabel
+                                    isShowingChangeUnitConfirmationDialog = true
+                                } label: {
+                                    if self.unitLabel == unitLabel {
+                                        Label(unitLabel, systemImage: "checkmark")
+                                    } else {
+                                        Text(unitLabel)
+                                    }
+                                }
+                            }
                         } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .imageScale(.medium)
+                            ZStack {
+                                Text("kg")
+                                    .opacity(0)
+                                Text(unitLabel)
+                                    .id(unitLabel)
+                            }
+                            .foregroundColor(.primary)
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 16)
+                            .background(Color(UIColor.systemGray6))
+                            .clipShape(Capsule())
+                            .shadow(color: Color(K.colors.ui.shadowColor9), radius: 2, y: 2)
+                        } //: Menu
+                        if !weight.isEmpty {
+                            Button {
+                                weight = ""
+                                focusedField = .weightField
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .imageScale(.medium)
+                            }
+                            .buttonStyle(.plain)
+                            .foregroundColor(Color(UIColor.systemGray4))
                         }
-                        .buttonStyle(.plain)
-                        .foregroundColor(Color(UIColor.systemGray4))
-                        .opacity(weight.isEmpty ? 0 : 1)
-                        .animation(.easeOut(duration: 0.2), value: weight.isEmpty)
-                    }
+                    } //: HStack
+                    .animation(.easeOut(duration: 0.2), value: weight.isEmpty)
                 } header: {
                     HStack(spacing: 0) {
                         Text("Weight")
-                        Text("  ( \(item.parentItemList.unitLabel)/pcs )")
+                        Text("  ( \(unitLabel)/pcs )")
                             .textCase(nil)
+                            .id(unitLabel)
                     }
                 } //: Section
                 Section {
@@ -241,10 +274,26 @@ struct EditItemDetail: View {
         } message: { message in
             Text(message)
         }
+        .confirmationDialog("Change Unit", isPresented: $isShowingChangeUnitConfirmationDialog, titleVisibility: .visible, presenting: newUnitLabel) { newUnitLabel in
+            Button {
+                withAnimation(.easeOut(duration: 0.2)) {
+                    self.unitLabel = newUnitLabel
+                }
+            } label: {
+                Text("Change the label to \"\(newUnitLabel)\"")
+            }
+            Button("Cancel", role: .cancel) {
+                self.newUnitLabel = nil
+            }
+        } message: { indexSet in
+            Text("Applies to all items in this list.")
+        }
         .onAppear {
             weight = (item.weight == 0 ? "" : String(item.weight.string))
             quantity = (item.quantity <= 1 ? "" : String(item.quantity))
             note = item.note ?? ""
+            
+            unitLabel = item.parentItemList.unitLabel
         }
         .onDisappear {
             setValue()
@@ -262,6 +311,8 @@ struct EditItemDetail: View {
         item.weight = weight.isEmpty ? 0 : Double(weight)!
         item.quantity = quantity.isEmpty ? 1 : Int32(quantity)!
         item.note = note.isEmpty ? nil : note
+        
+        item.parentItemList.unitLabel = unitLabel
     }
     
     private func saveData() {
