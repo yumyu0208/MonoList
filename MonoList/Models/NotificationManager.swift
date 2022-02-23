@@ -16,7 +16,9 @@ class NotificationManager {
         DispatchQueue.global(qos: .background).async {
             self.center.getNotificationSettings { settings in
                 if settings.authorizationStatus == .denied || settings.authorizationStatus == .notDetermined {
-                    self.turnAllListNotificationOff(context)
+                    DispatchQueue.main.async {
+                        self.turnAllListNotificationOff(context)
+                    }
                 }
             }
         }

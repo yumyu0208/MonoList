@@ -16,6 +16,8 @@ struct EditNotificationsGroupBoxView: View {
     
     let center = UNUserNotificationCenter.current()
     
+    @State var isShowingNoPermissionAlert = false
+    
     var isActive: Bool {
         itemList.notificationIsActive
     }
@@ -53,6 +55,22 @@ struct EditNotificationsGroupBoxView: View {
         } //: GroupBox
         .animation(.easeOut(duration: 0.2), value: isActive)
         .groupBoxStyle(.white)
+        .alert("This app is not allowed to send notifications", isPresented: $isShowingNoPermissionAlert) {
+            Button {
+                if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            } label: {
+                Text("Set")
+            }
+            Button(role: .cancel) {
+                isShowingNoPermissionAlert = false
+            } label: {
+                Text("Cancel")
+            }
+        } message: {
+            Text("Please turn on notifications in the \"Settings\" app")
+        }
         .onChange(of: isOn) { isOn in
             if isOn {
                 center.requestAuthorization(options: [.alert, .sound]) { granted, error in
@@ -67,7 +85,10 @@ struct EditNotificationsGroupBoxView: View {
                             NotificationManager().setLocalNotifications(notifications)
                         }
                     } else {
-                        self.isOn = false
+                        withAnimation {
+                            self.isOn = false
+                        }
+                        isShowingNoPermissionAlert = true
                     }
                 }
             } else {

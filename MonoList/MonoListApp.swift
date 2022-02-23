@@ -11,8 +11,11 @@ import SwiftUI
 struct MonoListApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scene
+    
     @State var deeplink: Deeplinker.Deeplink?
     let persistenceController = PersistenceController.shared
+    
+    let notificationManager = NotificationManager()
     
     var body: some Scene {
         WindowGroup {
@@ -30,7 +33,8 @@ struct MonoListApp: App {
                 .onChange(of: scene) { scene in
                     if scene == .active {
                         DispatchQueue.global(qos: .background).async {
-                            NotificationManager().deleteAllDeliveredNotificationRequests()
+                            notificationManager.deleteAllDeliveredNotificationRequests()
+                            notificationManager.checkNotificationSettings(persistenceController.container.viewContext)
                         }
                     }
                 }
