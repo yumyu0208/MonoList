@@ -30,6 +30,7 @@
     </entity>
     <entity name="ItemList" representedClassName=".ItemList" syncable="YES">
         <attribute name="achievementCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="categoryIsHidden" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="color" attributeType="String"/>
         <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="displayFormat" attributeType="String"/>
@@ -41,11 +42,13 @@
         <attribute name="notificationIsActive" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="order" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="primaryColor" optional="YES" attributeType="String"/>
+        <attribute name="quantityIsHidden" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="secondaryColor" optional="YES" attributeType="String"/>
         <attribute name="tertiaryColor" optional="YES" attributeType="String"/>
         <attribute name="type" attributeType="String"/>
         <attribute name="unitLabel" attributeType="String" defaultValueString="g"/>
         <attribute name="updateDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="weightIsHidden" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="parentItemList" inverseEntity="Item"/>
         <relationship name="notifications" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notification" inverseName="parentItemList" inverseEntity="Notification"/>
         <relationship name="parentFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="itemLists" inverseEntity="Folder"/>
@@ -61,7 +64,7 @@
         <element name="Category" positionX="131.13623046875" positionY="-25.4769287109375" width="128" height="104"/>
         <element name="Folder" positionX="-451.9322509765625" positionY="-26.75711059570312" width="128" height="103"/>
         <element name="Item" positionX="-80.2880859375" positionY="-22.15966796875" width="128" height="224"/>
-        <element name="ItemList" positionX="-278.1766357421875" positionY="-31.53518676757812" width="128" height="329"/>
+        <element name="ItemList" positionX="-278.1766357421875" positionY="-31.53518676757812" width="128" height="374"/>
         <element name="Notification" positionX="-282.1820068359375" positionY="251.7786865234375" width="128" height="104"/>
     </elements>
 </model>

@@ -26,6 +26,9 @@ struct ItemListData: Codable {
     var type: String
     var unitLabel: String
     var updateDate: Date
+    var categoryIsHidden: Bool
+    var weightIsHidden: Bool
+    var quantityIsHidden: Bool
     var itemDataArray: [ItemData]?
     var notificationDataArray: [NotificationData]?
     
@@ -48,6 +51,9 @@ struct ItemListData: Codable {
         itemList.type = type
         itemList.unitLabel = unitLabel
         itemList.updateDate = updateDate
+        itemList.categoryIsHidden = categoryIsHidden
+        itemList.weightIsHidden = weightIsHidden
+        itemList.quantityIsHidden = quantityIsHidden
         itemDataArray?.forEach {
             itemList.addToItems($0.createItem(context: context))
         }

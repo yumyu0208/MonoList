@@ -17,6 +17,7 @@ extension ItemList {
     }
 
     @NSManaged public var achievementCount: Int32
+    @NSManaged public var categoryIsHidden: Bool
     @NSManaged public var color: String
     @NSManaged public var creationDate: Date
     @NSManaged public var displayFormat: String
@@ -28,11 +29,13 @@ extension ItemList {
     @NSManaged public var name: String
     @NSManaged public var order: Int32
     @NSManaged public var primaryColor: String?
+    @NSManaged public var quantityIsHidden: Bool
     @NSManaged public var secondaryColor: String?
     @NSManaged public var tertiaryColor: String?
     @NSManaged public var type: String
     @NSManaged public var unitLabel: String
     @NSManaged public var updateDate: Date
+    @NSManaged public var weightIsHidden: Bool
     @NSManaged public var items: NSSet?
     @NSManaged public var notifications: NSSet?
     @NSManaged public var parentFolder: Folder

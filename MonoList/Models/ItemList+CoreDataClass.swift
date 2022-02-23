@@ -165,6 +165,9 @@ public class ItemList: NSManagedObject {
             order: Int(order) + 1,
             type: type,
             unitLabel: unitLabel,
+            categoryIsHidden: categoryIsHidden,
+            weightIsHidden: weightIsHidden,
+            quantityIsHidden: quantityIsHidden,
             context)
         (items?.allObjects as? [Item])?.forEach({ item in
             item.duplicate(for: duplicatedItemList, context)
@@ -327,6 +330,9 @@ public class ItemList: NSManagedObject {
                             type: type,
                             unitLabel: unitLabel,
                             updateDate: updateDate,
+                            categoryIsHidden: categoryIsHidden,
+                            weightIsHidden: weightIsHidden,
+                            quantityIsHidden: quantityIsHidden,
                             itemDataArray: itemDataArray,
                             notificationDataArray: notificationDataArray)
     }
