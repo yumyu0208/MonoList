@@ -31,6 +31,10 @@ struct CheckListView: View {
         numberOfAllItems - numberOfUnCompletedItems
     }
     
+    var categoryIsHidden: Bool {
+        itemList.categoryIsHidden
+    }
+    
     init(of itemList: ItemList, allDoneAction: @escaping () -> Void, showImageViewerAction: @escaping (Image) -> Void) {
         self.itemList = itemList
         self.allDoneAction = allDoneAction
@@ -61,16 +65,30 @@ struct CheckListView: View {
             Group {
                 switch itemList.form {
                 case .list:
-                    NomalCheckListView(items: items,
-                                       categories: categories,
-                                       showAndHideUndoButtonAction: showAndHideUndoButton,
-                                       showImageViewerAction: showImageViewerAction)
+                    if categoryIsHidden {
+                        NomalCheckListView(items: items,
+                                           categories: categories,
+                                           showAndHideUndoButtonAction: showAndHideUndoButton,
+                                           showImageViewerAction: showImageViewerAction)
+                    } else {
+                        NomalCategoryCheckListView(items: items,
+                                           categories: categories,
+                                           showAndHideUndoButtonAction: showAndHideUndoButton,
+                                           showImageViewerAction: showImageViewerAction)
+                    }
                 case .gallery, .gallery2, .gallery3:
                     let columns: [GridItem] = Array(repeating: .init(.flexible(minimum: 20, maximum: 600), spacing: 12), count: numberOfColumns(for: itemList.form))
-                    PhotoCheckListView(items: items,
-                                       categories: categories,
-                                       showAndHideUndoButtonAction: showAndHideUndoButton,
-                                       showImageViewerAction: showImageViewerAction, columns: columns)
+                    if categoryIsHidden {
+                        PhotoCheckListView(items: items,
+                                           categories: categories,
+                                           showAndHideUndoButtonAction: showAndHideUndoButton,
+                                           showImageViewerAction: showImageViewerAction, columns: columns)
+                    } else {
+                        PhotoCategoryCheckListView(items: items,
+                                           categories: categories,
+                                           showAndHideUndoButtonAction: showAndHideUndoButton,
+                                           showImageViewerAction: showImageViewerAction, columns: columns)
+                    }
                 }
             }
             .overlay(alignment: .bottomTrailing) {

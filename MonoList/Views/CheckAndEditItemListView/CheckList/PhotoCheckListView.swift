@@ -2,7 +2,7 @@
 //  PhotoCheckListView.swift
 //  MonoList
 //
-//  Created by 竹田悠真 on 2022/02/17.
+//  Created by 竹田悠真 on 2022/02/24.
 //
 
 import SwiftUI
@@ -17,28 +17,11 @@ struct PhotoCheckListView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 12) {
-                let itemsInNoneCategory = items.filter { $0.category == nil }
-                if !itemsInNoneCategory.isEmpty {
-                    Section {
-                        ForEach(itemsInNoneCategory) { item in
-                            PhotoCheckItemCell(item: item,
-                                               showAndHideUndoButton: showAndHideUndoButtonAction,
-                                               showImageViewerAction: showImageViewerAction)
-                        } //: VStack
-                    } //: VStack
-                }
-                ForEach(categories) { category in
-                    let itemsInThisCategory = items.filter { $0.category == category }
-                    if !itemsInThisCategory.isEmpty {
-                        Section(header: CategoryHeaderView(category: category).padding(.top, 8)) {
-                            ForEach(itemsInThisCategory) { item in
-                                PhotoCheckItemCell(item: item,
-                                                   showAndHideUndoButton: showAndHideUndoButtonAction,
-                                                   showImageViewerAction: showImageViewerAction)
-                            } //: VStack
-                        } //: Section
-                    }
-                } //: ForEach
+                ForEach(items) { item in
+                    PhotoCheckItemCell(item: item,
+                                       showAndHideUndoButton: showAndHideUndoButtonAction,
+                                       showImageViewerAction: showImageViewerAction)
+                } //: VStack
             }
             .frame(maxWidth: .infinity)
             .padding(.horizontal)
@@ -46,4 +29,3 @@ struct PhotoCheckListView: View {
         } //: ScrollView
     }
 }
-
