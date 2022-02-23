@@ -40,6 +40,7 @@
 		AA3675E927B745B800611D8A /* EditItemListButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3675E827B745B800611D8A /* EditItemListButtonView.swift */; };
 		AA469411279A71730083142D /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469410279A71730083142D /* DoubleExtension.swift */; };
 		AA469414279A735B0083142D /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA469413279A735B0083142D /* NumberView.swift */; };
+		AA5FAB9427C5D6B400A85AC6 /* NoListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5FAB9327C5D6B400A85AC6 /* NoListsView.swift */; };
 		AA6F605427C0F1B400DCB446 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F605327C0F1B400DCB446 /* PieChartView.swift */; };
 		AA6F605627C0F1C500DCB446 /* PieSliceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F605527C0F1C500DCB446 /* PieSliceView.swift */; };
 		AA6F605A27C1309F00DCB446 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AA6F605927C1309F00DCB446 /* LICENSE */; };
@@ -156,6 +157,7 @@
 		AA3675E827B745B800611D8A /* EditItemListButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemListButtonView.swift; sourceTree = "<group>"; };
 		AA469410279A71730083142D /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		AA469413279A735B0083142D /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
+		AA5FAB9327C5D6B400A85AC6 /* NoListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoListsView.swift; sourceTree = "<group>"; };
 		AA6F605327C0F1B400DCB446 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		AA6F605527C0F1C500DCB446 /* PieSliceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieSliceView.swift; sourceTree = "<group>"; };
 		AA6F605927C1309F00DCB446 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -592,6 +594,7 @@
 			children = (
 				AAE293502781C5780010F093 /* EditLabelView.swift */,
 				AACBBC76279AFF2F00A42108 /* NoItemsView.swift */,
+				AA5FAB9327C5D6B400A85AC6 /* NoListsView.swift */,
 				AACBBC7A279C230E00A42108 /* XButtonView.swift */,
 				AA3675E627B73A4400611D8A /* MiniXButtonView.swift */,
 				AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */,
@@ -787,6 +790,7 @@
 				AAC3DDE627958FD800983100 /* LargeCircleButtonStyle.swift in Sources */,
 				AA3675D827B33A7500611D8A /* EditCategoryView.swift in Sources */,
 				AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */,
+				AA5FAB9427C5D6B400A85AC6 /* NoListsView.swift in Sources */,
 				AA3675C127B0AF5200611D8A /* CategoryData.swift in Sources */,
 				AAB52BF027C45DFE0050A912 /* NotificationsGroupBoxView.swift in Sources */,
 				AAF3A81927A2A4A20084B7A9 /* ImagePickerView.swift in Sources */,

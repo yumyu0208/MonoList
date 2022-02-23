@@ -32,6 +32,10 @@ struct HomeView: View {
     var isEditing: Bool {
         editMode == .active
     }
+    
+    var noList: Bool {
+        folders.count == 1 && folders.first?.itemLists?.count == 0
+    }
 
     var body: some View {
         NavigationView {
@@ -49,6 +53,7 @@ struct HomeView: View {
                         Spacer()
                         Group {
                             EditLabelView(imageOnly: true)
+                                .disabled(noList)
                                 .environment(\.editMode, $editMode)
                             Button {
                                 isShowingSettings = true
@@ -68,31 +73,32 @@ struct HomeView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 20)
                     .background(Color(UIColor.systemGroupedBackground))
-
-                    List {
-                        ForEach(folders) { folder in
-                            Section {
-                                ItemListsView(of: folder) { itemList in
-                                    editItemListView = ItemListView(itemList: itemList, isEditMode: true)
-                                    navigationLinkTag = editItemListTag
-                                }
-                                .environmentObject(manager)
-                            } header: {
-                                FolderSectionView(image: folder.image, title: folder.name, showPlusButton: !folder.isDefault) {
-                                    withAnimation {
-                                        let newItemList = addItemList(to: folder)
-                                        editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
+                    
+                    if !noList {
+                        List {
+                            ForEach(folders) { folder in
+                                Section {
+                                    ItemListsView(of: folder) { itemList in
+                                        editItemListView = ItemListView(itemList: itemList, isEditMode: true)
                                         navigationLinkTag = editItemListTag
                                     }
-                                }
-                                .disabled(isEditing)
-                            } //: Section
-                        } //: ForEach
-                    } //: List
-                    .listStyle(.sidebar)
-                    .environment(\.editMode, $editMode)
-                    .onChange(of: listOffset) { newValue in
-                        print(newValue)
+                                    .environmentObject(manager)
+                                } header: {
+                                    FolderSectionView(image: folder.image, title: folder.name, showPlusButton: !folder.isDefault) {
+                                        withAnimation {
+                                            let newItemList = addItemList(to: folder)
+                                            editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
+                                            navigationLinkTag = editItemListTag
+                                        }
+                                    }
+                                    .disabled(isEditing)
+                                } //: Section
+                            } //: ForEach
+                        } //: List
+                        .listStyle(.sidebar)
+                        .environment(\.editMode, $editMode)
+                    } else {
+                        NoListsView()
                     }
                     HStack {
                         Group {
@@ -135,6 +141,7 @@ struct HomeView: View {
                     .padding(.horizontal, 20)
                     .background(Color(UIColor.systemGroupedBackground))
                 } //: VStack
+                .animation(.default, value: noList)
                 NavigationLink(tag: editItemListTag,
                                selection: $navigationLinkTag) {
                     editItemListView
