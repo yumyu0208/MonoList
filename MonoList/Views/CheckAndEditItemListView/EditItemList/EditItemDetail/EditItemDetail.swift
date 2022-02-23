@@ -88,6 +88,19 @@ struct EditItemDetail: View {
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 20))
                 } //: Section
                 Section {
+                    TextEditor(text: $note)
+                        .focused($focusedField, equals: .noteField)
+                        .frame(minWidth: 48)
+                        .id(noteID)
+                        .background(alignment: .leading) {
+                            Text("Note")
+                                .foregroundStyle(.tertiary)
+                                .padding(.leading, 4)
+                                .opacity(note.isEmpty ? 1 : 0)
+                                .animation(.easeOut(duration: 0.2), value: note.isEmpty)
+                        }
+                } //: Section
+                Section {
                     Toggle(isOn: $item.isImportant.animation()) {
                         Label {
                             Text("Important")
@@ -174,14 +187,6 @@ struct EditItemDetail: View {
                     }
                 } header: {
                     Text("Quantity")
-                } //: Section
-                Section {
-                    TextEditor(text: $note)
-                        .frame(minHeight: 180)
-                        .focused($focusedField, equals: .noteField)
-                        .id(noteID)
-                } header: {
-                    Text("Note")
                 } //: Section
             } //: List
             .onChange(of: focusedField) { focusedField in
