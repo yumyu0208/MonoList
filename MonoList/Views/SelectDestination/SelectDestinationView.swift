@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SelectDestinationView: View {
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @EnvironmentObject var manager: MonoListManager
     @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) private var viewContext
@@ -47,10 +48,16 @@ struct SelectDestinationView: View {
                             saveData()
                         }
                     }) {
-                        ZStack {
+                        HStack {
                             Label("Add Folder", systemImage: "folder.badge.plus")
+                            Spacer()
                         }
                     } //: Button
+                    .inoperable(!isPlusPlan, padding: .defaultListInsets) {
+                        NavigationView {
+                            PlusPlanView(featureType: .folder)
+                        }
+                    }
                 } header: {
                     Label {
                         Text(itemList.name)

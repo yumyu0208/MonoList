@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemListCellView: View {
-    
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @Environment(\.deeplink) var deeplink
     
     let itemList: ItemList
@@ -54,8 +54,10 @@ struct ItemListCellView: View {
                 Button(action: duplicateAction) {
                     Label("Duplicate", systemImage: "plus.rectangle.on.rectangle")
                 }
-                Button(action: changeFolderAction) {
-                    Label("Move", systemImage: "folder")
+                if isPlusPlan {
+                    Button(action: changeFolderAction) {
+                        Label("Move", systemImage: "folder")
+                    }
                 }
                 Button(action: showInfoAction) {
                     Label("Info", systemImage: "info.circle")
@@ -78,18 +80,20 @@ struct ItemListCellView: View {
             } label: {
                 Label("Edit", systemImage: "pencil")
             }
-            .tint(.orange)
-            Button {
-                changeFolderAction()
-            } label: {
-                Label("Move", systemImage: "folder")
+            .tint(.accentColor)
+            if isPlusPlan {
+                Button {
+                    changeFolderAction()
+                } label: {
+                    Label("Move", systemImage: "folder")
+                }
             }
         }
         .swipeActions(edge: .leading) {
             Button(action: duplicateAction) {
                 Label("Duplicate", systemImage: "plus.rectangle.on.rectangle")
             }
-            .tint(.mint)
+            .tint(Color(itemList.color))
         }
         .onChange(of: deeplink) { deeplink in
             if let id = deeplink?.referenceId, id == itemList.id.uuidString {
