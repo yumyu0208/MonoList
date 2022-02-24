@@ -42,100 +42,100 @@ struct EditItemListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                ScrollViewReader { proxy in
-                    List {
-                        Section {
-                            ForEach(items) { item in
-                                if !item.isFault && !item.isDeleted {
-                                    EditItemCellView(item: item,
-                                                     focusedItem: focusedItem,
-                                    deleteAction: { item in
-                                        if let index = items.firstIndex(of: item) {
-                                            let isLastItem = (index == items.count-1)
-                                            deleteItems(offsets: IndexSet(integer: index), animation: isLastItem ? .none : .default)
-                                        }
-                                    }, addAction: { item in
-                                        focusedItem.wrappedValue = .row(id: item.id.uuidString)
-                                        if let index = items.firstIndex(of: item) {
-                                            withAnimation {
-                                                let newItem = addItem(name: "", order: index+1)
-                                                withAnimation {
-                                                    proxy.scrollTo(newItem, anchor: .bottom)
-                                                }
-                                                focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
-                                            }
-                                        }
-                                    })
-                                    .listRowSeparator(.visible)
-                                    .disabled(isEditing)
-                                    .swipeActions(edge: .trailing) {
-                                        Button(role: .destructive) {
+            if let itemList = itemList {
+                ZStack {
+                    ScrollViewReader { proxy in
+                        List {
+                            Section {
+                                ForEach(items) { item in
+                                    if !item.isFault && !item.isDeleted {
+                                        EditItemCellView(item: item,
+                                                         focusedItem: focusedItem,
+                                        deleteAction: { item in
                                             if let index = items.firstIndex(of: item) {
-                                                deleteItems(offsets: IndexSet(integer: index))
+                                                let isLastItem = (index == items.count-1)
+                                                deleteItems(offsets: IndexSet(integer: index), animation: isLastItem ? .none : .default)
                                             }
-                                        } label: {
-                                            Label("Delete", systemImage: "trash")
-                                        }
-                                        .tint(.red)
-                                    }
-                                    .swipeActions(edge: .leading) {
-                                        Button {
-                                            withAnimation {
-                                                item.isImportant.toggle()
-                                            }
-                                        } label: {
-                                            Label("Frag", systemImage: "exclamationmark")
-                                        }
-                                        .tint(.orange)
-                                    }
-                                    .id(item)
-                                }
-                            } //: ForEach
-                            .onDelete(perform: { indexSet in
-                                deleteItems(offsets: indexSet)
-                            })
-                            .onMove(perform: moveitem)
-                            if !isEditing {
-                                Button(action: {
-                                    let focusedItemNameIsEmpty = items.first(where: {
-                                        focusedItem.wrappedValue == .row(id: $0.id.uuidString)
-                                    })?.name != ""
-                                    guard focusedItemNameIsEmpty else { return }
-                                    withAnimation {
-                                        let newItem = addItem(name: "", order: items.count)
-                                        scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
-                                        for index in 0 ..< 50 {
-                                            if focusedItem.wrappedValue != .row(id: newItem.id.uuidString) {
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01*Double(index)) {
+                                        }, addAction: { item in
+                                            focusedItem.wrappedValue = .row(id: item.id.uuidString)
+                                            if let index = items.firstIndex(of: item) {
+                                                withAnimation {
+                                                    let newItem = addItem(name: "", order: index+1)
+                                                    withAnimation {
+                                                        proxy.scrollTo(newItem, anchor: .bottom)
+                                                    }
                                                     focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
                                                 }
-                                            } else {
-                                                break
+                                            }
+                                        })
+                                        .listRowSeparator(.visible)
+                                        .disabled(isEditing)
+                                        .swipeActions(edge: .trailing) {
+                                            Button(role: .destructive) {
+                                                if let index = items.firstIndex(of: item) {
+                                                    deleteItems(offsets: IndexSet(integer: index))
+                                                }
+                                            } label: {
+                                                Label("Delete", systemImage: "trash")
+                                            }
+                                            .tint(.red)
+                                        }
+                                        .swipeActions(edge: .leading) {
+                                            Button {
+                                                withAnimation {
+                                                    item.isImportant.toggle()
+                                                }
+                                            } label: {
+                                                Label("Frag", systemImage: "exclamationmark")
+                                            }
+                                            .tint(.orange)
+                                        }
+                                        .id(item)
+                                    }
+                                } //: ForEach
+                                .onDelete(perform: { indexSet in
+                                    deleteItems(offsets: indexSet)
+                                })
+                                .onMove(perform: moveitem)
+                                if !isEditing {
+                                    Button(action: {
+                                        let focusedItemNameIsEmpty = items.first(where: {
+                                            focusedItem.wrappedValue == .row(id: $0.id.uuidString)
+                                        })?.name != ""
+                                        guard focusedItemNameIsEmpty else { return }
+                                        withAnimation {
+                                            let newItem = addItem(name: "", order: items.count)
+                                            scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
+                                            for index in 0 ..< 50 {
+                                                if focusedItem.wrappedValue != .row(id: newItem.id.uuidString) {
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.01*Double(index)) {
+                                                        focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
+                                                    }
+                                                } else {
+                                                    break
+                                                }
+                                            }
+                                            for index in 0 ..< 70 {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01*Double(index)) {
+                                                    scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
+                                                }
                                             }
                                         }
-                                        for index in 0 ..< 70 {
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01*Double(index)) {
-                                                scrollViewProxy?.scrollTo(newItem, anchor: .bottom)
-                                            }
+                                    }) {
+                                        Label {
+                                            Text("New Item")
+                                                .foregroundStyle(.tint)
+                                        } icon: {
+                                            Image(systemName: "plus.circle.fill")
+                                                .foregroundStyle(.tint)
                                         }
+                                        .font(.body.bold())
+                                        .labelStyle(.titleAndIcon)
                                     }
-                                }) {
-                                    Label {
-                                        Text("New Item")
-                                            .foregroundStyle(.tint)
-                                    } icon: {
-                                        Image(systemName: "plus.circle.fill")
-                                            .foregroundStyle(.tint)
-                                    }
-                                    .font(.body.bold())
-                                    .labelStyle(.titleAndIcon)
+                                    .buttonStyle(.plain)
+                                    .padding(.leading, 8)
                                 }
-                                .buttonStyle(.plain)
-                                .padding(.leading, 8)
-                            }
-                        } header: {
-                            if let itemList = itemList {
+                            } header: {
                                 HStack {
                                     Spacer()
                                     HStack(spacing: 12) {
@@ -214,25 +214,25 @@ struct EditItemListView: View {
                                         .disabled(items.count == 1)
                                     }
                                 } //: HStack
-                            }
-                        } //: Section
-                    } //: List
-                    .listStyle(.plain)
-                    .opacity(items.isEmpty ? 0 : 1)
-                    .environment(\.editMode, editMode)
-                    .onAppear {
-                        scrollViewProxy = proxy
-                    }
-                } //: ScrollViewReader
-                if isShowingNoItems {
-                    NoItemsView()
-                        .animation(.easeOut(duration: 0.2), value: isShowingNoItems)
-                        .onTapGesture {
-                            withAnimation {
-                                let newItem = addItem(name: "", order: items.count)
-                                focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
-                            }
+                            } //: Section
+                        } //: List
+                        .listStyle(.plain)
+                        .opacity(items.isEmpty ? 0 : 1)
+                        .environment(\.editMode, editMode)
+                        .onAppear {
+                            scrollViewProxy = proxy
                         }
+                    } //: ScrollViewReader
+                    if isShowingNoItems {
+                        NoItemsView()
+                            .animation(.easeOut(duration: 0.2), value: isShowingNoItems)
+                            .onTapGesture {
+                                withAnimation {
+                                    let newItem = addItem(name: "", order: items.count)
+                                    focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
+                                }
+                            }
+                    }
                 }
             }
         } //: VStack

@@ -81,12 +81,11 @@ public class ItemList: NSManagedObject {
     }
     
     var stateId: String {
-        let listId = id.uuidString
         let unit = unitLabel
         let category = categoryIsHidden ? "t" : "f"
         let quantity = quantityIsHidden ? "t" : "f"
         let weight = weightIsHidden ? "t" : "f"
-        return "\(listId)\(unit)\(category)\(quantity)\(weight)"
+        return "\(unit)\(category)\(quantity)\(weight)"
     }
     
     typealias ChartData = (values: [Double], names: [String], images: [String], colors: [Color])
