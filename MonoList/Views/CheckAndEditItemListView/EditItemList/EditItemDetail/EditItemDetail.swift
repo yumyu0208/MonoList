@@ -320,6 +320,8 @@ struct EditItemDetail: View {
                             Label("Add Detail", systemImage: "plus.circle")
                                 .foregroundStyle(.tint)
                         } //: Menu
+                        .listRowBackground(Color.clear)
+                        .listRowInsets(.zeroListInsets)
                     } //: Section
                 }
             } //: List
