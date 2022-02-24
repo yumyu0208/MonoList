@@ -80,7 +80,7 @@ struct ItemListCellView: View {
             } label: {
                 Label("Edit", systemImage: "pencil")
             }
-            .tint(.accentColor)
+            .tint(.orange)
             if isPlusPlan {
                 Button {
                     changeFolderAction()
