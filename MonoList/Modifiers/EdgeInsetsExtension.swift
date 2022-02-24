@@ -15,4 +15,7 @@ extension EdgeInsets {
     static var zeroListInsets: EdgeInsets {
         return .init(top: 0, leading: 0, bottom: 0, trailing: 0)
     }
+    static var defaultGroupBoxInsets: EdgeInsets {
+        return .init(top: 20 , leading: 20, bottom: 20, trailing: 20)
+    }
 }

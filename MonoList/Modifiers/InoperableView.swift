@@ -10,21 +10,21 @@ import SwiftUI
 struct InoperableView<InoperableContent: View>: ViewModifier {
     
     let isInoperable: Bool
-    let inList: Bool
+    let padding: EdgeInsets
     let destination: InoperableContent
     
     @State var isShowingDestination: Bool = false
 
-    init(_ isInoperable: Bool, inList: Bool, @ViewBuilder destination: () -> InoperableContent) {
+    init(_ isInoperable: Bool, padding: EdgeInsets, @ViewBuilder destination: () -> InoperableContent) {
         self.isInoperable = isInoperable
-        self.inList = inList
+        self.padding = padding
         self.destination = destination()
     }
 
     func body(content: Content) -> some View {
         ZStack {
             content
-                .padding(inList ? .defaultListInsets : .zeroListInsets)
+                .padding(padding)
                 .zIndex(0)
             if isInoperable {
                 Rectangle()
@@ -46,10 +46,10 @@ struct InoperableView<InoperableContent: View>: ViewModifier {
 extension View {
   func inoperable<InoperableContent: View>(
     _ isInoperable: Bool,
-    inList: Bool,
+    padding: EdgeInsets,
     @ViewBuilder destination: @escaping () -> InoperableContent
   ) -> some View {
-      self.modifier(InoperableView(isInoperable, inList: inList, destination: destination))
+      self.modifier(InoperableView(isInoperable, padding: padding, destination: destination))
   }
 }
 
@@ -59,7 +59,7 @@ struct InoperableView_Previews: PreviewProvider {
             List {
                 Rectangle()
                     .foregroundColor(.blue)
-                    .inoperable(true, inList: true) {
+                    .inoperable(true, padding: .defaultListInsets) {
                         Text("Destination")
                     }
                     .listRowInsets(.zeroListInsets)

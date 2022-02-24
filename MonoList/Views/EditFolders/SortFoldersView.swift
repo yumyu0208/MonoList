@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct SortFoldersView: View {
-    
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @EnvironmentObject var manager: MonoListManager
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
@@ -70,7 +70,15 @@ struct SortFoldersView: View {
                                     saveData()
                                 }
                             }) {
-                                Label("Add Folder", systemImage: "folder.badge.plus")
+                                HStack {
+                                    Label("Add Folder", systemImage: "folder.badge.plus")
+                                    Spacer()
+                                }
+                            } //: Button
+                            .inoperable(!isPlusPlan, padding: .defaultListInsets) {
+                                NavigationView {
+                                    PlusPlanView(featureType: .folder)
+                                }
                             }
                         }
                     } header: {

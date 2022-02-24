@@ -14,9 +14,10 @@ struct PlusPlanView: View {
         case category
         case quantity
         case weight
+        case folder
         case catalog
         case alarm
-        static var all = [removeAds, category, quantity, weight, catalog, alarm]
+        static var all = [removeAds, category, quantity, weight, folder, catalog, alarm]
     }
     
     @Environment(\.dismiss) private var dismiss

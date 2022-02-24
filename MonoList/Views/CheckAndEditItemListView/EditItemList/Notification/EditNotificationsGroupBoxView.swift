@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditNotificationsGroupBoxView: View {
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var itemList: ItemList
@@ -52,9 +53,14 @@ struct EditNotificationsGroupBoxView: View {
                     NotificationListView(of: itemList)
                 }
             } //: VStack
+            .inoperable(!isPlusPlan, padding: .defaultGroupBoxInsets) {
+                NavigationView {
+                    PlusPlanView(featureType: .alarm)
+                }
+            }
         } //: GroupBox
         .animation(.easeOut(duration: 0.2), value: isActive)
-        .groupBoxStyle(.white)
+        .groupBoxStyle(.noPaddingWhite)
         .alert("This app is not allowed to send notifications", isPresented: $isShowingNoPermissionAlert) {
             Button {
                 if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {

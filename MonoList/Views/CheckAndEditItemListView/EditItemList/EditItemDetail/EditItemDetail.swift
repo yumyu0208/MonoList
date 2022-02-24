@@ -143,7 +143,7 @@ struct EditItemDetail: View {
                                 } //: Label
                             } //: HStack
                         }
-                        .inoperable(!isPlusPlan, inList: true) {
+                        .inoperable(!isPlusPlan, padding: .defaultListInsets) {
                             NavigationView {
                                 PlusPlanView(featureType: .category)
                             }
@@ -216,7 +216,7 @@ struct EditItemDetail: View {
                             }
                         } //: HStack
                         .animation(.easeOut(duration: 0.2), value: weight.isEmpty)
-                        .inoperable(!isPlusPlan, inList: true) {
+                        .inoperable(!isPlusPlan, padding: .defaultListInsets) {
                             NavigationView {
                                 PlusPlanView(featureType: .weight)
                             }
@@ -266,7 +266,7 @@ struct EditItemDetail: View {
                             .opacity(quantity.isEmpty ? 0 : 1)
                             .animation(.easeOut(duration: 0.2), value: quantity.isEmpty)
                         }
-                        .inoperable(!isPlusPlan, inList: true) {
+                        .inoperable(!isPlusPlan, padding: .defaultListInsets) {
                             NavigationView {
                                 PlusPlanView(featureType: .quantity)
                             }

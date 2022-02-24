@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct WhiteGroupBoxStyle: GroupBoxStyle {
+    var noPadding: Bool = false
     func makeBody(configuration: Configuration) -> some View {
         configuration.content
             .frame(maxWidth: .infinity)
-            .padding()
+            .padding(noPadding ? .zeroListInsets : .defaultGroupBoxInsets)
             .background(
-                RoundedRectangle(cornerRadius: 8).fill(Color(UIColor.secondarySystemGroupedBackground))
+                Rectangle().fill(Color(UIColor.secondarySystemGroupedBackground))
             )
             .overlay(configuration.label.padding(.leading, 4), alignment: .topLeading)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
 
 extension GroupBoxStyle where Self == WhiteGroupBoxStyle {
     static var white: WhiteGroupBoxStyle { .init() }
+    static var noPaddingWhite: WhiteGroupBoxStyle { .init(noPadding: true) }
 }
 
 struct WhiteGroupBoxStyle_Previews: PreviewProvider {

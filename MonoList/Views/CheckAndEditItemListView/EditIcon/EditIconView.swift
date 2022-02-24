@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditIconView: View {
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @Environment(\.dismiss) private var dismiss
     @State var manager = ListIconManager()
     @ObservedObject var itemList: ItemList
@@ -53,6 +54,11 @@ struct EditIconView: View {
                                 }
                             } //: ForEach
                         } //: LazyVGrid
+                        .inoperable(!isPlusPlan && !K.freeIconSections.contains(section.name), padding: .defaultListInsets) {
+                            NavigationView {
+                                PlusPlanView(featureType: .alarm)
+                            }
+                        }
                     } //: Section
                 } //: ForEach
             } //: List
