@@ -96,40 +96,42 @@ struct EditItemCellView: View, Equatable {
                     .foregroundStyle(.tint)
                     .padding(.vertical, 4)
                 } //: HStack
-                VStack(spacing: 4) {
-                    if let note = item.note {
-                        HStack(alignment: .center) {
-                            Text(note)
-                                .font(.callout)
-                                .foregroundStyle(.secondary)
-                            Spacer()
-                            Image(systemName: "info.circle")
-                                .imageScale(.large)
-                                .opacity(0)
+                if item.note != nil || (showCategory&&item.category != nil) || item.convertedPhoto != nil {
+                    VStack(spacing: 4) {
+                        if let note = item.note {
+                            HStack(alignment: .center) {
+                                Text(note)
+                                    .font(.callout)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Image(systemName: "info.circle")
+                                    .imageScale(.large)
+                                    .opacity(0)
+                            }
                         }
-                    }
-                    if showCategory, let category = item.category {
-                        HStack(alignment: .center) {
-                            CategoryLabelView(category: category)
-                            Spacer()
-                            Image(systemName: "info.circle")
-                                .imageScale(.large)
-                                .opacity(0)
+                        if showCategory, let category = item.category {
+                            HStack(alignment: .center) {
+                                CategoryLabelView(category: category)
+                                Spacer()
+                                Image(systemName: "info.circle")
+                                    .imageScale(.large)
+                                    .opacity(0)
+                            }
                         }
-                    }
-                    if let image = item.convertedPhoto {
-                        HStack(alignment: .center) {
-                            ImageLabelView(image: image, scale: 36)
-                            Spacer()
-                            Image(systemName: "info.circle")
-                                .imageScale(.large)
-                                .opacity(0)
+                        if let image = item.convertedPhoto {
+                            HStack(alignment: .center) {
+                                ImageLabelView(image: image, scale: 36)
+                                Spacer()
+                                Image(systemName: "info.circle")
+                                    .imageScale(.large)
+                                    .opacity(0)
+                            }
                         }
+                    } //: VStack
+                    .padding(.bottom, 4)
+                    .onTapGesture {
+                        isEditingItemDetail = true
                     }
-                }
-                .padding(.bottom, 4)
-                .onTapGesture {
-                    isEditingItemDetail = true
                 }
             } //: VStack
             .padding(.leading, 8)

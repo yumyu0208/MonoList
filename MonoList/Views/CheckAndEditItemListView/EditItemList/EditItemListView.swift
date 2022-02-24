@@ -135,78 +135,86 @@ struct EditItemListView: View {
                                 .padding(.leading, 8)
                             }
                         } header: {
-                            HStack {
-                                Spacer()
-                                HStack(spacing: 12) {
-                                    Menu {
-                                        Button {
-                                            withAnimation {
-                                                itemList?.sortItems(order: .category)
-                                                saveData()
-                                            }
-                                        } label: {
-                                            Label("Category", systemImage: "tag")
-                                        }
-                                        Button {
-                                            withAnimation {
-                                                itemList?.sortItems(order: .important)
-                                                saveData()
-                                            }
-                                        } label: {
-                                            Label("Priority", systemImage: "exclamationmark")
-                                        }
+                            if let itemList = itemList {
+                                HStack {
+                                    Spacer()
+                                    HStack(spacing: 12) {
                                         Menu {
                                             Button {
                                                 withAnimation {
-                                                    itemList?.sortItems(order: .light)
+                                                    itemList.sortItems(order: .important)
                                                     saveData()
                                                 }
                                             } label: {
-                                                Label("Ascending", systemImage: "arrow.up.right")
+                                                Label("Priority", systemImage: "exclamationmark")
                                             }
-                                            Button {
-                                                withAnimation {
-                                                    itemList?.sortItems(order: .heavy)
-                                                    saveData()
+                                            if !itemList.categoryIsHidden {
+                                                Button {
+                                                    withAnimation {
+                                                        itemList.sortItems(order: .category)
+                                                        saveData()
+                                                    }
+                                                } label: {
+                                                    Label("Category", systemImage: "tag")
                                                 }
-                                            } label: {
-                                                Label("Descending", systemImage: "arrow.down.right")
+                                            }
+                                            if !itemList.weightIsHidden {
+                                                Menu {
+                                                    Button {
+                                                        withAnimation {
+                                                            itemList.sortItems(order: .light)
+                                                            saveData()
+                                                        }
+                                                    } label: {
+                                                        Label("Ascending", systemImage: "arrow.up.right")
+                                                    }
+                                                    Button {
+                                                        withAnimation {
+                                                            itemList.sortItems(order: .heavy)
+                                                            saveData()
+                                                        }
+                                                    } label: {
+                                                        Label("Descending", systemImage: "arrow.down.right")
+                                                    }
+                                                } label: {
+                                                    Label("Weight", systemImage: "scalemass")
+                                                }
+                                            }
+                                            if !itemList.quantityIsHidden {
+                                                Menu {
+                                                    Button {
+                                                        withAnimation {
+                                                            itemList.sortItems(order: .few)
+                                                            saveData()
+                                                        }
+                                                    } label: {
+                                                        Label("Ascending", systemImage: "arrow.up.right")
+                                                    }
+                                                    Button {
+                                                        withAnimation {
+                                                            itemList.sortItems(order: .many)
+                                                            saveData()
+                                                        }
+                                                    } label: {
+                                                        Label("Descending", systemImage: "arrow.down.right")
+                                                    }
+                                                } label: {
+                                                    Label("Quantity", systemImage: "number")
+                                                }
                                             }
                                         } label: {
-                                            Label("Weight", systemImage: "scalemass")
-                                        }
-                                        Menu {
-                                            Button {
-                                                withAnimation {
-                                                    itemList?.sortItems(order: .few)
-                                                    saveData()
-                                                }
-                                            } label: {
-                                                Label("Ascending", systemImage: "arrow.up.right")
+                                            EditLabelView {}
+                                                .environment(\.editMode, editMode)
+                                        } primaryAction: {
+                                            listNameTextFieldIsFocused.wrappedValue = false
+                                            withAnimation {
+                                                editMode?.wrappedValue = isEditing ? .inactive : .active
                                             }
-                                            Button {
-                                                withAnimation {
-                                                    itemList?.sortItems(order: .many)
-                                                    saveData()
-                                                }
-                                            } label: {
-                                                Label("Descending", systemImage: "arrow.down.right")
-                                            }
-                                        } label: {
-                                            Label("Quantity", systemImage: "number")
                                         }
-                                    } label: {
-                                        EditLabelView {}
-                                            .environment(\.editMode, editMode)
-                                    } primaryAction: {
-                                        listNameTextFieldIsFocused.wrappedValue = false
-                                        withAnimation {
-                                            editMode?.wrappedValue = isEditing ? .inactive : .active
-                                        }
+                                        .disabled(items.count == 1)
                                     }
-                                    .disabled(items.count == 1)
-                                }
-                            } //: HStack
+                                } //: HStack
+                            }
                         } //: Section
                     } //: List
                     .listStyle(.plain)
