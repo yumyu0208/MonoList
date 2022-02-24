@@ -10,6 +10,8 @@
 		4086694DC62426D57D5D4CE3 /* Pods_MonoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395E573228CF870EA90A642E /* Pods_MonoList.framework */; };
 		AA0C50EF27C6FE6300FBC56B /* NomalCheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50EE27C6FE6200FBC56B /* NomalCheckListView.swift */; };
 		AA0C50F127C6FEDA00FBC56B /* PhotoCheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50F027C6FEDA00FBC56B /* PhotoCheckListView.swift */; };
+		AA0C50F327C7017400FBC56B /* InoperableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50F227C7017400FBC56B /* InoperableView.swift */; };
+		AA0C50F527C707D400FBC56B /* EdgeInsetsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50F427C707D400FBC56B /* EdgeInsetsExtension.swift */; };
 		AA2E0C272789C92400D23B6B /* ItemListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E0C262789C92400D23B6B /* ItemListCellView.swift */; };
 		AA340B8E27BC880B0080DD33 /* MLImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */; };
 		AA340B9027BC98760080DD33 /* PhotoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */; };
@@ -129,6 +131,8 @@
 		A5E9CEE8228BBDA72956D0F6 /* Pods-MonoList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MonoList.release.xcconfig"; path = "Target Support Files/Pods-MonoList/Pods-MonoList.release.xcconfig"; sourceTree = "<group>"; };
 		AA0C50EE27C6FE6200FBC56B /* NomalCheckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomalCheckListView.swift; sourceTree = "<group>"; };
 		AA0C50F027C6FEDA00FBC56B /* PhotoCheckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCheckListView.swift; sourceTree = "<group>"; };
+		AA0C50F227C7017400FBC56B /* InoperableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InoperableView.swift; sourceTree = "<group>"; };
+		AA0C50F427C707D400FBC56B /* EdgeInsetsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetsExtension.swift; sourceTree = "<group>"; };
 		AA2E0C262789C92400D23B6B /* ItemListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCellView.swift; sourceTree = "<group>"; };
 		AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLImagePicker.swift; sourceTree = "<group>"; };
 		AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButtonView.swift; sourceTree = "<group>"; };
@@ -389,6 +393,8 @@
 			children = (
 				AA469413279A735B0083142D /* NumberView.swift */,
 				AA3675E027B5E73800611D8A /* RichAlert.swift */,
+				AA0C50F227C7017400FBC56B /* InoperableView.swift */,
+				AA0C50F427C707D400FBC56B /* EdgeInsetsExtension.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -807,6 +813,7 @@
 				AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */,
 				AA8750BD278D3E5E00540BA0 /* OthersGroupBoxView.swift in Sources */,
 				AAB52BE227C32A970050A912 /* EditSpecificDateAndTimeNotificationView.swift in Sources */,
+				AA0C50F327C7017400FBC56B /* InoperableView.swift in Sources */,
 				AA351A7A2776BB5300F53BDC /* HomeView.swift in Sources */,
 				AA3675CB27B0D59500611D8A /* SettingsView.swift in Sources */,
 				AAC3DDC8278FE97200983100 /* SelectDestinationView.swift in Sources */,
@@ -862,6 +869,7 @@
 				AACBBC7D279C2F2200A42108 /* RoundedGrayTextFieldStyle.swift in Sources */,
 				AA7E1E8C278ED9840080D80F /* EditRepeatNotificationView.swift in Sources */,
 				AAC3DDCE27911E4D00983100 /* SelectCategoryView.swift in Sources */,
+				AA0C50F527C707D400FBC56B /* EdgeInsetsExtension.swift in Sources */,
 				AACBBC77279AFF2F00A42108 /* NoItemsView.swift in Sources */,
 				AAC3DDD72791AA4800983100 /* CheckListView.swift in Sources */,
 				AACBBC72279AF8CD00A42108 /* Category+CoreDataClass.swift in Sources */,
