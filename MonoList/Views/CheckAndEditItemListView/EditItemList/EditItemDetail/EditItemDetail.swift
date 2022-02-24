@@ -144,7 +144,9 @@ struct EditItemDetail: View {
                             } //: HStack
                         }
                         .inoperable(!isPlusPlan, inList: true) {
-                            PlusPlanView(featureType: .category)
+                            NavigationView {
+                                PlusPlanView(featureType: .category)
+                            }
                         }
                     } header: {
                         HStack {
@@ -215,7 +217,9 @@ struct EditItemDetail: View {
                         } //: HStack
                         .animation(.easeOut(duration: 0.2), value: weight.isEmpty)
                         .inoperable(!isPlusPlan, inList: true) {
-                            PlusPlanView(featureType: .weight)
+                            NavigationView {
+                                PlusPlanView(featureType: .weight)
+                            }
                         }
                     } header: {
                         HStack {
@@ -263,7 +267,9 @@ struct EditItemDetail: View {
                             .animation(.easeOut(duration: 0.2), value: quantity.isEmpty)
                         }
                         .inoperable(!isPlusPlan, inList: true) {
-                            PlusPlanView(featureType: .quantity)
+                            NavigationView {
+                                PlusPlanView(featureType: .quantity)
+                            }
                         }
                     } header: {
                         HStack {

@@ -19,10 +19,19 @@ struct PlusPlanView: View {
         static var all = [removeAds, category, quantity, weight, catalog, alarm]
     }
     
+    @Environment(\.dismiss) private var dismiss
+    
     @State var featureType: FeatureType = .removeAds
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello World")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    XButtonView {
+                        dismiss()
+                    }
+                }
+            }
     }
 }
 
