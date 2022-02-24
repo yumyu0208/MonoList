@@ -32,8 +32,13 @@ struct SelectCategoryView: View {
                         }
                     } label: {
                         HStack {
-                            Text("None")
-                                .foregroundColor(.primary)
+                            Label {
+                                Text("None")
+                                    .foregroundColor(.primary)
+                            } icon: {
+                                Image(systemName: "tag.slash")
+                                    .foregroundColor(.accentColor)
+                            }
                             Spacer()
                             Image(systemName: "checkmark")
                                 .font(.body.bold())

@@ -39,6 +39,7 @@ struct InoperableView<InoperableContent: View>: ViewModifier {
                     }
             }
         } //: ZStack
+        .listRowInsets(.zeroListInsets)
     }
 }
 

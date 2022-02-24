@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @EnvironmentObject var manager: MonoListManager
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
@@ -36,6 +37,12 @@ struct SettingsView: View {
                 Section {
                     NavigationLink(destination: CategoriesView()) {
                         Label("Categories", systemImage: "tag")
+                    }
+                }
+                
+                Section {
+                    Toggle(isOn: $isPlusPlan) {
+                        Label("MONOLIST+", systemImage: "plus")
                     }
                 }
             }

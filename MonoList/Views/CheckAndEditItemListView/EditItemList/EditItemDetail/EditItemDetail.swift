@@ -16,6 +16,8 @@ struct EditItemDetail: View {
         case noteField
     }
     
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
+    
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @Environment(\.deeplink) var deeplink
@@ -135,11 +137,14 @@ struct EditItemDetail: View {
                                     Text(item.category?.name ?? "None")
                                         .foregroundStyle(.primary)
                                 } icon: {
-                                    Image(systemName: item.category?.image ?? "tag")
+                                    Image(systemName: item.category?.image ?? "tag.slash")
                                         .foregroundStyle(.tint)
                                         .font(.headline)
                                 } //: Label
                             } //: HStack
+                        }
+                        .inoperable(!isPlusPlan, inList: true) {
+                            PlusPlanView(featureType: .category)
                         }
                     } header: {
                         HStack {
@@ -150,7 +155,7 @@ struct EditItemDetail: View {
                                     categoryIsHidden = true
                                 }
                             } label: {
-                                Text("hide")
+                                Text("Hide")
                                     .textCase(nil)
                             }
                         }
@@ -209,6 +214,9 @@ struct EditItemDetail: View {
                             }
                         } //: HStack
                         .animation(.easeOut(duration: 0.2), value: weight.isEmpty)
+                        .inoperable(!isPlusPlan, inList: true) {
+                            PlusPlanView(featureType: .weight)
+                        }
                     } header: {
                         HStack {
                             HStack(spacing: 0) {
@@ -223,7 +231,7 @@ struct EditItemDetail: View {
                                     weightIsHidden = true
                                 }
                             } label: {
-                                Text("hide")
+                                Text("Hide")
                                     .textCase(nil)
                             }
                         } //: HStack
@@ -254,6 +262,9 @@ struct EditItemDetail: View {
                             .opacity(quantity.isEmpty ? 0 : 1)
                             .animation(.easeOut(duration: 0.2), value: quantity.isEmpty)
                         }
+                        .inoperable(!isPlusPlan, inList: true) {
+                            PlusPlanView(featureType: .quantity)
+                        }
                     } header: {
                         HStack {
                             Text("Quantity")
@@ -263,7 +274,7 @@ struct EditItemDetail: View {
                                     quantityIsHidden = true
                                 }
                             } label: {
-                                Text("hide")
+                                Text("Hide")
                                     .textCase(nil)
                             }
                         }

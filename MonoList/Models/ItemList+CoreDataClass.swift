@@ -101,8 +101,8 @@ public class ItemList: NSManagedObject {
         guard !categoriesAndTotalValues.isEmpty else { return nil }
         
         let totalValues = categoriesAndTotalValues.map { $0.totalValue }
-        let names = categoriesAndTotalValues.map { $0.category?.name ?? "No Category" }
-        let images = categoriesAndTotalValues.map { $0.category?.image ?? "tag" }
+        let names = categoriesAndTotalValues.map { $0.category?.name ?? "Uncategorized" }
+        let images = categoriesAndTotalValues.map { $0.category?.image ?? "tag.slash" }
         let colors = categoriesAndTotalValues.enumerated().map { index, _ -> Color in
             let numberOfAll = categoriesAndTotalValues.count
             guard let listColor = UIColor(named: color),
