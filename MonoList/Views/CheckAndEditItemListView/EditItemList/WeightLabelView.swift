@@ -18,12 +18,16 @@ struct WeightLabelView: View {
                 .opacity(0)
             Text("\(value.string)\(unitLabel)")
         }
-            .font(.caption.bold())
-            .foregroundColor(.white)
-            .padding(.vertical, 4)
-            .padding(.horizontal, 8)
-            .background(.tint)
-            .clipShape(Capsule())
+        .font(.system(.caption, design: .rounded).bold())
+        .foregroundStyle(.primary)
+        .padding(.vertical, 4)
+        .padding(.horizontal, 8)
+        .background {
+            Rectangle()
+                .foregroundStyle(.tint)
+                .opacity(0.5)
+        }
+        .clipShape(Capsule())
     }
 }
 

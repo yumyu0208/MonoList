@@ -17,12 +17,16 @@ struct QuantityLabelView: View {
             Image(systemName: "circle")
                 .opacity(0)
             Text(String(value))
-                .foregroundColor(.white)
+                .foregroundStyle(.primary)
         } //: ZStack
-        .font(.caption.bold())
+        .font(.system(.caption, design: .rounded).bold())
         .padding(.vertical, 4)
         .padding(.horizontal, 4)
-        .background(.tint)
+        .background {
+            Rectangle()
+                .foregroundStyle(.tint)
+                .opacity(0.5)
+        }
         .clipShape(Capsule())
     }
 }
