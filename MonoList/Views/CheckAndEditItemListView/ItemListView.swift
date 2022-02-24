@@ -117,6 +117,7 @@ struct ItemListView: View {
                         }
                     }
                 EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem)
+                    .id(itemList.stateId)
                     .opacity(isEditMode ? 1 : 0)
                     .environment(\.editMode, $editMode)
                 CheckListView(of: itemList, allDoneAction: {
@@ -129,7 +130,8 @@ struct ItemListView: View {
                     showingImage = image
                     isShowingImageViewer = true
                 })
-                .opacity(isEditMode || itemsIsEmpty ? 0 : 1)
+                    .id(itemList.stateId)
+                    .opacity(isEditMode || itemsIsEmpty ? 0 : 1)
             } //: ZStack
             .tint(Color(itemList.color))
         } //: VStack

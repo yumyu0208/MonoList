@@ -80,6 +80,15 @@ public class ItemList: NSManagedObject {
         return notifications.map { $0.id.uuidString }
     }
     
+    var stateId: String {
+        let listId = id.uuidString
+        let unit = unitLabel
+        let category = categoryIsHidden ? "t" : "f"
+        let quantity = quantityIsHidden ? "t" : "f"
+        let weight = weightIsHidden ? "t" : "f"
+        return "\(listId)\(unit)\(category)\(quantity)\(weight)"
+    }
+    
     typealias ChartData = (values: [Double], names: [String], images: [String], colors: [Color])
     
     func weightChartData(_ context: NSManagedObjectContext) -> ChartData? {
