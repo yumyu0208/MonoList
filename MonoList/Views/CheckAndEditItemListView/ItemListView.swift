@@ -447,6 +447,8 @@ struct ItemListView: View {
                 }
             }
             viewContext.delete(itemList)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             saveData(update: false)
         }
     }
