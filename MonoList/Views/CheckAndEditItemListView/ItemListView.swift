@@ -473,6 +473,12 @@ struct ItemListView: View {
             itemList.name = "New List".localized
         } else if !itemListName.isEmpty && itemList.name != itemListName {
             itemList.name = itemListName
+            if let notifications = itemList.notifications?.allObjects as? [Notification] {
+                let manager = NotificationManager()
+                manager.deletePendingNotificationRequests(notifications)
+                manager.setLocalNotifications(notifications)
+                saveData(update: false)
+            }
         }
         if itemList.iconName != itemListIconName {
             itemList.iconName = itemListIconName

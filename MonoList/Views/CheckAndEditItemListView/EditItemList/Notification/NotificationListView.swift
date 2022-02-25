@@ -78,6 +78,7 @@ struct NotificationListView: View {
                         Button {
                             withAnimation(.easeOut(duration: 0.2)) {
                                 newNotification = itemList?.createNewRepeatNotification(weekdays: K.weekday.allWeekdays, time: Notification.defaultDate, viewContext)
+                                saveData()
                             }
                             isEditingNewRepeatNotification = true
                         } label: {
@@ -86,6 +87,7 @@ struct NotificationListView: View {
                         Button {
                             withAnimation(.easeOut(duration: 0.2)) {
                                 newNotification = itemList?.createNewSpecificDateAndTimeNotification(time: Notification.defaultDate, viewContext)
+                                saveData()
                             }
                             isEditingNewSpecificDateAndTimeNotification = true
                         } label: {
