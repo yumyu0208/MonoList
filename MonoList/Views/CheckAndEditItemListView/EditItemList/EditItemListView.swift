@@ -236,6 +236,7 @@ struct EditItemListView: View {
                 }
             }
         } //: VStack
+        .padding(.top, 8)
     }
     
     private func saveData() {
