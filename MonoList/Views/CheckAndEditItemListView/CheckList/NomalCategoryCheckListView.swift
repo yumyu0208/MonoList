@@ -16,16 +16,7 @@ struct NomalCategoryCheckListView: View {
     
     var body: some View {
         ScrollView {
-            
             VStack(spacing: 28) {
-                let itemsInNoneCategory = items.filter { $0.category == nil }
-                if !itemsInNoneCategory.isEmpty {
-                    VStack(spacing: 20) {
-                        ForEach(itemsInNoneCategory) { item in
-                            CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButtonAction, showImageViewerAction: showImageViewerAction)
-                        } //: VStack
-                    } //: VStack
-                }
                 ForEach(categories) { category in
                     let itemsInThisCategory = items.filter { $0.category == category }
                     if !itemsInThisCategory.isEmpty {
@@ -39,6 +30,17 @@ struct NomalCategoryCheckListView: View {
                         } //: VStack
                     }
                 } //: ForEach
+                let itemsInNoneCategory = items.filter { $0.category == nil }
+                if !itemsInNoneCategory.isEmpty {
+                    VStack(spacing: 20) {
+                        CategoryHeaderView()
+                        VStack(spacing: 20) {
+                            ForEach(itemsInNoneCategory) { item in
+                                CheckItemCell(item: item, showAndHideUndoButton: showAndHideUndoButtonAction, showImageViewerAction: showImageViewerAction)
+                            } //: VStack
+                        } //: VStack
+                    } // VStack
+                }
             } //: VStack
             .frame(maxWidth: .infinity)
             .padding(.horizontal)

@@ -17,16 +17,6 @@ struct PhotoCategoryCheckListView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 12) {
-                let itemsInNoneCategory = items.filter { $0.category == nil }
-                if !itemsInNoneCategory.isEmpty {
-                    Section {
-                        ForEach(itemsInNoneCategory) { item in
-                            PhotoCheckItemCell(item: item,
-                                               showAndHideUndoButton: showAndHideUndoButtonAction,
-                                               showImageViewerAction: showImageViewerAction)
-                        } //: VStack
-                    } //: Section
-                }
                 ForEach(categories) { category in
                     let itemsInThisCategory = items.filter { $0.category == category }
                     if !itemsInThisCategory.isEmpty {
@@ -39,7 +29,17 @@ struct PhotoCategoryCheckListView: View {
                         } //: Section
                     }
                 } //: ForEach
-            }
+                let itemsInNoneCategory = items.filter { $0.category == nil }
+                if !itemsInNoneCategory.isEmpty {
+                    Section(header: CategoryHeaderView().padding(.top, 8)) {
+                        ForEach(itemsInNoneCategory) { item in
+                            PhotoCheckItemCell(item: item,
+                                               showAndHideUndoButton: showAndHideUndoButtonAction,
+                                               showImageViewerAction: showImageViewerAction)
+                        } //: VStack
+                    } //: Section
+                }
+            } //: LazyVGrid
             .frame(maxWidth: .infinity)
             .padding(.horizontal)
             .padding(.vertical, 20)
