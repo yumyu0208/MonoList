@@ -140,6 +140,12 @@ struct EditItemListView: View {
                                 }
                             } header: {
                                 HStack {
+                                    if let count = itemList.items?.count {
+                                        Text("\(count)")
+                                            .foregroundColor(.primary)
+                                            .offset(x: 0, y: 2)
+                                            .id(count)
+                                    }
                                     Spacer()
                                     HStack(spacing: 12) {
                                         Menu {

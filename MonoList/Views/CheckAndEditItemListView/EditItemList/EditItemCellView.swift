@@ -87,11 +87,11 @@ struct EditItemCellView: View, Equatable {
                             }
                     }
                     Button {
-                        dismissKeyboardAction()
                         if item.name.isEmpty {
                             item.name = "New Item"
                         }
                         isEditingItemDetail = true
+                        dismissKeyboardAction()
                     } label: {
                         Image(systemName: "info.circle")
                             .imageScale(.large)
