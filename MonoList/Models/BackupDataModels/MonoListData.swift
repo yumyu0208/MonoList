@@ -33,7 +33,7 @@ struct MonoListData: Codable {
         do {
             let retrievedData = try Data(contentsOf: getArchiveURL(of: source))
             let decodedData = try PropertyListDecoder().decode(MonoListData.self, from: retrievedData)
-            decodedData.folders.forEach { folderData in
+            for folderData in decodedData.folders.sorted(by: { $0.order < $1.order }) {
                 folderData.createFolder(context: context)
             }
             saveData(context)

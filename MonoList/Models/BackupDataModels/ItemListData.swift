@@ -54,8 +54,10 @@ struct ItemListData: Codable {
         itemList.categoryIsHidden = categoryIsHidden
         itemList.weightIsHidden = weightIsHidden
         itemList.quantityIsHidden = quantityIsHidden
-        itemDataArray?.forEach {
-            itemList.addToItems($0.createItem(context: context))
+        if let itemDataArray = itemDataArray?.sorted(by: { $0.order < $1.order }) {
+            for itemData in itemDataArray {
+                itemList.addToItems(itemData.createItem(context: context))
+            }
         }
         notificationDataArray?.forEach {
             itemList.addToNotifications($0.createNotification(context: context))

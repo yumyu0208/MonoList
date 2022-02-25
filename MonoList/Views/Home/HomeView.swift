@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
+    @AppStorage(K.key.isInitialLaunch) private var isInitialLaunch: Bool = true
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.deeplink) var deeplink
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
@@ -153,9 +154,10 @@ struct HomeView: View {
             .navigationBarHidden(true)
         } //: Navigation
         .onAppear {
-            if folders.isEmpty {
-                manager.createSamples(context: viewContext)
+            if isInitialLaunch && folders.isEmpty {
+                MonoListData.loadData(from: .sample, viewContext)
             }
+            isInitialLaunch = false
             manager.orderFolder(context: viewContext)
             saveData()
             NotificationManager().checkNotificationSettings(viewContext)

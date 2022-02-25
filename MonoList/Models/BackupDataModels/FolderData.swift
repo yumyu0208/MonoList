@@ -19,8 +19,10 @@ struct FolderData: Codable {
         folder.image = image
         folder.name = name
         folder.order = Int32(order)
-        itemListDataArray?.forEach {
-            folder.addToItemLists($0.createItemList(context: context))
+        if let itemListDataArray = itemListDataArray?.sorted(by: { $0.order < $1.order }) {
+            for itemListData in itemListDataArray {
+                folder.addToItemLists(itemListData.createItemList(context: context))
+            }
         }
     }
 }
