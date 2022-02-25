@@ -62,12 +62,17 @@ struct EditItemListView: View {
                                         }, addAction: { item in
                                             focusedItem.wrappedValue = .row(id: item.id.uuidString)
                                             if let index = items.firstIndex(of: item) {
-                                                withAnimation {
+                                                withAnimation(.easeOut(duration: 0.2)) {
                                                     let newItem = addItem(name: "", order: index+1)
                                                     withAnimation {
                                                         proxy.scrollTo(newItem, anchor: .bottom)
                                                     }
                                                     focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                                        withAnimation(.easeOut(duration: 0.2)) {
+                                                            proxy.scrollTo(newItem, anchor: .bottom)
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }, dismissKeyboardAction: dismissKeyboardAction)
