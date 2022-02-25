@@ -16,8 +16,9 @@
 		AA0C50FC27C8810500FBC56B /* MonoListSampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA0C50FB27C8810400FBC56B /* MonoListSampleData.plist */; };
 		AA0C50FE27C8816800FBC56B /* MonoListCatalogData.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA0C50FD27C8816800FBC56B /* MonoListCatalogData.plist */; };
 		AA0C510027C8821300FBC56B /* DataManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50FF27C8821300FBC56B /* DataManagementView.swift */; };
+		AA0C510227C8C6B400FBC56B /* MLImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C510127C8C6B400FBC56B /* MLImagePicker.swift */; };
+		AA0C510427C8C74900FBC56B /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C510327C8C74900FBC56B /* PhotoCaptureView.swift */; };
 		AA2E0C272789C92400D23B6B /* ItemListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E0C262789C92400D23B6B /* ItemListCellView.swift */; };
-		AA340B8E27BC880B0080DD33 /* MLImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */; };
 		AA340B9027BC98760080DD33 /* PhotoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */; };
 		AA340B9227BCA56D0080DD33 /* SampleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AA340B9127BCA56D0080DD33 /* SampleImage.png */; };
 		AA340B9827BCCE9A0080DD33 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B9727BCCE9A0080DD33 /* UIImageExtension.swift */; };
@@ -141,8 +142,9 @@
 		AA0C50FB27C8810400FBC56B /* MonoListSampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MonoListSampleData.plist; sourceTree = "<group>"; };
 		AA0C50FD27C8816800FBC56B /* MonoListCatalogData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MonoListCatalogData.plist; sourceTree = "<group>"; };
 		AA0C50FF27C8821300FBC56B /* DataManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagementView.swift; sourceTree = "<group>"; };
+		AA0C510127C8C6B400FBC56B /* MLImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLImagePicker.swift; sourceTree = "<group>"; };
+		AA0C510327C8C74900FBC56B /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
 		AA2E0C262789C92400D23B6B /* ItemListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCellView.swift; sourceTree = "<group>"; };
-		AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLImagePicker.swift; sourceTree = "<group>"; };
 		AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButtonView.swift; sourceTree = "<group>"; };
 		AA340B9127BCA56D0080DD33 /* SampleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SampleImage.png; sourceTree = "<group>"; };
 		AA340B9727BCCE9A0080DD33 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -290,7 +292,8 @@
 		AA340B8C27BC879E0080DD33 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
-				AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */,
+				AA0C510127C8C6B400FBC56B /* MLImagePicker.swift */,
+				AA0C510327C8C74900FBC56B /* PhotoCaptureView.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -857,7 +860,6 @@
 				AA3675D127B2495C00611D8A /* WeightView.swift in Sources */,
 				AAB52BE527C34AC40050A912 /* Deeplinker.swift in Sources */,
 				AAA8867A27A3E76E00FD4D5E /* ListIcon.swift in Sources */,
-				AA340B8E27BC880B0080DD33 /* MLImagePicker.swift in Sources */,
 				AA3675BF27B0AED000611D8A /* NotificationData.swift in Sources */,
 				AAFF273127BE96B3000585EE /* PhotoCheckMarkView.swift in Sources */,
 				AAFF272B27BE8293000585EE /* NomalCategoryCheckListView.swift in Sources */,
@@ -865,6 +867,7 @@
 				AAA8867B27A3E76E00FD4D5E /* ListIconManager.swift in Sources */,
 				AAC3DDDB2791D68A00983100 /* ItemListView.swift in Sources */,
 				AA340B9027BC98760080DD33 /* PhotoButtonView.swift in Sources */,
+				AA0C510427C8C74900FBC56B /* PhotoCaptureView.swift in Sources */,
 				AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */,
 				AAFF272D27BE85A6000585EE /* PhotoCategoryCheckListView.swift in Sources */,
 				AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */,
@@ -892,6 +895,7 @@
 				AACBBC7D279C2F2200A42108 /* RoundedGrayTextFieldStyle.swift in Sources */,
 				AA7E1E8C278ED9840080D80F /* EditRepeatNotificationView.swift in Sources */,
 				AAC3DDCE27911E4D00983100 /* SelectCategoryView.swift in Sources */,
+				AA0C510227C8C6B400FBC56B /* MLImagePicker.swift in Sources */,
 				AA0C50F527C707D400FBC56B /* EdgeInsetsExtension.swift in Sources */,
 				AACBBC77279AFF2F00A42108 /* NoItemsView.swift in Sources */,
 				AA0C50F727C70FE800FBC56B /* PlusPlanView.swift in Sources */,

@@ -81,16 +81,10 @@ struct PhotoButtonView: View {
             Text("Are you sure you want to delete this photo?")
         }
         .sheet(isPresented: $isShowingImagePicker) {
-            MLImagePicker(sourceType: .photoLibrary) { data in
-                imageData = data
-            }
-            .ignoresSafeArea(.all)
+            PhotoCaptureView(showImagePicker: $isShowingImagePicker, data: $imageData, sourceType: .photoLibrary)
         }
         .fullScreenCover(isPresented: $isShowingCamera) {
-            MLImagePicker(sourceType: .camera) { data in
-                imageData = data
-            }
-            .ignoresSafeArea(.all)
+            PhotoCaptureView(showImagePicker: $isShowingCamera, data: $imageData, sourceType: .camera)
         }
         .onChange(of: deeplink) { deeplink in
             if deeplink != nil {
