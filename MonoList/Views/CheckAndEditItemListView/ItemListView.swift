@@ -47,7 +47,7 @@ struct ItemListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: isEditMode ? 14 : 8) {
+            HStack(spacing: isEditMode ? 10 : 2) {
                 Group {
                     Button {
                         if isEditMode {
@@ -91,7 +91,7 @@ struct ItemListView: View {
                             saveDataIfNeeded()
                         }
                 }
-                .font(.title.bold())
+                .font(.title3.bold())
                 Button {
                     itemListName = ""
                     listNameTextFieldIsFocused = true
@@ -105,7 +105,6 @@ struct ItemListView: View {
                 .animation(.easeOut(duration: 0.2), value: itemListName.isEmpty)
             } //: HStack
             .padding(.horizontal)
-            .padding(.vertical, 8)
             .tint(Color(itemList.color))
             .disabled(isEditing)
             ZStack {

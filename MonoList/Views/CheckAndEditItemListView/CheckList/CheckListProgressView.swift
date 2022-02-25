@@ -70,19 +70,20 @@ struct CheckListProgressView: View {
                         Spacer(minLength: 0)
                     }
                 }
-                Text("000%")
-                    .opacity(0)
+                Group {
+                    if showPercentage {
+                        Text("100%")
+                    } else {
+                        Text("\(numberOfAllItems)/\(numberOfAllItems)")
+                    }
+                }
+                .font(.system(.headline, design: .rounded))
+                .multilineTextAlignment(.trailing)
+                .opacity(0)
             } //: HStack
         )
         .padding(.horizontal)
-        .padding(.vertical, 4)
         .contentShape(Rectangle())
-        .onTapGesture {
-            percentage = completePercentage
-            withAnimation {
-                showPercentage.toggle()
-            }
-        }
         .onAppear {
             percentage = completePercentage
         }
