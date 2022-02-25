@@ -62,6 +62,7 @@
 		<string>suit.heart</string>
 		<string>star</string>
 		<string>tshirt</string>
+		<string>candybarphone</string>
 		<string>camera</string>
 		<string>ellipsis.bubble</string>
 		<string>phone</string>
@@ -117,6 +118,7 @@
 		<string>bookmark</string>
 		<string>rosette</string>
 		<string>graduationcap</string>
+		<string>ticket</string>
 		<string>paperclip</string>
 		<string>photo.artframe</string>
 		<string>person.text.rectangle</string>
@@ -139,6 +141,7 @@
 		<string>eyeglasses</string>
 		<string>facemask</string>
 		<string>flashlight.off.fill</string>
+		<string>candybarphone</string>
 		<string>camera</string>
 		<string>phone</string>
 		<string>envelope</string>

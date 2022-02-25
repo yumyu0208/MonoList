@@ -112,6 +112,7 @@ struct EditItemCellView: View, Equatable {
                         if showCategory, let category = item.category {
                             HStack(alignment: .center) {
                                 CategoryLabelView(category: category)
+                                    .id(category.stateId)
                                 Spacer()
                                 Image(systemName: "info.circle")
                                     .imageScale(.large)
