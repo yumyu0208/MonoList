@@ -143,7 +143,7 @@ struct EditItemListView: View {
                                     if let count = itemList.items?.count {
                                         Text("\(count)")
                                             .foregroundColor(.primary)
-                                            .offset(x: 0, y: 2)
+                                            .padding(.leading, 8)
                                             .id(count)
                                     }
                                     Spacer()

@@ -101,6 +101,7 @@ struct ItemListView: View {
                         .imageScale(.large)
                 }
                 .buttonStyle(.plain)
+                .font(.subheadline)
                 .foregroundColor(Color(UIColor.systemGray4))
                 .opacity(isEditMode && !itemListName.isEmpty ? 1 : 0)
                 .animation(.easeOut(duration: 0.2), value: itemListName.isEmpty)
