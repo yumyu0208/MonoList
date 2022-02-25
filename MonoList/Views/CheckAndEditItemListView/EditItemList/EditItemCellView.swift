@@ -19,6 +19,7 @@ struct EditItemCellView: View, Equatable {
     var focusedItem: FocusState<Focusable?>.Binding
     let deleteAction: (Item) -> Void
     let addAction: (Item) -> Void
+    let dismissKeyboardAction: () -> Void
     
     var parentList: ItemList {
         item.parentItemList
@@ -74,16 +75,19 @@ struct EditItemCellView: View, Equatable {
                     if showWeight {
                         WeightLabelView(value: item.weight, unitLabel: item.parentItemList.unitLabel)
                             .onTapGesture {
+                                dismissKeyboardAction()
                                 isEditingItemDetail = true
                             }
                     }
                     if showQuantity {
                         QuantityLabelView(value: item.quantity)
                             .onTapGesture {
+                                dismissKeyboardAction()
                                 isEditingItemDetail = true
                             }
                     }
                     Button {
+                        dismissKeyboardAction()
                         if item.name.isEmpty {
                             item.name = "New Item"
                         }
@@ -131,6 +135,7 @@ struct EditItemCellView: View, Equatable {
                     } //: VStack
                     .padding(.bottom, 4)
                     .onTapGesture {
+                        dismissKeyboardAction()
                         isEditingItemDetail = true
                     }
                 }
@@ -153,7 +158,7 @@ struct EditItemCellView_Previews: PreviewProvider {
         let items = MonoListManager().fetchItems(context: context)
         List {
             ForEach(0 ..< 5) { index in
-                EditItemCellView(item: items[index], focusedItem: $focusedItem, deleteAction: {_ in }, addAction: {_ in })
+                EditItemCellView(item: items[index], focusedItem: $focusedItem, deleteAction: {_ in }, addAction: {_ in }, dismissKeyboardAction: {})
                     .environment(\.managedObjectContext, context)
             }
             .onDelete { _ in }

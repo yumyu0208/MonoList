@@ -17,6 +17,8 @@ struct EditItemListView: View {
     
     var listNameTextFieldIsFocused: FocusState<Bool>.Binding
     var focusedItem: FocusState<Focusable?>.Binding
+    
+    let dismissKeyboardAction: () -> Void
     var isEditing: Bool {
         editMode?.wrappedValue == .active
     }
@@ -27,7 +29,7 @@ struct EditItemListView: View {
     
     @State var scrollViewProxy: ScrollViewProxy?
     
-    init(of itemList: ItemList, listNameTextFieldIsFocused: FocusState<Bool>.Binding, focusedItem: FocusState<Focusable?>.Binding) {
+    init(of itemList: ItemList, listNameTextFieldIsFocused: FocusState<Bool>.Binding, focusedItem: FocusState<Focusable?>.Binding, dismissKeyboardAction: @escaping () -> Void) {
         self.itemList = itemList
         
         _items = FetchRequest(
@@ -38,6 +40,7 @@ struct EditItemListView: View {
         )
         self.focusedItem = focusedItem
         self.listNameTextFieldIsFocused = listNameTextFieldIsFocused
+        self.dismissKeyboardAction = dismissKeyboardAction
     }
     
     var body: some View {
@@ -67,7 +70,7 @@ struct EditItemListView: View {
                                                     focusedItem.wrappedValue = .row(id: newItem.id.uuidString)
                                                 }
                                             }
-                                        })
+                                        }, dismissKeyboardAction: dismissKeyboardAction)
                                         .listRowSeparator(.visible)
                                         .disabled(isEditing)
                                         .swipeActions(edge: .trailing) {
@@ -206,7 +209,7 @@ struct EditItemListView: View {
                                             EditLabelView {}
                                                 .environment(\.editMode, editMode)
                                         } primaryAction: {
-                                            listNameTextFieldIsFocused.wrappedValue = false
+                                            dismissKeyboardAction()
                                             withAnimation {
                                                 editMode?.wrappedValue = isEditing ? .inactive : .active
                                             }
@@ -314,7 +317,7 @@ struct EditItemListView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
-        EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem)
+        EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem, dismissKeyboardAction: {})
             .environment(\.managedObjectContext, context)
     }
 }

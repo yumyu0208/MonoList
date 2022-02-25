@@ -356,15 +356,13 @@ struct EditItemDetail: View {
                     }
                 }
             }
-            ToolbarItem(placement: .keyboard) {
-                HStack {
-                    Spacer()
-                    Button {
-                        focusedField = nil
-                    } label: {
-                        Image(systemName: "chevron.down")
-                            .foregroundColor(.accentColor)
-                    }
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button {
+                    focusedField = nil
+                } label: {
+                    Image(systemName: "chevron.down")
+                        .foregroundColor(.accentColor)
                 }
             }
         }

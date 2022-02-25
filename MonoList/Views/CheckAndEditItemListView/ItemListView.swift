@@ -51,6 +51,7 @@ struct ItemListView: View {
                 Group {
                     Button {
                         if isEditMode {
+                            dismissKeyboard()
                             isShowingEditIcon = true
                         }
                     } label: {
@@ -115,10 +116,10 @@ struct ItemListView: View {
                             isEditMode = true
                         }
                     }
-                EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem)
-                    .id(itemList.stateId)
-                    .opacity(isEditMode ? 1 : 0)
-                    .environment(\.editMode, $editMode)
+                EditItemListView(of: itemList, listNameTextFieldIsFocused: $listNameTextFieldIsFocused, focusedItem: $focusedItem, dismissKeyboardAction: dismissKeyboard)
+                .id(itemList.stateId)
+                .opacity(isEditMode ? 1 : 0)
+                .environment(\.editMode, $editMode)
                 CheckListView(of: itemList, allDoneAction: {
                     if !isEditMode && !itemsIsEmpty {
                         withAnimation(.easeOut(duration: 0.2).delay(0.3)) {
@@ -154,6 +155,7 @@ struct ItemListView: View {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Group {
                     Button {
+                        dismissKeyboard()
                         isShowingEditNotification = true
                     } label: {
                         Label("Alarm", systemImage: itemList.notificationIsActive ? "bell" : "bell.slash")
@@ -161,6 +163,7 @@ struct ItemListView: View {
                     } //: Button
                     if !itemList.weightIsHidden {
                         Button {
+                            dismissKeyboard()
                             isShowingWeight = true
                         } label: {
                             Label("Weight", systemImage: "scalemass")
@@ -168,8 +171,7 @@ struct ItemListView: View {
                         } //: Button
                     }
                     EditItemListButtonView(isEditMode: $isEditMode) {
-                        focusedItem = nil
-                        listNameTextFieldIsFocused = false
+                        dismissKeyboard()
                         if isEditMode {
                             saveDataIfNeeded()
                         } else {
@@ -281,6 +283,15 @@ struct ItemListView: View {
                 } //: Group
                 .disabled(isEditing || isNewItemList || isShowingImageViewer)
             } //: ToolBarItemGroup
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button {
+                    dismissKeyboard()
+                } label: {
+                    Image(systemName: "chevron.down")
+                        .foregroundColor(.accentColor)
+                }
+            }
         }
         .richAlert(isShowing: $isShowingDoneAlert, vOffset: -24) {
             VStack(spacing: 32) {
@@ -525,6 +536,11 @@ struct ItemListView: View {
         case .gallery3:
             return "square.grid.3x2"
         }
+    }
+    
+    private func dismissKeyboard() {
+        listNameTextFieldIsFocused = false
+        focusedItem = nil
     }
 }
 
