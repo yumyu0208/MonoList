@@ -33,6 +33,7 @@ struct ItemListCellView: View {
                 Label {
                     Text(isNewItemList ? "New List" : itemList.name)
                         .font(.headline)
+                        .lineLimit(1)
                         .foregroundColor(.primary)
                         .id(itemList.name)
                 } icon: {
