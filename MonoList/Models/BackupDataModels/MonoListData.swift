@@ -9,39 +9,35 @@ import Foundation
 import CoreData
 
 struct MonoListData: Codable {
+    enum Source: String {
+        case backup = "Backup"
+        case sample = "Sample"
+        case catalog = "Catalog"
+    }
+    
+    
     var folders: [FolderData]
     
-    private static var sampleArchiveURL: URL {
-        Bundle.main.url(forResource:"MonoListSampleData", withExtension: "plist")!
-    }
-    
-    private static var backupArchiveURL: URL {
-        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("MonoListBackupData").appendingPathExtension("plist")
-    }
-    
-    static func loadSampleData(context: NSManagedObjectContext) {
-        do {
-            let retrievedData = try Data(contentsOf: Self.sampleArchiveURL)
-            let decodedData = try PropertyListDecoder().decode(MonoListData.self, from: retrievedData)
-            decodedData.folders.forEach { folderData in
-                folderData.createFolder(context: context)
-            }
-            saveData(context)
-            print("Successed to load sample MonoListData.")
-        } catch {
-            fatalError("Failed to load sample MonoListData.")
+    private static func getArchiveURL(of source: Source) -> URL {
+        switch source {
+        case .backup:
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(K.data.backupFileName).appendingPathExtension("plist")
+        case .sample:
+            return Bundle.main.url(forResource: K.data.sampleFileName, withExtension: "plist")!
+        case .catalog:
+            return Bundle.main.url(forResource: K.data.catalogFileName, withExtension: "plist")!
         }
     }
     
-    static func loadBackupData(context: NSManagedObjectContext) {
+    static func loadData(from source: Source, _ context: NSManagedObjectContext) {
         do {
-            let retrievedData = try Data(contentsOf: Self.backupArchiveURL)
+            let retrievedData = try Data(contentsOf: getArchiveURL(of: source))
             let decodedData = try PropertyListDecoder().decode(MonoListData.self, from: retrievedData)
             decodedData.folders.forEach { folderData in
                 folderData.createFolder(context: context)
             }
             saveData(context)
-            print("Successed to load MonoListData.")
+            print("Successed to load MonoListData from \(source.rawValue).")
         } catch {
             fatalError("Failed to load MonoListData.")
         }
@@ -52,7 +48,7 @@ struct MonoListData: Codable {
         let monoListData = MonoListData(folders: folderDataArray)
         do {
             let codedRanking = try PropertyListEncoder().encode(monoListData)
-            try codedRanking.write(to: backupArchiveURL, options: .noFileProtection)
+            try codedRanking.write(to: getArchiveURL(of: .backup), options: .noFileProtection)
             print("Saved MonoListData")
         } catch {
             print("Failed to save MonoListData.\nError \(error)")

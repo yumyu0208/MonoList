@@ -17,22 +17,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section {
-                    Button {
-                        let folders = manager.fetchFolders(context: viewContext)
-                        MonoListData.saveBackupData(folders: folders)
-                    } label: {
-                        Label("Back Up", systemImage: "arrow.down.doc")
-                    }
-                }
-                Section {
-                    Button {
-                        manager.deleteAllFolders(context: viewContext)
-                        MonoListData.loadBackupData(context: viewContext)
-                    } label: {
-                        Label("Restore From Back Up", systemImage: "arrow.up.doc")
-                    }
-                }
                 
                 Section {
                     NavigationLink(destination: CategoriesView()) {
@@ -41,11 +25,17 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    Toggle(isOn: $isPlusPlan) {
-                        Label("MONOLIST+", systemImage: "plus")
+                    NavigationLink(destination: DataManagementView()) {
+                        Label("Data Management", systemImage: "sdcard")
                     }
                 }
-            }
+                
+                Section {
+                    Toggle(isOn: $isPlusPlan) {
+                        Label("MONOLIST+", systemImage: "star")
+                    }
+                }
+            } //: List
             .navigationTitle(Text("Settings"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
@@ -55,7 +45,7 @@ struct SettingsView: View {
                     }
                 }
             }
-        }
+        } //: NavigationView
     }
 }
 

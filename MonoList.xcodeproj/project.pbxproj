@@ -13,6 +13,9 @@
 		AA0C50F327C7017400FBC56B /* InoperableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50F227C7017400FBC56B /* InoperableView.swift */; };
 		AA0C50F527C707D400FBC56B /* EdgeInsetsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50F427C707D400FBC56B /* EdgeInsetsExtension.swift */; };
 		AA0C50F727C70FE800FBC56B /* PlusPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50F627C70FE800FBC56B /* PlusPlanView.swift */; };
+		AA0C50FC27C8810500FBC56B /* MonoListSampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA0C50FB27C8810400FBC56B /* MonoListSampleData.plist */; };
+		AA0C50FE27C8816800FBC56B /* MonoListCatalogData.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA0C50FD27C8816800FBC56B /* MonoListCatalogData.plist */; };
+		AA0C510027C8821300FBC56B /* DataManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50FF27C8821300FBC56B /* DataManagementView.swift */; };
 		AA2E0C272789C92400D23B6B /* ItemListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E0C262789C92400D23B6B /* ItemListCellView.swift */; };
 		AA340B8E27BC880B0080DD33 /* MLImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */; };
 		AA340B9027BC98760080DD33 /* PhotoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */; };
@@ -135,6 +138,9 @@
 		AA0C50F227C7017400FBC56B /* InoperableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InoperableView.swift; sourceTree = "<group>"; };
 		AA0C50F427C707D400FBC56B /* EdgeInsetsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetsExtension.swift; sourceTree = "<group>"; };
 		AA0C50F627C70FE800FBC56B /* PlusPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusPlanView.swift; sourceTree = "<group>"; };
+		AA0C50FB27C8810400FBC56B /* MonoListSampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MonoListSampleData.plist; sourceTree = "<group>"; };
+		AA0C50FD27C8816800FBC56B /* MonoListCatalogData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MonoListCatalogData.plist; sourceTree = "<group>"; };
+		AA0C50FF27C8821300FBC56B /* DataManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagementView.swift; sourceTree = "<group>"; };
 		AA2E0C262789C92400D23B6B /* ItemListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCellView.swift; sourceTree = "<group>"; };
 		AA340B8D27BC880B0080DD33 /* MLImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLImagePicker.swift; sourceTree = "<group>"; };
 		AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButtonView.swift; sourceTree = "<group>"; };
@@ -376,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				AA3675CA27B0D59500611D8A /* SettingsView.swift */,
+				AA0C50FF27C8821300FBC56B /* DataManagementView.swift */,
 				AA3675D627B33A4500611D8A /* EditCategories */,
 			);
 			path = Settings;
@@ -659,6 +666,8 @@
 				AAF3A813279D86B60084B7A9 /* Strings.strings */,
 				AAF3A811279D55520084B7A9 /* SystemImageList.plist */,
 				AAA8867327A3E59C00FD4D5E /* Icons.plist */,
+				AA0C50FB27C8810400FBC56B /* MonoListSampleData.plist */,
+				AA0C50FD27C8816800FBC56B /* MonoListCatalogData.plist */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -742,8 +751,10 @@
 				AAF3A812279D55520084B7A9 /* SystemImageList.plist in Resources */,
 				AA6F605A27C1309F00DCB446 /* LICENSE in Resources */,
 				AAA8867427A3E59C00FD4D5E /* Icons.plist in Resources */,
+				AA0C50FE27C8816800FBC56B /* MonoListCatalogData.plist in Resources */,
 				AA351A7C2776BB5500F53BDC /* Assets.xcassets in Resources */,
 				AA340B9227BCA56D0080DD33 /* SampleImage.png in Resources */,
+				AA0C50FC27C8810500FBC56B /* MonoListSampleData.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -875,6 +886,7 @@
 				AAB52BEA27C351EC0050A912 /* Environment.swift in Sources */,
 				AA8750B1278C4DAD00540BA0 /* ItemListInfoView.swift in Sources */,
 				AA469411279A71730083142D /* DoubleExtension.swift in Sources */,
+				AA0C510027C8821300FBC56B /* DataManagementView.swift in Sources */,
 				AA3675E927B745B800611D8A /* EditItemListButtonView.swift in Sources */,
 				AAC3DDE42794408A00983100 /* CheckItemCell.swift in Sources */,
 				AACBBC7D279C2F2200A42108 /* RoundedGrayTextFieldStyle.swift in Sources */,
