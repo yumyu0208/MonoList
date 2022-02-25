@@ -73,6 +73,7 @@ struct SelectCategoryView: View {
                                 Image(systemName: category.image ?? "tag")
                                     .foregroundColor(.accentColor)
                             }
+                            .id("\(category.name)\(category.image ?? "")")
                             Spacer()
                             Image(systemName: "checkmark")
                                 .font(.body.bold())

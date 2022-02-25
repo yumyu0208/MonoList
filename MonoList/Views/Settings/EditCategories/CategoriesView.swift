@@ -33,6 +33,7 @@ struct CategoriesView: View {
                             } icon: {
                                 Image(systemName: category.image != nil ? category.image! : "tag")
                             }
+                            .id("\(category.name)\(category.image ?? "")")
                         }
                         .contextMenu {
                             Button(role: .destructive) {
