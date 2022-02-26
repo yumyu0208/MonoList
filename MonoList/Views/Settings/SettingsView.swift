@@ -44,7 +44,7 @@ struct SettingsView: View {
                                 PlusPlanView()
                             }
                         }
-                    }
+                    } //: Section
                 }
                 Section(header: Text("Settings")) {
                     NavigationLink(destination: ListSettingView()) {
@@ -56,7 +56,7 @@ struct SettingsView: View {
                     //NavigationLink(destination: NotificationSettingView()) {
                     //    Label("Notification", systemImage: "bell")
                     //}
-                }
+                } //: Section
                 
                 Section(header: Text("Development")) {
                     NavigationLink(destination: DataManagementView()) {
@@ -65,7 +65,7 @@ struct SettingsView: View {
                     Toggle(isOn: $isPlusPlan) {
                         Label("MONOLIST+", systemImage: "star")
                     }
-                }
+                } //: Section
                 Section {
                     Button {
                         // review
@@ -85,7 +85,7 @@ struct SettingsView: View {
                 } footer: {
                     AppInformationView()
                         .padding(.top, 60)
-                }
+                } //: Section
             } //: List
             .navigationTitle(Text("Settings"))
             .navigationBarTitleDisplayMode(.inline)
@@ -97,7 +97,6 @@ struct SettingsView: View {
                 }
             }
         } //: NavigationView
-        .tint(.accentColor)
     }
 }
 

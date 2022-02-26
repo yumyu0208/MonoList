@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CategoriesView: View {
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
     private var categories: FetchedResults<Category>
@@ -34,7 +35,7 @@ struct CategoriesView: View {
                                 Image(systemName: category.image != nil ? category.image! : "tag")
                             }
                             .id("\(category.name)\(category.image ?? "")")
-                        }
+                        } //: NavigationLink
                         .contextMenu {
                             Button(role: .destructive) {
                                 if let index = categories.firstIndex(of: category) {
@@ -55,6 +56,11 @@ struct CategoriesView: View {
                                 Label("Delete", systemImage: "trash")
                             }
                         }
+                        .inoperable(!isPlusPlan, padding: .defaultListInsets) {
+                            NavigationView {
+                                PlusPlanView(featureType: .category)
+                            }
+                        }
                     }
                     .onDelete { indexSet in
                         deleteIndexSet = indexSet
@@ -62,15 +68,23 @@ struct CategoriesView: View {
                     }
                     .onMove(perform: moveCategory)
                     if editMode != .active {
-                        Button(action: {
-                            withAnimation {
-                                newCategory = addCategory(order: categories.count)
-                                isEditingNewCategory = true
-                                saveData()
+                        HStack {
+                            Button(action: {
+                                withAnimation {
+                                    newCategory = addCategory(order: categories.count)
+                                    isEditingNewCategory = true
+                                    saveData()
+                                }
+                            }) {
+                                Label("Add Category", systemImage: "plus.app")
+                                    .foregroundStyle(.tint)
+                            } // Button
+                            Spacer()
+                        }
+                        .inoperable(!isPlusPlan, padding: .defaultListInsets) {
+                            NavigationView {
+                                PlusPlanView(featureType: .category)
                             }
-                        }) {
-                            Label("Add Category", systemImage: "plus.app")
-                                .foregroundStyle(.tint)
                         }
                     }
                 } header: {
@@ -85,6 +99,7 @@ struct CategoriesView: View {
                             .font(.subheadline.bold())
                             .environment(\.editMode, $editMode)
                             .textCase(nil)
+                            .disabled(!isPlusPlan)
                     }
                 } //: Section
             } //: List
