@@ -61,6 +61,7 @@ struct HomeView: View {
                             } label: {
                                 Label("Settings", systemImage: "gearshape")
                                     .padding(8)
+                                    .animation(.none, value: isEditing)
                             }
                             .disabled(isEditing)
                             .sheet(isPresented: $isShowingSettings) {

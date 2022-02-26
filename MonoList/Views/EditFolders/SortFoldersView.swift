@@ -89,6 +89,7 @@ struct SortFoldersView: View {
                                 .font(.subheadline.bold())
                                 .environment(\.editMode, $editMode)
                                 .textCase(nil)
+                                .disabled(!isPlusPlan)
                         }
                     } //: Section
                 } //: List
