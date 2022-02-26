@@ -53,12 +53,9 @@ struct SettingsView: View {
                     NavigationLink(destination: CategoriesView()) {
                         Label("Categories", systemImage: "tag")
                     }
-                    NavigationLink(destination: ThemeSettingView()) {
-                        Label("Theme", systemImage: "circle.righthalf.filled")
-                    }
-                    NavigationLink(destination: NotificationSettingView()) {
-                        Label("Notification", systemImage: "bell")
-                    }
+                    //NavigationLink(destination: NotificationSettingView()) {
+                    //    Label("Notification", systemImage: "bell")
+                    //}
                 }
                 
                 Section(header: Text("Development")) {

@@ -108,7 +108,6 @@
 		AAC3DDE227940EAD00983100 /* CheckmarkToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */; };
 		AAC3DDE42794408A00983100 /* CheckItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDE32794408A00983100 /* CheckItemCell.swift */; };
 		AAC3DDE627958FD800983100 /* LargeCircleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDE527958FD800983100 /* LargeCircleButtonStyle.swift */; };
-		AAC749B427C9A4C60086FA41 /* ThemeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC749B327C9A4C60086FA41 /* ThemeSettingView.swift */; };
 		AAC749B927C9EFFE0086FA41 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC749B827C9EFFE0086FA41 /* SelectionView.swift */; };
 		AAC749BB27C9FC5F0086FA41 /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC749BA27C9FC5F0086FA41 /* DefaultValues.swift */; };
 		AACBBC72279AF8CD00A42108 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC6E279AF8CD00A42108 /* Category+CoreDataClass.swift */; };
@@ -241,7 +240,6 @@
 		AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkToggleStyle.swift; sourceTree = "<group>"; };
 		AAC3DDE32794408A00983100 /* CheckItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckItemCell.swift; sourceTree = "<group>"; };
 		AAC3DDE527958FD800983100 /* LargeCircleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCircleButtonStyle.swift; sourceTree = "<group>"; };
-		AAC749B327C9A4C60086FA41 /* ThemeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSettingView.swift; sourceTree = "<group>"; };
 		AAC749B827C9EFFE0086FA41 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 		AAC749BA27C9FC5F0086FA41 /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
 		AACBBC6E279AF8CD00A42108 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -399,7 +397,6 @@
 				AA3675CA27B0D59500611D8A /* SettingsView.swift */,
 				AAC749B527C9B2430086FA41 /* ListSettings */,
 				AA3675D627B33A4500611D8A /* EditCategories */,
-				AAC749B327C9A4C60086FA41 /* ThemeSettingView.swift */,
 				AA0C510927C8CF1C00FBC56B /* NotificationSettingView.swift */,
 				AA0C50FF27C8821300FBC56B /* DataManagementView.swift */,
 				AA0C510B27C8D1A500FBC56B /* AppInformationView.swift */,
@@ -903,7 +900,6 @@
 				AAFF272D27BE85A6000585EE /* PhotoCategoryCheckListView.swift in Sources */,
 				AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */,
 				AAE293512781C5780010F093 /* EditLabelView.swift in Sources */,
-				AAC749B427C9A4C60086FA41 /* ThemeSettingView.swift in Sources */,
 				AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */,
 				AA82C057277EF105001CEFFA /* CircleButtonStyle.swift in Sources */,
 				AAF3A817279D88700084B7A9 /* ImageManager.swift in Sources */,

@@ -53,7 +53,7 @@ struct SelectionView: View {
                         }
                         Spacer()
                         Image(systemName: "checkmark")
-                            .font(.headline)
+                            .font(.subheadline.bold())
                             .opacity(isSelected ? 1 : 0)
                             .animation(.easeOut(duration: 0.2), value: isSelected)
                     } //: HStack
