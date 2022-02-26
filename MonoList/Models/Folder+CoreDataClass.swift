@@ -52,7 +52,26 @@ public class Folder: NSManagedObject {
     }
     
     @discardableResult
-    func createNewItemList(name: String, color: String,primaryColor: String? = nil, secondaryColor: String? = nil, tertiaryColor: String? = nil, iconName: String, image: String, achievementCount: Int = 0, displayFormat: String = ItemList.Form.list.rawValue, hideCompleted: Bool = false, creationDate: Date = Date(), updateDate: Date = Date(), order: Int, type: String = "belongings", unitLabel: String = "g", notificationIsActive: Bool = false, categoryIsHidden: Bool = true, weightIsHidden: Bool = true, quantityIsHidden: Bool = true, _ context: NSManagedObjectContext) -> ItemList {
+    func createNewItemList(name: String,
+                           color: String,
+                           primaryColor: String? = nil,
+                           secondaryColor: String? = nil,
+                           tertiaryColor: String? = nil,
+                           iconName: String,
+                           image: String,
+                           achievementCount: Int = 0,
+                           displayFormat: String = DefaultValues.listForm,
+                           hideCompleted: Bool = DefaultValues.hideCompleted,
+                           creationDate: Date = Date(),
+                           updateDate: Date = Date(),
+                           order: Int,
+                           type: String = "belongings",
+                           unitLabel: String = DefaultValues.unitLabel,
+                           notificationIsActive: Bool = false,
+                           categoryIsHidden: Bool = true,
+                           weightIsHidden: Bool = true,
+                           quantityIsHidden: Bool = true,
+                           _ context: NSManagedObjectContext) -> ItemList {
         let newItemList = ItemList(context: context)
         newItemList.id = UUID()
         newItemList.name = name

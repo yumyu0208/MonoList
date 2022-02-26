@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CheckListProgressView: View {
     
-    @AppStorage(K.key.rateDisplayType) var showPercentage = true
+    @AppStorage(K.key.achievementDisplayFormat) private var achievementDisplayFormat: String = K.achievementDisplayFormat.fraction
     @State private var percentage: Int = 0
     let numberOfCompletedItems: Int
     let numberOfAllItems: Int
@@ -27,7 +27,8 @@ struct CheckListProgressView: View {
     var body: some View {
         HStack {
             Spacer()
-            if showPercentage {
+            switch achievementDisplayFormat {
+            case K.achievementDisplayFormat.percent:
                 HStack(spacing: 0) {
                     Text("\(percentage)")
                         .animation(number: percentage)
@@ -39,7 +40,7 @@ struct CheckListProgressView: View {
                     }
                     Text("%")
                 }
-            } else {
+            default:
                 HStack(spacing: 0) {
                     Text("\(numberOfCompletedItems)")
                         .multilineTextAlignment(.trailing)
@@ -71,9 +72,10 @@ struct CheckListProgressView: View {
                     }
                 }
                 Group {
-                    if showPercentage {
+                    switch achievementDisplayFormat {
+                    case K.achievementDisplayFormat.percent:
                         Text("100%")
-                    } else {
+                    default:
                         Text("\(numberOfAllItems)/\(numberOfAllItems)")
                     }
                 }

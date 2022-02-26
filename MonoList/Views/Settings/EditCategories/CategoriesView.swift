@@ -75,6 +75,10 @@ struct CategoriesView: View {
                     }
                 } header: {
                     HStack(alignment: .center) {
+                        Text("categories.description")
+                            .textCase(nil)
+                            .foregroundStyle(Color(UIColor.secondaryLabel))
+                            .font(.footnote)
                         Spacer()
                         EditLabelView()
                             .imageScale(.medium)

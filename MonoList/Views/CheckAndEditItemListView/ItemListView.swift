@@ -9,6 +9,7 @@ import SwiftUI
 import ImageViewer
 
 struct ItemListView: View {
+    @AppStorage(K.key.automaticUncheck) private var automaticUncheck: Bool = true
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @Environment(\.deeplink) var deeplink
@@ -309,10 +310,11 @@ struct ItemListView: View {
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         dismiss()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            uncheckAllItems()
+                        if automaticUncheck {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                uncheckAllItems()
+                            }
                         }
-                        
                     }
                 } label: {
                     Text("Close List")

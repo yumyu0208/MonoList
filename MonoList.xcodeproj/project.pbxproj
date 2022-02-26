@@ -108,6 +108,9 @@
 		AAC3DDE227940EAD00983100 /* CheckmarkToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */; };
 		AAC3DDE42794408A00983100 /* CheckItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDE32794408A00983100 /* CheckItemCell.swift */; };
 		AAC3DDE627958FD800983100 /* LargeCircleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3DDE527958FD800983100 /* LargeCircleButtonStyle.swift */; };
+		AAC749B427C9A4C60086FA41 /* ThemeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC749B327C9A4C60086FA41 /* ThemeSettingView.swift */; };
+		AAC749B927C9EFFE0086FA41 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC749B827C9EFFE0086FA41 /* SelectionView.swift */; };
+		AAC749BB27C9FC5F0086FA41 /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC749BA27C9FC5F0086FA41 /* DefaultValues.swift */; };
 		AACBBC72279AF8CD00A42108 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC6E279AF8CD00A42108 /* Category+CoreDataClass.swift */; };
 		AACBBC73279AF8CD00A42108 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC6F279AF8CD00A42108 /* Category+CoreDataProperties.swift */; };
 		AACBBC74279AF8CD00A42108 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBBC70279AF8CD00A42108 /* Item+CoreDataClass.swift */; };
@@ -238,6 +241,9 @@
 		AAC3DDE127940EAC00983100 /* CheckmarkToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkToggleStyle.swift; sourceTree = "<group>"; };
 		AAC3DDE32794408A00983100 /* CheckItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckItemCell.swift; sourceTree = "<group>"; };
 		AAC3DDE527958FD800983100 /* LargeCircleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCircleButtonStyle.swift; sourceTree = "<group>"; };
+		AAC749B327C9A4C60086FA41 /* ThemeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSettingView.swift; sourceTree = "<group>"; };
+		AAC749B827C9EFFE0086FA41 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		AAC749BA27C9FC5F0086FA41 /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
 		AACBBC6E279AF8CD00A42108 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AACBBC6F279AF8CD00A42108 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AACBBC70279AF8CD00A42108 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -391,11 +397,12 @@
 			isa = PBXGroup;
 			children = (
 				AA3675CA27B0D59500611D8A /* SettingsView.swift */,
+				AAC749B527C9B2430086FA41 /* ListSettings */,
+				AA3675D627B33A4500611D8A /* EditCategories */,
+				AAC749B327C9A4C60086FA41 /* ThemeSettingView.swift */,
 				AA0C510927C8CF1C00FBC56B /* NotificationSettingView.swift */,
-				AA0C510727C8CEA600FBC56B /* ListSettingView.swift */,
 				AA0C50FF27C8821300FBC56B /* DataManagementView.swift */,
 				AA0C510B27C8D1A500FBC56B /* AppInformationView.swift */,
-				AA3675D627B33A4500611D8A /* EditCategories */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -442,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				AA82C024277AC0D3001CEFFA /* Constants.swift */,
+				AAC749BA27C9FC5F0086FA41 /* DefaultValues.swift */,
 				AA3675D227B2548400611D8A /* Feedbacks.swift */,
 			);
 			path = Utilities;
@@ -614,6 +622,14 @@
 			path = CheckList;
 			sourceTree = "<group>";
 		};
+		AAC749B527C9B2430086FA41 /* ListSettings */ = {
+			isa = PBXGroup;
+			children = (
+				AA0C510727C8CEA600FBC56B /* ListSettingView.swift */,
+			);
+			path = ListSettings;
+			sourceTree = "<group>";
+		};
 		AAD4B7BB27870BB900D73EBE /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -643,6 +659,7 @@
 				AACBBC7A279C230E00A42108 /* XButtonView.swift */,
 				AA3675E627B73A4400611D8A /* MiniXButtonView.swift */,
 				AAF3A81827A2A4A20084B7A9 /* ImagePickerView.swift */,
+				AAC749B827C9EFFE0086FA41 /* SelectionView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -838,6 +855,7 @@
 				AAC3DDD42791A19F00983100 /* QuantityLabelView.swift in Sources */,
 				AA3675E527B733F800611D8A /* FitCapsuleButtonStyle.swift in Sources */,
 				AAC3DDE627958FD800983100 /* LargeCircleButtonStyle.swift in Sources */,
+				AAC749BB27C9FC5F0086FA41 /* DefaultValues.swift in Sources */,
 				AA3675D827B33A7500611D8A /* EditCategoryView.swift in Sources */,
 				AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */,
 				AA5FAB9427C5D6B400A85AC6 /* NoListsView.swift in Sources */,
@@ -860,6 +878,7 @@
 				AAB52BEC27C383080050A912 /* NotificationManager.swift in Sources */,
 				AAFF272F27BE89DB000585EE /* PhotoCheckItemCell.swift in Sources */,
 				AAFF272927BDF27E000585EE /* AppDelegate.swift in Sources */,
+				AAC749B927C9EFFE0086FA41 /* SelectionView.swift in Sources */,
 				AA8750B5278C57A700540BA0 /* InfoGroupBoxView.swift in Sources */,
 				AA3675E327B5F5BF00611D8A /* RichAlertButtonStyle.swift in Sources */,
 				AA0C50EF27C6FE6300FBC56B /* NomalCheckListView.swift in Sources */,
@@ -884,6 +903,7 @@
 				AAFF272D27BE85A6000585EE /* PhotoCategoryCheckListView.swift in Sources */,
 				AAD4B7BD27870BCE00D73EBE /* Focusable.swift in Sources */,
 				AAE293512781C5780010F093 /* EditLabelView.swift in Sources */,
+				AAC749B427C9A4C60086FA41 /* ThemeSettingView.swift in Sources */,
 				AA82C052277DECC4001CEFFA /* MonoListManager.swift in Sources */,
 				AA82C057277EF105001CEFFA /* CircleButtonStyle.swift in Sources */,
 				AAF3A817279D88700084B7A9 /* ImageManager.swift in Sources */,

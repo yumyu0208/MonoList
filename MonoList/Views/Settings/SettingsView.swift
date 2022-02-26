@@ -19,48 +19,56 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("")) {
-                    Button {
-                        isShowingPlusPlanView = true
-                    } label: {
-                        Label("MONOLIST PLUS", systemImage: "star")
-                    }
-                    .fullScreenCover(isPresented: $isShowingPlusPlanView) {
-                        NavigationView {
-                            PlusPlanView()
+                if !isPlusPlan {
+                    Section(header: Text("Premium Service")) {
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text("MONOLIST +")
+                                .font(.headline)
+                                .padding(.vertical, 8)
+                            VStack(alignment: .leading, spacing: 2) {
+                                ForEach(K.plusPlan.allFeatures, id: \.title) { feature in
+                                    Text(feature.title)
+                                }
+                            }
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                        }
+                        Button {
+                            isShowingPlusPlanView = true
+                        } label: {
+                            Text("See Details")
+                                .foregroundStyle(.blue)
+                        }
+                        .fullScreenCover(isPresented: $isShowingPlusPlanView) {
+                            NavigationView {
+                                PlusPlanView()
+                            }
                         }
                     }
                 }
-                Section {
+                Section(header: Text("Settings")) {
                     NavigationLink(destination: ListSettingView()) {
                         Label("List", systemImage: "checklist")
                     }
-                }
-                
-//                Section {
-//                    NavigationLink(destination: NotificationSettingView()) {
-//                        Label("Notification", systemImage: "bell")
-//                    }
-//                }
-                
-                Section {
                     NavigationLink(destination: CategoriesView()) {
                         Label("Categories", systemImage: "tag")
                     }
-                }
-                
-                Section {
-                    NavigationLink(destination: DataManagementView()) {
-                        Label("Data Management", systemImage: "sdcard")
+                    NavigationLink(destination: ThemeSettingView()) {
+                        Label("Theme", systemImage: "circle.righthalf.filled")
+                    }
+                    NavigationLink(destination: NotificationSettingView()) {
+                        Label("Notification", systemImage: "bell")
                     }
                 }
                 
-                Section {
+                Section(header: Text("Development")) {
+                    NavigationLink(destination: DataManagementView()) {
+                        Label("Data Management", systemImage: "sdcard")
+                    }
                     Toggle(isOn: $isPlusPlan) {
                         Label("MONOLIST+", systemImage: "star")
                     }
                 }
-                
                 Section {
                     Button {
                         // review
@@ -83,7 +91,7 @@ struct SettingsView: View {
                 }
             } //: List
             .navigationTitle(Text("Settings"))
-            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     XButtonView {
@@ -92,6 +100,7 @@ struct SettingsView: View {
                 }
             }
         } //: NavigationView
+        .tint(.accentColor)
     }
 }
 

@@ -14,7 +14,7 @@ public class ItemList: NSManagedObject {
     
     enum Form: String {
         case list = "List"
-        case gallery = "Gallery"
+        case gallery = "1 Line Gallery"
         case gallery2 = "2 Line Gallery"
         case gallery3 = "3 Line Gallery"
     }

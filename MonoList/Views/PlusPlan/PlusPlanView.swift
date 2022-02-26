@@ -11,13 +11,14 @@ struct PlusPlanView: View {
     
     enum FeatureType {
         case removeAds
+        case icon
         case category
         case quantity
         case weight
         case folder
         case catalog
         case alarm
-        static var all = [removeAds, category, quantity, weight, folder, catalog, alarm]
+        static var all = [removeAds, icon, category, quantity, weight, folder, catalog, alarm]
     }
     
     @Environment(\.dismiss) private var dismiss
