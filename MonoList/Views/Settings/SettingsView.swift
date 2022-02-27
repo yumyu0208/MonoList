@@ -46,10 +46,8 @@ struct SettingsView: View {
                         }
                     } //: Section
                 }
-                Section(header: Text("Settings")) {
-                    NavigationLink(destination: ListSettingView()) {
-                        Label("List", systemImage: "checklist")
-                    }
+                ListSettingSection()
+                Section(header: Text("Misc")) {
                     NavigationLink(destination: CategoriesView()) {
                         Label("Categories", systemImage: "tag")
                     }
@@ -58,14 +56,14 @@ struct SettingsView: View {
                     //}
                 } //: Section
                 
-                Section(header: Text("Development")) {
-                    NavigationLink(destination: DataManagementView()) {
-                        Label("Data Management", systemImage: "sdcard")
-                    }
-                    Toggle(isOn: $isPlusPlan) {
-                        Label("MONOLIST+", systemImage: "star")
-                    }
-                } //: Section
+                //Section(header: Text("Development")) {
+                //    NavigationLink(destination: DataManagementView()) {
+                //        Label("Data Management", systemImage: "sdcard")
+                //    }
+                //    Toggle(isOn: $isPlusPlan) {
+                //        Label("MONOLIST+", systemImage: "star")
+                //    }
+                //} //: Section
                 Section {
                     Button {
                         // review
