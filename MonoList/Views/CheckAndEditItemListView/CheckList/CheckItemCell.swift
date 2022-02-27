@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CheckItemCell: View {
-    
     @ObservedObject var item: Item
     let showAndHideUndoButton: () -> Void
     let showImageViewerAction: (Image) -> Void

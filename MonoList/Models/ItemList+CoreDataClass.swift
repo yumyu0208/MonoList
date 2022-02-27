@@ -59,6 +59,11 @@ public class ItemList: NSManagedObject {
         String(items?.count ?? 0)
     }
     
+    var numberOfCompletedItemsString: String {
+        guard let items = items?.allObjects as? [Item] else { return "0" }
+        return String(items.filter { $0.isCompleted }.count)
+    }
+    
     var hasItems: Bool {
         (items?.count ?? 0) != 0
     }

@@ -12,6 +12,8 @@ struct ItemListCellView: View {
     @Environment(\.deeplink) var deeplink
     
     let itemList: ItemList
+    var didSave = NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
+    @State var numberOfCompletedItems: String
     let editAction: () -> Void
     let duplicateAction: () -> Void
     let changeFolderAction: () -> Void
@@ -42,9 +44,19 @@ struct ItemListCellView: View {
                         .frame(height: 32)
                 }
                 Spacer()
-                Text(itemList.numberOfItemsString)
-                    .font(.body)
-                    .foregroundColor(.secondary)
+                Text("00/00")
+                    .opacity(0)
+                    .overlay {
+                        Text("\(numberOfCompletedItems)/\(itemList.numberOfItemsString)")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .id(numberOfCompletedItems)
+                            .onReceive(didSave) { _ in
+                                withAnimation(.easeOut(duration: 0.2)) {
+                                    numberOfCompletedItems = itemList.numberOfCompletedItemsString
+                                }
+                            }
+                    }
             }
         }
         .contextMenu {
@@ -109,7 +121,7 @@ struct ItemListCellView_Previews: PreviewProvider {
         let context = PersistenceController.preview.container.viewContext
         let itemList = MonoListManager().fetchItemLists(context: context)[0]
         List {
-            ItemListCellView(itemList: itemList) {
+            ItemListCellView(itemList: itemList, numberOfCompletedItems: itemList.numberOfCompletedItemsString) {
             
             } duplicateAction: {
                 
