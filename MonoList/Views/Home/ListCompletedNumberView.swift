@@ -12,12 +12,15 @@ struct ListCompletedNumberView: View {
     
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image(systemName: "checklist")
+            .font(.system(size: 1300, weight: .regular, design: .rounded))
+            .frame(width: 2048, height: 2048)
     }
 }
 
 struct ListCompletedNumberView_Previews: PreviewProvider {
     static var previews: some View {
         ListCompletedNumberView()
+            .previewLayout(.sizeThatFits)
     }
 }

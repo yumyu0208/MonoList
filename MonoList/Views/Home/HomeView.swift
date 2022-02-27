@@ -47,7 +47,7 @@ struct HomeView: View {
                             Text("MONOLIST")
                                 .fontWeight(.heavy)
                         } icon: {
-                            Image(systemName: "cube")
+                            Image(systemName: "checkmark.circle.fill")
                         }
                         .font(.system(.title2, design: .default).bold())
                         .labelStyle(.titleAndIcon)
