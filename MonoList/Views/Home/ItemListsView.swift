@@ -34,7 +34,7 @@ struct ItemListsView: View {
     var body: some View {
         ForEach(itemLists) { itemList in
             if !itemList.isFault && !itemList.isDeleted {
-                ItemListCellView(itemList: itemList, numberOfCompletedItems: itemList.numberOfCompletedItemsString) {
+                ItemListCellView(itemList: itemList) {
                     editAction(itemList)
                 } duplicateAction: {
                     duplicateItemList(itemList)
