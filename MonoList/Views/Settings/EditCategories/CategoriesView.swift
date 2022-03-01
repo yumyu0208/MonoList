@@ -31,8 +31,10 @@ struct CategoriesView: View {
                         } label: {
                             Label {
                                 Text(category.name == K.defaultName.newCategory ? "New Category" : category.name)
+                                    .foregroundColor(.primary)
                             } icon: {
                                 Image(systemName: category.image != nil ? category.image! : "tag")
+                                    .foregroundColor(.primary)
                             }
                             .id("\(category.name)\(category.image ?? "")")
                         } //: NavigationLink
@@ -58,7 +60,7 @@ struct CategoriesView: View {
                         }
                         .inoperable(!isPlusPlan, padding: .defaultListInsets) {
                             NavigationView {
-                                PlusPlanView(featureType: .category)
+                                PlusPlanView(feature: K.plusPlan.category)
                             }
                         }
                     }
@@ -77,13 +79,13 @@ struct CategoriesView: View {
                                 }
                             }) {
                                 Label("Add Category", systemImage: "plus.app")
-                                    .foregroundStyle(.tint)
                             } // Button
+                            .foregroundColor(.accentColor)
                             Spacer()
                         }
                         .inoperable(!isPlusPlan, padding: .defaultListInsets) {
                             NavigationView {
-                                PlusPlanView(featureType: .category)
+                                PlusPlanView(feature: K.plusPlan.category)
                             }
                         }
                     }

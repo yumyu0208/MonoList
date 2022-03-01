@@ -55,7 +55,7 @@ struct SelectDestinationView: View {
                     } //: Button
                     .inoperable(!isPlusPlan, padding: .defaultListInsets) {
                         NavigationView {
-                            PlusPlanView(featureType: .folder)
+                            PlusPlanView(feature: K.plusPlan.folders)
                         }
                     }
                 } header: {

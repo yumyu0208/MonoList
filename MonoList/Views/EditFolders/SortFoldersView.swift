@@ -36,6 +36,7 @@ struct SortFoldersView: View {
                                         .navigationTitle(Text("Edit Folder"))
                                 } label: {
                                     Label(folder.name == K.defaultName.newFolder ? "New Folder" : folder.name, systemImage: folder.image)
+                                        .foregroundColor(.primary)
                                         .id(folder.name)
                                 }
                                 .contextMenu {
@@ -71,13 +72,18 @@ struct SortFoldersView: View {
                                 }
                             }) {
                                 HStack {
-                                    Label("Add Folder", systemImage: "folder.badge.plus")
+                                    Label {
+                                        Text("Add Folder")
+                                    } icon: {
+                                        Image(systemName: "folder.badge.plus")
+                                    }
+                                    .foregroundColor(.accentColor)
                                     Spacer()
                                 }
                             } //: Button
                             .inoperable(!isPlusPlan, padding: .defaultListInsets) {
                                 NavigationView {
-                                    PlusPlanView(featureType: .folder)
+                                    PlusPlanView(feature: K.plusPlan.folders)
                                 }
                             }
                         }

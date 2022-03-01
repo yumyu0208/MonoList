@@ -55,7 +55,7 @@ struct EditNotificationsGroupBoxView: View {
             } //: VStack
             .inoperable(!isPlusPlan, padding: .defaultGroupBoxInsets) {
                 NavigationView {
-                    PlusPlanView(featureType: .alarm)
+                    PlusPlanView(feature: K.plusPlan.alarm)
                 }
             }
         } //: GroupBox

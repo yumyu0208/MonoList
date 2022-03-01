@@ -145,7 +145,7 @@ struct EditItemDetail: View {
                         }
                         .inoperable(!isPlusPlan, padding: .defaultListInsets) {
                             NavigationView {
-                                PlusPlanView(featureType: .category)
+                                PlusPlanView(feature: K.plusPlan.category)
                             }
                         }
                     } header: {
@@ -218,7 +218,7 @@ struct EditItemDetail: View {
                         .animation(.easeOut(duration: 0.2), value: weight.isEmpty)
                         .inoperable(!isPlusPlan, padding: .defaultListInsets) {
                             NavigationView {
-                                PlusPlanView(featureType: .weight)
+                                PlusPlanView(feature: K.plusPlan.quantityAndWeight)
                             }
                         }
                     } header: {
@@ -268,7 +268,7 @@ struct EditItemDetail: View {
                         }
                         .inoperable(!isPlusPlan, padding: .defaultListInsets) {
                             NavigationView {
-                                PlusPlanView(featureType: .quantity)
+                                PlusPlanView(feature: K.plusPlan.quantityAndWeight)
                             }
                         }
                     } header: {

@@ -24,6 +24,7 @@ struct InoperableView<InoperableContent: View>: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             content
+                .disabled(isInoperable)
                 .padding(padding)
                 .zIndex(0)
             if isInoperable {
