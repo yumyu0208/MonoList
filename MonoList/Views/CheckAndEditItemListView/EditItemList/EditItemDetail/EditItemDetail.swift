@@ -225,7 +225,7 @@ struct EditItemDetail: View {
                         HStack {
                             HStack(spacing: 0) {
                                 Text("Weight")
-                                Text("  ( \(unitLabel)/pcs )")
+                                Text("  ( \(unitLabel)/\("pcs".localized) )")
                                     .textCase(nil)
                                     .id(unitLabel)
                             }
@@ -342,13 +342,13 @@ struct EditItemDetail: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 XButtonView {
                     if nameIsInvalid {
-                        alertMessage = "Please enter the item name"
+                        alertMessage = "ItemNameError.description"
                         isShowingAlert = true
                     } else if weightIsInvalid {
-                        alertMessage = "Invalid weight value"
+                        alertMessage = "WeightValueError.description"
                         isShowingAlert = true
                     } else if quantityIsInvalid {
-                        alertMessage = "Invalid quantity value"
+                        alertMessage = "QuantityValueError.description"
                         isShowingAlert = true
                     } else {
                         setValue()
@@ -387,7 +387,7 @@ struct EditItemDetail: View {
                 self.newUnitLabel = nil
             }
         } message: { indexSet in
-            Text("Applies to all items in this list.")
+            Text("ChangeUnit.description")
         }
         .onAppear {
             weight = (item.weight == 0 ? "" : String(item.weight.string))
@@ -426,7 +426,9 @@ struct EditItemDetail: View {
     private func saveData() {
         do {
             try viewContext.save()
+            #if DEBUG
             print("Saved")
+            #endif
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

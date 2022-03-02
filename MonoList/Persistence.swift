@@ -14,7 +14,7 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         // For Preview
-        MonoListManager().createSamples(context: viewContext)
+        //MonoListManager().createSamples(context: viewContext)
         do {
             try viewContext.save()
         } catch {

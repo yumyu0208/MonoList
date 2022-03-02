@@ -258,7 +258,7 @@ struct ItemListView: View {
                                             saveData(update: false)
                                         }
                                     } label: {
-                                        Label("View as \(form.rawValue)", systemImage: imageName(for: form))
+                                        Label("\("View as ".localized)\(form.rawValue)", systemImage: imageName(for: form))
                                     } //: Button
                                 } //: ForEach
                             } label: {
@@ -323,7 +323,7 @@ struct ItemListView: View {
             }
             .padding()
         }
-        .alert("Are you sure you want to uncheck all?", isPresented: $isShowingUncheckAllConfirmationAlert) {
+        .alert("Uncheck.Confirmation", isPresented: $isShowingUncheckAllConfirmationAlert) {
             Button(role: .destructive) {
                 uncheckAllItems()
             } label: {

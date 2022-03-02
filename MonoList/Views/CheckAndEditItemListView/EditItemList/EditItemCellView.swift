@@ -88,7 +88,7 @@ struct EditItemCellView: View, Equatable {
                     }
                     Button {
                         if item.name.isEmpty {
-                            item.name = "New Item"
+                            item.name = "New Item".localized
                         }
                         isEditingItemDetail = true
                         dismissKeyboardAction()

@@ -30,7 +30,7 @@ struct PlusPlanView: View {
                 ScrollView(.vertical) {
                     VStack(spacing: 28) {
                         PlusPlanIconView(size: 120)
-                        Text("Unlock all content with a single payment.")
+                        Text("PlusPlan.description")
                         FeaturePagesView(showingFeatureTitle: feature.title, autoScroll: autoScroll)
                         Button {
                             guard let product = storeManager.products.first else {

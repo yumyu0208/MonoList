@@ -46,7 +46,7 @@ struct EditNotificationsGroupBoxView: View {
                             .frame(minWidth: 32)
                     })
                     Spacer()
-                    Toggle("Notification", isOn: $isOn.animation(.easeOut(duration: 0.2)))
+                    Toggle("Alarm", isOn: $isOn.animation(.easeOut(duration: 0.2)))
                         .labelsHidden()
                 } //: HStack
                 if isActive {
@@ -61,7 +61,7 @@ struct EditNotificationsGroupBoxView: View {
         } //: GroupBox
         .animation(.easeOut(duration: 0.2), value: isActive)
         .groupBoxStyle(.noPaddingWhite)
-        .alert("This app is not allowed to send notifications", isPresented: $isShowingNoPermissionAlert) {
+        .alert("NotificationRequest.Error.description", isPresented: $isShowingNoPermissionAlert) {
             Button {
                 if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -75,7 +75,7 @@ struct EditNotificationsGroupBoxView: View {
                 Text("Cancel")
             }
         } message: {
-            Text("Please turn on notifications in the \"Settings\" app")
+            Text("NotificationRequest.Error.message")
         }
         .onChange(of: isOn) { isOn in
             if isOn {

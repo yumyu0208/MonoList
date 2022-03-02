@@ -13,7 +13,7 @@ struct PurchasedView: View {
         VStack(spacing: 28) {
             Spacer()
             PlusPlanIconView()
-            Text("All functions are now available!")
+            Text("PlusPlan.Purchased.description")
                 .multilineTextAlignment(.center)
             Spacer()
             Button {

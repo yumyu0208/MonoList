@@ -75,7 +75,7 @@ struct EditFolderView: View {
                 }
             }
         }
-        .alert("Are you sure you want to close without saving?", isPresented: $isShowingCancelConfirmationAlert) {
+        .alert("BackWithoutSave.description", isPresented: $isShowingCancelConfirmationAlert) {
             Button(role: .destructive) {
                 dismiss()
             } label: {
@@ -117,7 +117,9 @@ struct EditFolderView: View {
     private func saveData() {
         do {
             try viewContext.save()
+            #if DEBUG
             print("Saved")
+            #endif
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -125,11 +127,3 @@ struct EditFolderView: View {
     }
 }
 
-struct EditFolderView_Previews: PreviewProvider {
-    static let folders = MonoListManager().createSamples(context: PersistenceController.preview.container.viewContext)
-    static var previews: some View {
-        NavigationView {
-            EditFolderView(folder: folders[0])
-        }
-    }
-}

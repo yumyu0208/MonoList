@@ -98,13 +98,13 @@ struct EditRepeatNotificationView: View {
                         deleteNotification(notification)
                         dismiss()
                     } label: {
-                        Text("Delete Notification")
+                        Text("Delete Alarm")
                     }
                     .foregroundColor(.red)
                 }
             }
         }
-        .alert("Are you sure you want to close without saving?", isPresented: $isShowingCancelConfirmationAlert) {
+        .alert("BackWithoutSave.description", isPresented: $isShowingCancelConfirmationAlert) {
             Button(role: .destructive) {
                 if isNew {
                     deleteNotification(notification)
@@ -136,7 +136,9 @@ struct EditRepeatNotificationView: View {
     private func saveData() {
         do {
             try viewContext.save()
+            #if DEBUG
             print("Saved")
+            #endif
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

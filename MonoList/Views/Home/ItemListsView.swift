@@ -68,7 +68,7 @@ struct ItemListsView: View {
             isShowingDeleteConfirmationDialog = true
         }
         .onMove(perform: moveitemList)
-        .confirmationDialog("Are you sure you want to delete this list?", isPresented: $isShowingDeleteConfirmationDialog, presenting: deleteIndexSet) { indexSet in
+        .confirmationDialog("list.delete.description", isPresented: $isShowingDeleteConfirmationDialog, presenting: deleteIndexSet) { indexSet in
             Button(role: .destructive) {
                 deleteItemLists(offsets: indexSet)
             } label: {
@@ -87,7 +87,9 @@ struct ItemListsView: View {
     private func saveData() {
         do {
             try viewContext.save()
+            #if DEBUG
             print("Saved")
+            #endif
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

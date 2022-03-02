@@ -17,7 +17,7 @@ struct DevelopmentSection: View {
                 Label("Data Management", systemImage: "sdcard")
             }
             Toggle(isOn: $isPlusPlan) {
-                Label("MONOLIST+", systemImage: "star")
+                Label("MONOLIST +", systemImage: "star")
             }
         } //: Section
     }

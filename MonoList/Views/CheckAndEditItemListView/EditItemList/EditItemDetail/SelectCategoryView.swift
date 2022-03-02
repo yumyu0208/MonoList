@@ -135,7 +135,7 @@ struct SelectCategoryView: View {
         } //: ZStack
         .navigationTitle("Select Category")
         .navigationBarTitleDisplayMode(.inline)
-        .confirmationDialog("Are you sure you want to delete this category?", isPresented: $isShowingDeleteConfirmationDialog, titleVisibility: .visible, presenting: deleteIndexSet) { indexSet in
+        .confirmationDialog("Category.Delete.confirmation", isPresented: $isShowingDeleteConfirmationDialog, titleVisibility: .visible, presenting: deleteIndexSet) { indexSet in
             Button(role: .destructive) {
                 deleteCategories(offsets: indexSet)
             } label: {
@@ -154,7 +154,9 @@ struct SelectCategoryView: View {
     private func saveData() {
         do {
             try viewContext.save()
+            #if DEBUG
             print("Saved")
+            #endif
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

@@ -41,7 +41,7 @@ struct NotificationsGroupBoxView: View {
                     })
                     Spacer()
                     if isActive {
-                        Toggle("Notification", isOn: $isExpanded.animation(.easeOut(duration: 0.2)))
+                        Toggle("Alarm", isOn: $isExpanded.animation(.easeOut(duration: 0.2)))
                             .toggleStyle(.expand)
                             .labelsHidden()
                     }
@@ -79,7 +79,9 @@ struct NotificationsGroupBoxView: View {
     private func saveData() {
         do {
             try viewContext.save()
+            #if DEBUG
             print("Saved")
+            #endif
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

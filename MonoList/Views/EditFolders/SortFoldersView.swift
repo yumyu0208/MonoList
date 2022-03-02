@@ -139,7 +139,7 @@ struct SortFoldersView: View {
                     Text("Do you want to delete all the lists in \"\(folders[folderIndex].name)\"?")
                 }
             }
-            .confirmationDialog("Are you sure you want to delete this folder?", isPresented: $isShowingDeleteConfirmationDialog, titleVisibility: .hidden, presenting: deleteIndexSet) { indexSet in
+            .confirmationDialog("Folder.Delete.confirmation", isPresented: $isShowingDeleteConfirmationDialog, titleVisibility: .hidden, presenting: deleteIndexSet) { indexSet in
                 Button(role: .destructive) {
                     deleteFolders(offsets: indexSet)
                 } label: {
@@ -159,7 +159,9 @@ struct SortFoldersView: View {
     private func saveData() {
         do {
             try viewContext.save()
+            #if DEBUG
             print("Saved")
+            #endif
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

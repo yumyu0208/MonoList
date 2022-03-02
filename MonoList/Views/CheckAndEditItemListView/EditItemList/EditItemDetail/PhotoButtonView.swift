@@ -65,7 +65,7 @@ struct PhotoButtonView: View {
             .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
             .shadow(color: Color(K.colors.ui.shadowColor9), radius: 2, y: 2)
         } //: Menu
-        .confirmationDialog("Are you sure you want to delete this photo?", isPresented: $isShowingDeleteConfirmationDialog) {
+        .confirmationDialog("Photo.Delete.confirmation", isPresented: $isShowingDeleteConfirmationDialog) {
             Button(role: .destructive) {
                 withAnimation(.easeOut(duration: 0.2)) {
                     imageData = nil
@@ -78,7 +78,7 @@ struct PhotoButtonView: View {
                 isShowingDeleteConfirmationDialog = false
             }
         } message: {
-            Text("Are you sure you want to delete this photo?")
+            Text("Photo.Delete.confirmation")
         }
         .sheet(isPresented: $isShowingImagePicker) {
             PhotoCaptureView(showImagePicker: $isShowingImagePicker, data: $imageData, sourceType: .photoLibrary)

@@ -82,7 +82,7 @@ extension StoreManager: SKPaymentTransactionObserver {
             SKPaymentQueue.default().add(payment)
         } else {
             print("User can't make payment.")
-            presentErrorAlertAction("You are not allowed to purchase this product with this account.")
+            presentErrorAlertAction("CannotMakePaymentsErrorMessage")
         }
     }
     
