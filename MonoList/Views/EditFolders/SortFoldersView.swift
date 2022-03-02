@@ -74,10 +74,11 @@ struct SortFoldersView: View {
                                 HStack {
                                     Label {
                                         Text("Add Folder")
+                                            .foregroundColor(.primary)
                                     } icon: {
                                         Image(systemName: "folder.badge.plus")
+                                            .foregroundColor(.primary)
                                     }
-                                    .foregroundColor(.accentColor)
                                     Spacer()
                                 }
                             } //: Button

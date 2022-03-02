@@ -56,7 +56,7 @@ struct EditIconView: View {
                         } //: LazyVGrid
                         .inoperable(!isPlusPlan && !K.freeIconSections.contains(section.name), padding: .defaultListInsets) {
                             NavigationView {
-                                PlusPlanView(feature: K.plusPlan.alarm)
+                                PlusPlanView(feature: K.plusPlan.allIcons)
                             }
                         }
                     } //: Section

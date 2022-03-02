@@ -79,8 +79,8 @@ struct CategoriesView: View {
                                 }
                             }) {
                                 Label("Add Category", systemImage: "plus.app")
+                                    .foregroundColor(.primary)
                             } // Button
-                            .foregroundColor(.accentColor)
                             Spacer()
                         }
                         .inoperable(!isPlusPlan, padding: .defaultListInsets) {

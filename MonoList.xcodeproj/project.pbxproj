@@ -64,6 +64,10 @@
 		AA7C737C27CB4A62008D3B9A /* OthersSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C737B27CB4A62008D3B9A /* OthersSection.swift */; };
 		AA7C738127CE0A16008D3B9A /* PlusPlanIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C738027CE0A16008D3B9A /* PlusPlanIconView.swift */; };
 		AA7C738327CE19BE008D3B9A /* FeaturePagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C738227CE19BE008D3B9A /* FeaturePagesView.swift */; };
+		AA7C738527CEF880008D3B9A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7C738427CEF880008D3B9A /* StoreKit.framework */; };
+		AA7C738827CEF97B008D3B9A /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C738727CEF97B008D3B9A /* StoreManager.swift */; };
+		AA7C738A27CF00D0008D3B9A /* SKProductExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C738927CF00D0008D3B9A /* SKProductExtension.swift */; };
+		AA7C738C27CF1269008D3B9A /* PurchasedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C738B27CF1269008D3B9A /* PurchasedView.swift */; };
 		AA7E1E8C278ED9840080D80F /* EditRepeatNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E1E8B278ED9840080D80F /* EditRepeatNotificationView.swift */; };
 		AA82C025277AC0D3001CEFFA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C024277AC0D3001CEFFA /* Constants.swift */; };
 		AA82C04B277B319E001CEFFA /* Notification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82C043277B319E001CEFFA /* Notification+CoreDataClass.swift */; };
@@ -202,6 +206,10 @@
 		AA7C737B27CB4A62008D3B9A /* OthersSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersSection.swift; sourceTree = "<group>"; };
 		AA7C738027CE0A16008D3B9A /* PlusPlanIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusPlanIconView.swift; sourceTree = "<group>"; };
 		AA7C738227CE19BE008D3B9A /* FeaturePagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturePagesView.swift; sourceTree = "<group>"; };
+		AA7C738427CEF880008D3B9A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		AA7C738727CEF97B008D3B9A /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		AA7C738927CF00D0008D3B9A /* SKProductExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKProductExtension.swift; sourceTree = "<group>"; };
+		AA7C738B27CF1269008D3B9A /* PurchasedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedView.swift; sourceTree = "<group>"; };
 		AA7E1E8B278ED9840080D80F /* EditRepeatNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRepeatNotificationView.swift; sourceTree = "<group>"; };
 		AA82C024277AC0D3001CEFFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA82C043277B319E001CEFFA /* Notification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -286,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA7C738527CEF880008D3B9A /* StoreKit.framework in Frameworks */,
 				AAFF272627BDEA4D000585EE /* ImageViewer in Frameworks */,
 				4086694DC62426D57D5D4CE3 /* Pods_MonoList.framework in Frameworks */,
 			);
@@ -309,6 +318,7 @@
 				AA0C50F627C70FE800FBC56B /* PlusPlanView.swift */,
 				AA7C738027CE0A16008D3B9A /* PlusPlanIconView.swift */,
 				AA7C738227CE19BE008D3B9A /* FeaturePagesView.swift */,
+				AA7C738B27CF1269008D3B9A /* PurchasedView.swift */,
 			);
 			path = PlusPlan;
 			sourceTree = "<group>";
@@ -397,14 +407,6 @@
 			path = ListIconDataModels;
 			sourceTree = "<group>";
 		};
-		AA3675C727B0D4E800611D8A /* FolderImage */ = {
-			isa = PBXGroup;
-			children = (
-				AAF3A816279D88700084B7A9 /* ImageManager.swift */,
-			);
-			path = FolderImage;
-			sourceTree = "<group>";
-		};
 		AA3675C927B0D57100611D8A /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +471,18 @@
 			path = Sections;
 			sourceTree = "<group>";
 		};
+		AA7C738627CEF926008D3B9A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				AA82C051277DECC4001CEFFA /* MonoListManager.swift */,
+				AACBBC78279C1F0D00A42108 /* CategoryManager.swift */,
+				AAB52BEB27C383080050A912 /* NotificationManager.swift */,
+				AAF3A816279D88700084B7A9 /* ImageManager.swift */,
+				AA7C738727CEF97B008D3B9A /* StoreManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		AA82C023277AC0B3001CEFFA /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,12 +506,9 @@
 				AA82C046277B319E001CEFFA /* ItemList+CoreDataProperties.swift */,
 				AA82C047277B319E001CEFFA /* Folder+CoreDataClass.swift */,
 				AA82C048277B319E001CEFFA /* Folder+CoreDataProperties.swift */,
-				AA82C051277DECC4001CEFFA /* MonoListManager.swift */,
-				AACBBC78279C1F0D00A42108 /* CategoryManager.swift */,
-				AAB52BEB27C383080050A912 /* NotificationManager.swift */,
-				AA3675C727B0D4E800611D8A /* FolderImage */,
 				AA3675C527B0D4B500611D8A /* ListIconDataModels */,
 				AA3675C427B0D48500611D8A /* BackupDataModels */,
+				AA7C738627CEF926008D3B9A /* Managers */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -555,6 +566,7 @@
 				AAD949E32796B8CC004A51AC /* StringExtension.swift */,
 				AA340B9727BCCE9A0080DD33 /* UIImageExtension.swift */,
 				AA6F605B27C13F6600DCB446 /* UIColorExtension.swift */,
+				AA7C738927CF00D0008D3B9A /* SKProductExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -719,6 +731,7 @@
 		CD14DAF8542E1CB5A39B2337 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA7C738427CEF880008D3B9A /* StoreKit.framework */,
 				395E573228CF870EA90A642E /* Pods_MonoList.framework */,
 			);
 			name = Frameworks;
@@ -854,6 +867,7 @@
 				AA2E0C272789C92400D23B6B /* ItemListCellView.swift in Sources */,
 				AA3675BD27B0AEC400611D8A /* ItemData.swift in Sources */,
 				AA3675B927B0AE1F00611D8A /* FolderData.swift in Sources */,
+				AA7C738827CEF97B008D3B9A /* StoreManager.swift in Sources */,
 				AAA8868327A3EBD000FD4D5E /* IconImageView.swift in Sources */,
 				AA8750C8278DB1FA00540BA0 /* DateExtension.swift in Sources */,
 				AA5FAB9827C5DCD100A85AC6 /* NoWeightView.swift in Sources */,
@@ -875,6 +889,7 @@
 				AA9977AD2783F4AA002B4C57 /* ItemListsView.swift in Sources */,
 				AA5FAB9427C5D6B400A85AC6 /* NoListsView.swift in Sources */,
 				AA3675C127B0AF5200611D8A /* CategoryData.swift in Sources */,
+				AA7C738C27CF1269008D3B9A /* PurchasedView.swift in Sources */,
 				AAB52BF027C45DFE0050A912 /* NotificationsGroupBoxView.swift in Sources */,
 				AAF3A81927A2A4A20084B7A9 /* ImagePickerView.swift in Sources */,
 				AA8750BF278D3F0D00540BA0 /* ListTitleView.swift in Sources */,
@@ -913,6 +928,7 @@
 				AA8BD47A278DD3D300488027 /* WhiteGroupBoxStyle.swift in Sources */,
 				AAA8867B27A3E76E00FD4D5E /* ListIconManager.swift in Sources */,
 				AAC3DDDB2791D68A00983100 /* ItemListView.swift in Sources */,
+				AA7C738A27CF00D0008D3B9A /* SKProductExtension.swift in Sources */,
 				AA7C737C27CB4A62008D3B9A /* OthersSection.swift in Sources */,
 				AA0C510A27C8CF1C00FBC56B /* NotificationSettingView.swift in Sources */,
 				AA340B9027BC98760080DD33 /* PhotoButtonView.swift in Sources */,
