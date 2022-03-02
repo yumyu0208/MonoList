@@ -33,14 +33,6 @@ struct RichAlert<RichAlertContent: View>: ViewModifier {
                     .frame(minHeight: 170)
                     .background(Color(UIColor.secondarySystemBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .overlay(
-                        MiniXButtonView {
-                            withAnimation(.easeOut(duration: 0.2)) {
-                                isShowing = false
-                            }
-                        }
-                        .scaleEffect(0.8),
-                        alignment: .topTrailing)
                     .offset(x: 0, y: vOffset)
                     .zIndex(2)
             }

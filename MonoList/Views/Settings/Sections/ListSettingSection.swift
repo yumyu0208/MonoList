@@ -36,8 +36,6 @@ struct ListSettingSection: View {
             }
         } header: {
             Text("All Lists")
-        } footer: {
-            Text("description.automaticUncheck")
         } //: Section
         Section {
             Toggle(isOn: $hideCompleted) {
@@ -73,8 +71,6 @@ struct ListSettingSection: View {
             }
         } header: {
             Text("New Lists")
-        } footer: {
-            Text("description.newLists")
         } //: Section
     }
 }

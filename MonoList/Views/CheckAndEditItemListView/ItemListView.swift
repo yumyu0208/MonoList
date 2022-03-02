@@ -296,14 +296,15 @@ struct ItemListView: View {
             }
         }
         .richAlert(isShowing: $isShowingDoneAlert, vOffset: -24) {
-            VStack(spacing: 32) {
-                VStack {
+            VStack(spacing: 0) {
+                VStack(spacing: 20) {
                     IconImageView(for: itemList)
                         .font(.largeTitle)
-                        .padding()
                     Text("All Done!")
                         .font(.title3.bold())
                 }
+                .padding(24)
+                Divider()
                 Button {
                     withAnimation(.easeOut(duration: 0.2)) {
                         isShowingDoneAlert = false
@@ -317,11 +318,15 @@ struct ItemListView: View {
                         }
                     }
                 } label: {
-                    Text("Close List")
+                    HStack {
+                        Spacer()
+                        Text("Close")
+                            .padding(14)
+                            .foregroundColor(Color(itemList.color))
+                        Spacer()
+                    }
                 }
-                .buttonStyle(.fitCapsule)
             }
-            .padding()
         }
         .alert("Uncheck.Confirmation", isPresented: $isShowingUncheckAllConfirmationAlert) {
             Button(role: .destructive) {

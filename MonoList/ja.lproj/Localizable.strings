@@ -32,7 +32,7 @@
 "Ascending" = "昇順";
 
 /* No comment provided by engineer. */
-"Automatically Uncheck" = "自動でチェックを外す";
+"Automatically Uncheck" = "完了時に自動でチェックを外す";
 
 /* No comment provided by engineer. */
 "Back Up" = "バックアップ";
@@ -59,7 +59,7 @@
 "Choose Photo" = "写真を選択";
 
 /* No comment provided by engineer. */
-"Close List" = "リストを閉じる";
+"Close" = "閉じる";
 
 /* No comment provided by engineer. */
 "Close Without Saving" = "保存せずに閉じる";
@@ -314,28 +314,28 @@
 "No Ads" = "広告なし";
 
 /* No comment provided by engineer. */
-"NoAds.description" = "コンテンツに集中できます。";
+"NoAds.description" = "コンテンツに集中できます";
 
 /* No comment provided by engineer. */
 "All Icons" = "全てのアイコン";
 
 /* No comment provided by engineer. */
-"AllIcons.description" = "より多くのアイコンが選択できます。";
+"AllIcons.description" = "より多くのアイコンが選択できます";
 
 /* No comment provided by engineer. */
-"Category.description" = "アイテムを分類できます。";
+"Category.description" = "アイテムを分類できます";
 
 /* No comment provided by engineer. */
 "Quantity & Weight" = "数量と重量";
 
 /* No comment provided by engineer. */
-"QuantityAndWeight.description" = "アイテムに数量と重量を設定できます。";
+"QuantityAndWeight.description" = "アイテムに数量と重量を設定できます";
 
 /* No comment provided by engineer. */
-"Folders.description" = "リストをフォルダで管理できます。";
+"Folders.description" = "リストをフォルダで管理できます";
 
 /* No comment provided by engineer. */
-"Alarms.description" = "リストのアラームを設定できます。";
+"Alarms.description" = "リストのアラームを設定できます";
 
 /* No comment provided by engineer. */
 "Copied" = "コピー";

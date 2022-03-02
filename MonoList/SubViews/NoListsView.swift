@@ -15,9 +15,9 @@ struct NoListsView: View {
             .overlay {
                 VStack(spacing: 8) {
                     Image(systemName: "checklist")
-                        .font(.largeTitle)
+                        .font(.title)
                     Text("No Lists")
-                        .font(.title3)
+                        .font(.body)
                 }
                 .foregroundColor(Color(UIColor.tertiaryLabel))
                 .offset(y: -28)

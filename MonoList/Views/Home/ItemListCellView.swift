@@ -31,7 +31,7 @@ struct ItemListCellView: View {
         } label: {
             HStack {
                 Label {
-                    Text(isNewItemList ? "New List" : itemList.name)
+                    Text(isNewItemList ? "New List".localized : itemList.name)
                         .font(.headline)
                         .lineLimit(1)
                         .foregroundColor(.primary)

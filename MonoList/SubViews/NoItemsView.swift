@@ -15,9 +15,9 @@ struct NoItemsView: View {
             .overlay {
                 VStack(spacing: 8) {
                     Image(systemName: "tray")
-                        .font(.largeTitle)
+                        .font(.title)
                     Text("No Items")
-                        .font(.title3)
+                        .font(.body)
                 }
                 .foregroundColor(Color(UIColor.tertiaryLabel))
                 .offset(y: -28)

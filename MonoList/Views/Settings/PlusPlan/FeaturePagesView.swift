@@ -23,18 +23,18 @@ struct FeaturePagesView: View {
                         VStack(spacing: 20) {
                             Spacer(minLength: 0)
                             Image(systemName: feature.image)
-                                .font(.title3)
+                                .font(.system(size: 22))
                             Text(feature.title)
-                                .font(.headline)
+                                .font(.system(size: 18, weight: .bold))
                             Text(feature.description)
-                                .font(.body)
+                                .font(.system(size: 16))
                                 .foregroundStyle(.secondary)
                             Spacer(minLength: 0)
                         }
                         .multilineTextAlignment(.center)
                     }
                     .groupBoxStyle(.white)
-                    .padding(.horizontal, 38)
+                    .frame(maxWidth: 320)
                     .tag(feature.title)
                     Rectangle()
                         .foregroundColor(.clear)
@@ -75,5 +75,6 @@ struct FeaturePagesView: View {
 struct FeaturePagesView_Previews: PreviewProvider {
     static var previews: some View {
         FeaturePagesView()
+            .previewLayout(.sizeThatFits)
     }
 }

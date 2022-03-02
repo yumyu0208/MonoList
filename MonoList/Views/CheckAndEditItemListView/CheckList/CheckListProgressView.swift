@@ -67,7 +67,8 @@ struct CheckListProgressView: View {
                         .frame(height: 8)
                         .background(Color(UIColor.systemGray5))
                         .clipShape(Capsule())
-                        .animation(.easeOut(duration: 0.2), value: completeRate)
+                        .animation(.interpolatingSpring(mass: 1.0, stiffness: 170, damping: 15, initialVelocity: 1.0),
+                                   value: completeRate)
                         Spacer(minLength: 0)
                     }
                 }
