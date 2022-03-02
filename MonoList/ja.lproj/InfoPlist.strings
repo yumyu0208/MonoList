@@ -1,0 +1,6 @@
+/* Bundle name */
+"CFBundleName" = "MONOLIST";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "アイテムの写真を撮影するために使用します";
+

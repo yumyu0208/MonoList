@@ -12,7 +12,11 @@ import CoreData
 
 public class Notification: NSManagedObject {
     
-    static private let calendar = Calendar(identifier: .gregorian)
+    static private let calendar = { () -> Calendar in
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = Locale.autoupdatingCurrent
+        return calendar
+    }()
     
     static var defaultDate: Date {
         calendar.date(bySettingHour: 7, minute: 0, second: 0, of: Date().addingTimeInterval(24*60*60)) ?? Date()

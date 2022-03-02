@@ -24,8 +24,8 @@ struct EditSpecificDateAndTimeNotificationView: View {
         VStack(spacing: 0) {
             List {
                 Section {
-                    DatePicker("Time", selection: $selectedDate, in: Date()..., displayedComponents: [.date, .hourAndMinute])
-                        .accentColor(.gray)
+                    DatePicker("Date".localized, selection: $selectedDate, in: Date()..., displayedComponents: [.date, .hourAndMinute])
+                        .accentColor(Color(notification.parentItemList.color))
                 }
             } //: List
             Button {

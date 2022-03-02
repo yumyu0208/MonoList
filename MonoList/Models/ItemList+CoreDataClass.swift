@@ -163,7 +163,7 @@ public class ItemList: NSManagedObject {
     
     func duplicate(_ context: NSManagedObjectContext) {
         let duplicatedItemList = parentFolder.createNewItemList(
-            name: name + " Copied",
+            name: name + " " + "Copied".localized,
             color: color,
             primaryColor: primaryColor,
             secondaryColor: secondaryColor,

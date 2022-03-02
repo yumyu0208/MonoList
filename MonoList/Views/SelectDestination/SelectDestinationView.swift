@@ -33,7 +33,7 @@ struct SelectDestinationView: View {
                                 }
                             } label: {
                                 Label {
-                                    Text(folder.name == K.defaultName.lists ? "My Lists" : folder.name)
+                                    Text(folderName(for: folder))
                                         .foregroundColor(.primary)
                                 } icon: {
                                     Image(systemName: folder.image)
@@ -95,6 +95,16 @@ struct SelectDestinationView: View {
                     dismiss()
                 }
             }
+        }
+    }
+    
+    private func folderName(for folder: Folder) -> String {
+        if folder.name == K.defaultName.newFolder {
+            return "New Folder".localized
+        } else if folder.name == K.defaultName.lists {
+            return "My Lists".localized
+        } else {
+            return folder.name
         }
     }
     

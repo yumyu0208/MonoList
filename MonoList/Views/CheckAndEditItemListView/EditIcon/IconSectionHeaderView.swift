@@ -10,7 +10,7 @@ import SwiftUI
 struct IconSectionHeaderView: View {
     var title: String
     var body: some View {
-        Text(title)
+        Text(title.localized)
             .font(.headline)
             .foregroundColor(.primary)
     }

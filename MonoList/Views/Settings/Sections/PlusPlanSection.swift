@@ -12,7 +12,7 @@ struct PlusPlanSection: View {
     @State var isShowingPlusPlanView: Bool = false
     
     var body: some View {
-        Section(header: Text("Premium")) {
+        Section(header: Text("Premium Content")) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("MONOLIST +")
                     .font(.title3.bold())

@@ -42,13 +42,13 @@ struct SelectionView: View {
                     HStack {
                         if let image = item.image {
                             Label {
-                                Text(item.name)
+                                Text(item.name.localized)
                                     .foregroundColor(.primary)
                             } icon: {
                                 Image(systemName: image)
                             }
                         } else {
-                            Text(item.name)
+                            Text(item.name.localized)
                                 .foregroundColor(.primary)
                         }
                         Spacer()

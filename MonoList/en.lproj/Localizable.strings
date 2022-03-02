@@ -1,0 +1,111 @@
+/* No comment provided by engineer. */
+"BackWithoutSave.description" = "Are you sure you want to close without saving?";
+
+/* No comment provided by engineer. */
+"categories.description" = "You can create, edit, delete, and reorder categories.\nIn the list, items will be displayed in this order.";
+
+/* No comment provided by engineer. */
+"Category.Delete.confirmation" = "Are you sure you want to delete this category?";
+
+/* No comment provided by engineer. */
+"ChangeUnit.description" = "Applies to all items in this list.";
+
+/* No comment provided by engineer. */
+"description.automaticUncheck" = "If you check all the items in the list, the app will automatically uncheck all of them the next time you open it.";
+
+/* No comment provided by engineer. */
+"description.newLists" = "This setting will be applied to new lists.";
+
+/* No comment provided by engineer. */
+"Folder.Delete.confirmation" = "Are you sure you want to delete this folder?";
+
+/* No comment provided by engineer. */
+"list.delete.description" = "Are you sure you want to delete this list?";
+
+/* No comment provided by engineer. */
+"NotificationRequest.Error.description" = "This app is not allowed to send notifications";
+
+/* No comment provided by engineer. */
+"NotificationRequest.Error.message" = "Please turn on notifications in the \\\"Settings\\\" app";
+
+/* No comment provided by engineer. */
+"Photo.Delete.confirmation" = "Are you sure you want to delete this photo?";
+
+/* No comment provided by engineer. */
+"PlusPlan.description" = "Unlock all content with a single payment.";
+
+/* No comment provided by engineer. */
+"PlusPlan.Purchased.description" = "All functions are now available!";
+
+/* No comment provided by engineer. */
+"Uncheck.Confirmation" = "Are you sure you want to uncheck all?";
+
+/* No comment provided by engineer. */
+"No Ads" = "No Ads";
+
+/* No comment provided by engineer. */
+"NoAds.description" = "Focus on content.";
+
+/* No comment provided by engineer. */
+"All Icons" = "All Icons";
+
+/* No comment provided by engineer. */
+"AllIcons.description" = "Choose more icons.";
+
+/* No comment provided by engineer. */
+"Category.description" = "Categorize items.";
+
+/* No comment provided by engineer. */
+"Quantity & Weight" = "Quantity & Weight";
+
+/* No comment provided by engineer. */
+"QuantityAndWeight.description" = "Set quantity and weight for items.";
+
+/* No comment provided by engineer. */
+"Folders.description" = "Manage lists in folders.";
+
+/* No comment provided by engineer. */
+"Alarms.description" = "Set alarms for lists.";
+
+/* No comment provided by engineer. */
+"Copied" = "Copied";
+
+/* No comment provided by engineer. */
+"List" = "List";
+
+/* No comment provided by engineer. */
+"Container" = "Container";
+
+/* No comment provided by engineer. */
+"Symbol" = "Symbol";
+
+/* No comment provided by engineer. */
+"Object" = "Object";
+
+/* No comment provided by engineer. */
+"Nature" = "Nature";
+
+/* No comment provided by engineer. */
+"Person" = "Person";
+
+/* No comment provided by engineer. */
+"CannotMakePaymentsErrorMessage" = "You are not allowed to purchase this product with this account.";
+
+/* No comment provided by engineer. */
+"1 Line Gallery" = "1 Line Gallery";
+
+/* No comment provided by engineer. */
+"2 Line Gallery" = "2 Line Gallery";
+
+/* No comment provided by engineer. */
+"3 Line Gallery" = "3 Line Gallery";
+
+/* No comment provided by engineer. */
+"ItemNameError.description" = "Please enter the item name.";
+
+/* No comment provided by engineer. */
+"WeightValueError.description" = "Invalid weight value.";
+
+/* No comment provided by engineer. */
+"QuantityValueError.description" = "Invalid quantity value.";
+

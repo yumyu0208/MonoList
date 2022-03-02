@@ -1,0 +1,440 @@
+/* No comment provided by engineer. */
+"Add Alarm" = "新規アラーム";
+
+/* No comment provided by engineer. */
+"Add Category" = "新規カテゴリ";
+
+/* No comment provided by engineer. */
+"Add Detail" = "項目を追加";
+
+/* No comment provided by engineer. */
+"Add Folder" = "新規フォルダ";
+
+/* No comment provided by engineer. */
+"Alarm" = "アラーム";
+
+/* No comment provided by engineer. */
+"Off" = "オフ";
+
+/* No comment provided by engineer. */
+"On" = "オン";
+
+/* No comment provided by engineer. */
+"All Done!" = "完了！";
+
+/* No comment provided by engineer. */
+"All Lists" = "全てのリスト";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete \"%@\"?" = "本当に「%@」を削除しますか？";
+
+/* No comment provided by engineer. */
+"Ascending" = "昇順";
+
+/* No comment provided by engineer. */
+"Automatically Uncheck" = "自動でチェックを外す";
+
+/* No comment provided by engineer. */
+"Back Up" = "バックアップ";
+
+/* No comment provided by engineer. */
+"Bug Report" = "不具合の報告";
+
+/* No comment provided by engineer. */
+"Cancel" = "キャンセル";
+
+/* No comment provided by engineer. */
+"Categories" = "カテゴリ";
+
+/* No comment provided by engineer. */
+"Category" = "カテゴリ";
+
+/* No comment provided by engineer. */
+"Change the label to \"%@\"" = "ラベルを %@ に変更";
+
+/* No comment provided by engineer. */
+"Change Unit" = "単位の変更";
+
+/* No comment provided by engineer. */
+"Choose Photo" = "写真を選択";
+
+/* No comment provided by engineer. */
+"Close List" = "リストを閉じる";
+
+/* No comment provided by engineer. */
+"Close Without Saving" = "保存せずに閉じる";
+
+/* No comment provided by engineer. */
+"Complete Item" = "アイテムにチェックを入れる";
+
+/* No comment provided by engineer. */
+"Content" = "コンテンツ";
+
+/* No comment provided by engineer. */
+"Created" = "作成日時";
+
+/* No comment provided by engineer. */
+"Data Management" = "データ管理";
+
+/* No comment provided by engineer. */
+"Delete" = "削除";
+
+/* No comment provided by engineer. */
+"Delete Alarm" = "アラームを削除";
+
+/* No comment provided by engineer. */
+"Delete All Lists" = "全てのリストを削除";
+
+/* No comment provided by engineer. */
+"Delete Category" = "カテゴリを削除";
+
+/* No comment provided by engineer. */
+"Delete Folder" = "フォルダを削除";
+
+/* No comment provided by engineer. */
+"Delete List" = "リストを削除";
+
+/* No comment provided by engineer. */
+"Delete Photo" = "写真を削除";
+
+/* No comment provided by engineer. */
+"Descending" = "降順";
+
+/* No comment provided by engineer. */
+"Destination" = "移動先";
+
+/* No comment provided by engineer. */
+"Development" = "開発";
+
+/* No comment provided by engineer. */
+"Do you want to delete all the lists in \"%@\"?" = "「%@」内の全てのリストを削除しますか？";
+
+/* No comment provided by engineer. */
+"Done" = "完了";
+
+/* No comment provided by engineer. */
+"Duplicate" = "複製";
+
+/* No comment provided by engineer. */
+"Edit" = "編集";
+
+/* No comment provided by engineer. */
+"Edit Alarm" = "アラームの編集";
+
+/* No comment provided by engineer. */
+"Edit Category" = "カテゴリの編集";
+
+/* No comment provided by engineer. */
+"Edit Folder" = "フォルダの編集";
+
+/* No comment provided by engineer. */
+"Edit Item" = "アイテムの編集";
+
+/* No comment provided by engineer. */
+"Error" = "エラー";
+
+/* No comment provided by engineer. */
+"Every" = "毎週";
+
+/* No comment provided by engineer. */
+"Expand" = "開く";
+
+/* No comment provided by engineer. */
+"Folders" = "フォルダ";
+
+/* No comment provided by engineer. */
+"Form" = "表示形式";
+
+/* No comment provided by engineer. */
+"Frag" = "重要";
+
+/* No comment provided by engineer. */
+"Hide" = "非表示";
+
+/* No comment provided by engineer. */
+"Hide Completed" = "完了済みを隠す";
+
+/* No comment provided by engineer. */
+"Important" = "重要";
+
+/* No comment provided by engineer. */
+"Info" = "詳細";
+
+/* No comment provided by engineer. */
+"Item Name" = "アイテム名";
+
+/* No comment provided by engineer. */
+"Label" = "ラベル";
+
+/* No comment provided by engineer. */
+"Last Modified" = "最終更新日時";
+
+/* No comment provided by engineer. */
+"List Info" = "リストの詳細";
+
+/* No comment provided by engineer. */
+"List Name" = "リスト名";
+
+/* No comment provided by engineer. */
+"Menu" = "メニュー";
+
+/* No comment provided by engineer. */
+"Misc" = "その他";
+
+/* No comment provided by engineer. */
+"Move" = "移動";
+
+/* No comment provided by engineer. */
+"Move Lists into \"My List\"" = "削除せずに「マイリスト」へ移動";
+
+/* No comment provided by engineer. */
+"New Alarm" = "新規アラーム";
+
+/* No comment provided by engineer. */
+"New Category" = "新規カテゴリ";
+
+/* No comment provided by engineer. */
+"New Folder" = "新規フォルダ";
+
+/* No comment provided by engineer. */
+"New Item" = "新規アイテム";
+
+/* No comment provided by engineer. */
+"New List" = "新規リスト";
+
+/* No comment provided by engineer. */
+"New Lists" = "新規リスト";
+
+/* No comment provided by engineer. */
+"No Items" = "アイテムなし";
+
+/* No comment provided by engineer. */
+"No Lists" = "リストなし";
+
+/* No comment provided by engineer. */
+"No Weight" = "重量が設定されていません";
+
+/* No comment provided by engineer. */
+"None" = "なし";
+
+/* No comment provided by engineer. */
+"Note" = "メモ";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Only Once" = "一度のみ";
+
+/* No comment provided by engineer. */
+"Others" = "その他";
+
+/* No comment provided by engineer. */
+"Premium Content" = "プレミアムコンテンツ";
+
+/* No comment provided by engineer. */
+"Priority" = "重要度";
+
+/* No comment provided by engineer. */
+"Privacy Policy" = "プライバシーポリシー";
+
+/* No comment provided by engineer. */
+"Progress Format" = "進捗の表示形式";
+
+/* No comment provided by engineer. */
+"Quantity" = "数量";
+
+/* No comment provided by engineer. */
+"Repeat" = "繰り返し";
+
+/* No comment provided by engineer. */
+"Restore" = "購入の復元";
+
+/* No comment provided by engineer. */
+"Restore From Back Up" = "バックアップから復元する";
+
+/* No comment provided by engineer. */
+"Restore From Catalog" = "Catalogから復元";
+
+/* No comment provided by engineer. */
+"Restore From Sample" = "Sampleから復元";
+
+/* No comment provided by engineer. */
+"See Details" = "詳細を見る";
+
+/* No comment provided by engineer. */
+"Select a Folder" = "移動先の選択";
+
+/* No comment provided by engineer. */
+"Select Category" = "カテゴリの選択";
+
+/* No comment provided by engineer. */
+"Select Icon" = "アイコンの選択";
+
+/* No comment provided by engineer. */
+"Set" = "設定";
+
+/* No comment provided by engineer. */
+"Settings" = "設定";
+
+/* No comment provided by engineer. */
+"Show Completed" = "完了済みを表示";
+
+/* No comment provided by engineer. */
+"Sort" = "並べ替え";
+
+/* No comment provided by engineer. */
+"Take Photo" = "写真を撮る";
+
+/* No comment provided by engineer. */
+"Text Field" = "テキストフィールド";
+
+/* No comment provided by engineer. */
+"The category of items in %@ will be \"None\"" = "「%@」が設定されているアイテムのカテゴリが「なし」になります。";
+
+/* No comment provided by engineer. */
+"Time" = "時間";
+
+/* No comment provided by engineer. */
+"Date" = "日時";
+
+/* No comment provided by engineer. */
+"Uncheck All" = "全てのチェックを外す";
+
+/* No comment provided by engineer. */
+"Unit Label" = "単位ラベル";
+
+/* No comment provided by engineer. */
+"Weight" = "重量";
+
+/* No comment provided by engineer. */
+"Write a Review" = "レビューを書く";
+
+/* No comment provided by engineer. */
+"No Ads" = "広告なし";
+
+/* No comment provided by engineer. */
+"NoAds.description" = "コンテンツに集中できます。";
+
+/* No comment provided by engineer. */
+"All Icons" = "全てのアイコン";
+
+/* No comment provided by engineer. */
+"AllIcons.description" = "より多くのアイコンが選択できます。";
+
+/* No comment provided by engineer. */
+"Category.description" = "アイテムを分類できます。";
+
+/* No comment provided by engineer. */
+"Quantity & Weight" = "数量と重量";
+
+/* No comment provided by engineer. */
+"QuantityAndWeight.description" = "アイテムに数量と重量を設定できます。";
+
+/* No comment provided by engineer. */
+"Folders.description" = "リストをフォルダで管理できます。";
+
+/* No comment provided by engineer. */
+"Alarms.description" = "リストのアラームを設定できます。";
+
+/* No comment provided by engineer. */
+"Copied" = "コピー";
+
+/* No comment provided by engineer. */
+"List" = "リスト";
+
+/* No comment provided by engineer. */
+"Container" = "コンテナ";
+
+/* No comment provided by engineer. */
+"Symbol" = "記号";
+
+/* No comment provided by engineer. */
+"Object" = "オブジェクト";
+
+/* No comment provided by engineer. */
+"Nature" = "自然";
+
+/* No comment provided by engineer. */
+"Person" = "人";
+
+/* No comment provided by engineer. */
+"CannotMakePaymentsErrorMessage" = "このアカウントでの購入は許可されていません。";
+
+/* No comment provided by engineer. */
+"1 Line Gallery" = "写真（1列）";
+
+/* No comment provided by engineer. */
+"2 Line Gallery" = "写真（2列）";
+
+/* No comment provided by engineer. */
+"3 Line Gallery" = "写真（3列）";
+
+/* No comment provided by engineer. */
+"ItemNameError.description" = "アイテム名を入力してください";
+
+/* No comment provided by engineer. */
+"WeightValueError.description" = "重量の値が不正です";
+
+/* No comment provided by engineer. */
+"QuantityValueError.description" = "数量の値が不正です";
+
+/* No comment provided by engineer. */
+"My Lists" = "マイリスト";
+
+/* No comment provided by engineer. */
+"BackWithoutSave.description" = "変更を保存せずに閉じますか？";
+
+/* No comment provided by engineer. */
+"Every day" = "毎日";
+
+/* No comment provided by engineer. */
+"Weekdays" = "平日";
+
+/* No comment provided by engineer. */
+"Fraction" = "分数";
+
+/* No comment provided by engineer. */
+"Percent" = "パーセント";
+
+/* No comment provided by engineer. */
+"categories.description" = "カテゴリの作成・編集・削除・並べ替えができます。\nリストではこの順番でアイテムが表示されます。";
+
+/* No comment provided by engineer. */
+"description.newLists" = "この設定は新規リストに適用されます。";
+
+/* No comment provided by engineer. */
+"description.automaticUncheck" = "オンにすると全てのアイテムをチェックした後、自動的に全てのチェックが外されます。";
+
+/* No comment provided by engineer. */
+"pcs" = "個";
+
+/* No comment provided by engineer. */
+"ChangeUnit.description" = "このリストの全てのアイテムに適用されます。";
+
+/* No comment provided by engineer. */
+"Category.Delete.confirmation" = "本当にこのカテゴリを削除しますか？";
+
+/* No comment provided by engineer. */
+"Photo.Delete.confirmation" = "この写真を本当に削除しますか？";
+
+/* No comment provided by engineer. */
+"Total" = "合計";
+
+/* No comment provided by engineer. */
+"Uncategorized" = "その他";
+
+/* No comment provided by engineer. */
+"View as " = "";
+
+/* No comment provided by engineer. */
+"Uncheck.Confirmation" = "全てのチェックを外しますか？";
+
+/* No comment provided by engineer. */
+"Alarms" = "アラーム";
+
+/* No comment provided by engineer. */
+"PlusPlan.description" = "一度の購入で全ての機能がご利用いただけます。";
+
+/* No comment provided by engineer. */
+"PlusPlan.Purchased.description" = "全ての機能がご利用いただけるようになりました！";

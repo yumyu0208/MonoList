@@ -134,7 +134,7 @@ struct EditItemDetail: View {
                         } label: {
                             HStack {
                                 Label {
-                                    Text(item.category?.name ?? "None")
+                                    Text(item.category?.name ?? "None".localized)
                                         .foregroundStyle(.primary)
                                 } icon: {
                                     Image(systemName: item.category?.image ?? "tag.slash")
@@ -373,7 +373,7 @@ struct EditItemDetail: View {
                 Text("OK")
             }
         } message: { message in
-            Text(message)
+            Text(message.localized)
         }
         .confirmationDialog("Change Unit", isPresented: $isShowingChangeUnitConfirmationDialog, titleVisibility: .visible, presenting: newUnitLabel) { newUnitLabel in
             Button {

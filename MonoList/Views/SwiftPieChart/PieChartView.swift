@@ -92,7 +92,7 @@ public struct PieChartView: View {
                             
                             let noActiveIndex = (self.activeIndex == -1)
                             VStack {
-                                Text(noActiveIndex ? "Total" : names[self.activeIndex])
+                                Text(noActiveIndex ? "Total".localized : names[self.activeIndex].localized)
                                     .font(.system(.title, design: .rounded))
                                     .foregroundColor(.secondary)
                                 Text(self.formatter(noActiveIndex ? values.reduce(0, +) : values[self.activeIndex]))
@@ -129,7 +129,7 @@ struct PieChartRows: View {
                     RoundedRectangle(cornerRadius: 5.0)
                         .fill(self.colors[i])
                         .frame(width: 20, height: 20)
-                    Text(self.names[i])
+                    Text(self.names[i].localized)
                     Spacer()
                     VStack(alignment: .trailing) {
                         Text(self.values[i])

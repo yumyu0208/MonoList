@@ -67,7 +67,7 @@ struct SelectCategoryView: View {
                     } label: {
                         HStack {
                             Label {
-                                Text(category.name == K.defaultName.newCategory ? "New Category" : category.name)
+                                Text(categoryName(for: category))
                                     .foregroundColor(.primary)
                             } icon: {
                                 Image(systemName: category.image ?? "tag")
@@ -148,6 +148,14 @@ struct SelectCategoryView: View {
             if let index = indexSet.first {
                 Text("The category of items in \(categories[index].name) will be \"None\"")
             }
+        }
+    }
+    
+    private func categoryName(for category: Category) -> String {
+        if category.name == K.defaultName.newCategory {
+            return "New Category".localized
+        } else {
+            return category.name
         }
     }
     

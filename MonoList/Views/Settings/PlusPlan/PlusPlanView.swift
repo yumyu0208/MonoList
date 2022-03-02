@@ -78,7 +78,7 @@ struct PlusPlanView: View {
                 alertMessage = ""
             }
         }, message: { message in
-            Text(message)
+            Text(message.localized)
         })
         .onAppear {
             storeManager.enablePlusContentAction = {

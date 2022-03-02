@@ -35,7 +35,7 @@ struct SortFoldersView: View {
                                     EditFolderView(folder: folder)
                                         .navigationTitle(Text("Edit Folder"))
                                 } label: {
-                                    Label(folder.name == K.defaultName.newFolder ? "New Folder" : folder.name, systemImage: folder.image)
+                                    Label(folderName(for: folder), systemImage: folder.image)
                                         .foregroundColor(.primary)
                                         .id(folder.name)
                                 }
@@ -153,6 +153,16 @@ struct SortFoldersView: View {
                     Text("Are you sure you want to delete \"\(folders[folderIndex].name)\"?")
                 }
             }
+        }
+    }
+    
+    private func folderName(for folder: Folder) -> String {
+        if folder.name == K.defaultName.newFolder {
+            return "New Folder".localized
+        } else if folder.name == K.defaultName.lists {
+            return "My Lists".localized
+        } else {
+            return folder.name
         }
     }
     

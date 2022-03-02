@@ -26,7 +26,7 @@ struct ListSettingSection: View {
                     Text("Progress Format")
                         .foregroundStyle(.primary)
                     Spacer()
-                    Text(achievementDisplayFormat)
+                    Text(achievementDisplayFormat.localized)
                         .foregroundStyle(.secondary)
                         .id(achievementDisplayFormat)
                 }
@@ -52,7 +52,7 @@ struct ListSettingSection: View {
                     Text("Form")
                         .foregroundStyle(.primary)
                     Spacer()
-                    Text(listForm)
+                    Text(listForm.localized)
                         .foregroundStyle(.secondary)
                         .id(listForm)
                 }

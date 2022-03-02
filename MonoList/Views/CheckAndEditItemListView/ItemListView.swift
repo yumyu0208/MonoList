@@ -258,7 +258,7 @@ struct ItemListView: View {
                                             saveData(update: false)
                                         }
                                     } label: {
-                                        Label("\("View as ".localized)\(form.rawValue)", systemImage: imageName(for: form))
+                                        Label("\("View as ".localized)\(form.rawValue.localized)", systemImage: imageName(for: form))
                                     } //: Button
                                 } //: ForEach
                             } label: {
@@ -301,8 +301,8 @@ struct ItemListView: View {
                     IconImageView(for: itemList)
                         .font(.largeTitle)
                         .padding()
-                    Text("All Done")
-                        .font(.title.bold())
+                    Text("All Done!")
+                        .font(.title3.bold())
                 }
                 Button {
                     withAnimation(.easeOut(duration: 0.2)) {

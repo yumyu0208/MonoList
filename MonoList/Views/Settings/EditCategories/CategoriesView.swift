@@ -30,7 +30,7 @@ struct CategoriesView: View {
                                 .navigationTitle(Text("Edit Category"))
                         } label: {
                             Label {
-                                Text(category.name == K.defaultName.newCategory ? "New Category" : category.name)
+                                Text(categoryName(for: category))
                                     .foregroundColor(.primary)
                             } icon: {
                                 Image(systemName: category.image != nil ? category.image! : "tag")
@@ -90,18 +90,21 @@ struct CategoriesView: View {
                         }
                     }
                 } header: {
-                    HStack(alignment: .center) {
+                    VStack(alignment: .leading) {
                         Text("categories.description")
+                            .multilineTextAlignment(.leading)
                             .textCase(nil)
                             .foregroundStyle(Color(UIColor.secondaryLabel))
                             .font(.footnote)
-                        Spacer()
-                        EditLabelView()
-                            .imageScale(.medium)
-                            .font(.subheadline.bold())
-                            .environment(\.editMode, $editMode)
-                            .textCase(nil)
-                            .disabled(!isPlusPlan)
+                        HStack {
+                            Spacer()
+                            EditLabelView()
+                                .imageScale(.medium)
+                                .font(.subheadline.bold())
+                                .environment(\.editMode, $editMode)
+                                .textCase(nil)
+                                .disabled(!isPlusPlan)
+                        }
                     }
                 } //: Section
             } //: List
@@ -135,6 +138,14 @@ struct CategoriesView: View {
         .onAppear {
             CategoryManager().orderCategory(context: viewContext)
             saveData()
+        }
+    }
+    
+    private func categoryName(for category: Category) -> String {
+        if category.name == K.defaultName.newCategory {
+            return "New Category".localized
+        } else {
+            return category.name
         }
     }
     
