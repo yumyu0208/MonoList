@@ -10,6 +10,7 @@ import SwiftUI
 struct ItemListCellView: View {
     @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @Environment(\.deeplink) var deeplink
+    @AppStorage(K.key.numberOfComplete) private var numberOfComplete: Int = 0
     
     let itemList: ItemList
     let editAction: () -> Void
@@ -20,6 +21,8 @@ struct ItemListCellView: View {
     
     @State var itemListViewIsActive: Bool = false
     
+    @State var isShowingReviewAlert = false
+    
     var isNewItemList: Bool {
         itemList.name == K.defaultName.newItemList
     }
@@ -28,6 +31,11 @@ struct ItemListCellView: View {
         NavigationLink(isActive: $itemListViewIsActive) {
             ItemListView(itemList: itemList, isEditMode: !itemList.hasItems)
                 .environment(\.deeplink, deeplink)
+                .onDisappear {
+                    if numberOfComplete % 30 == 3 {
+                        isShowingReviewAlert = true
+                    }
+                }
         } label: {
             HStack {
                 Label {
@@ -45,6 +53,15 @@ struct ItemListCellView: View {
                 Text("\(itemList.numberOfItemsString)")
                     .font(.body)
                     .foregroundColor(.secondary)
+            }
+        }
+        .alert("Are you satisfied with this application?", isPresented: $isShowingReviewAlert) {
+            Button("No") {
+                isShowingReviewAlert = false
+            }
+            Button("Yes") {
+                isShowingReviewAlert = false
+                ReviewManager.presentReviewAlert()
             }
         }
         .contextMenu {

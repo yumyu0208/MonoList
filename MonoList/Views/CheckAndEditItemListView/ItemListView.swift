@@ -10,6 +10,8 @@ import ImageViewer
 
 struct ItemListView: View {
     @AppStorage(K.key.automaticUncheck) private var automaticUncheck: Bool = true
+    @AppStorage(K.key.numberOfComplete) private var numberOfComplete: Int = 0
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @Environment(\.deeplink) var deeplink
@@ -140,6 +142,12 @@ struct ItemListView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .overlay(ImageViewer(image: $showingImage, viewerShown: $isShowingImageViewer, closeButtonTopRight: true))
+        .overlay(alignment: .bottom) {
+            if !isPlusPlan && !isEditMode {
+                BannerAdView(adUnit: .checklistBottomBanner, adFormat: .adaptiveBanner)
+                    .ignoresSafeArea(.keyboard, edges: .bottom)
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
@@ -311,6 +319,7 @@ struct ItemListView: View {
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         dismiss()
+                        numberOfComplete += 1
                         if automaticUncheck {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 uncheckAllItems()
@@ -325,7 +334,9 @@ struct ItemListView: View {
                             .foregroundColor(Color(itemList.color))
                         Spacer()
                     }
+                    .contentShape(Rectangle())
                 }
+                .buttonStyle(.darkHighlight)
             }
         }
         .alert("Uncheck.Confirmation", isPresented: $isShowingUncheckAllConfirmationAlert) {

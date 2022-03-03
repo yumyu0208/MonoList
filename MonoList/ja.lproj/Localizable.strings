@@ -362,13 +362,13 @@
 "CannotMakePaymentsErrorMessage" = "このアカウントでの購入は許可されていません。";
 
 /* No comment provided by engineer. */
-"1 Line Gallery" = "写真（1列）";
+"1 Line Gallery" = "写真 (1列)";
 
 /* No comment provided by engineer. */
-"2 Line Gallery" = "写真（2列）";
+"2 Line Gallery" = "写真 (2列)";
 
 /* No comment provided by engineer. */
-"3 Line Gallery" = "写真（3列）";
+"3 Line Gallery" = "写真 (3列)";
 
 /* No comment provided by engineer. */
 "ItemNameError.description" = "アイテム名を入力してください";
@@ -438,3 +438,12 @@
 
 /* No comment provided by engineer. */
 "PlusPlan.Purchased.description" = "全ての機能がご利用いただけるようになりました！";
+
+/* No comment provided by engineer. */
+"Are you satisfied with this application?" = "このアプリの使い心地はいかがですか？";
+
+/* No comment provided by engineer. */
+"Yes" = "良い";
+
+/* No comment provided by engineer. */
+"No" = "悪い";

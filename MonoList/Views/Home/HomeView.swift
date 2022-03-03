@@ -10,6 +10,7 @@ import CoreData
 
 struct HomeView: View {
     @AppStorage(K.key.isInitialLaunch) private var isInitialLaunch: Bool = true
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.deeplink) var deeplink
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
@@ -75,32 +76,38 @@ struct HomeView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 20)
                     .background(Color(UIColor.systemGroupedBackground))
-                    
-                    if !noList {
-                        List {
-                            ForEach(folders) { folder in
-                                Section {
-                                    ItemListsView(of: folder) { itemList in
-                                        editItemListView = ItemListView(itemList: itemList, isEditMode: true)
-                                        navigationLinkTag = editItemListTag
-                                    }
-                                    .environmentObject(manager)
-                                } header: {
-                                    FolderSectionView(image: folder.image, title: folder.name, showPlusButton: !folder.isDefault) {
-                                        withAnimation {
-                                            let newItemList = addItemList(to: folder)
-                                            editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
+                    ZStack {
+                        if !noList {
+                            List {
+                                ForEach(folders) { folder in
+                                    Section {
+                                        ItemListsView(of: folder) { itemList in
+                                            editItemListView = ItemListView(itemList: itemList, isEditMode: true)
                                             navigationLinkTag = editItemListTag
                                         }
-                                    }
-                                    .disabled(isEditing)
-                                } //: Section
-                            } //: ForEach
-                        } //: List
-                        .listStyle(.sidebar)
-                        .environment(\.editMode, $editMode)
-                    } else {
-                        NoListsView()
+                                        .environmentObject(manager)
+                                    } header: {
+                                        FolderSectionView(image: folder.image, title: folder.name, showPlusButton: !folder.isDefault) {
+                                            withAnimation {
+                                                let newItemList = addItemList(to: folder)
+                                                editItemListView = ItemListView(itemList: newItemList, isEditMode: true)
+                                                navigationLinkTag = editItemListTag
+                                            }
+                                        }
+                                        .disabled(isEditing)
+                                    } //: Section
+                                } //: ForEach
+                            } //: List
+                            .listStyle(.sidebar)
+                            .environment(\.editMode, $editMode)
+                        } else {
+                            NoListsView()
+                        }
+                    }
+                    .overlay(alignment: .bottom) {
+                        if !isPlusPlan {
+                            BannerAdView(adUnit: .homeBottomBanner, adFormat: .adaptiveBanner)
+                        }
                     }
                     HStack {
                         Group {

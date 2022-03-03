@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CheckItemCell: View {
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @ObservedObject var item: Item
     let showAndHideUndoButton: () -> Void
     let showImageViewerAction: (Image) -> Void
@@ -31,7 +32,9 @@ struct CheckItemCell: View {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             feedBack.impactOccurred()
                         }
-                        showAndHideUndoButton()
+                        if isPlusPlan {
+                            showAndHideUndoButton()
+                        }
                     }
                 }
             VStack(spacing: 0) {

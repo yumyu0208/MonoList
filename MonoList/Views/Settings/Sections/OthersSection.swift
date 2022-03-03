@@ -8,23 +8,27 @@
 import SwiftUI
 
 struct OthersSection: View {
+    
+    @State var isShowingMailView = false
+    
     var body: some View {
         Section {
             Button {
-                // review
+                ReviewManager.presentReviewSheet()
             } label: {
                 Label("Write a Review", systemImage: "square.and.pencil")
             }
             Button {
-                // bug report
+                isShowingMailView = true
             } label: {
                 Label("Bug Report", systemImage: "envelope")
             }
-            Button {
-                // privacy policy
-            } label: {
-                Label("Privacy Policy", systemImage: "hand.raised")
+            .sheet(isPresented: $isShowingMailView) {
+                MailView(isShowing: $isShowingMailView)
             }
+            Link(destination: URL(string: K.url.privacyPolicy)!, label: {
+                Label("Privacy Policy", systemImage: "hand.raised")
+            })
         } footer: {
             AppInformationView()
                 .padding(.top, 60)
