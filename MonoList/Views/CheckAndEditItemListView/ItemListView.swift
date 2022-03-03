@@ -145,7 +145,6 @@ struct ItemListView: View {
         .overlay(alignment: .bottom) {
             if !isPlusPlan && !isEditMode {
                 BannerAdView(adUnit: .checklistBottomBanner, adFormat: .adaptiveBanner)
-                    .ignoresSafeArea(.keyboard, edges: .bottom)
             }
         }
         .toolbar {

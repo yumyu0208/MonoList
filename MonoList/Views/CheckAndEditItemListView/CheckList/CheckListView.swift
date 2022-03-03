@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CheckListView: View {
+    @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @Environment(\.managedObjectContext) private var viewContext
     var itemList: ItemList
     let allDoneAction: () -> Void
@@ -110,6 +111,11 @@ struct CheckListView: View {
                     .transition(.move(edge: .trailing))
                     .animation(.easeOut(duration: 0.2), value: showUndo)
                 }
+            }
+            if !isPlusPlan {
+                Rectangle()
+                    .foregroundColor(Color(UIColor.systemBackground))
+                    .frame(height: 60)
             }
         } //: VStack
         .onChange(of: numberOfUnCompletedItems) { newValue in

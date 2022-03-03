@@ -228,7 +228,12 @@ struct EditItemListView: View {
                                         .disabled(items.count == 1)
                                     }
                                 } //: HStack
+                            } footer: {
+                                Rectangle()
+                                    .frame(height: 300)
+                                    .foregroundColor(.clear)
                             } //: Section
+                            .listSectionSeparator(.hidden)
                         } //: List
                         .listStyle(.plain)
                         .opacity(items.isEmpty ? 0 : 1)

@@ -13,7 +13,6 @@
 		AA0C50F327C7017400FBC56B /* InoperableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50F227C7017400FBC56B /* InoperableView.swift */; };
 		AA0C50F527C707D400FBC56B /* EdgeInsetsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50F427C707D400FBC56B /* EdgeInsetsExtension.swift */; };
 		AA0C50F727C70FE800FBC56B /* PlusPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50F627C70FE800FBC56B /* PlusPlanView.swift */; };
-		AA0C50FC27C8810500FBC56B /* MonoListSampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA0C50FB27C8810400FBC56B /* MonoListSampleData.plist */; };
 		AA0C50FE27C8816800FBC56B /* MonoListCatalogData.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA0C50FD27C8816800FBC56B /* MonoListCatalogData.plist */; };
 		AA0C510027C8821300FBC56B /* DataManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C50FF27C8821300FBC56B /* DataManagementView.swift */; };
 		AA0C510227C8C6B400FBC56B /* MLImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C510127C8C6B400FBC56B /* MLImagePicker.swift */; };
@@ -28,6 +27,8 @@
 		AA0FB7B927D09E6400BB2185 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0FB7B827D09E6400BB2185 /* BannerViewController.swift */; };
 		AA0FB7BB27D09F3100BB2185 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0FB7BA27D09F3100BB2185 /* BannerAdView.swift */; };
 		AA0FB7BD27D0A65800BB2185 /* PlusPlanAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0FB7BC27D0A65800BB2185 /* PlusPlanAdView.swift */; };
+		AA0FB7BF27D0BD2900BB2185 /* MonoListSampleData_ja.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA0FB7BE27D0BD2900BB2185 /* MonoListSampleData_ja.plist */; };
+		AA0FB7C127D0C77600BB2185 /* MonoListSampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA0FB7C027D0C77600BB2185 /* MonoListSampleData.plist */; };
 		AA2E0C272789C92400D23B6B /* ItemListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E0C262789C92400D23B6B /* ItemListCellView.swift */; };
 		AA340B9027BC98760080DD33 /* PhotoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */; };
 		AA340B9827BCCE9A0080DD33 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA340B9727BCCE9A0080DD33 /* UIImageExtension.swift */; };
@@ -160,7 +161,6 @@
 		AA0C50F227C7017400FBC56B /* InoperableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InoperableView.swift; sourceTree = "<group>"; };
 		AA0C50F427C707D400FBC56B /* EdgeInsetsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetsExtension.swift; sourceTree = "<group>"; };
 		AA0C50F627C70FE800FBC56B /* PlusPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusPlanView.swift; sourceTree = "<group>"; };
-		AA0C50FB27C8810400FBC56B /* MonoListSampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MonoListSampleData.plist; sourceTree = "<group>"; };
 		AA0C50FD27C8816800FBC56B /* MonoListCatalogData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MonoListCatalogData.plist; sourceTree = "<group>"; };
 		AA0C50FF27C8821300FBC56B /* DataManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagementView.swift; sourceTree = "<group>"; };
 		AA0C510127C8C6B400FBC56B /* MLImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLImagePicker.swift; sourceTree = "<group>"; };
@@ -175,6 +175,8 @@
 		AA0FB7B827D09E6400BB2185 /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		AA0FB7BA27D09F3100BB2185 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		AA0FB7BC27D0A65800BB2185 /* PlusPlanAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusPlanAdView.swift; sourceTree = "<group>"; };
+		AA0FB7BE27D0BD2900BB2185 /* MonoListSampleData_ja.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MonoListSampleData_ja.plist; sourceTree = "<group>"; };
+		AA0FB7C027D0C77600BB2185 /* MonoListSampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MonoListSampleData.plist; sourceTree = "<group>"; };
 		AA2E0C262789C92400D23B6B /* ItemListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCellView.swift; sourceTree = "<group>"; };
 		AA340B8F27BC98760080DD33 /* PhotoButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButtonView.swift; sourceTree = "<group>"; };
 		AA340B9727BCCE9A0080DD33 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -381,9 +383,6 @@
 			children = (
 				AAB52BE827C351C50050A912 /* Environment */,
 				AAB52BE327C34AA30050A912 /* DeepLink */,
-				AAFF272727BDED80000585EE /* Info.plist */,
-				AA7C739027CF61D9008D3B9A /* InfoPlist.strings */,
-				AA7C738D27CF6199008D3B9A /* Localizable.strings */,
 				AA469412279A73370083142D /* Modifiers */,
 				AA8750C6278DB1C100540BA0 /* Extensions */,
 				AAD4B7BB27870BB900D73EBE /* Enums */,
@@ -395,6 +394,9 @@
 				AA82C058277EF500001CEFFA /* Views */,
 				AAE5B283278484FA000B8B09 /* SubViews */,
 				AAF3A815279D87EF0084B7A9 /* Data */,
+				AAFF272727BDED80000585EE /* Info.plist */,
+				AA7C739027CF61D9008D3B9A /* InfoPlist.strings */,
+				AA7C738D27CF6199008D3B9A /* Localizable.strings */,
 				AA351A7B2776BB5500F53BDC /* Assets.xcassets */,
 				AA351A802776BB5500F53BDC /* Persistence.swift */,
 				AA351A822776BB5500F53BDC /* MonoList.xcdatamodeld */,
@@ -675,9 +677,9 @@
 				AAD949E5279866E5004A51AC /* CheckListProgressView.swift */,
 				AAFF272A27BE8293000585EE /* NomalCategoryCheckListView.swift */,
 				AA0C50EE27C6FE6200FBC56B /* NomalCheckListView.swift */,
-				AAC3DDE32794408A00983100 /* CheckItemCell.swift */,
 				AAFF272C27BE85A6000585EE /* PhotoCategoryCheckListView.swift */,
 				AA0C50F027C6FEDA00FBC56B /* PhotoCheckListView.swift */,
+				AAC3DDE32794408A00983100 /* CheckItemCell.swift */,
 				AAFF272E27BE89DB000585EE /* PhotoCheckItemCell.swift */,
 				AAFF273027BE96B3000585EE /* PhotoCheckMarkView.swift */,
 				AAFF273227BE9DB6000585EE /* CategoryHeaderView.swift */,
@@ -749,7 +751,8 @@
 			children = (
 				AAF3A811279D55520084B7A9 /* SystemImageList.plist */,
 				AAA8867327A3E59C00FD4D5E /* Icons.plist */,
-				AA0C50FB27C8810400FBC56B /* MonoListSampleData.plist */,
+				AA0FB7C027D0C77600BB2185 /* MonoListSampleData.plist */,
+				AA0FB7BE27D0BD2900BB2185 /* MonoListSampleData_ja.plist */,
 				AA0C50FD27C8816800FBC56B /* MonoListCatalogData.plist */,
 			);
 			path = Data;
@@ -832,14 +835,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA351A7F2776BB5500F53BDC /* Preview Assets.xcassets in Resources */,
+				AA0FB7C127D0C77600BB2185 /* MonoListSampleData.plist in Resources */,
 				AAF3A812279D55520084B7A9 /* SystemImageList.plist in Resources */,
 				AA6F605A27C1309F00DCB446 /* LICENSE in Resources */,
 				AAA8867427A3E59C00FD4D5E /* Icons.plist in Resources */,
 				AA0C50FE27C8816800FBC56B /* MonoListCatalogData.plist in Resources */,
 				AA7C738F27CF6199008D3B9A /* Localizable.strings in Resources */,
+				AA0FB7BF27D0BD2900BB2185 /* MonoListSampleData_ja.plist in Resources */,
 				AA351A7C2776BB5500F53BDC /* Assets.xcassets in Resources */,
 				AA7C739227CF61D9008D3B9A /* InfoPlist.strings in Resources */,
-				AA0C50FC27C8810500FBC56B /* MonoListSampleData.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

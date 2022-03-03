@@ -76,7 +76,7 @@ struct HomeView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 20)
                     .background(Color(UIColor.systemGroupedBackground))
-                    ZStack {
+                    VStack(spacing: 0) {
                         if !noList {
                             List {
                                 ForEach(folders) { folder in
@@ -103,10 +103,9 @@ struct HomeView: View {
                         } else {
                             NoListsView()
                         }
-                    }
-                    .overlay(alignment: .bottom) {
                         if !isPlusPlan {
                             BannerAdView(adUnit: .homeBottomBanner, adFormat: .adaptiveBanner)
+                                .background(Color(UIColor.systemGroupedBackground))
                         }
                     }
                     HStack {

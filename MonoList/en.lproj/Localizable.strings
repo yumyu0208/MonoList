@@ -2,7 +2,7 @@
 "BackWithoutSave.description" = "Are you sure you want to close without saving?";
 
 /* No comment provided by engineer. */
-"categories.description" = "You can create, edit, delete, and reorder categories.\nIn the list, items will be displayed in this order.";
+"categories.description" = "You can create, edit, delete, and reorder categories.\nIn the list, items are displayed in this order.";
 
 /* No comment provided by engineer. */
 "Category.Delete.confirmation" = "Are you sure you want to delete this category?";
