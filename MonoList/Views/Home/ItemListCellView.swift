@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ItemListCellView: View {
+    @AppStorage(K.key.showReviewRequest) private var showReviewRequest: Bool = false
     @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     @Environment(\.deeplink) var deeplink
-    @AppStorage(K.key.numberOfComplete) private var numberOfComplete: Int = 0
     
     let itemList: ItemList
     let editAction: () -> Void
@@ -32,8 +32,9 @@ struct ItemListCellView: View {
             ItemListView(itemList: itemList, isEditMode: !itemList.hasItems)
                 .environment(\.deeplink, deeplink)
                 .onDisappear {
-                    if numberOfComplete % 30 == 3 {
+                    if showReviewRequest {
                         isShowingReviewAlert = true
+                        showReviewRequest = false
                     }
                 }
         } label: {

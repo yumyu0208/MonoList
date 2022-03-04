@@ -12,6 +12,7 @@ struct ItemListView: View {
     @AppStorage(K.key.automaticUncheck) private var automaticUncheck: Bool = true
     @AppStorage(K.key.numberOfComplete) private var numberOfComplete: Int = 0
     @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
+    @AppStorage(K.key.showReviewRequest) private var showReviewRequest: Bool = false
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @Environment(\.deeplink) var deeplink
@@ -319,6 +320,9 @@ struct ItemListView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         dismiss()
                         numberOfComplete += 1
+                        if numberOfComplete % 30 == 1 {
+                            showReviewRequest = true
+                        }
                         if automaticUncheck {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 uncheckAllItems()
