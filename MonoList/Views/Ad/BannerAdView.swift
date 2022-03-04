@@ -15,13 +15,18 @@ struct BannerAdView: View {
     let adFormat: AdFormat
     @State var adStatus: AdStatus = .loading
     
+    var showPlusPlanAd: Bool {
+        let randomInt = Int.random(in: 1...20)
+        return randomInt <= 1
+    }
+    
     var body: some View {
         HStack {
-            if adStatus != .failure {
+            if adStatus == .failure || showPlusPlanAd {
+                PlusPlanAdView()
+            } else {
                 BannerViewController(adUnitID: adUnit.unitID, adSize: adFormat.adSize, adStatus: $adStatus)
                     .frame(width: adFormat.size.width, height: adFormat.size.height)
-            } else if adStatus == .failure {
-                PlusPlanAdView()
             }
         }
         .frame(maxWidth: .infinity)
