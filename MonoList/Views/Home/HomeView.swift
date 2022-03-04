@@ -11,6 +11,7 @@ import CoreData
 struct HomeView: View {
     @AppStorage(K.key.isInitialLaunch) private var isInitialLaunch: Bool = true
     @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
+    @AppStorage(K.key.requestTrackingAuthorization) private var requestTrackingAuthorization: Bool = false
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.deeplink) var deeplink
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
@@ -163,6 +164,8 @@ struct HomeView: View {
         .onAppear {
             if isInitialLaunch && folders.isEmpty {
                 MonoListData.loadData(from: .sample, viewContext)
+            } else {
+                requestTrackingAuthorization = true
             }
             isInitialLaunch = false
             manager.orderFolder(context: viewContext)

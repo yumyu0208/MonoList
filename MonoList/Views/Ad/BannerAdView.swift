@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
-
-import SwiftUI
+import AppTrackingTransparency
+import AdSupport
 
 struct BannerAdView: View {
+    
+    @AppStorage(K.key.requestTrackingAuthorization) private var requestTrackingAuthorization: Bool = false
     
     let adUnit: AdUnit
     let adFormat: AdFormat
@@ -30,5 +32,14 @@ struct BannerAdView: View {
             }
         }
         .frame(maxWidth: .infinity)
+        .onAppear {
+            if requestTrackingAuthorization {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
+                        ATTrackingManager.requestTrackingAuthorization { _ in }
+                    }
+                }
+            }
+        }
     }
 }

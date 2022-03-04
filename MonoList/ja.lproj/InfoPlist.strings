@@ -4,3 +4,5 @@
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "アイテムの写真を撮影するために使用します";
 
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "許可していただくと興味に合った広告が表示されます";
