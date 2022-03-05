@@ -21,18 +21,19 @@ struct PlusPlanAdView: View {
                 .shadow(color: Color(K.colors.ui.shadowColor9), radius: 2, x: 0, y: 0)
             VStack(alignment: .leading) {
                 Text("Premium Content")
-                    .font(.caption)
+                    .font(.system(size: 12))
                     .foregroundStyle(.secondary)
                 Text("MONOLIST +")
-                    .font(.headline)
+                    .font(.system(size: 20, weight: .bold))
                     .foregroundStyle(.primary)
             }
             Spacer()
             Text("See Details")
-                .font(.body)
+                .font(.system(size: 16))
                 .foregroundStyle(.primary)
         }
-        .padding()
+        .padding(.horizontal)
+        .frame(height: 60, alignment: .center)
         .contentShape(Rectangle())
         .onTapGesture {
             isShowingPlusPlanView = true
