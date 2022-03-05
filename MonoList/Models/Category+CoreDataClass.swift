@@ -16,10 +16,6 @@ public class Category: NSManagedObject {
         name == K.defaultName.newCategory
     }
     
-    var stateId: String {
-        "\(name)\(image ?? "")"
-    }
-    
     static func delete(index: Int, categories: FetchedResults<Category>, _ context: NSManagedObjectContext) {
         context.delete(categories[index])
         if index != categories.count-1 {

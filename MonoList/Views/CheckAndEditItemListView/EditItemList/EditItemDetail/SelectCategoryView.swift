@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SelectCategoryView: View {
+    @AppStorage(K.key.listId) private var listId: String = UUID().uuidString
     @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
@@ -114,6 +115,9 @@ struct SelectCategoryView: View {
             NavigationLink(tag: editCategoryTag,
                            selection: $navigationLinkTag) {
                 editCategoryView
+                    .onDisappear {
+                        listId = UUID().uuidString
+                    }
             } label: {
                 EmptyView()
             } //: NavigationLink
@@ -186,6 +190,7 @@ struct SelectCategoryView: View {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             saveData()
+            listId = UUID().uuidString
         }
     }
 }

@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct EditItemCellView: View, Equatable {
-    @Environment(\.deeplink) var deeplink
     static func == (lhs: EditItemCellView, rhs: EditItemCellView) -> Bool {
         lhs.item == rhs.item
     }
     
     @ObservedObject var item: Item
     
-    @State var isEditingItemDetail = false
     var focusedItem: FocusState<Focusable?>.Binding
     let deleteAction: (Item) -> Void
     let addAction: (Item) -> Void
-    let dismissKeyboardAction: () -> Void
+    
+    var showEditDetailAction: () -> Void
     
     var parentList: ItemList {
         item.parentItemList
@@ -75,23 +74,17 @@ struct EditItemCellView: View, Equatable {
                     if showWeight {
                         WeightLabelView(value: item.weight, unitLabel: item.parentItemList.unitLabel)
                             .onTapGesture {
-                                dismissKeyboardAction()
-                                isEditingItemDetail = true
+                                showEditDetailAction()
                             }
                     }
                     if showQuantity {
                         QuantityLabelView(value: item.quantity)
                             .onTapGesture {
-                                dismissKeyboardAction()
-                                isEditingItemDetail = true
+                                showEditDetailAction()
                             }
                     }
                     Button {
-                        if item.name.isEmpty {
-                            item.name = "New Item".localized
-                        }
-                        isEditingItemDetail = true
-                        dismissKeyboardAction()
+                        showEditDetailAction()
                     } label: {
                         Image(systemName: "info.circle")
                             .imageScale(.large)
@@ -116,7 +109,6 @@ struct EditItemCellView: View, Equatable {
                         if showCategory, let category = item.category {
                             HStack(alignment: .center) {
                                 CategoryLabelView(category: category)
-                                    .id(category.stateId)
                                 Spacer()
                                 Image(systemName: "info.circle")
                                     .imageScale(.large)
@@ -135,18 +127,11 @@ struct EditItemCellView: View, Equatable {
                     } //: VStack
                     .padding(.bottom, 4)
                     .onTapGesture {
-                        dismissKeyboardAction()
-                        isEditingItemDetail = true
+                        showEditDetailAction()
                     }
                 }
             } //: VStack
             .padding(.leading, 8)
-            .sheet(isPresented: $isEditingItemDetail) {
-                NavigationView {
-                    EditItemDetail(item: item)
-                        .environment(\.deeplink, deeplink)
-                }
-            }
         }
     }
 }
@@ -158,7 +143,7 @@ struct EditItemCellView_Previews: PreviewProvider {
         let items = MonoListManager().fetchItems(context: context)
         List {
             ForEach(0 ..< 5) { index in
-                EditItemCellView(item: items[index], focusedItem: $focusedItem, deleteAction: {_ in }, addAction: {_ in }, dismissKeyboardAction: {})
+                EditItemCellView(item: items[index], focusedItem: $focusedItem, deleteAction: {_ in }, addAction: {_ in }, showEditDetailAction: {})
                     .environment(\.managedObjectContext, context)
             }
             .onDelete { _ in }

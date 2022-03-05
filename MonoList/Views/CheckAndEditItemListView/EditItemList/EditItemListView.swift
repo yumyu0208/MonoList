@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct EditItemListView: View {
+    @AppStorage(K.key.listId) private var listId: String = UUID().uuidString
+    @Environment(\.deeplink) var deeplink
     @Environment(\.editMode) private var editMode
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -19,6 +21,9 @@ struct EditItemListView: View {
     var focusedItem: FocusState<Focusable?>.Binding
     
     let dismissKeyboardAction: () -> Void
+    
+    @State var editingItem: Item?
+    
     var isEditing: Bool {
         editMode?.wrappedValue == .active
     }
@@ -75,7 +80,14 @@ struct EditItemListView: View {
                                                     }
                                                 }
                                             }
-                                        }, dismissKeyboardAction: dismissKeyboardAction)
+                                        }, showEditDetailAction: {
+                                            if item.name.isEmpty {
+                                                item.name = "New Item".localized
+                                                saveData()
+                                            }
+                                            editingItem = item
+                                            dismissKeyboardAction()
+                                        })
                                         .listRowSeparator(.visible)
                                         .disabled(isEditing)
                                         .swipeActions(edge: .trailing) {
@@ -195,6 +207,7 @@ struct EditItemListView: View {
                                     .frame(height: 300)
                                     .foregroundColor(Color(UIColor.systemBackground))
                                     .onTapGesture {
+                                        guard !isEditing else { return }
                                         let focusedItemNameIsEmpty = items.first(where: {
                                             focusedItem.wrappedValue == .row(id: $0.id.uuidString)
                                         })?.name != ""
@@ -238,10 +251,17 @@ struct EditItemListView: View {
                                 }
                             }
                     }
-                }
+                } //: ZStack
+                .id(listId)
             }
         } //: VStack
         .padding(.top, 8)
+        .sheet(item: $editingItem) { item in
+            NavigationView {
+                EditItemDetail(item: item)
+                    .environment(\.deeplink, deeplink)
+            }
+        }
     }
     
     private func saveData() {

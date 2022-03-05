@@ -15,7 +15,7 @@ struct EditItemDetail: View {
         case quantityField
         case noteField
     }
-    
+    @AppStorage(K.key.listId) private var listId: String = UUID().uuidString
     @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -380,6 +380,7 @@ struct EditItemDetail: View {
                 withAnimation(.easeOut(duration: 0.2)) {
                     self.unitLabel = newUnitLabel
                 }
+                listId = UUID().uuidString
             } label: {
                 Text("Change the label to \"\(newUnitLabel)\"")
             }
