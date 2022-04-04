@@ -68,6 +68,17 @@ struct ItemListsView: View {
             isShowingDeleteConfirmationDialog = true
         }
         .onMove(perform: moveitemList)
+        .onAppear {
+            let notificationManager = NotificationManager()
+            notificationManager.deleteAllPendingNotificationRequests()
+            var notifications = [Notification]()
+            for itemList in itemLists {
+                if let notificationsOfItemList = itemList.notifications?.allObjects as? [Notification] {
+                    notifications.append(contentsOf: notificationsOfItemList)
+                }
+            }
+            notificationManager.setLocalNotifications(notifications)
+        }
         .confirmationDialog("list.delete.description", isPresented: $isShowingDeleteConfirmationDialog, presenting: deleteIndexSet) { indexSet in
             Button(role: .destructive) {
                 deleteItemLists(offsets: indexSet)

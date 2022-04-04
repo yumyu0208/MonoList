@@ -15,9 +15,8 @@ struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.deeplink) var deeplink
     @FetchRequest(sortDescriptors: [SortDescriptor(\.order, order: .forward)], animation: .default)
-    
     private var folders: FetchedResults<Folder>
-    
+    let notificationManager = NotificationManager()
     @State var manager = MonoListManager()
     @State private var editMode: EditMode = .inactive
     @State private var isSortingFolders = false
@@ -170,7 +169,7 @@ struct HomeView: View {
             isInitialLaunch = false
             manager.orderFolder(context: viewContext)
             saveData()
-            NotificationManager().checkNotificationSettings(viewContext)
+            notificationManager.checkNotificationSettings(viewContext)
         }
         .onReceive(willTerminateObserver) { _ in
             saveData()
