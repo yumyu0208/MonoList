@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct EditItemListView: View {
-    @AppStorage(K.key.listId) private var listId: String = UUID().uuidString
     @Environment(\.deeplink) var deeplink
     @Environment(\.editMode) private var editMode
     @Environment(\.managedObjectContext) private var viewContext
@@ -252,7 +251,6 @@ struct EditItemListView: View {
                             }
                     }
                 } //: ZStack
-                .id(listId)
             }
         } //: VStack
         .padding(.top, 8)

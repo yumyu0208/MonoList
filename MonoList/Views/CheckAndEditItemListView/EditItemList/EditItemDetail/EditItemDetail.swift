@@ -15,7 +15,6 @@ struct EditItemDetail: View {
         case quantityField
         case noteField
     }
-    @AppStorage(K.key.listId) private var listId: String = UUID().uuidString
     @AppStorage(K.key.isPlusPlan) private var isPlusPlan: Bool = false
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -102,18 +101,24 @@ struct EditItemDetail: View {
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 20))
                 } //: Section
                 Section {
-                    TextEditor(text: $note)
-                        .focused($focusedField, equals: .noteField)
-                        .frame(minHeight: 40)
-                        .id(noteID)
-                        .offset(x: 0, y: 2)
-                        .background(alignment: .leading) {
-                            Text("Note")
-                                .foregroundStyle(.tertiary)
-                                .padding(.leading, 4)
-                                .opacity(note.isEmpty ? 1 : 0)
-                                .animation(.easeOut(duration: 0.2), value: note.isEmpty)
-                        }
+                    ZStack(alignment: .leading) {
+                        Text(note)
+                            .padding(.horizontal, 5)
+                            .padding(.vertical, 9)
+                            .opacity(0)
+                        TextEditor(text: $note)
+                            .focused($focusedField, equals: .noteField)
+                            .frame(minHeight: 40)
+                            .id(noteID)
+                            .offset(x: 0, y: 2)
+                            .background(alignment: .leading) {
+                                Text("Note")
+                                    .foregroundStyle(.tertiary)
+                                    .padding(.leading, 4)
+                                    .opacity(note.isEmpty ? 1 : 0)
+                                    .animation(.easeOut(duration: 0.2), value: note.isEmpty)
+                            }
+                    }
                 } //: Section
                 Section {
                     Toggle(isOn: $item.isImportant.animation()) {
@@ -380,7 +385,6 @@ struct EditItemDetail: View {
                 withAnimation(.easeOut(duration: 0.2)) {
                     self.unitLabel = newUnitLabel
                 }
-                listId = UUID().uuidString
             } label: {
                 Text("Change the label to \"\(newUnitLabel)\"")
             }

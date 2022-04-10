@@ -13,13 +13,9 @@ class NotificationManager {
     let center = UNUserNotificationCenter.current()
     
     func checkNotificationSettings(_ context: NSManagedObjectContext) {
-        DispatchQueue.global(qos: .background).async {
-            self.center.getNotificationSettings { settings in
-                if settings.authorizationStatus == .denied || settings.authorizationStatus == .notDetermined {
-                    DispatchQueue.main.async {
-                        self.turnAllListNotificationOff(context)
-                    }
-                }
+        self.center.getNotificationSettings { settings in
+            if settings.authorizationStatus == .denied || settings.authorizationStatus == .notDetermined {
+                self.turnAllListNotificationOff(context)
             }
         }
     }

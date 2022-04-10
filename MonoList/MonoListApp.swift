@@ -32,10 +32,8 @@ struct MonoListApp: App {
                 }
                 .onChange(of: scene) { scene in
                     if scene == .active {
-                        DispatchQueue.global(qos: .background).async {
-                            notificationManager.deleteAllDeliveredNotificationRequests()
-                            notificationManager.checkNotificationSettings(persistenceController.container.viewContext)
-                        }
+                        notificationManager.deleteAllDeliveredNotificationRequests()
+                        notificationManager.checkNotificationSettings(persistenceController.container.viewContext)
                     }
                 }
         }
