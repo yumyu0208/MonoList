@@ -33,6 +33,8 @@ struct ItemListView: View {
     @State var isShowingWeight = false
     @State var isShowingEditIcon = false
     @State var isShowingDoneAlert = false
+    @State var isShowingPickedItemAlert = false
+    @State var pickedItem: Item?
     @State var isShowingUncheckAllConfirmationAlert: Bool = false
     
     @State var isShowingImageViewer = false
@@ -272,6 +274,15 @@ struct ItemListView: View {
                             } label: {
                                 Label("Form", systemImage: imageName(for: itemList.form))
                             }
+                            if !itemsIsEmpty {
+                                Button {
+                                    withAnimation(.easeOut(duration: 0.2)) {
+                                        isShowingPickedItemAlert = true
+                                    }
+                                } label: {
+                                    Label("Pick One Item", systemImage: "tray.and.arrow.up")
+                                }
+                            }
                             Button {
                                 withAnimation(.easeOut(duration: 0.2)) {
                                     itemList.hideCompleted.toggle()
@@ -328,6 +339,38 @@ struct ItemListView: View {
                                 uncheckAllItems()
                             }
                         }
+                    }
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text("Close")
+                            .padding(14)
+                            .foregroundColor(Color(itemList.color))
+                        Spacer()
+                    }
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.darkHighlight)
+            }
+        }
+        .richAlert(isShowing: $isShowingPickedItemAlert, vOffset: -24) {
+            VStack(spacing: 0) {
+                VStack(spacing: 20) {
+                    if let image = pickedItem?.convertedPhoto {
+                        ImageLabelView(image: image, scale: 160)
+                    } else {
+                        IconImageView(for: itemList)
+                            .font(.largeTitle)
+                    }
+                    Text(pickedItem?.name ?? "No Items".localized)
+                        .font(.title3.bold())
+                        .lineLimit(3)
+                }
+                .padding(24)
+                Divider()
+                Button {
+                    withAnimation(.easeOut(duration: 0.2)) {
+                        isShowingPickedItemAlert = false
                     }
                 } label: {
                     HStack {
@@ -413,6 +456,11 @@ struct ItemListView: View {
                 } else {
                     saveData(update: false)
                 }
+            }
+        }
+        .onChange(of: isShowingPickedItemAlert) { isShowing in
+            if isShowing {
+                pickedItem = (itemList.items?.allObjects as! [Item]).randomElement()
             }
         }
         .onChange(of: focusedItem) { [focusedItem] newItem in
