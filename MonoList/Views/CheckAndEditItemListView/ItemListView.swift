@@ -396,20 +396,16 @@ struct ItemListView: View {
             }
         }
         .sheet(isPresented: $isShowingEditNotification) {
-            if let itemList = itemList {
-                NavigationView {
-                    AlarmView(itemList: itemList)
-                        .tint(Color(itemList.color))
-                }
+            NavigationView {
+                AlarmView(itemList: itemList)
+                    .tint(Color(itemList.color))
             }
         }
         .sheet(isPresented: $isShowingWeight) {
-            if let itemList = itemList {
-                NavigationView {
-                    WeightView(itemList: itemList)
-                        .tint(Color(itemList.color))
-                        .environment(\.managedObjectContext, viewContext)
-                }
+            NavigationView {
+                WeightView(itemList: itemList)
+                    .tint(Color(itemList.color))
+                    .environment(\.managedObjectContext, viewContext)
             }
         }
         .sheet(isPresented: $isShowingEditIcon) {
