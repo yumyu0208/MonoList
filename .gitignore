@@ -34,5 +34,5 @@ Carthage/Build/
 xcuserdata/
 *.moved-aside
 !.gitkeep
-/Views/Ad/AdUnit.swift
-/Utilities/Constants.swift
+AdUnit.swift
+Constants.swift
